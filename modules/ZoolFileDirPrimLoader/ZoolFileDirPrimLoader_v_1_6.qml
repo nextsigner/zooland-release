@@ -2,9 +2,8 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 import Qt.labs.settings 1.1
 import "../../comps" as Comps
-import "../../js/Funcs.js" as JS
 
-import ZoolText 1.0
+import ZoolText 0.1
 import ZoolTextInput 1.0
 import ZoolButton 1.2
 import ZoolControlsTime 1.0
@@ -50,8 +49,8 @@ Rectangle {
     visible: false
     onVisibleChanged: {
         //r.moduleEnabled=visible
-        //if(visible)zoolVoicePlayer.stop()
-        if(visible)zoolVoicePlayer.speak('Sección para crear Direcciones Primarias', true)
+        //if(visible)//zoolVoicePlayer.stop()
+        if(visible)//zoolVoicePlayer.speak('Sección para crear Direcciones Primarias', true)
         if(!visible)r.moduleEnabled=false
     }
     Timer{

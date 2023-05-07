@@ -1,6 +1,5 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.12
-import "../../js/Funcs.js" as JS
 
 
 import ZoolBodies.ZoolPlanetsCircle 1.1
@@ -11,7 +10,7 @@ import ZoolBodies.ZoolAspectsView 1.0
 import ZoolBodies.ZoolAspectsViewBack 1.0
 
 import ZoolSignCircle 1.0
-import ZoolAutoPanZoom 1.0
+//import ZoolAutoPanZoom 1.0
 
 //import "./comps" as Comps
 
@@ -330,7 +329,7 @@ Item {
                     anchors.centerIn: parent
                     visible: app.showCenterLine
                 }
-                ZoolAutoPanZoom{id:zoolAutoPanZoom}
+                //ZoolAutoPanZoom{id:zoolAutoPanZoom}
             }
         }
     }
@@ -420,24 +419,6 @@ Item {
         let ms=d.getTime()
         let hsys=j.params.hsys?j.params.hsys:apps.currentHsys
         if(j.params.hsys)hsys=j.params.hsys
-        let c='import QtQuick 2.0\n'
-        c+='import unik.UnikQProcess 1.0\n'
-        c+='UnikQProcess{\n'
-        c+='    id: uqp'+ms+'\n'
-        c+='    onLogDataChanged:{\n'
-        c+='        if(!r.enableLoad)return\n'
-        c+='        let json=(\'\'+logData)\n'
-        c+='        //console.log(\'JSON: \'+json)\n'
-        c+='        loadSweJson(json)\n'
-        c+='        //swegz.sweg.loadSweJson(json)\n'
-        c+='        uqp'+ms+'.destroy(3000)\n'
-        c+='    }\n'
-        c+='    Component.onCompleted:{\n'
-        c+='        console.log(\'sweg.load() '+app.pythonLocation+' "'+unik.currentFolderPath()+'/py/'+app.sweBodiesPythonFile+'" '+vd+' '+vm+' '+va+' '+vh+' '+vmin+' '+vgmt+' '+vlat+' '+vlon+' '+hsys+' '+unik.currentFolderPath()+'\')\n'
-        c+='        run(\''+app.pythonLocation+' "'+unik.currentFolderPath()+'/py/'+app.sweBodiesPythonFile+'" '+vd+' '+vm+' '+va+' '+vh+' '+vmin+' '+vgmt+' '+vlat+' '+vlon+' '+hsys+' "'+unik.currentFolderPath()+'"\')\n'
-        c+='    }\n'
-        c+='}\n'
-        let comp=Qt.createQmlObject(c, xuqp, 'uqpcode')
         app.mod=j.params.tipo
         app.fileData=JSON.stringify(j)
     }

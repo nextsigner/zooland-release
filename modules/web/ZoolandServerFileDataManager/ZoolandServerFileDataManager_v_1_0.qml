@@ -65,6 +65,7 @@ Item{
                 let j=JSON.parse(data)
                 if(j.isData){
                     sweg.loadSweJson(JSON.stringify(j.data, null, 2))
+                    //log.lv(JSON.stringify(j.data, null, 2))
                 }else{
                     app.j.showMsgDialog('Zool Informa Error!', 'Los datos no han sido guardados.', j.error)
                 }
@@ -75,6 +76,8 @@ Item{
         }
     }
     function getZoolandData(j){
+        sweg.load(j)
+        app.fileData=JSON.stringify(j)
         let t=j.params.tipo
         let hsys=j.params.hsys
         let n=j.params.n.replace(/ /g, '%20')

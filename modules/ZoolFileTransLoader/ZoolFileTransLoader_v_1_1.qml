@@ -3,7 +3,7 @@ import QtQuick.Controls 2.0
 import Qt.labs.settings 1.1
 import "../../comps" as Comps
 
-import ZoolText 1.1
+import ZoolText 0.1
 import ZoolTextInput 1.0
 import ZoolButton 1.2
 import ZoolControlsTime 1.0
@@ -30,8 +30,8 @@ Rectangle {
 
     property string uParamsLoaded: ''
     onVisibleChanged: {
-        //if(visible)zoolVoicePlayer.stop()
-        if(visible)zoolVoicePlayer.speak('Sección para cargar tránsitos.', true)
+        //if(visible)//zoolVoicePlayer.stop()
+        if(visible)//zoolVoicePlayer.speak('Sección para cargar tránsitos.', true)
     }
     Timer{
         running: r.uParamsLoaded!==''

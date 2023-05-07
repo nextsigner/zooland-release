@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import Qt.labs.folderlistmodel 2.12
 import ZoolButton 1.0
-import ZoolText 1.0
+import ZoolText 0.1
 import ZoolButton 1.2
 import Qt.labs.settings 1.1
 
@@ -28,8 +28,8 @@ Rectangle {
     property int fs: app.fs*s.fzoom
 
     onVisibleChanged: {
-        //if(visible)zoolVoicePlayer.stop()
-        if(visible)zoolVoicePlayer.speak('Sección para gestionar mapas externos.', true)
+        //if(visible)//zoolVoicePlayer.stop()
+        //if(visible)//zoolVoicePlayer.speak('Sección para gestionar mapas externos.', true)
     }
 
     MouseArea{
@@ -60,12 +60,12 @@ Rectangle {
             border.width: 2
             border.color: apps.fontColor//txtDataSearch.focus?'red':'white'
             anchors.horizontalCenter: parent.horizontalCenter
-            ZoolText {
+            Text {
                 id: txtFileName
                 text: '?'
                 font.pixelSize: app.fs*0.5
                 //width: parent.width-app.fs
-                w: parent.width-app.fs
+                //w: parent.width-app.fs
                 wrapMode: Text.WordWrap
                 color: apps.fontColor
                 focus: r.itemIndex===r.svIndex

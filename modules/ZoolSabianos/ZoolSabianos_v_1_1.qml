@@ -6,7 +6,7 @@ import "../../comps" as Comps
 
 import ZoolSabianos.ZoolSabianosView 1.0
 import ZoolButton 1.1
-import ZoolText 1.0
+import ZoolText 0.1
 
 Rectangle {
     id: r
@@ -37,8 +37,8 @@ Rectangle {
     visible: zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===zsm.currentIndex
 
     onVisibleChanged: {
-        //if(visible)zoolVoicePlayer.stop()
-        if(visible)zoolVoicePlayer.speak('Sección de Simbología de los 360 grados del zodíaco.', true)
+        //if(visible)//zoolVoicePlayer.stop()
+        //if(visible)//zoolVoicePlayer.speak('Sección de Simbología de los 360 grados del zodíaco.', true)
     }
     Behavior on x{enabled: apps.enableFullAnimation;NumberAnimation{duration: app.msDesDuration}}
     Flickable{

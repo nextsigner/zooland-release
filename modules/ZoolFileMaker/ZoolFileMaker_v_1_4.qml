@@ -6,7 +6,7 @@ import ZoolTextInput 1.0
 //import "../../comps" as Comps
 //import "../../js/Funcs.js" as JS
 
-import ZoolText 1.0
+import ZoolText 0.1
 import ZoolButton 1.2
 
 Rectangle {
@@ -32,8 +32,8 @@ Rectangle {
 
     property string uFileNameLoaded: ''
     onVisibleChanged: {
-        //if(visible)zoolVoicePlayer.stop()
-        if(visible)zoolVoicePlayer.speak('Sección para crear archivos.', true)
+        //if(visible)//zoolVoicePlayer.stop()
+        //if(visible)//zoolVoicePlayer.speak('Sección para crear archivos.', true)
     }
     MouseArea{
         anchors.fill: parent

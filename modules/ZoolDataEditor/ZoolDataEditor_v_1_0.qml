@@ -79,7 +79,7 @@ Rectangle{
                     color: apps.fontColor
                     //textFormat: TextEdit.MarkdownText
                     text: visible?xEditor.e.text:''
-                    textFormat: Text.MarkdownText
+                    //textFormat: Text.MarkdownText
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
             }

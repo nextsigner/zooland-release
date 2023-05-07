@@ -1,6 +1,4 @@
 import QtQuick 2.12
-import QtMultimedia 5.12
-import QtQuick.Dialogs 1.2
 //import unik.UnikQProcess 1.0
 
 Rectangle{
@@ -22,8 +20,8 @@ Rectangle{
         }
     }
     onVisibleChanged: {
-        //if(visible)zoolVoicePlayer.stop()
-        if(visible)zoolVoicePlayer.speak('Sección de gestión de modulos.', true)
+        //if(visible)//zoolVoicePlayer.stop()
+        //if(visible)//zoolVoicePlayer.speak('Sección de gestión de modulos.', true)
     }
     Flickable{
         id: flk

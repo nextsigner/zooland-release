@@ -7,22 +7,22 @@ import Qt.labs.folderlistmodel 2.12
 import unik.Unik 1.0
 
 
-import "./js/Funcs_v2.js" as JS
+import "./js/Funcs_Zooland_v1.js" as JS
 import "./comps" as Comps
 
 //Default Modules
 import comps.ZoolAppSettings 1.0
-import ZoolNewsAndUpdates 3.4
+//import ZoolNewsAndUpdates 3.4
 import ZoolMainWindow 1.0
-import ZoolTopMenuBar 1.0
-import ZoolText 1.0
+//import ZoolTopMenuBar 1.0
+import ZoolText 0.1
 import ZoolDataBar 3.1
 import ZoolDataView 1.1
 import ZoolLogView 1.0
 import ZoolControlsTime 1.0
 
-import ZoolFileDataManager 1.0
-import web.ZoolServerFileDataManager 1.0
+//import ZoolFileDataManager 1.0
+import web.ZoolandServerFileDataManager 1.0
 import ZoolBodies 1.9
 import ZoolBodiesGuiTools 1.0
 import ZoolMenuCtxZodiacBack 1.0
@@ -40,8 +40,7 @@ import comps.ZoolPanelNotifications 1.0
 import web.ZoolWebStatusManager 1.0
 import comps.MinymaClient 1.0
 
-import ZoolMediaLive 1.1
-import ZoolVoicePlayer 1.0
+//import ZoolVoicePlayer 1.0
 import ZoolDataEditor 1.0
 import ZoolVideoPlayer 1.0
 import ZoolInfoDataView 1.0
@@ -269,13 +268,30 @@ ZoolMainWindow{
     FontLoader {name: "FontAwesome";source: "./fonts/fontawesome-webfont.ttf";}
     FontLoader {name: "ArialMdm";source: "./fonts/ArialMdm.ttf";}
     FontLoader {name: "TypeWriter";source: "./fonts/typewriter.ttf";}
-    Unik{id: unik}
-    ZoolAppSettings{id: apps}
-    menuBar: ZoolTopMenuBar {
-        id: menuBar
+    Unik{
+        id: unik
+        onUkStdChanged: {
+            let std=ukStd
+            std=std.replace(/&quot;/g, '"')
+            log.lv(std)
+        }
+        Component.onCompleted: {
+            unik.setEngine(engine)
+        }
     }
+    Timer{
+        id: tFail
+        running: true
+        repeat: true
+        interval: 5000
+        onTriggered: app.w=5
+    }
+    ZoolAppSettings{id: apps}
+//    menuBar: ZoolTopMenuBar {
+//        id: menuBar
+//    }
     ZoolFileDataManager{id: zfdm}
-    ZoolServerFileDataManager{id: zsfdm}
+    ZoolandServerFileDataManager{id: zsfdm}
     Timer{
         id: tReload
         running: false
@@ -582,7 +598,7 @@ ZoolMainWindow{
                 //PanelControlsSign{id: panelControlsSign}
                 ZoolDataBodies{id: zoolDataBodies}
                 //PanelPronEdit{id: panelPronEdit;}
-                ZoolVoicePlayer{id: zoolVoicePlayer}
+                //ZoolVoicePlayer{id: zoolVoicePlayer}
                 Rectangle{
                     width: parent.width
                     height: 3
@@ -604,14 +620,8 @@ ZoolMainWindow{
         ZoolInfoDataView{id: xInfoData}
         ZoolDataEditor{id: xEditor}
         //Num.PanelLog{id: panelLog}
-        ZoolVideoPlayer{id: panelVideLectura;}
-        Comps.VideoListEditor{id: videoListEditor}
-    }
-    Comps.XSelectColor{
-        id: xSelectColor
-        width: app.fs*8
-        height: app.fs*8
-        c: 'backgroundColor'
+        //ZoolVideoPlayer{id: panelVideLectura;}
+        //Comps.VideoListEditor{id: videoListEditor}
     }
     ZoolLogView{id: log}
     ZoolWebStatusManager{id: zwsm}
@@ -672,7 +682,7 @@ ZoolMainWindow{
     Comps.MenuPlanets{id: menuPlanets}
     ZoolMenuCtxZodiacBack{id: menuRuedaZodiacal}
     ZoolMenuPlanetsCtxAsc{id: menuPlanetsCtxAsc}
-    ZoolMediaLive{id: zoolMediaLive;parent: zoolDataBodies}
+    //ZoolMediaLive{id: zoolMediaLive;parent: zoolDataBodies}
 
     //Este esta en el centro
     Rectangle{
@@ -753,16 +763,16 @@ ZoolMainWindow{
             app.minymaClient=objMinyma
         }
 
-        let v=unik.getFile('./version')
-        app.version=v.replace(/\n/g, '')
-        if(app.version!==apps.lastVersion || app.dev){
-            apps.lastVersion=app.version
-            let c='import QtQuick 2.0\n'
-            c+='import ZoolNewsAndUpdates 3.4\n'
-            c+='ZoolNewsAndUpdates{}\n'
-            let obj=Qt.createQmlObject(c, xLatIzq, 'znaucode')
-            obj.z=log.z+1
-        }
+//        let v=unik.getFile('./version')
+//        app.version=v.replace(/\n/g, '')
+//        if(app.version!==apps.lastVersion || app.dev){
+//            apps.lastVersion=app.version
+//            let c='import QtQuick 2.0\n'
+//            c+='import ZoolNewsAndUpdates 3.4\n'
+//            c+='ZoolNewsAndUpdates{}\n'
+//            let obj=Qt.createQmlObject(c, xLatIzq, 'znaucode')
+//            obj.z=log.z+1
+//        }
 
 
         //Argumentos
@@ -774,75 +784,11 @@ ZoolMainWindow{
                 let mt=a.split('-title=')
                 app.title=mt[1]
             }
-        }
-
-        //Check apps.jsonsFolderTemp
-        if(apps.jsonsFolder===''){
-            let jft=unik.getPath(3)+'/Zool/Temp'
-            unik.mkdir(jft)
-            apps.jsonsFolderTemp=jft
-        }
-        if(apps.isJsonsFolderTemp){
-            let jsonF=apps.jsonsFolder
-            let jsonFT=apps.jsonsFolderTemp
-            apps.jsonsFolder=jsonFT
-            apps.jsonsFolderTemp=jsonF
-        }
-
-        if(app.dev){
-            log.ls('\nRunning as Dev', 0, xLatIzq.width)
-            //log.ls('\nVersion:\n'+version, log.x,
-            log.ls('\nunik.currentFolderPath():\n'+unik.currentFolderPath(), log.x, log.width)
-            log.ls('\nunik.getPath(4):\n'+unik.getPath(4), log.x, log.width)
-            log.ls('\napps.jsonsFolder:\n'+apps.jsonsFolder, log.x, log.width)
-            log.ls('\nDocumentPath:\n'+documentsPath, log.x, log.width)
-        }
-
-        app.mainLocation=unik.getPath(5)
+        }                app.mainLocation=unik.getPath(5)
         if(Qt.platform.os==='windows'){
             app.mainLocation="\""+app.mainLocation+"\""
         }
-        console.log('app.mainLocation: '+app.mainLocation)
-        console.log('documentsPath: '+documentsPath)
-        console.log('Init app.url: '+app.url)
-        let fileLoaded=false
-        let appArgs=Qt.application.arguments
-        let arg=''
-        for(i=0;i<appArgs.length;i++){
-            let a=appArgs[i]
-            if(a.indexOf('file=')>=0){
-                let ma=a.split('=')
-                if(ma.length>1){
-                    arg=ma[1]
-                    //log.ls('File: '+arg, 0, xApp.width*0.5)
-                    JS.loadJson(arg)
-                    fileLoaded=true
-                }
-            }
-        }
-        if(!fileLoaded){
-            //let fp=
-            if(apps.url!==''&&unik.fileExist(apps.url)&&apps.jsonsFolder!==''){
-                console.log('Cargando al iniciar: '+apps.url)
-                //Detalles Técnicos extras
-                if(app.dev){
-                    log.visible=true
-                    log.l('\nEl módulo Python SwissEph se encuentra instalado en '+app.pythonLocation)
-                    log.l('\nEl módulo MinymaClient se conecta mediante el host: '+minymaClient.host)
-                }
-                JS.loadJson(apps.url)
-            }else{
-                if(app.dev){
-                    log.visible=true
-                    log.l('\nEl módulo Python SwissEph se encuentra instalado en '+app.pythonLocation)
-                    log.l('\nEl módulo MinymaClient se conecta mediante el host: '+minymaClient.host)
-                    log.l('\napp.url: '+app.url)
-                    log.l('\napp.url exist: '+unik.fileExist(apps.url))
-                }
-                JS.firstRunTime()
-            }
-        }
-        //JS.getRD('https://github.com/nextsigner/nextsigner.github.io/raw/master/zool/zool', setHost)
+
         apps.host='https://zool.loca.lt'
         JS.loadModules()
         app.requestActivate()

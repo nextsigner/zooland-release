@@ -3,7 +3,7 @@ import QtQuick.Controls 2.0
 import Qt.labs.settings 1.1
 import "../../comps" as Comps
 
-import ZoolText 1.1
+import ZoolText 0.1
 import ZoolTextInput 1.0
 import ZoolButton 1.2
 import ZoolControlsTime 1.0
@@ -30,8 +30,8 @@ Rectangle {
 
     property string uParamsLoaded: ''
     onVisibleChanged: {
-        //if(visible)zoolVoicePlayer.stop()
-        if(visible)zoolVoicePlayer.speak('Sección para cargar tránsitos.', true)
+        //if(visible)//zoolVoicePlayer.stop()
+        //if(visible)//zoolVoicePlayer.speak('Sección para cargar tránsitos.', true)
     }
     Timer{
         running: r.uParamsLoaded!==''
@@ -196,6 +196,7 @@ Rectangle {
                         text: 'Crear archivo nuevo únicamente de los tránsitos actuales.'
                         fs: app.fs*0.5
                         padding: app.fs*0.25
+                        width:w
                         r.width: w
                         w: r.width-app.fs*3
                         textFormat: Text.PlainText

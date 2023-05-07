@@ -9,7 +9,7 @@ import ZoolFileLoader 1.3
 import ZoolFileTransLoader 1.2
 import ZoolFileDirPrimLoader 1.6
 import ZoolButton 1.0
-import ZoolText 1.0
+import ZoolText 0.1
 
 Rectangle {
     id: r
@@ -42,8 +42,8 @@ Rectangle {
         }
     }
     onVisibleChanged: {
-        //if(visible)zoolVoicePlayer.stop()
-        if(visible)zoolVoicePlayer.speak('Sección para administrar archivos.', true)
+        //if(visible)//zoolVoicePlayer.stop()
+        //if(visible)//zoolVoicePlayer.speak('Sección para administrar archivos.', true)
     }
     Timer{
         id: tF

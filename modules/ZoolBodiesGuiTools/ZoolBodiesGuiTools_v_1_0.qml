@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import "../../comps"
-import "../../js/Funcs.js" as JS
 import "../../js/Capture.js" as Cap
 
 import ZoolButton 1.1

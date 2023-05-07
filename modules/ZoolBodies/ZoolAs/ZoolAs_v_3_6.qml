@@ -22,7 +22,7 @@ Item{
     property bool isHovered: false
 
     //property bool isPron: JSON.parse(app.currentData).params.tipo==='pron'
-    property bool isPron: JSON.parse(app.fileData).params.tipo==='pron'
+    property bool isPron: false//app.fileData&&JSON.parse(app.fileData).params.tipo==='pron'
     property int widthRestDec:apps.showDec?sweg.objSignsCircle.w*2:0
     property bool selected: numAstro === app.currentPlanetIndex//panelDataBodies.currentIndex
     property string astro
@@ -230,7 +230,7 @@ Item{
                             let msg='Mostrando '+app.planetasReferencia[r.numAstro]
                             msg+=' en el signo '+app.signos[r.is]
                             msg+=' en el grado '+r.objData.rsg+' '+r.objData.m+' minutos '+r.objData.s+' segundos. Casa '+r.ih
-                            zoolVoicePlayer.speak(msg, true)
+                            //zoolVoicePlayer.speak(msg, true)
                         }
                         r.parent.pressed(r)
                     }else{
@@ -344,14 +344,14 @@ Item{
         anchors.left: parent.left
         visible: apps.xAsShowIcon
         anchors.leftMargin: xIcon.width*0.5
-        Comps.XSignal{
-            width: parent.width
-            anchors.verticalCenter: parent.verticalCenter
-            height: app.fs*6
-            numAstro: r.numAstro
-            //visible: r.numAstro===0
-            visible: r.selected
-        }
+//        Comps.XSignal{
+//            width: parent.width
+//            anchors.verticalCenter: parent.verticalCenter
+//            height: app.fs*6
+//            numAstro: r.numAstro
+//            //visible: r.numAstro===0
+//            visible: r.selected
+//        }
     }
     Comps.XCircleSignal{
         id: xCircleSignal

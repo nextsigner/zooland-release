@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import Qt.labs.folderlistmodel 2.12
 import ZoolButton 1.2
-import ZoolText 1.0
+import ZoolText 0.1
 import Qt.labs.settings 1.1
 
 
@@ -24,8 +24,8 @@ Rectangle {
     property int svIndex: zsm.currentIndex
     property int itemIndex: -1
     onVisibleChanged: {
-        //if(visible)zoolVoicePlayer.stop()
-        if(visible)zoolVoicePlayer.speak('Sección para buscar y cargar archivos.', true)
+        //if(visible)//zoolVoicePlayer.stop()
+        //if(visible)//zoolVoicePlayer.speak('Sección para buscar y cargar archivos.', true)
     }
     Settings{
         id: s
@@ -170,12 +170,13 @@ Rectangle {
                 //color: apps.backgroundColor
                 anchors.horizontalCenter: parent.horizontalCenter
                 clip: true
-                ZoolText {
+                Text {
                     id: txtTitInfo
-                    text: '<b>Cantidad Total:</b> '+flm.count+' <b>Encontrados:</b> '+lm.count+'<br/><b>Carpeta: </b>'+(''+flm.folder).replace('file://', '')
+                    text: '<b>Cantidad Total:</b> '+flm.count+' <b>Encontrados:</b> '+lm.count+'<br/>'//+'<b>Carpeta: </b>'+flm.folder//.replace('file://', '')
+                    //text: 'Cantidad Total: '+flm.count+' Encontrados: '+lm.count+' Carpeta: '+(''+flm.folder)
                     font.pixelSize: app.fs*0.35
                     //width: parent.width-app.fs
-                    w: parent.width-app.fs
+                    //w: parent.width-app.fs
                     wrapMode: Text.WordWrap
                     color: apps.fontColor
                     anchors.centerIn: parent

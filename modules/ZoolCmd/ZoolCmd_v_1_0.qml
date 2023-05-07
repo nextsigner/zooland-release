@@ -2,7 +2,6 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 import Qt.labs.folderlistmodel 2.12
 import "../../comps" as Comps
-import "../../js/Funcs.js" as JS
 
 Rectangle {
     id: r
@@ -38,7 +37,7 @@ Rectangle {
     Behavior on y{enabled: apps.enableFullAnimation;NumberAnimation{duration: app.msDesDuration}}
     onStateChanged: {
         if(state==='show')tiCmd.t.focus=true
-        JS.raiseItem(r)
+        app.j.raiseItem(r)
     }
     onXChanged: {
         if(x===0){

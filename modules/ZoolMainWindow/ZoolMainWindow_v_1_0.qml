@@ -1,6 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-import "../../js/Funcs.js" as JS
+//import "../../js/Funcs.js" as JS
 import "../../js/Capture.js" as Cap
 
 ApplicationWindow {
@@ -287,10 +287,10 @@ ApplicationWindow {
                 xApp.focus=true
                 return
             }
-            if(app.objInFullWin){
-                //app.objInFullWin.escaped()
-                return
-            }
+//            if(app.objInFullWin){
+//                //app.objInFullWin.escaped()
+//                return
+//            }
 //            if(ncv.log.visible){
 //                ncv.log.visible=false
 //                return
@@ -299,10 +299,10 @@ ApplicationWindow {
             //                log.visible=false
             //                return
             //            }
-            if(videoListEditor.visible){
-                videoListEditor.visible=false
-                return
-            }
+//            if(videoListEditor.visible){
+//                videoListEditor.visible=false
+//                return
+//            }
             //Efecto sobre los paneles
             if(zsm.getPanel('ZoolFileManager').visible&&zsm.getPanel('ZoolFileManager').ti.focus){
                 zsm.getPanel('ZoolFileManager').ti.focus=false
@@ -764,11 +764,11 @@ ApplicationWindow {
     Shortcut{
         sequence: 'Ctrl+p'
         onActivated: {
-            if(zoolVoicePlayer.settings.stateShowOrHide==='hide'){
-                zoolVoicePlayer.settings.stateShowOrHide='show'
-            }else{
-                zoolVoicePlayer.settings.stateShowOrHide='hide'
-            }
+//            if(zoolVoicePlayer.settings.stateShowOrHide==='hide'){
+//                //zoolVoicePlayer.settings.stateShowOrHide='show'
+//            }else{
+//                //zoolVoicePlayer.settings.stateShowOrHide='hide'
+//            }
 
         }
     }

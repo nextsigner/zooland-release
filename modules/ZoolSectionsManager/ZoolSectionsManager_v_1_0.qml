@@ -59,7 +59,7 @@ Item{
             Comps.XPaneles{ZoolDataText{id: panelZoolText;}}
 
             //7
-            Comps.XPaneles{Comps.PanelZoolData{id: panelZoolData}}
+            //Comps.XPaneles{Comps.PanelZoolData{id: panelZoolData}}
 
             //6
             Comps.XPaneles{ZoolModulesManager{}}

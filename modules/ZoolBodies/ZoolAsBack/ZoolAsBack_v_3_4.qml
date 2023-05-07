@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import QtGraphicalEffects 1.0
-import ZoolText 1.1
+import ZoolText 0.1
 
 import ZoolBodies.ZoolAsCotaDeg 1.0
 

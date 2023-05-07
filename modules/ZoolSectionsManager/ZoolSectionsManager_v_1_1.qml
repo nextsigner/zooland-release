@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import '../../comps' as Comps
 
-import ZoolDataText 1.0
+//import ZoolDataText 1.0
 import ZoolFileExtDataManager 1.2
 import ZoolFileManager 1.3
 import ZoolSabianos 1.1
@@ -67,10 +67,10 @@ Item{
             Comps.XPaneles{ZoolHelp{id: zoolHelp;}}
 
             //8
-            Comps.XPaneles{ZoolDataText{id: panelZoolText;}}
+            //Comps.XPaneles{ZoolDataText{id: panelZoolText;}}
 
             //7
-            Comps.XPaneles{Comps.PanelZoolData{id: panelZoolData}}
+            //Comps.XPaneles{Comps.PanelZoolData{id: panelZoolData}}
 
             //6
             Comps.XPaneles{ZoolModulesManager{}}

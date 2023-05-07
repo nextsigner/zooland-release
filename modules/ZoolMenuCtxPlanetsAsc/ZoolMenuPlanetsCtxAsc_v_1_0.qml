@@ -1,6 +1,5 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-import "../../js/Funcs.js" as JS
 import "../../js/Capture.js" as Cap
 Menu {
     id: r
@@ -10,7 +9,7 @@ Menu {
     property bool isBack: false
     onOpenedChanged:  menuBar.expanded=opened
     //onCurrentIndexChanged: menuBar.uCMI=aMI[currentIndex]
-    Component.onCompleted: menuBar.aMenuItems.push(this)
+    //Component.onCompleted: menuBar.aMenuItems.push(this)
     delegate: MenuItem {
         id: menuItem
         implicitWidth: 200

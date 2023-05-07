@@ -1,9 +1,8 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-import QtQuick.Dialogs 1.2
+//import QtQuick.Dialogs 1.2
 import "../"
 import "../../comps" as Comps
-import "../../js/Funcs.js" as JS
 
 import ZoolNumPit.ZoolNumPitLog 1.0
 
@@ -86,8 +85,8 @@ Rectangle {
     property int itemIndex: -1
     visible: zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===zsm.currentIndex
     onVisibleChanged: {
-        //if(visible)zoolVoicePlayer.stop()
-        if(visible)zoolVoicePlayer.speak('Sección de numerología.', true)
+        //if(visible)//zoolVoicePlayer.stop()
+        //if(visible)//zoolVoicePlayer.speak('Sección de numerología.', true)
     }
     onCurrentNumNacimientoChanged: {
         calcularPersonalidad()
@@ -1021,21 +1020,23 @@ Rectangle {
             //calc()
         }
     }
-    FileDialog {
-        id: fileDialogFolder
-        title: "Seleccionar Carpeta"
-        folder: apps.numCurrentFolder
-        selectFolder: true
-        selectMultiple: false
-        onAccepted: {
-            let u=fileDialogFolder.fileUrls[0]
-            apps.numCurrentFolder=(""+u).replace('file://', '')
-        }
-        onRejected: {
-            console.log("Canceled")
-        }
-        //Component.onCompleted: visible = true
-    }
+
+//    FileDialog {
+//        id: fileDialogFolder
+//        title: "Seleccionar Carpeta"
+//        folder: apps.numCurrentFolder
+//        selectFolder: true
+//        selectMultiple: false
+//        onAccepted: {
+//            let u=fileDialogFolder.fileUrls[0]
+//            apps.numCurrentFolder=(""+u).replace('file://', '')
+//        }
+//        onRejected: {
+//            console.log("Canceled")
+//        }
+//        //Component.onCompleted: visible = true
+//    }
+
     ZoolNumPitLog{id: zoolNumPitLog; parent: capa101}
     Component.onCompleted: {
         zsm.aPanelsIds.push(app.j.qmltypeof(r))
