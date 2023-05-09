@@ -83,7 +83,7 @@ Rectangle {
 
 
     property int itemIndex: -1
-    visible: zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===zsm.currentIndex
+    visible: //zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===//zsm.currentIndex
     onVisibleChanged: {
         //if(visible)//zoolVoicePlayer.stop()
         //if(visible)//zoolVoicePlayer.speak('Sección de numerología.', true)
@@ -1039,8 +1039,8 @@ Rectangle {
 
     ZoolNumPitLog{id: zoolNumPitLog; parent: capa101}
     Component.onCompleted: {
-        zsm.aPanelsIds.push(app.j.qmltypeof(r))
-        zsm.aPanelesTits.push('Numerología')
+        //zsm.aPanelsIds.push(app.j.qmltypeof(r))
+        //zsm.aPanelesTits.push('Numerología')
         let date = new Date(Date.now())
         txtDataSearchFechaAP.text=date.getFullYear()
         let a =[]

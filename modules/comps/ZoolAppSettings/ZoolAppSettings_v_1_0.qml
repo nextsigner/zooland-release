@@ -176,9 +176,9 @@ Settings{
             //zoolFileManager.ti.focus=false
             //panelRsList.desactivar()
         }else{
-            if(zsm.currentIndex===2){
-                //zoolFileManager.ti.focus=true
-            }
+//            if(//zsm.currentIndex===2){
+//                //zoolFileManager.ti.focus=true
+//            }
         }
     }
     onShowLupaChanged: sweg.centerZoomAndPos()

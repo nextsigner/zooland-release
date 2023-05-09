@@ -9,9 +9,9 @@ Rectangle{
     border.width: 2
     border.color: apps.fontColor
     property alias c: col
-    property int svIndex: zsm.currentIndex
+    property int svIndex: //zsm.currentIndex
     property int itemIndex: -1
-    visible: zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===zsm.currentIndex
+    visible: //zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===//zsm.currentIndex
     onSvIndexChanged: {
         if(svIndex===itemIndex){
             //tF.restart()
@@ -37,7 +37,7 @@ Rectangle{
     }
 
     Component.onCompleted: {
-        zsm.aPanelsIds.push(app.j.qmltypeof(r))
-        zsm.aPanelesTits.push('Administrar Módulos')
+        //zsm.aPanelsIds.push(app.j.qmltypeof(r))
+        //zsm.aPanelesTits.push('Administrar Módulos')
     }
 }

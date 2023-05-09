@@ -15,14 +15,14 @@ Rectangle {
     border.width: 2
     border.color: apps.fontColor
 
-    visible: zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===zsm.currentIndex//itemIndex===zsm.currentIndex
+    visible: //zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===//zsm.currentIndex//itemIndex===//zsm.currentIndex
 
     property string uFileLoaded: ''
 
     property alias currentIndex: lv.currentIndex
     property alias listModel: lm
 
-    property int svIndex: zsm.currentIndex
+    property int svIndex: //zsm.currentIndex
     property int itemIndex: -1
 
     property int fs: app.fs*s.fzoom
@@ -282,7 +282,7 @@ Rectangle {
 //                                let vDirPrimMin=j.dirprimMin
 //                                let dateEvento=new Date(1976, 5,20,23,4)
                                 let dateEvento=new Date(a, m, d, h,min)
-                                let section=zsm.getPanel('ZoolFileManager').getSection('ZoolFileDirPrimLoader')
+                                let section=//zsm.getPanel('ZoolFileManager').getSection('ZoolFileDirPrimLoader')
                                 section.setDirPrimRotationFromExternalItem(app.currentDate, dateEvento)
                             }else{
                                 if(app.dev)log.lv('ZoolFileExtDataManager Boton Cargar... gmt: '+gmt)
@@ -453,8 +453,8 @@ Rectangle {
         visible: app.dev
     }
     Component.onCompleted: {
-        zsm.aPanelsIds.push(app.j.qmltypeof(r))
-        zsm.aPanelesTits.push('Lista de Exteriores')
+        //zsm.aPanelsIds.push(app.j.qmltypeof(r))
+        //zsm.aPanelesTits.push('Lista de Exteriores')
         app.objZoolFileExtDataManager=r
     }
     function deleteVnData(fileName){

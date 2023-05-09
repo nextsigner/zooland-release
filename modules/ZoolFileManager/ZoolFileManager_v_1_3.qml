@@ -31,9 +31,9 @@ Rectangle {
     property alias tiC: zoolFileMaker.tiC
 
     property alias s: settings
-    property int svIndex: zsm.currentIndex
+    property int svIndex: //zsm.currentIndex
     property int itemIndex: -1
-    visible: zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===zsm.currentIndex
+    visible: //zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===//zsm.currentIndex
     onSvIndexChanged: {
         if(svIndex===itemIndex){
             tF.restart()
@@ -211,8 +211,8 @@ Rectangle {
         t.start();
     }
     Component.onCompleted: {
-        zsm.aPanelsIds.push(app.j.qmltypeof(r))
-        zsm.aPanelesTits.push('Administrar archivos')
+        //zsm.aPanelsIds.push(app.j.qmltypeof(r))
+        //zsm.aPanelesTits.push('Administrar archivos')
         r.showSection(s.currentQmlTypeShowed)
     }
 

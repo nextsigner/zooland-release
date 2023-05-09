@@ -43,7 +43,7 @@ Item {
     property alias objHousesCircleBack: housesCircleBack
     property alias objSignsCircle: signCircle
     property alias objAscMcCircle: ascMcCircle
-    property alias objEclipseCircle: eclipseCircle
+    //property alias objEclipseCircle: eclipseCircle
 
     property alias objZoolAspectsView: panelAspects
     property alias objZoolAspectsViewBack: panelAspectsBack
@@ -276,45 +276,39 @@ Item {
                 }
                 AxisCircle{id: axisCircle}
                 NumberLines{}
-                ZoolSignCircle{
-                    id:signCircle
-                    //width: planetsCircle.expand?r.width-r.fs*6+r.fs*2:r.width-r.fs*6
-                    anchors.centerIn: parent
-                    showBorder: true
-                    v:r.v
-                    w: r.w
-                    onRotChanged: housesCircle.rotation=rot
-                    //onShowDecChanged: Qt.quit()
-                }
+//                ZoolSignCircle{
+//                    id:signCircle
+//                    //width: planetsCircle.expand?r.width-r.fs*6+r.fs*2:r.width-r.fs*6
+//                    anchors.centerIn: parent
+//                    showBorder: true
+//                    v:r.v
+//                    w: r.w
+//                    onRotChanged: housesCircle.rotation=rot
+//                    //onShowDecChanged: Qt.quit()
+//                }
                 AspCircleV2{
                     id: aspsCircle
                     rotation: signCircle.rot - 90// + 1
                 }
                 AscMcCircle{id: ascMcCircle}
-                ZoolPlanetsCircle{
-                    id:planetsCircle
-                    height: width
-                    anchors.centerIn: parent
-                    //showBorder: true
-                    //v:r.v
-                }
-//                PlanetsCircleBack{
+//                ZoolPlanetsCircle{
+//                    id:planetsCircle
+//                    height: width
+//                    anchors.centerIn: parent
+//                    //showBorder: true
+//                    //v:r.v
+//                }
+//                ZoolPlanetsCircleBack{
 //                    id:planetsCircleBack
 //                    height: width
 //                    anchors.centerIn: parent
 //                    visible: app.ev
 //                }
-                ZoolPlanetsCircleBack{
-                    id:planetsCircleBack
-                    height: width
-                    anchors.centerIn: parent
-                    visible: app.ev
-                }
-                EclipseCircle{
-                    id: eclipseCircle
-                    width: housesCircle.width
-                    height: width
-                }
+//                EclipseCircle{
+//                    id: eclipseCircle
+//                    width: housesCircle.width
+//                    height: width
+//                }
                 Rectangle{
                     width: 3
                     height: r.height*2
@@ -337,7 +331,7 @@ Item {
         id: panelAspects
         anchors.bottom: parent.bottom
         anchors.left: parent.left
-        anchors.leftMargin: xLatIzq.visible?0:0-xLatIzq.width
+        //anchors.leftMargin: xLatIzq.visible?0:0-xLatIzq.width
         parent: xMed
         visible: r.objectName==='sweg'
     }
@@ -347,7 +341,7 @@ Item {
         //anchors.topMargin: 0-(r.parent.height-r.height)/2
         parent: xMed
         anchors.left: parent.left
-        anchors.leftMargin: xLatIzq.visible?width:width-xLatIzq.width
+        //anchors.leftMargin: xLatIzq.visible?width:width-xLatIzq.width
         transform: Scale{ xScale: -1 }
         rotation: 180
         visible: r.objectName==='sweg'&&planetsCircleBack.visible
@@ -477,7 +471,7 @@ Item {
         var scorrJson=json.replace(/\n/g, '')
         //app.currentJson=JSON.parse(scorrJson)
         aspsCircle.clear()
-        zsm.getPanel('ZoolRevolutionList').clear()
+        //zsm.getPanel('ZoolRevolutionList').clear()
         //panelRsList.clear()
         //planetsCircleBack.visible=false
         app.ev=false
@@ -517,17 +511,17 @@ Item {
         zoolDataBodies.loadJson(j)
         aspsCircle.load(j)
         zoolElementsView.load(j, false)
-        eclipseCircle.arrayWg=housesCircle.arrayWg
-        eclipseCircle.isEclipse=-1
+        //eclipseCircle.arrayWg=housesCircle.arrayWg
+        //eclipseCircle.isEclipse=-1
         r.v=true
-        let sabianos=zsm.getPanel('ZoolSabianos')
+        /*let sabianos=//zsm.getPanel('ZoolSabianos')
         sabianos.numSign=app.currentJson.ph.h1.is
         sabianos.numDegree=parseInt(app.currentJson.ph.h1.rsgdeg - 1)
         sabianos.loadData()
         if(apps.sabianosAutoShow){
             //panelSabianos.state='show'
-            zsm.currentIndex=1
-        }     }
+            //zsm.currentIndex=1
+        }*/     }
     function loadSweJsonBack(json){
         //console.log('JSON::: '+json)
         app.currentJsonBack=JSON.parse(json)

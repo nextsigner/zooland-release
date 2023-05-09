@@ -8,7 +8,7 @@ Rectangle{
     color: apps.backgroundColor
     border.width: 2
     border.color: apps.fontColor
-    property int svIndex: zsm.currentIndex
+    property int svIndex: //zsm.currentIndex
     property int itemIndex: -1
     property int fs: app.fs*0.75
     Column{
@@ -47,8 +47,8 @@ Rectangle{
 //        }
     }
     Component.onCompleted: {
-        zsm.aPanelsIds.push(app.j.qmltypeof(r))
-        zsm.aPanelesTits.push('Ayuda')
+        //zsm.aPanelsIds.push(app.j.qmltypeof(r))
+        //zsm.aPanelesTits.push('Ayuda')
         //let currentFileZoolText='./resources/zooltext.txt'
     }
     function mkTwichChat(){

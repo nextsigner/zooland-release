@@ -11,7 +11,7 @@ import ZoolControlsTime 1.0
 Rectangle {
     id: r
     width: xLatIzq.width
-    height: zsm.getPanel('ZoolFileManager').hp
+    height: //zsm.getPanel('ZoolFileManager').hp
     visible: false
     color: apps.backgroundColor
     border.width: 2

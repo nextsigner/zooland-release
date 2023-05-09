@@ -34,7 +34,7 @@ Rectangle {
 
     property string prevZFocus: ''
 
-    visible: zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===zsm.currentIndex
+    visible: //zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===//zsm.currentIndex
 
     onVisibleChanged: {
         //if(visible)//zoolVoicePlayer.stop()
@@ -405,8 +405,8 @@ Rectangle {
         //Component.onCompleted: xSabianos=sabianosView
     }
     Component.onCompleted: {
-        zsm.aPanelsIds.push(app.j.qmltypeof(r))
-        zsm.aPanelesTits.push('Sabianos')
+        //zsm.aPanelsIds.push(app.j.qmltypeof(r))
+        //zsm.aPanelesTits.push('Sabianos')
     }
     function ctrlDown(){
         if(r.numSign<11){

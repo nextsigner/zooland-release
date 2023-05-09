@@ -9,7 +9,7 @@ import Qt.labs.settings 1.1
 Rectangle {
     id: r
     width: xLatIzq.width
-    height: zsm.getPanel('ZoolFileManager').hp
+    height: //zsm.getPanel('ZoolFileManager').hp
     visible: false
     color: apps.backgroundColor
     border.width: 2
@@ -21,7 +21,7 @@ Rectangle {
     property alias currentIndex: lv.currentIndex
     property alias listModel: lm
     property string currentFile: ''
-    property int svIndex: zsm.currentIndex
+    property int svIndex: //zsm.currentIndex
     property int itemIndex: -1
     onVisibleChanged: {
         //if(visible)//zoolVoicePlayer.stop()
@@ -121,7 +121,7 @@ Rectangle {
                         //xApp.focus=true
                     }
                     onTextChanged: {
-                        zsm.currentSectionFocused=r
+                        //zsm.currentSectionFocused=r
                         updateList()
                     }
                     onFocusChanged: {
@@ -194,7 +194,7 @@ Rectangle {
             clip: true
             onCurrentIndexChanged: {
                 if(currentIndex>=0){
-                    zsm.currentSectionFocused=r
+                    //zsm.currentSectionFocused=r
                     ti.focus=false
                 }
                 if(!lm.get(currentIndex) || !lm.get(currentIndex).fileName)return

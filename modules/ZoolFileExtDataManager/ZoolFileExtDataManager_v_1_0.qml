@@ -15,14 +15,14 @@ Rectangle {
     border.width: 2
     border.color: apps.fontColor
 
-    visible: zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===zsm.currentIndex
+    visible: //zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===//zsm.currentIndex
 
     property string uFileLoaded: ''
 
     property alias currentIndex: lv.currentIndex
     property alias listModel: lm
 
-    property int svIndex: zsm.currentIndex
+    property int svIndex: //zsm.currentIndex
     property int itemIndex: -1
 
     property int fs: app.fs*s.fzoom
@@ -421,7 +421,7 @@ Rectangle {
         visible: app.dev
     }
     Component.onCompleted: {
-        zsm.aPanelsIds.push(app.j.qmltypeof(r))
+        //zsm.aPanelsIds.push(app.j.qmltypeof(r))
         app.objZoolFileExtDataManager=r
     }
     function deleteVnData(fileName){

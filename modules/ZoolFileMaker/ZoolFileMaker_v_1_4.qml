@@ -12,7 +12,7 @@ import ZoolButton 1.2
 Rectangle {
     id: r
     width: xLatIzq.width
-    height: zsm.getPanel('ZoolFileManager').hp
+    height: //zsm.getPanel('ZoolFileManager').hp
     visible: false
     color: apps.backgroundColor
     border.width: 2

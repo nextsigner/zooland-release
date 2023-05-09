@@ -19,7 +19,7 @@ Rectangle {
     property alias listModel: lm
     property int edadMaxima: 0
     property string jsonFull: ''
-    property int svIndex: zsm.currentIndex
+    property int svIndex: //zsm.currentIndex
     property int itemIndex: -1
 
     property int currentAnioSelected: -1
@@ -32,7 +32,7 @@ Rectangle {
     property real ulon:-100.00
 
 
-    visible: zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===zsm.currentIndex
+    visible: //zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===//zsm.currentIndex
     onSvIndexChanged: {
 //        if(svIndex===itemIndex){
 //            if(edadMaxima<=0)xTit.showTi=true
@@ -840,8 +840,8 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        zsm.aPanelsIds.push(app.j.qmltypeof(r))
-        zsm.aPanelesTits.push('Revolución Solar')
+        //zsm.aPanelsIds.push(app.j.qmltypeof(r))
+        //zsm.aPanelesTits.push('Revolución Solar')
     }
     function setRsList(edad){
         r.jsonFull=''

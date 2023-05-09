@@ -5,7 +5,8 @@ Rectangle{
     id: r
     width: app.fs*20
     //height: xApp.height-(xApp.height-xBottomBar.y)-(xDataBar.state==='show'?xDataBar.height:0)
-    height: xApp.height-(xApp.height-xBottomBar.y)-(zoolDataView.state==='show'?zoolDataView.height:0)
+    //height: xApp.height-(xApp.height-xBottomBar.y)-(zoolDataView.state==='show'?zoolDataView.height:0)
+    height: xApp.height-(xApp.height)-(zoolDataView.state==='show'?zoolDataView.height:0)
     color: 'black'
     visible: apps.showLog
     border.width: 2

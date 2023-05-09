@@ -9,9 +9,9 @@ Rectangle {
     id: r
     width: col.width//app.fs*6
     height: col.height//app.fs*3
-    //border.width: 2
-    //border.color: 'red'
-    //color: 'red'
+//    border.width: 2
+//    border.color: 'red'
+//    color: 'red'
     color: 'transparent'
     Column{
         anchors.bottom: parent.bottom
@@ -123,28 +123,28 @@ Rectangle {
 //                    visible: tAutoMatic.running
 //                }
 //            }
-            ButtonIcon{
-                text:  '<b>A</b>'
-                width: apps.botSize
-                height: width
-                onClicked: {
-                    if(!tAutoMaticPlanets.running){
-                        tAutoMaticPlanets.currentJsonData=app.currentData
-                        tAutoMaticPlanets.running=true
-                    }else{
-                        tAutoMaticPlanets.running=false
-                        sweg.centerZoomAndPos()
-                    }
+//            ButtonIcon{
+//                text:  '<b>A</b>'
+//                width: apps.botSize
+//                height: width
+//                onClicked: {
+//                    if(!tAutoMaticPlanets.running){
+//                        tAutoMaticPlanets.currentJsonData=app.currentData
+//                        tAutoMaticPlanets.running=true
+//                    }else{
+//                        tAutoMaticPlanets.running=false
+//                        sweg.centerZoomAndPos()
+//                    }
 
-                }
-                Text{
-                    text:'\uf06e'
-                    font.pixelSize: parent.width*0.35
-                    anchors.right:parent.right
-                    anchors.verticalCenter: parent.verticalCenter
-                    visible: tAutoMaticPlanets.running
-                }
-            }
+//                }
+//                Text{
+//                    text:'\uf06e'
+//                    font.pixelSize: parent.width*0.35
+//                    anchors.right:parent.right
+//                    anchors.verticalCenter: parent.verticalCenter
+//                    visible: tAutoMaticPlanets.running
+//                }
+//            }
             ButtonIcon{
                 text:  '<b>C</b>'
                 width: apps.botSize
@@ -279,20 +279,20 @@ Rectangle {
                         height: width
                         onClicked: {
                             log.visible=false
-                            zsm.showPanel('ZoolSabianos')
-                            if(zsm.currentIndex!==4||zsm.getPanel('ZoolSabianos').uSAM!=='S'){
-                                let h1=app.currentJson.pc.c0
-                                let gf=h1.rsgdeg//app.currentGradoSolar-gr
-                                app.uSon='sun_'+app.objSignsNames[h1.is]+'_'+h1.ih
-                                JS.showSABIANOS(app.objSignsNames.indexOf(app.uSon.split('_')[1]), gf-1)
-                                zsm.currentIndex=4
-                            }else{
-                                zsm.getPanel('ZoolSabianos').view.numSign=zsm.getPanel('ZoolSabianos').numSign
-                                zsm.getPanel('ZoolSabianos').view.numDegree=zsm.getPanel('ZoolSabianos').numDegree
-                                zsm.getPanel('ZoolSabianos').view.loadData()
-                                zsm.getPanel('ZoolSabianos').view.visible=!zsm.getPanel('ZoolSabianos').view.visible
-                            }
-                            zsm.getPanel('ZoolSabianos').uSAM='S'
+                            //zsm.showPanel('ZoolSabianos')
+//                            if(//zsm.currentIndex!==4||//zsm.getPanel('ZoolSabianos').uSAM!=='S'){
+//                                let h1=app.currentJson.pc.c0
+//                                let gf=h1.rsgdeg//app.currentGradoSolar-gr
+//                                app.uSon='sun_'+app.objSignsNames[h1.is]+'_'+h1.ih
+//                                JS.showSABIANOS(app.objSignsNames.indexOf(app.uSon.split('_')[1]), gf-1)
+//                                //zsm.currentIndex=4
+//                            }else{
+//                                //zsm.getPanel('ZoolSabianos').view.numSign=//zsm.getPanel('ZoolSabianos').numSign
+//                                //zsm.getPanel('ZoolSabianos').view.numDegree=//zsm.getPanel('ZoolSabianos').numDegree
+//                                //zsm.getPanel('ZoolSabianos').view.loadData()
+//                                //zsm.getPanel('ZoolSabianos').view.visible=!//zsm.getPanel('ZoolSabianos').view.visible
+//                            }
+                            //zsm.getPanel('ZoolSabianos').uSAM='S'
                         }
                     }
                     ButtonIcon{
@@ -301,20 +301,20 @@ Rectangle {
                         height: width
                         onClicked: {
                             log.visible=false
-                            //zsm.currentIndex=4
-                            zsm.showPanel('ZoolSabianos')
-                            if(zsm.currentIndex!==4||zsm.getPanel('ZoolSabianos').uSAM!=='A'){
-                                let h1=app.currentJson.ph.h1
-                                app.uSon='asc_'+app.objSignsNames[h1.is]+'_1'
-                                JS.showSABIANOS(app.objSignsNames.indexOf(app.uSon.split('_')[1]), app.uAscDegree-1)
-                                zsm.currentIndex=4
-                            }else{
-                                zsm.getPanel('ZoolSabianos').view.numSign=zsm.getPanel('ZoolSabianos').numSign
-                                zsm.getPanel('ZoolSabianos').view.numDegree=zsm.getPanel('ZoolSabianos').numDegree
-                                zsm.getPanel('ZoolSabianos').view.loadData()
-                                zsm.getPanel('ZoolSabianos').view.visible=!zsm.getPanel('ZoolSabianos').view.visible
-                            }
-                            zsm.getPanel('ZoolSabianos').uSAM='A'
+                            ////zsm.currentIndex=4
+                            //zsm.showPanel('ZoolSabianos')
+//                            if(//zsm.currentIndex!==4||//zsm.getPanel('ZoolSabianos').uSAM!=='A'){
+//                                let h1=app.currentJson.ph.h1
+//                                app.uSon='asc_'+app.objSignsNames[h1.is]+'_1'
+//                                JS.showSABIANOS(app.objSignsNames.indexOf(app.uSon.split('_')[1]), app.uAscDegree-1)
+//                                //zsm.currentIndex=4
+//                            }else{
+//                                //zsm.getPanel('ZoolSabianos').view.numSign=//zsm.getPanel('ZoolSabianos').numSign
+//                                //zsm.getPanel('ZoolSabianos').view.numDegree=//zsm.getPanel('ZoolSabianos').numDegree
+//                                //zsm.getPanel('ZoolSabianos').view.loadData()
+//                                //zsm.getPanel('ZoolSabianos').view.visible=!//zsm.getPanel('ZoolSabianos').view.visible
+//                            }
+                            //zsm.getPanel('ZoolSabianos').uSAM='A'
                         }
                     }
                     ButtonIcon{
@@ -323,20 +323,20 @@ Rectangle {
                         height: width
                         onClicked: {
                             log.visible=false
-                            //zsm.currentIndex=4
-                            zsm.showPanel('ZoolSabianos')
-                            if(zsm.currentIndex!==4||zsm.getPanel('ZoolSabianos').uSAM!=='M'){
-                                let h1=app.currentJson.ph.h10
-                                app.uSon='mc_'+app.objSignsNames[h1.is]+'_10'
-                                JS.showSABIANOS(app.objSignsNames.indexOf(app.uSon.split('_')[1]), app.uMcDegree-1)
-                                zsm.currentIndex=4
-                            }else{
-                                zsm.getPanel('ZoolSabianos').view.numSign=zsm.getPanel('ZoolSabianos').numSign
-                                zsm.getPanel('ZoolSabianos').view.numDegree=zsm.getPanel('ZoolSabianos').numDegree
-                                zsm.getPanel('ZoolSabianos').view.loadData()
-                                zsm.getPanel('ZoolSabianos').view.visible=!zsm.getPanel('ZoolSabianos').view.visible
-                            }
-                            zsm.getPanel('ZoolSabianos').uSAM='M'
+                            ////zsm.currentIndex=4
+                            //zsm.showPanel('ZoolSabianos')
+//                            if(//zsm.currentIndex!==4||//zsm.getPanel('ZoolSabianos').uSAM!=='M'){
+//                                let h1=app.currentJson.ph.h10
+//                                app.uSon='mc_'+app.objSignsNames[h1.is]+'_10'
+//                                JS.showSABIANOS(app.objSignsNames.indexOf(app.uSon.split('_')[1]), app.uMcDegree-1)
+//                                //zsm.currentIndex=4
+//                            }else{
+//                                //zsm.getPanel('ZoolSabianos').view.numSign=//zsm.getPanel('ZoolSabianos').numSign
+//                                //zsm.getPanel('ZoolSabianos').view.numDegree=//zsm.getPanel('ZoolSabianos').numDegree
+//                                //zsm.getPanel('ZoolSabianos').view.loadData()
+//                                //zsm.getPanel('ZoolSabianos').view.visible=!//zsm.getPanel('ZoolSabianos').view.visible
+//                            }
+                            //zsm.getPanel('ZoolSabianos').uSAM='M'
                         }
                     }
                 }
@@ -357,16 +357,16 @@ Rectangle {
                         height: width
                         onClicked: {
                             log.visible=false
-                            zsm.showPanel('ZoolSabianos')
-                            if(zsm.getPanel('ZoolSabianos').state==='hide'){
-                                let h1=app.currentJsonBack.pc.c0
-                                let gf=h1.rsgdeg//app.currentGradoSolar-gr
-                                app.uSon='sun_'+app.objSignsNames[h1.is]+'_'+h1.ih
-                                JS.showSABIANOS(app.objSignsNames.indexOf(app.uSon.split('_')[1]), gf-1)
-                                zsm.getPanel('ZoolSabianos').state='show'
-                            }else{
-                                zsm.getPanel('ZoolSabianos').state='hide'
-                            }
+                            //zsm.showPanel('ZoolSabianos')
+//                            if(//zsm.getPanel('ZoolSabianos').state==='hide'){
+//                                let h1=app.currentJsonBack.pc.c0
+//                                let gf=h1.rsgdeg//app.currentGradoSolar-gr
+//                                app.uSon='sun_'+app.objSignsNames[h1.is]+'_'+h1.ih
+//                                JS.showSABIANOS(app.objSignsNames.indexOf(app.uSon.split('_')[1]), gf-1)
+//                                //zsm.getPanel('ZoolSabianos').state='show'
+//                            }else{
+//                                //zsm.getPanel('ZoolSabianos').state='hide'
+//                            }
                         }
                     }
                     ButtonIcon{
@@ -374,14 +374,14 @@ Rectangle {
                         width: apps.botSize
                         height: width
                         onClicked: {
-                            if(zsm.getPanel('ZoolSabianos').state==='hide'){
-                                let h1=app.currentJsonBack.ph.h1
-                                app.uSon='asc_'+app.objSignsNames[h1.is]+'_1'
-                                JS.showSABIANOS(app.objSignsNames.indexOf(app.uSon.split('_')[1]), app.uAscDegree-1)
-                                zsm.getPanel('ZoolSabianos').state='show'
-                            }else{
-                                zsm.getPanel('ZoolSabianos').state='hide'
-                            }
+//                            if(//zsm.getPanel('ZoolSabianos').state==='hide'){
+//                                let h1=app.currentJsonBack.ph.h1
+//                                app.uSon='asc_'+app.objSignsNames[h1.is]+'_1'
+//                                JS.showSABIANOS(app.objSignsNames.indexOf(app.uSon.split('_')[1]), app.uAscDegree-1)
+//                                //zsm.getPanel('ZoolSabianos').state='show'
+//                            }else{
+//                                //zsm.getPanel('ZoolSabianos').state='hide'
+//                            }
                         }
                     }
                     ButtonIcon{
@@ -390,15 +390,15 @@ Rectangle {
                         height: width
                         onClicked: {
                             log.visible=false
-                            zsm.showPanel('ZoolSabianos')
-                            if(zsm.getPanel('ZoolSabianos').state==='hide'){
-                                let h1=app.currentJsonBack.ph.h10
-                                app.uSon='mc_'+app.objSignsNames[h1.is]+'_10'
-                                JS.showSABIANOS(app.objSignsNames.indexOf(app.uSon.split('_')[1]), app.uMcDegree-1)
-                                zsm.getPanel('ZoolSabianos').state='show'
-                            }else{
-                                zsm.getPanel('ZoolSabianos').state='hide'
-                            }
+                            //zsm.showPanel('ZoolSabianos')
+//                            if(//zsm.getPanel('ZoolSabianos').state==='hide'){
+//                                let h1=app.currentJsonBack.ph.h10
+//                                app.uSon='mc_'+app.objSignsNames[h1.is]+'_10'
+//                                JS.showSABIANOS(app.objSignsNames.indexOf(app.uSon.split('_')[1]), app.uMcDegree-1)
+//                                //zsm.getPanel('ZoolSabianos').state='show'
+//                            }else{
+//                                //zsm.getPanel('ZoolSabianos').state='hide'
+//                            }
                         }
                     }
                 }
