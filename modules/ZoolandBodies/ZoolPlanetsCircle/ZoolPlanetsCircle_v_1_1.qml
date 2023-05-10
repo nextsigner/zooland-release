@@ -3,6 +3,8 @@ import ZoolBodies.ZoolAs 3.6
 
 Item{
     id: r
+    width: sweg.width-sweg.fs*2.5-sweg.fs//sweg.objSignCircle.width
+    height: width
     property bool expand: false
     property var cAs: r
     property int planetSize: sweg.fs*0.75
@@ -15,35 +17,46 @@ Item{
     signal cnLoaded(string nombre, string dia, string mes, string anio, string hora, string minuto, string lon, string lat, string ciudad)
     signal doubleClick
     signal posChanged(int px, int py)
-    state: sweg.state
-    states: [
-        State {
-            name: sweg.aStates[0]
-            PropertyChanges {
-                target: r
-                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*2.5-sweg.fs):(sweg.width-sweg.fs*3.5)
-            }
-        },
-        State {
-            name: sweg.aStates[1]
-            PropertyChanges {
-                target: r
-                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*6-sweg.fs):(sweg.width-sweg.fs*4)
-            }
-        },
-        State {
-            name: sweg.aStates[2]
-            PropertyChanges {
-                target: r
-                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*2-sweg.fs):(sweg.width-sweg.fs*2)
-            }
-        }
-    ]
+
+//    state: sweg.state
+//    states: [
+//        State {
+//            name: sweg.aStates[0]
+//            PropertyChanges {
+//                target: r
+//                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*2.5-sweg.fs):(sweg.width-sweg.fs*3.5)
+//            }
+//        },
+//        State {
+//            name: sweg.aStates[1]
+//            PropertyChanges {
+//                target: r
+//                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*6-sweg.fs):(sweg.width-sweg.fs*4)
+//            }
+//        },
+//        State {
+//            name: sweg.aStates[2]
+//            PropertyChanges {
+//                target: r
+//                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*2-sweg.fs):(sweg.width-sweg.fs*2)
+//            }
+//        }
+//    ]
+
+
     Repeater{
         //model: 20//app.planetasRes
         model: app.planetasRes
         ZoolAs{fs:r.planetSize;astro:modelData;numAstro: index}
     }
+//    Rectangle{
+//        anchors.fill: r
+//        color: 'red'
+//        opacity: 0.65
+//        radius: width*0.5
+//        border.width: 10
+//        border.color: 'yellow'
+//    }
     function pressed(o){
         if(app.currentPlanetIndex!==o.numAstro){
             app.currentPlanetIndex=o.numAstro
@@ -66,6 +79,7 @@ Item{
         var houseSun=-1
         //for(var i=0;i<15;i++){
         for(var i=0;i<20;i++){
+            log.lv('p'+i)
             var objAs=r.children[i]
             jo=json.pc['c'+i]
             let degRed=0.0

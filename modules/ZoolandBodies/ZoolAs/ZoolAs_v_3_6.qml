@@ -3,8 +3,8 @@ import QtGraphicalEffects 1.0
 import "../"
 import "../../../comps" as Comps
 
-import ZoolBodies.ZoolAsCotaDeg 1.0
-import ZoolBodies.ZoolAsCotaText 1.0
+import ZoolandBodies.ZoolAsCotaDeg 1.0
+import ZoolandBodies.ZoolAsCotaText 1.0
 
 Item{
     id: r

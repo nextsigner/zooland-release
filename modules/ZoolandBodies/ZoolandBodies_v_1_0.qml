@@ -9,7 +9,7 @@ import ZoolHousesCircleBack 1.2
 import ZoolBodies.ZoolAspectsView 1.0
 import ZoolBodies.ZoolAspectsViewBack 1.0
 
-import ZoolSignCircle 1.0
+import ZoolSignCircle 1.1
 //import ZoolAutoPanZoom 1.0
 
 //import "./comps" as Comps
@@ -262,7 +262,7 @@ Item {
                     height: width
                     anchors.centerIn: signCircle
                     w: r.fs
-                    widthAspCircle: aspsCircle.width
+                    widthAspCircle: app.fs*10//aspsCircle.width
                     visible: app.ev
                     //visible: planetsCircleBack.visible
                 }
@@ -271,7 +271,7 @@ Item {
                     height: width
                     anchors.centerIn: signCircle
                     //w: r.fs*6
-                    widthAspCircle: aspsCircle.width
+                    widthAspCircle: app.fs*10//aspsCircle.width
                     //visible: r.v
                 }
                 AxisCircle{id: axisCircle}
@@ -298,12 +298,7 @@ Item {
                     //showBorder: true
                     //v:r.v
                 }
-//                PlanetsCircleBack{
-//                    id:planetsCircleBack
-//                    height: width
-//                    anchors.centerIn: parent
-//                    visible: app.ev
-//                }
+
                 ZoolPlanetsCircleBack{
                     id:planetsCircleBack
                     height: width
@@ -476,7 +471,7 @@ Item {
         //log.l(JSON.stringify(json))
         var scorrJson=json.replace(/\n/g, '')
         //app.currentJson=JSON.parse(scorrJson)
-        aspsCircle.clear()
+        //aspsCircle.clear()
         //zsm.getPanel('ZoolRevolutionList').clear()
         //panelRsList.clear()
         //planetsCircleBack.visible=false
@@ -515,7 +510,7 @@ Item {
         planetsCircle.loadJson(j)
         panelAspects.load(j)
         zoolDataBodies.loadJson(j)
-        aspsCircle.load(j)
+        //aspsCircle.load(j)
         zoolElementsView.load(j, false)
         eclipseCircle.arrayWg=housesCircle.arrayWg
         eclipseCircle.isEclipse=-1
@@ -543,7 +538,7 @@ Item {
             panelAspectsBack.visible=true
         }
         panelAspectsBack.load(j)
-        aspsCircle.add(j)
+        //aspsCircle.add(j)
         if(app.mod!=='rs'){
             //panelElementsBack.load(j)
             zoolElementsView.load(j, true)

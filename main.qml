@@ -307,7 +307,7 @@ ZoolMainWindow{
                 //width: xApp.width-xLatIzq.width-xLatDer.width
                 width: xApp.width-xLatDer.width
                 height: parent.height
-                //ZoolElementsView{id: zoolElementsView}
+                ZoolElementsView{id: zoolElementsView}
                 //ExtId
                 Text{
                     text: '<b>uExtId: '+zoolDataView.uExtIdLoaded+'</b>'
@@ -450,6 +450,8 @@ ZoolMainWindow{
         //ZoolVideoPlayer{id: panelVideLectura;}
         //Comps.VideoListEditor{id: videoListEditor}
     }
+
+
     ZoolLogView{id: log}
     ZoolWebStatusManager{id: zwsm}
 

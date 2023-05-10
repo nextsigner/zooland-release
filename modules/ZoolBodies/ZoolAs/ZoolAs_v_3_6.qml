@@ -8,11 +8,12 @@ import ZoolBodies.ZoolAsCotaText 1.0
 
 Item{
     id: r
-    width: apps.xAsShowIcon?
-               /*Mostrando Imagen*/
-               (parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec):
-               /*Mostrando Símbolo de Planeta*/
-               (parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec)
+//    width: apps.xAsShowIcon?
+//               /*Mostrando Imagen*/
+//               (parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec):
+//               /*Mostrando Símbolo de Planeta*/
+//               (parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec)
+    width: app.fs
     height: 1
     anchors.centerIn: parent
     z: !selected?numAstro:15

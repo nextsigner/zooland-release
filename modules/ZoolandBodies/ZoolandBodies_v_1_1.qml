@@ -1,17 +1,16 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.12
-import "../../js/Funcs.js" as JS
 
 
-//import ZoolBodies.ZoolPlanetsCircle 1.1
-//import ZoolBodies.ZoolPlanetsCircleBack 1.4
-//import ZoolHousesCircle 1.1
-//import ZoolHousesCircleBack 1.2
-//import ZoolBodies.ZoolAspectsView 1.0
-//import ZoolBodies.ZoolAspectsViewBack 1.0
+import ZoolBodies.ZoolPlanetsCircle 1.1
+import ZoolBodies.ZoolPlanetsCircleBack 1.4
+import ZoolHousesCircle 1.1
+import ZoolHousesCircleBack 1.2
+import ZoolBodies.ZoolAspectsView 1.0
+import ZoolBodies.ZoolAspectsViewBack 1.0
 
 import ZoolSignCircle 1.0
-import ZoolAutoPanZoom 1.0
+//import ZoolAutoPanZoom 1.0
 
 //import "./comps" as Comps
 
@@ -36,18 +35,18 @@ Item {
     property int fs: r.objectName==='sweg'?apps.sweFs*1.5:apps.sweFs*3
     property int w: apps.signCircleWidth//fs
     property bool v: false
-    property alias expand: planetsCircle.expand
-    property alias objAspsCircle: aspsCircle
-    property alias objPlanetsCircle: planetsCircle
-    property alias objPlanetsCircleBack: planetsCircleBack
-    property alias objHousesCircle: housesCircle
-    property alias objHousesCircleBack: housesCircleBack
-    property alias objSignsCircle: signCircle
-    property alias objAscMcCircle: ascMcCircle
-    property alias objEclipseCircle: eclipseCircle
+    //property alias expand: planetsCircle.expand
+    //property alias objAspsCircle: aspsCircle
+    //property alias objPlanetsCircle: planetsCircle
+    //property alias objPlanetsCircleBack: planetsCircleBack
+    //property alias objHousesCircle: housesCircle
+    //property alias objHousesCircleBack: housesCircleBack
+    //property alias objSignsCircle: signCircle
+    //property alias objAscMcCircle: ascMcCircle
+    //property alias objEclipseCircle: eclipseCircle
 
-    property alias objZoolAspectsView: panelAspects
-    property alias objZoolAspectsViewBack: panelAspectsBack
+    //property alias objZoolAspectsView: panelAspects
+    //property alias objZoolAspectsViewBack: panelAspectsBack
 
     property int speedRotation: 1000
     property var aStates: ['ps', 'pc', 'pa']
@@ -64,6 +63,8 @@ Item {
     property bool enableLoadBack: true
 
     property real dirPrimRot: 0.00
+
+    property var aTexts: []
 
     //state: apps.swegMod//aStates[0]
     state: aStates[0]
@@ -285,25 +286,25 @@ Item {
                     onRotChanged: housesCircle.rotation=rot
                     //onShowDecChanged: Qt.quit()
                 }
-                AspCircleV2{
-                    id: aspsCircle
-                    rotation: signCircle.rot - 90// + 1
+//                AspCircleV2{
+//                    id: aspsCircle
+//                    rotation: signCircle.rot - 90// + 1
+//                }
+//                AscMcCircle{id: ascMcCircle}
+                ZoolPlanetsCircle{
+                    id:planetsCircle
+                    height: width
+                    anchors.centerIn: parent
+                    //showBorder: true
+                    //v:r.v
                 }
-                AscMcCircle{id: ascMcCircle}
-//                ZoolPlanetsCircle{
-//                    id:planetsCircle
-//                    height: width
-//                    anchors.centerIn: parent
-//                    //showBorder: true
-//                    //v:r.v
-//                }
 
-//                ZoolPlanetsCircleBack{
-//                    id:planetsCircleBack
-//                    height: width
-//                    anchors.centerIn: parent
-//                    visible: app.ev
-//                }
+                ZoolPlanetsCircleBack{
+                    id:planetsCircleBack
+                    height: width
+                    anchors.centerIn: parent
+                    visible: app.ev
+                }
 //                EclipseCircle{
 //                    id: eclipseCircle
 //                    width: housesCircle.width
@@ -323,7 +324,7 @@ Item {
                     anchors.centerIn: parent
                     visible: app.showCenterLine
                 }
-                ZoolAutoPanZoom{id:zoolAutoPanZoom}
+                //ZoolAutoPanZoom{id:zoolAutoPanZoom}
             }
         }
     }
@@ -331,7 +332,7 @@ Item {
         id: panelAspects
         anchors.bottom: parent.bottom
         anchors.left: parent.left
-        anchors.leftMargin: xLatIzq.visible?0:0-xLatIzq.width
+        //anchors.leftMargin: xLatIzq.visible?0:0-xLatIzq.width
         parent: xMed
         visible: r.objectName==='sweg'
     }
@@ -341,7 +342,7 @@ Item {
         //anchors.topMargin: 0-(r.parent.height-r.height)/2
         parent: xMed
         anchors.left: parent.left
-        anchors.leftMargin: xLatIzq.visible?width:width-xLatIzq.width
+        //anchors.leftMargin: xLatIzq.visible?width:width-xLatIzq.width
         transform: Scale{ xScale: -1 }
         rotation: 180
         visible: r.objectName==='sweg'&&planetsCircleBack.visible
@@ -386,30 +387,6 @@ Item {
             anchors.centerIn: parent
         }
     }
-    Timer{
-        id: tLoadSin
-        running: false
-        repeat: false
-        interval: 2000
-        onTriggered: {
-            let j=JSON.parse(app.fileData)
-            //app.fileDataBack=JSON.stringify(j.paramsBack)
-            let njson=JSON.parse('{}')
-            njson.params=j.paramsBack
-            JS.loadJsonFromParamsBack(njson)
-            //loadSweJsonBack(j)
-            //log.l(JSON.stringify(j.paramsBack))
-            //log.visible=true
-            //loadBack(current)
-        }
-    }
-    Timer{
-        id: tFirtShow
-        running: false
-        repeat: false
-        interval: 2000
-        onTriggered: r.opacity=1.0
-    }
     //    Rectangle{
     //        width: app.fs*6
     //        height: width
@@ -437,24 +414,6 @@ Item {
         let ms=d.getTime()
         let hsys=j.params.hsys?j.params.hsys:apps.currentHsys
         if(j.params.hsys)hsys=j.params.hsys
-        let c='import QtQuick 2.0\n'
-        c+='import unik.UnikQProcess 1.0\n'
-        c+='UnikQProcess{\n'
-        c+='    id: uqp'+ms+'\n'
-        c+='    onLogDataChanged:{\n'
-        c+='        if(!r.enableLoad)return\n'
-        c+='        let json=(\'\'+logData)\n'
-        c+='        //console.log(\'JSON: \'+json)\n'
-        c+='        loadSweJson(json)\n'
-        c+='        //swegz.sweg.loadSweJson(json)\n'
-        c+='        uqp'+ms+'.destroy(3000)\n'
-        c+='    }\n'
-        c+='    Component.onCompleted:{\n'
-        c+='        console.log(\'sweg.load() '+app.pythonLocation+' "'+unik.currentFolderPath()+'/py/'+app.sweBodiesPythonFile+'" '+vd+' '+vm+' '+va+' '+vh+' '+vmin+' '+vgmt+' '+vlat+' '+vlon+' '+hsys+' '+unik.currentFolderPath()+'\')\n'
-        c+='        run(\''+app.pythonLocation+' "'+unik.currentFolderPath()+'/py/'+app.sweBodiesPythonFile+'" '+vd+' '+vm+' '+va+' '+vh+' '+vmin+' '+vgmt+' '+vlat+' '+vlon+' '+hsys+' "'+unik.currentFolderPath()+'"\')\n'
-        c+='    }\n'
-        c+='}\n'
-        let comp=Qt.createQmlObject(c, xuqp, 'uqpcode')
         app.mod=j.params.tipo
         app.fileData=JSON.stringify(j)
     }
@@ -537,6 +496,13 @@ Item {
         //log.width=xApp.width*0.4
         j=JSON.parse(scorrJson)
 
+        //r.aTexts[] reset
+        let nATexts=[]
+        for(var i=0;i<Object.keys(j.pc).length;i++){
+            nATexts.push('')
+        }
+        r.aTexts=nATexts
+
         app.currentJson=j
         signCircle.rot=parseFloat(j.ph.h1.gdec).toFixed(2)
         ascMcCircle.loadJson(j)
@@ -549,14 +515,14 @@ Item {
         eclipseCircle.arrayWg=housesCircle.arrayWg
         eclipseCircle.isEclipse=-1
         r.v=true
-        let sabianos=//zsm.getPanel('ZoolSabianos')
+        /*let sabianos=//zsm.getPanel('ZoolSabianos')
         sabianos.numSign=app.currentJson.ph.h1.is
         sabianos.numDegree=parseInt(app.currentJson.ph.h1.rsgdeg - 1)
         sabianos.loadData()
         if(apps.sabianosAutoShow){
             //panelSabianos.state='show'
             //zsm.currentIndex=1
-        }     }
+        }*/     }
     function loadSweJsonBack(json){
         //console.log('JSON::: '+json)
         app.currentJsonBack=JSON.parse(json)

@@ -135,28 +135,30 @@ Item {
         anchors.left: parent.left
         anchors.leftMargin: !housesCircleBack.visible?0-sweg.fs*2:0-sweg.fs*2-housesCircleBack.extraWidth-sweg.fs*2.5
         visible: c===0
-        Canvas {
-            id:canvasSen
-            width: sweg.fs*0.5
-            height: width
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            antialiasing: true
-            onPaint:{
-                var ctx = canvasSen.getContext('2d');
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.beginPath();
-                ctx.moveTo(0, canvasSen.width*0.5);
-                ctx.lineTo(canvasSen.width, 0);
-                ctx.lineTo(canvasSen.width, canvasSen.width);
-                ctx.lineTo(0, canvasSen.width*0.5);
-                ctx.strokeStyle = canvas.parent.color
-                ctx.lineWidth = canvasSen.parent.height;
-                ctx.fillStyle = canvasSen.parent.color
-                ctx.fill();
-                ctx.stroke();
-            }
-        }
+
+//        Canvas {
+//            id:canvasSen
+//            width: sweg.fs*0.5
+//            height: width
+//            anchors.verticalCenter: parent.verticalCenter
+//            anchors.left: parent.left
+//            antialiasing: true
+//            onPaint:{
+//                var ctx = canvasSen.getContext('2d');
+//                ctx.clearRect(0, 0, canvas.width, canvas.height);
+//                ctx.beginPath();
+//                ctx.moveTo(0, canvasSen.width*0.5);
+//                ctx.lineTo(canvasSen.width, 0);
+//                ctx.lineTo(canvasSen.width, canvasSen.width);
+//                ctx.lineTo(0, canvasSen.width*0.5);
+//                ctx.strokeStyle = canvas.parent.color
+//                ctx.lineWidth = canvasSen.parent.height;
+//                ctx.fillStyle = canvasSen.parent.color
+//                ctx.fill();
+//                ctx.stroke();
+//            }
+//        }
+
         Rectangle{
             width: sweg.fs*2.2
             height: sweg.fs
@@ -177,56 +179,58 @@ Item {
             }
         }
     }
-    Canvas {
-        id: canvas
-        width: r.width//-sweg.fs
-        height: width
-        opacity: 0.65
-        antialiasing: true
-        onPaint:{
-            var ctx = canvas.getContext('2d');
-            ctx.reset();
-            var x = canvas.width*0.5;
-            var y = canvas.height*0.5;
-            //var radius = canvas.width*0.5-r.w*0.5;
-            var rad=parseInt(canvas.width*0.5-r.w*0.5)
 
-            //console.log('Rad: '+rad)
-            var radius = rad>0?rad:r.width;
-            ctx.beginPath();
-            ctx.arc(x, y, radius, ((2 * Math.PI) / 360 * 180)-(2 * Math.PI) / 360 * r.wg, (2 * Math.PI) / 360 * 180);
-            ctx.lineWidth = r.w;
-            ctx.strokeStyle = sweg.state===sweg.aStates[1]?r.colors2[r.c]:r.colors[r.c];
-            ctx.stroke();
-        }
-        function clear_canvas() {
-            canvas.requestPaint();
-        }
-    }
-    Canvas {
-        id:canvas2
-        width: r.width
-        height: width
-        opacity: canvas.opacity
-        antialiasing: true
-        onPaint:{
-            var ctx = canvas2.getContext('2d')
-            ctx.reset();
-            var x = canvas2.width*0.5+r.wb;
-            var y = canvas2.height*0.5
-            var rad=parseInt(canvas.width*0.5)
-            var radius = rad>0?rad:r.width;
+//    Canvas {
+//        id: canvas
+//        width: r.width//-sweg.fs
+//        height: width
+//        opacity: 0.65
+//        antialiasing: true
+//        onPaint:{
+//            var ctx = canvas.getContext('2d');
+//            ctx.reset();
+//            var x = canvas.width*0.5;
+//            var y = canvas.height*0.5;
+//            //var radius = canvas.width*0.5-r.w*0.5;
+//            var rad=parseInt(canvas.width*0.5-r.w*0.5)
 
-            ctx.beginPath();
-            ctx.arc(x, y, radius, ((2 * Math.PI) / 360 * 180)-(2 * Math.PI) / 360 * r.wg, (2 * Math.PI) / 360 * 180);
-            ctx.lineWidth = r.wb;
-            ctx.strokeStyle = sweg.state===sweg.aStates[1]?r.colors2[r.c]:r.colors[r.c];
-            ctx.stroke();
-        }
-        function clear_canvas() {
-            canvas2.requestPaint();
-        }
-    }
+//            //console.log('Rad: '+rad)
+//            var radius = rad>0?rad:r.width;
+//            ctx.beginPath();
+//            ctx.arc(x, y, radius, ((2 * Math.PI) / 360 * 180)-(2 * Math.PI) / 360 * r.wg, (2 * Math.PI) / 360 * 180);
+//            ctx.lineWidth = r.w;
+//            ctx.strokeStyle = sweg.state===sweg.aStates[1]?r.colors2[r.c]:r.colors[r.c];
+//            ctx.stroke();
+//        }
+//        function clear_canvas() {
+//            canvas.requestPaint();
+//        }
+//    }
+//    Canvas {
+//        id:canvas2
+//        width: r.width
+//        height: width
+//        opacity: canvas.opacity
+//        antialiasing: true
+//        onPaint:{
+//            var ctx = canvas2.getContext('2d')
+//            ctx.reset();
+//            var x = canvas2.width*0.5+r.wb;
+//            var y = canvas2.height*0.5
+//            var rad=parseInt(canvas.width*0.5)
+//            var radius = rad>0?rad:r.width;
+
+//            ctx.beginPath();
+//            ctx.arc(x, y, radius, ((2 * Math.PI) / 360 * 180)-(2 * Math.PI) / 360 * r.wg, (2 * Math.PI) / 360 * 180);
+//            ctx.lineWidth = r.wb;
+//            ctx.strokeStyle = sweg.state===sweg.aStates[1]?r.colors2[r.c]:r.colors[r.c];
+//            ctx.stroke();
+//        }
+//        function clear_canvas() {
+//            canvas2.requestPaint();
+//        }
+//    }
+
     Rectangle{
         id: ejeV
         height: r.wb

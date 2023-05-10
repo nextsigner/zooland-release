@@ -71,31 +71,33 @@ Item{
         //anchors.centerIn: parent
         color: apps.fontColor
         antialiasing: true
-        Canvas {
-            id:canvasSen
-            width: sweg.fs*0.2
-            height: width
-            //rotation: 180
-            anchors.verticalCenter: parent.verticalCenter
-            //anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.rightMargin: 0-width
-            antialiasing: true
-            onPaint:{
-                var ctx = canvasSen.getContext('2d');
-                ctx.clearRect(0, 0, canvasSen.width, canvasSen.height);
-                ctx.beginPath();
-                ctx.moveTo(0, canvasSen.width*0.5);
-                ctx.lineTo(canvasSen.width, 0);
-                ctx.lineTo(canvasSen.width, canvasSen.width);
-                ctx.lineTo(0, canvasSen.width*0.5);
-                ctx.strokeStyle = canvasSen.parent.color
-                ctx.lineWidth = 1;
-                ctx.fillStyle = canvasSen.parent.color
-                ctx.fill();
-                ctx.stroke();
-            }
-        }
+
+//        Canvas {
+//            id:canvasSen
+//            width: sweg.fs*0.2
+//            height: width
+//            //rotation: 180
+//            anchors.verticalCenter: parent.verticalCenter
+//            //anchors.left: parent.left
+//            anchors.right: parent.right
+//            anchors.rightMargin: 0-width
+//            antialiasing: true
+//            onPaint:{
+//                var ctx = canvasSen.getContext('2d');
+//                ctx.clearRect(0, 0, canvasSen.width, canvasSen.height);
+//                ctx.beginPath();
+//                ctx.moveTo(0, canvasSen.width*0.5);
+//                ctx.lineTo(canvasSen.width, 0);
+//                ctx.lineTo(canvasSen.width, canvasSen.width);
+//                ctx.lineTo(0, canvasSen.width*0.5);
+//                ctx.strokeStyle = canvasSen.parent.color
+//                ctx.lineWidth = 1;
+//                ctx.fillStyle = canvasSen.parent.color
+//                ctx.fill();
+//                ctx.stroke();
+//            }
+//        }
+
     }
     Item{
         id: xIcon
