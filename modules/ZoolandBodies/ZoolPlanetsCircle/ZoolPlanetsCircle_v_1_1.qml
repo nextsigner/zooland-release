@@ -79,7 +79,7 @@ Item{
         var houseSun=-1
         //for(var i=0;i<15;i++){
         for(var i=0;i<20;i++){
-            log.lv('p'+i)
+            //log.lv('p'+i)
             var objAs=r.children[i]
             jo=json.pc['c'+i]
             let degRed=0.0
@@ -230,6 +230,7 @@ Item{
         o.rsg=rsDegSign
         objAs.objData=o
         objSigns[o.is]++*/
+        //log.lv('Planetas cargados.')
     }
 
 }

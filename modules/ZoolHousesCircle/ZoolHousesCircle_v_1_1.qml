@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import ZoolHousesCircle.ZoolHouseArc 1.1
+import ZoolHousesCircle.ZoolHouseArc 1.2
 Item {
     id: r
     width: signCircle.width
