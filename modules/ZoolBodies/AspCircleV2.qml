@@ -165,16 +165,17 @@ Rectangle {
         drawAspRect(px1+cx, py1+cy, px2+cx, py2+cy, c, i, item, isBack)
     }
     function drawAspRect(sx, sy, px, py, c, i, item, isBack){
-        let s='s'+sx+'-'+sy+'-'+px+'-'+py
+        var s='s'+sx+'-'+sy+'-'+px+'-'+py
+        var comp
         if(!isBack && r.aAspStr1.indexOf(s)<0){
-            let comp=Qt.createComponent("../../comps/AspShapeLine.qml")
-            let obj=comp.createObject(item,{sx: sx, sy: sy, px: px, py: py, c: c, n:i, isBack: isBack})
+            comp=Qt.createComponent("../../comps/AspShapeLine.qml")
+            var obj=comp.createObject(item,{sx: sx, sy: sy, px: px, py: py, c: c, n:i, isBack: isBack})
             r.aAspStr1.push(s)
         }
         if(isBack && r.aAspStr2.indexOf(s)<0){
             //let comp=Qt.createComponent("./comps/AspShapeLine.qml")
-            let comp=Qt.createComponent("../../comps/AspShapeLine.qml")
-            let obj=comp.createObject(item,{sx: sx, sy: sy, px: px, py: py, c: c, n:i, isBack: isBack})
+            comp=Qt.createComponent("../../comps/AspShapeLine.qml")
+            var obj=comp.createObject(item,{sx: sx, sy: sy, px: px, py: py, c: c, n:i, isBack: isBack})
             r.aAspStr2.push(s)
         }
     }

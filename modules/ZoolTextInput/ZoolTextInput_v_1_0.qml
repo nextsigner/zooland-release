@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.0
 import "../"
 
-import ZoolText 0.1
+import ZoolText 1.0
 
 Item {
     id: r

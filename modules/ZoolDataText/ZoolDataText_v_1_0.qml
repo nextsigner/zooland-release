@@ -7,7 +7,7 @@ Rectangle{
     color: apps.backgroundColor
     border.width: 2
     border.color: apps.fontColor
-    property int svIndex: //zsm.currentIndex
+    property int svIndex: zsm.currentIndex
     property int itemIndex: -1
     property bool noFoundFileExistNofify: false
     property bool fileInitLoaded: false
@@ -19,8 +19,8 @@ Rectangle{
     property string uData: ''
     property alias areaCamera: cameraArea
     onVisibleChanged: {
-        //if(visible)//zoolVoicePlayer.stop()
-        //if(visible)//zoolVoicePlayer.speak('Sección de Información', true)
+        //if(visible)zoolVoicePlayer.stop()
+        if(visible)zoolVoicePlayer.speak('Sección de Información', true)
     }
     Column{
         id: col0
@@ -58,7 +58,7 @@ Rectangle{
                 color: 'white'
                 width: r.width-app.fs
                 anchors.centerIn: parent
-                textFormat: Text.MarkdownText
+                //textFormat: Text.MarkdownText
                 wrapMode: Text.WordWrap
                 //onLinkActivated: Qt.openUrlExternally(link)
                 property var aData: []
@@ -103,7 +103,7 @@ Rectangle{
                 }
                 Timer{
                     id: tTxtAboutZool
-                    running: //zsm.currentIndex===0 && aTimes.length>0
+                    running: zsm.currentIndex===0 && aTimes.length>0
                     repeat: true
                     interval: aTimes[0]
                     property int v: 0
@@ -186,8 +186,8 @@ Rectangle{
     //        color: 'red'
     //    }
     Component.onCompleted: {
-        //zsm.aPanelsIds.push(app.j.qmltypeof(r))
-        //zsm.aPanelesTits.push('Información')
+        zsm.aPanelsIds.push(app.j.qmltypeof(r))
+        zsm.aPanelesTits.push('Información')
         let currentFileZoolText='./resources/zooltext.txt'
         let appArgs=Qt.application.arguments
         let arg=''

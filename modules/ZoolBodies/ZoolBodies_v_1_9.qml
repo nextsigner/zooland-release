@@ -1,5 +1,6 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.12
+import "../../js/Funcs.js" as JS
 
 
 import ZoolBodies.ZoolPlanetsCircle 1.1
@@ -10,7 +11,7 @@ import ZoolBodies.ZoolAspectsView 1.0
 import ZoolBodies.ZoolAspectsViewBack 1.0
 
 import ZoolSignCircle 1.0
-//import ZoolAutoPanZoom 1.0
+import ZoolAutoPanZoom 1.0
 
 //import "./comps" as Comps
 
@@ -43,7 +44,7 @@ Item {
     property alias objHousesCircleBack: housesCircleBack
     property alias objSignsCircle: signCircle
     property alias objAscMcCircle: ascMcCircle
-    //property alias objEclipseCircle: eclipseCircle
+    property alias objEclipseCircle: eclipseCircle
 
     property alias objZoolAspectsView: panelAspects
     property alias objZoolAspectsViewBack: panelAspectsBack
@@ -276,39 +277,45 @@ Item {
                 }
                 AxisCircle{id: axisCircle}
                 NumberLines{}
-//                ZoolSignCircle{
-//                    id:signCircle
-//                    //width: planetsCircle.expand?r.width-r.fs*6+r.fs*2:r.width-r.fs*6
-//                    anchors.centerIn: parent
-//                    showBorder: true
-//                    v:r.v
-//                    w: r.w
-//                    onRotChanged: housesCircle.rotation=rot
-//                    //onShowDecChanged: Qt.quit()
-//                }
+                ZoolSignCircle{
+                    id:signCircle
+                    //width: planetsCircle.expand?r.width-r.fs*6+r.fs*2:r.width-r.fs*6
+                    anchors.centerIn: parent
+                    showBorder: true
+                    v:r.v
+                    w: r.w
+                    onRotChanged: housesCircle.rotation=rot
+                    //onShowDecChanged: Qt.quit()
+                }
                 AspCircleV2{
                     id: aspsCircle
                     rotation: signCircle.rot - 90// + 1
                 }
                 AscMcCircle{id: ascMcCircle}
-//                ZoolPlanetsCircle{
-//                    id:planetsCircle
-//                    height: width
-//                    anchors.centerIn: parent
-//                    //showBorder: true
-//                    //v:r.v
-//                }
-//                ZoolPlanetsCircleBack{
+                ZoolPlanetsCircle{
+                    id:planetsCircle
+                    height: width
+                    anchors.centerIn: parent
+                    //showBorder: true
+                    //v:r.v
+                }
+//                PlanetsCircleBack{
 //                    id:planetsCircleBack
 //                    height: width
 //                    anchors.centerIn: parent
 //                    visible: app.ev
 //                }
-//                EclipseCircle{
-//                    id: eclipseCircle
-//                    width: housesCircle.width
-//                    height: width
-//                }
+                ZoolPlanetsCircleBack{
+                    id:planetsCircleBack
+                    height: width
+                    anchors.centerIn: parent
+                    visible: app.ev
+                }
+                EclipseCircle{
+                    id: eclipseCircle
+                    width: housesCircle.width
+                    height: width
+                }
                 Rectangle{
                     width: 3
                     height: r.height*2
@@ -323,7 +330,7 @@ Item {
                     anchors.centerIn: parent
                     visible: app.showCenterLine
                 }
-                //ZoolAutoPanZoom{id:zoolAutoPanZoom}
+                ZoolAutoPanZoom{id:zoolAutoPanZoom}
             }
         }
     }
@@ -331,7 +338,7 @@ Item {
         id: panelAspects
         anchors.bottom: parent.bottom
         anchors.left: parent.left
-        //anchors.leftMargin: xLatIzq.visible?0:0-xLatIzq.width
+        anchors.leftMargin: xLatIzq.visible?0:0-xLatIzq.width
         parent: xMed
         visible: r.objectName==='sweg'
     }
@@ -341,7 +348,7 @@ Item {
         //anchors.topMargin: 0-(r.parent.height-r.height)/2
         parent: xMed
         anchors.left: parent.left
-        //anchors.leftMargin: xLatIzq.visible?width:width-xLatIzq.width
+        anchors.leftMargin: xLatIzq.visible?width:width-xLatIzq.width
         transform: Scale{ xScale: -1 }
         rotation: 180
         visible: r.objectName==='sweg'&&planetsCircleBack.visible
@@ -396,8 +403,9 @@ Item {
     //            anchors.centerIn: parent
     //        }
     //    }
+
     function load(j){
-        //console.log('Ejecutando SweGraphic.load()...')
+        console.log('Ejecutando SweGraphic.load()...')
         for(var i=0;i<xuqp.children.length;i++){
             xuqp.children[i].destroy(0)
         }
@@ -416,6 +424,7 @@ Item {
         app.mod=j.params.tipo
         app.fileData=JSON.stringify(j)
     }
+
     function loadBack(j){
         //console.log('Ejecutando SweGraphic.load()...')
         for(var i=0;i<xuqp.children.length;i++){
@@ -511,17 +520,18 @@ Item {
         zoolDataBodies.loadJson(j)
         aspsCircle.load(j)
         zoolElementsView.load(j, false)
-        //eclipseCircle.arrayWg=housesCircle.arrayWg
-        //eclipseCircle.isEclipse=-1
+        eclipseCircle.arrayWg=housesCircle.arrayWg
+        eclipseCircle.isEclipse=-1
         r.v=true
-        /*let sabianos=//zsm.getPanel('ZoolSabianos')
-        sabianos.numSign=app.currentJson.ph.h1.is
-        sabianos.numDegree=parseInt(app.currentJson.ph.h1.rsgdeg - 1)
-        sabianos.loadData()
-        if(apps.sabianosAutoShow){
-            //panelSabianos.state='show'
-            //zsm.currentIndex=1
-        }*/     }
+//        let sabianos=zsm.getPanel('ZoolSabianos')
+//        sabianos.numSign=app.currentJson.ph.h1.is
+//        sabianos.numDegree=parseInt(app.currentJson.ph.h1.rsgdeg - 1)
+//        sabianos.loadData()
+//        if(apps.sabianosAutoShow){
+//            //panelSabianos.state='show'
+//            zsm.currentIndex=1
+//        }
+    }
     function loadSweJsonBack(json){
         //console.log('JSON::: '+json)
         app.currentJsonBack=JSON.parse(json)

@@ -8,12 +8,11 @@ import ZoolBodies.ZoolAsCotaText 1.0
 
 Item{
     id: r
-//    width: apps.xAsShowIcon?
-//               /*Mostrando Imagen*/
-//               (parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec):
-//               /*Mostrando Símbolo de Planeta*/
-//               (parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec)
-    width: app.fs
+    width: apps.xAsShowIcon?
+               /*Mostrando Imagen*/
+               (parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec):
+               /*Mostrando Símbolo de Planeta*/
+               (parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec)
     height: 1
     anchors.centerIn: parent
     z: !selected?numAstro:15
@@ -23,7 +22,7 @@ Item{
     property bool isHovered: false
 
     //property bool isPron: JSON.parse(app.currentData).params.tipo==='pron'
-    property bool isPron: false//app.fileData&&JSON.parse(app.fileData).params.tipo==='pron'
+    property bool isPron: JSON.parse(app.fileData).params.tipo==='pron'
     property int widthRestDec:apps.showDec?sweg.objSignsCircle.w*2:0
     property bool selected: numAstro === app.currentPlanetIndex//panelDataBodies.currentIndex
     property string astro
@@ -137,6 +136,7 @@ Item{
             iconoSignRot: img.rotation
             p: r.numAstro
             opacity: r.selected&&app.showPointerXAs?1.0:0.0// && JSON.parse(app.currentData).params.tipo!=='pron'
+            pointerRot:180
             onPointerRotChanged: {
                 r.uRot=pointerRot
                 //saveRot()
@@ -231,7 +231,7 @@ Item{
                             let msg='Mostrando '+app.planetasReferencia[r.numAstro]
                             msg+=' en el signo '+app.signos[r.is]
                             msg+=' en el grado '+r.objData.rsg+' '+r.objData.m+' minutos '+r.objData.s+' segundos. Casa '+r.ih
-                            //zoolVoicePlayer.speak(msg, true)
+                            zoolVoicePlayer.speak(msg, true)
                         }
                         r.parent.pressed(r)
                     }else{
@@ -354,13 +354,13 @@ Item{
 //            visible: r.selected
 //        }
     }
-    Comps.XCircleSignal{
-        id: xCircleSignal
-        width: app.fs*16
-        height: width
-        anchors.centerIn: xIcon
-        visible: app.dev && r.selected && !r.isZoomAndPosSeted && JSON.parse(app.currentData).params.tipo!=='pron'
-    }
+//    Comps.XCircleSignal{
+//        id: xCircleSignal
+//        width: app.fs*16
+//        height: width
+//        anchors.centerIn: xIcon
+//        visible: app.dev && r.selected && !r.isZoomAndPosSeted && JSON.parse(app.currentData).params.tipo!=='pron'
+//    }
     Timer{
         running: !r.isZoomAndPosSeted && r.selected
         repeat: true

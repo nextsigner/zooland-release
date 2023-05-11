@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import '../../comps' as Comps
 
-//import ZoolDataText 1.0
+import ZoolDataText 1.0
 import ZoolFileExtDataManager 1.2
 import ZoolFileManager 1.3
 import ZoolSabianos 1.1
@@ -30,8 +30,8 @@ Item{
     }
     onCurrentIndexChanged:{
         apps.currentSwipeViewIndex=currentIndex
-        r.showPanel(r.aPanelsIds[//zsm.currentIndex])
-        //zsm.getPanel('ZoolRevolutionList').desactivar()
+        r.showPanel(r.aPanelsIds[zsm.currentIndex])
+        zsm.getPanel('ZoolRevolutionList').desactivar()
     }
     Column{
         width: r.width
@@ -39,12 +39,12 @@ Item{
         Rectangle{
             id: xPanelesTits
             width: xLatIzq.width
-            height: r.aPanelesTits[//zsm.currentIndex]?app.fs*0.6:0
+            height: r.aPanelesTits[zsm.currentIndex]?app.fs*0.6:0
             color: apps.fontColor
             anchors.horizontalCenter: parent.horizontalCenter
 
             Text{
-                text: parseInt(//zsm.currentIndex + 1)+': '+r.aPanelesTits[//zsm.currentIndex]
+                text: parseInt(zsm.currentIndex + 1)+': '+r.aPanelesTits[zsm.currentIndex]
                 color: apps.backgroundColor
                 font.pixelSize: app.fs*0.5
                 anchors.centerIn: parent
@@ -67,13 +67,13 @@ Item{
             Comps.XPaneles{ZoolHelp{id: zoolHelp;}}
 
             //8
-            //Comps.XPaneles{ZoolDataText{id: panelZoolText;}}
+            Comps.XPaneles{ZoolDataText{id: panelZoolText;}}
 
             //7
             //Comps.XPaneles{Comps.PanelZoolData{id: panelZoolData}}
 
             //6
-            Comps.XPaneles{ZoolModulesManager{}}
+            //Comps.XPaneles{ZoolModulesManager{}}
 
             //5
             Comps.XPaneles{ZoolSabianos{id: panelSabianos}}
@@ -85,10 +85,10 @@ Item{
             Comps.XPaneles{ZoolRevolutionList{id: panelRsList}}
 
             //2
-            Comps.XPaneles{ZoolFileExtDataManager{id: zoolFileExtDataManager;}}
+            //Comps.XPaneles{ZoolFileExtDataManager{id: zoolFileExtDataManager;}}
 
             //1
-            Comps.XPaneles{ZoolFileManager{id: zoolFileManager}}
+            //Comps.XPaneles{ZoolFileManager{id: zoolFileManager}}
         }
         Rectangle{
             id: xIndicadorSV
@@ -105,10 +105,10 @@ Item{
             PageIndicator {
                 id: indicatorSV
                 interactive: true
-                count: 0////zsm.aPanelsIds.length
-                currentIndex: apps.currentSwipeViewIndex////zsm.currentIndex
+                count: 0//zsm.aPanelsIds.length
+                currentIndex: apps.currentSwipeViewIndex//zsm.currentIndex
                 anchors.centerIn: parent
-                onCurrentIndexChanged: //zsm.currentIndex=currentIndex
+                onCurrentIndexChanged: zsm.currentIndex=currentIndex
                 delegate: Rectangle{
                     width: app.fs*0.5
                     height: width
@@ -126,7 +126,7 @@ Item{
                     MouseArea{
                         anchors.fill: parent
                         onClicked: {
-                            //zsm.currentIndex=index                            
+                            zsm.currentIndex=index                            
                             if (mouse.modifiers) {
                                 apps.repLectVisible=!apps.repLectVisible
                             }
@@ -137,7 +137,7 @@ Item{
                     running: parent.count===0
                     repeat: true
                     interval: 1000
-                    onTriggered: parent.count=//zsm.aPanelsIds.length
+                    onTriggered: parent.count=zsm.aPanelsIds.length
                 }
             }
             ZoolButton{
@@ -215,7 +215,7 @@ Item{
             if(app.dev)log.lv('getPanel( '+typeOfSection+' ): ' +app.j.qmltypeof(o))
             if(''+app.j.qmltypeof(o)===''+typeOfSection){
                 obj=o
-                ci=//zsm.aPanelsIds.indexOf(app.j.qmltypeof(o))
+                ci=zsm.aPanelsIds.indexOf(app.j.qmltypeof(o))
                 break
             }
         }

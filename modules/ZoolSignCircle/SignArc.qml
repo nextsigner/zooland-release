@@ -1,106 +1,92 @@
-import QtQuick 2.12
-
-//import QtGraphicalEffects 1.0
-//import ZoolText 0.1
+import QtQuick 2.0
+import QtGraphicalEffects 1.0
+import ZoolText 1.0
 import "../"
 
 Item {
     id: r
     property int gr: 0
     property int n: -1
-    property int w//: signCircle.w
+    property int w: signCircle.w
     property int c: 0
     //property var colors: ['red', '#FBE103', '#09F4E2', '#0D9FD6']
     property bool showBorder: false
-    property var endAngle: 1.1666 * Math.PI;
     //Behavior on w{NumberAnimation{duration: sweg.speedRotation}}
-
-    //    state: sweg.state
-    //    states: [
-    //        State {
-    //            name: sweg.aStates[0]
-    //            PropertyChanges {
-    //                target: r
-    //                //w: sweg.fs*0.5
-    //            }
-    //            PropertyChanges {
-    //                target: xImg
-    //                //width: sweg.fs*0.5
-    //            }
-    //        },
-    //        State {
-    //            name: sweg.aStates[1]
-    //            PropertyChanges {
-    //                target: r
-    //                //w: sweg.fs*0.5
-    //            }
-    //            PropertyChanges {
-    //                target: xImg
-    //                //width: sweg.fs*0.5
-    //            }
-    //        },
-    //        State {
-    //            name: sweg.aStates[2]
-    //            PropertyChanges {
-    //                target: r
-    //                //w: sweg.fs*0.5
-    //            }
-    //            PropertyChanges {
-    //                target: xImg
-    //                //width: sweg.fs*0.5
-    //            }
-    //        }
-    //    ]
-
+    state: sweg.state
+    states: [
+        State {
+            name: sweg.aStates[0]
+            PropertyChanges {
+                target: r
+                //w: sweg.fs*0.5
+            }
+            PropertyChanges {
+                target: xImg
+                //width: sweg.fs*0.5
+            }
+        },
+        State {
+            name: sweg.aStates[1]
+            PropertyChanges {
+                target: r
+                //w: sweg.fs*0.5
+            }
+            PropertyChanges {
+                target: xImg
+                //width: sweg.fs*0.5
+            }
+        },
+        State {
+            name: sweg.aStates[2]
+            PropertyChanges {
+                target: r
+                //w: sweg.fs*0.5
+            }
+            PropertyChanges {
+                target: xImg
+                //width: sweg.fs*0.5
+            }
+        }
+    ]
     onWidthChanged: canvas.requestPaint()
     onWChanged: {
         //canvas.ctx
-        //canvas.requestPaint()
+        canvas.requestPaint()
         //xImg.x=(0-xImg.width*0.5)+apps.signCircleWidth*0.5
     }
     Rectangle{
-        width: 100
-        height: 30
-        color: app.signColors[r.c]
-    }
-    /*  Rectangle{
         anchors.fill: r
         color: 'transparent'
         border.width: 2
         border.color: 'red'
         radius: width*0.5
         visible: r.showBorder
-    }*/
+    }
     Canvas {
         id: canvas
         width: r.width//-sweg.fs
         height: width
         onPaint:{
             var ctx = canvas.getContext('2d');
-            //ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            //var ctx = getContext("2d")
-
-            ctx.fillStyle = app.signColors[r.c]
-            ctx.fillRect(0, 0, width*0.5, height*0.2)
-            /*var x = canvas.width*0.5;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var x = canvas.width*0.5;
             var y = canvas.height*0.5;
             var rad=parseInt(canvas.width*0.5-r.w*0.5)
             var radius = rad>0?rad:r.width;
 
             var startAngle = 1.0 * Math.PI;
-            //var endAngle = 1.1666 * Math.PI;
+            var endAngle = 1.1666 * Math.PI;
             var counterClockwise = false;
             ctx.beginPath();
-            ctx.arc(x, y, radius, startAngle, r.endAngle, counterClockwise);
+            ctx.arc(x, y, radius, startAngle, endAngle, counterClockwise);
             ctx.lineWidth = r.w;
             // line color
-            ctx.strokeStyle = 'red'//app.signColors[r.c];
-            ctx.stroke();*/
+            ctx.strokeStyle = app.signColors[r.c];
+            ctx.stroke();
         }
     }
 
-    /*Rectangle{
+    Rectangle{
         width: r.width//-((r.w-xImg.width)/2)
         height: 8
         anchors.centerIn: r
@@ -151,8 +137,7 @@ Item {
             }
             Column{
                 anchors.centerIn: parent
-                //ZoolText {
-                Text {
+                ZoolText {
                     text: '<b>'+app.signos[r.n - 1]+'</b>'
                     font.pixelSize: r.w*0.5
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -172,11 +157,11 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     //x:100
                     antialiasing: true
-
+                    /*Behavior on width{
+                        NumberAnimation{duration: 350}
+                    }*/
                 }
             }
         }
     }
-
-*/
 }

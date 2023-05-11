@@ -1,47 +1,49 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Window 2.0
+import QtMultimedia 5.12
 import Qt.labs.folderlistmodel 2.12
 
 //import unik.UnikQProcess 1.0
 import unik.Unik 1.0
 
 
-import "./js/Funcs_Zooland_v1.js" as JS
+import "./js/Funcs_v2.js" as JS
 import "./comps" as Comps
 
 //Default Modules
 import comps.ZoolAppSettings 1.0
-//import ZoolNewsAndUpdates 3.4
+import ZoolNewsAndUpdates 3.4
 import ZoolMainWindow 1.0
 //import ZoolTopMenuBar 1.0
-import ZoolText 0.1
+import ZoolText 1.0
 import ZoolDataBar 3.1
 import ZoolDataView 1.1
 import ZoolLogView 1.0
-import ZoolControlsTime 1.0
 
-//import ZoolFileDataManager 1.0
+import ZoolFileDataManager 1.0
 import web.ZoolandServerFileDataManager 1.0
-import ZoolandBodies 1.0
+import ZoolBodies 1.9
+import ZoolBodiesGuiTools 1.0
 
 import ZoolControlsTime 1.0
 
-import ZoolSectionsManager 1.1
 
 import ZoolDataBodies 3.1
 import ZoolElementsBack 1.0
 import ZoolElementsView 1.0
 
-import comps.ZoolPanelNotifications 1.0
-import web.ZoolWebStatusManager 1.0
-import comps.MinymaClient 1.0
+import comps.Zbg 1.0
+//import comps.ZoolPanelNotifications 1.0
+//import web.ZoolWebStatusManager 1.0
+//import comps.MinymaClient 1.0
 
+//import ZoolMediaLive 1.1
 //import ZoolVoicePlayer 1.0
 import ZoolDataEditor 1.0
-import ZoolVideoPlayer 1.0
+//import ZoolVideoPlayer 1.0
 import ZoolInfoDataView 1.0
-import ZoolBottomBar 1.0
+//import ZoolBottomBar 1.0
 
 
 
@@ -56,7 +58,7 @@ ZoolMainWindow{
     minimumHeight: Screen.desktopAvailableHeight-app.fs*4
     color: apps.enableBackgroundColor?apps.backgroundColor:'black'
     //title: argtitle && argtitle.length>1?argtitle:'Zool '+version
-    title: 'Zooland '+version
+    title:'Zooland'
     property bool dev: Qt.application.arguments.indexOf('-dev')>=0
     property string version: '0.0.-1'
     property string sweBodiesPythonFile: 'astrologica_swe_v2.py'
@@ -65,7 +67,7 @@ ZoolMainWindow{
     property string mainLocation: ''
     //property string pythonLocation: Qt.platform.os==='linux'?'python3':pythonLocationSeted?'"'+pythonLocationSeted+'"':'"'+unik.getPath(4)+'/Python/python.exe'+'"'
 
-    property string pythonLocation: Qt.platform.os==='linux'?'python3':'"'+currentPath+'/Python/python.exe'+'"'
+    property string pythonLocation: ''
 
     property int fs: apps.fs//Qt.platform.os==='linux'?width*0.02:width*0.02
     property string stringRes: 'Screen'+Screen.width+'x'+Screen.height
@@ -192,6 +194,8 @@ ZoolMainWindow{
 
     property bool sspEnabled: false
 
+    onClosing:Qt.quit()
+
     onCurrentPlanetIndexChanged: {
         zoolDataBodies.currentIndex=currentPlanetIndex
         if(currentPlanetIndex>=0){
@@ -228,7 +232,7 @@ ZoolMainWindow{
     onCurrentGmtChanged: {
         if(app.currentData===''||app.setFromFile)return
         //xDataBar.currentGmtText=''+currentGmt
-        tReload.restart()
+        //tReload.restart()
     }
     onCurrentGmtBackChanged: {
         //if(app.currentData===''||app.setFromFile)return
@@ -286,14 +290,40 @@ ZoolMainWindow{
             id: xSwe1
             //width: xApp.width-xLatIzq.width-xLatDer.width
             width: sweg.width
-            height: xApp.height
+            height: xApp.height-zoolDataView.height
             color: apps.backgroundColor
+            //color: 'red'
+            //border.width: 10
+            border.color: 'white'
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.horizontalCenterOffset: 0-xLatDer.width*0.5
+            anchors.horizontalCenterOffset: xLatIzq.visible?0:0-xLatIzq.width*0.5
             anchors.bottom: parent.bottom
-            clip: false
-            ZoolandBodies{id: sweg;objectName: 'sweg'}
-        }        
+            clip: xLatIzq.visible
+            ZoolBodies{id: sweg;objectName: 'sweg'}            
+        }
+
+        Rectangle{
+            id: xMsgProcDatos
+            width: txtPD.contentWidth+app.fs
+            height: app.fs*4
+            color: 'black'
+            border.width: 2
+            border.color: 'white'
+            visible: false
+            anchors.centerIn: parent
+            ZoolText {
+                id: txtPD
+                text: 'Procesando datos...'
+                //font.pixelSize: app.fs
+                //color: 'white'
+                anchors.centerIn: parent
+            }
+            MouseArea{
+                anchors.fill: parent
+                onClicked: parent.visible=false
+            }
+        }
+        //Keys.onDownPressed: Qt.quit()
     }
     Item{
         id: capa101
@@ -301,14 +331,43 @@ ZoolMainWindow{
         ZoolDataView{id: zoolDataView;}
         Row{
             anchors.top: zoolDataView.bottom
-            anchors.bottom: parent.bottom//xBottomBar.top
+            anchors.bottom: parent.top
+            Rectangle{
+                id: xLatIzq
+                width: xApp.width*0.2
+                height: parent.height
+                color: apps.backgroundColor
+                visible: apps.showLatIzq
+                //ZoolSectionsManager{id: zsm}
+                Rectangle{
+                    width: parent.width
+                    height: 3
+                    color: 'red'
+                    anchors.bottom: parent.bottom
+                    visible: apps.zFocus==='xLatIzq'
+                }
+            }
+            Item{
+                width: xLatIzq.width;
+                height: 1;
+                visible: !xLatIzq.visible
+
+
+            }
             Item{
                 id: xMed
-                //width: xApp.width-xLatIzq.width-xLatDer.width
-                width: xApp.width-xLatDer.width
-                height: parent.height
+                width: xApp.width-xLatIzq.width-xLatDer.width
+                height: xApp.height-zoolDataView.height
+                //Zbg{}
                 ZoolElementsView{id: zoolElementsView}
                 //ExtId
+                Rectangle{}
+                Text{
+                    text: '<b>Versión: '+unik.getFile('version')+'</b>'
+                    font.pixelSize: app.fs*0.45
+                    color: apps.fontColor
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
                 Text{
                     text: '<b>uExtId: '+zoolDataView.uExtIdLoaded+'</b>'
                     font.pixelSize: app.fs*0.5
@@ -401,7 +460,7 @@ ZoolMainWindow{
                             anchors.centerIn: parent
                         }
                     }
-                    ZoolControlsTime{
+                    Comps.ControlsTime{
                         id: controlsTimeBack
                         isBack: true
                         anchors.horizontalCenter: parent.horizontalCenter
@@ -423,9 +482,14 @@ ZoolMainWindow{
             }
             Item{
                 id: xLatDer
-                width: xApp.width*0.4
-                height: parent.height
+                width: xApp.width*0.2
+                height: xMed.height
+
+                //Chat{id: chat; z: onTop?panelPronEdit.z+1:panelControlsSign.z-1}
+                //PanelControlsSign{id: panelControlsSign}
                 ZoolDataBodies{id: zoolDataBodies}
+                //PanelPronEdit{id: panelPronEdit;}
+                //ZoolVoicePlayer{id: zoolVoicePlayer}
                 Rectangle{
                     width: parent.width
                     height: 3
@@ -433,28 +497,80 @@ ZoolMainWindow{
                     anchors.bottom: parent.bottom
                     visible: apps.zFocus==='xLatDer'
                 }
-                ZoolPanelNotifications{id: zpn}
+                //ZoolPanelNotifications{id: zpn}
             }
         }
         //Comps.XDataStatusBar{id: xDataStatusBar}
-//        ZoolBodiesGuiTools{
-//            id: xTools
-//            anchors.bottom: parent.bottom
-//            anchors.right: parent.right
-//            anchors.rightMargin: xLatDer.width//*0.2
-//        }
+        ZoolBodiesGuiTools{
+            id: xTools
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.rightMargin: app.width*0.2
+        }
         //ZoolBottomBar{id: xBottomBar}
-        //ZoolInfoDataView{id: xInfoData}
-        //ZoolDataEditor{id: xEditor}
+        ZoolInfoDataView{id: xInfoData}
+        ZoolDataEditor{id: xEditor}
         //Num.PanelLog{id: panelLog}
         //ZoolVideoPlayer{id: panelVideLectura;}
         //Comps.VideoListEditor{id: videoListEditor}
     }
-
-
     ZoolLogView{id: log}
-    ZoolWebStatusManager{id: zwsm}
+    //ZoolWebStatusManager{id: zwsm}
+    //    Text{
+    //        text: '->'+menuBar.expanded
+    //        font.pixelSize: app.fs*3
+    //        color: 'red'
+    //    }
+    Timer{
+        id: tAutoMaticPlanets
+        running: false
+        repeat: true
+        interval: 10000
+        property string currentJsonData: ''
+        onTriggered: {
+            if(tAutoMaticPlanets.currentJsonData!==app.currentData){
+                //tAutoMaticPlanets.stop()
+                //return
+            }
+            if(app.currentPlanetIndex<21){
+                app.currentPlanetIndex++
+            }else{
+                app.currentPlanetIndex=-1
+                app.currentHouseIndex=-1
+            }
+        }
+    }
+    //Comps.MenuPlanets{id: menuPlanets}
+    //ZoolMenuCtxZodiacBack{id: menuRuedaZodiacal}
+    //ZoolMenuPlanetsCtxAsc{id: menuPlanetsCtxAsc}
+    //ZoolMediaLive{id: zoolMediaLive;parent: zoolDataBodies}
 
+    //Este esta en el centro
+    Rectangle{
+        id: centroideXMed
+        visible: app.dev
+        width: 6
+        height: width
+        color: 'transparent'
+        border.width: 1
+        border.color: apps.fontColor
+        anchors.centerIn: parent
+    }
+
+    //Linea vertical medio
+    Rectangle{
+        width: 2
+        height: xApp.height*2
+        anchors.centerIn: parent
+        visible: app.dev
+    }
+    //    Timer{
+    //        id: tLoadModules
+    //        running: false
+    //        repeat: false
+    //        interval: 5000
+    //        onTriggered: JS.loadModules()
+    //    }
     Component.onCompleted: {
         JS.setFs()
 
@@ -508,35 +624,25 @@ ZoolMainWindow{
             app.minymaClient=objMinyma
         }
 
-//        let v=unik.getFile('./version')
-//        app.version=v.replace(/\n/g, '')
-//        if(app.version!==apps.lastVersion || app.dev){
-//            apps.lastVersion=app.version
-//            let c='import QtQuick 2.0\n'
-//            c+='import ZoolNewsAndUpdates 3.4\n'
-//            c+='ZoolNewsAndUpdates{}\n'
-//            let obj=Qt.createQmlObject(c, xLatIzq, 'znaucode')
-//            obj.z=log.z+1
-//        }
 
 
-        //Argumentos
-        let args=Qt.application.arguments
-        var i=0
-        for(i=0;i<args.length;i++){
-            let a=args[i]
-            if(a.indexOf('-title=')>=0){
-                let mt=a.split('-title=')
-                app.title=mt[1]
-            }
-        }                app.mainLocation=unik.getPath(5)
+
+        if(app.dev){
+            log.ls('\nRunning as Dev', 0, xLatIzq.width)
+            //log.ls('\nVersion:\n'+version, log.x,
+            log.ls('\nunik.currentFolderPath():\n'+unik.currentFolderPath(), log.x, log.width)
+            log.ls('\nunik.getPath(4):\n'+unik.getPath(4), log.x, log.width)
+            log.ls('\napps.jsonsFolder:\n'+apps.jsonsFolder, log.x, log.width)
+            log.ls('\nDocumentPath:\n'+documentsPath, log.x, log.width)
+        }
+
+        app.mainLocation=unik.getPath(5)
         if(Qt.platform.os==='windows'){
             app.mainLocation="\""+app.mainLocation+"\""
         }
+        console.log('app.mainLocation: '+app.mainLocation)
+        console.log('documentsPath: '+documentsPath)
+        console.log('Init app.url: '+app.url)
 
-        apps.host='https://zool.loca.lt'
-        //JS.loadModules()
-        app.requestActivate()
-        //log.focus=true
     }
 }

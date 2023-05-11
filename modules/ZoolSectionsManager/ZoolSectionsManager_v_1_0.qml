@@ -25,8 +25,8 @@ Item{
     }
     onCurrentIndexChanged:{
         apps.currentSwipeViewIndex=currentIndex
-        r.showPanel(r.aPanelsIds[//zsm.currentIndex])
-        //zsm.getPanel('ZoolRevolutionList').desactivar()
+        r.showPanel(r.aPanelsIds[zsm.currentIndex])
+        zsm.getPanel('ZoolRevolutionList').desactivar()
     }
     Column{
         width: r.width
@@ -39,7 +39,7 @@ Item{
             anchors.horizontalCenter: parent.horizontalCenter
             property var aPanelesTits: ['Información','Esquemas', 'Sabianos', 'Archivos', 'Revolución Solar', 'Módulos', 'Numerología', 'Funciones', 'Opciones', 'Texto a voz']
             Text{
-                text: parseInt(//zsm.currentIndex + 1)+': '+xPanelesTits.aPanelesTits[//zsm.currentIndex]
+                text: parseInt(zsm.currentIndex + 1)+': '+xPanelesTits.aPanelesTits[zsm.currentIndex]
                 color: apps.backgroundColor
                 font.pixelSize: app.fs*0.5
                 anchors.centerIn: parent
@@ -59,7 +59,7 @@ Item{
             Comps.XPaneles{ZoolDataText{id: panelZoolText;}}
 
             //7
-            //Comps.XPaneles{Comps.PanelZoolData{id: panelZoolData}}
+            Comps.XPaneles{Comps.PanelZoolData{id: panelZoolData}}
 
             //6
             Comps.XPaneles{ZoolModulesManager{}}
@@ -94,10 +94,10 @@ Item{
             PageIndicator {
                 id: indicatorSV
                 interactive: true
-                count: 0////zsm.aPanelsIds.length
-                currentIndex: apps.currentSwipeViewIndex////zsm.currentIndex
+                count: 0//zsm.aPanelsIds.length
+                currentIndex: apps.currentSwipeViewIndex//zsm.currentIndex
                 anchors.centerIn: parent
-                onCurrentIndexChanged: //zsm.currentIndex=currentIndex
+                onCurrentIndexChanged: zsm.currentIndex=currentIndex
                 delegate: Rectangle{
                     width: app.fs*0.5
                     height: width
@@ -115,7 +115,7 @@ Item{
                     MouseArea{
                         anchors.fill: parent
                         onClicked: {
-                            //zsm.currentIndex=index                            
+                            zsm.currentIndex=index                            
                             if (mouse.modifiers) {
                                 apps.repLectVisible=!apps.repLectVisible
                             }
@@ -126,7 +126,7 @@ Item{
                     running: parent.count===0
                     repeat: true
                     interval: 1000
-                    onTriggered: parent.count=//zsm.aPanelsIds.length
+                    onTriggered: parent.count=zsm.aPanelsIds.length
                 }
             }
             ZoolButton{

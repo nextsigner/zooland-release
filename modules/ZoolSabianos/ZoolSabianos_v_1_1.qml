@@ -6,7 +6,7 @@ import "../../comps" as Comps
 
 import ZoolSabianos.ZoolSabianosView 1.0
 import ZoolButton 1.1
-import ZoolText 0.1
+import ZoolText 1.0
 
 Rectangle {
     id: r
@@ -34,11 +34,11 @@ Rectangle {
 
     property string prevZFocus: ''
 
-    visible: //zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===//zsm.currentIndex
+    visible: zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===zsm.currentIndex
 
     onVisibleChanged: {
-        //if(visible)//zoolVoicePlayer.stop()
-        //if(visible)//zoolVoicePlayer.speak('Sección de Simbología de los 360 grados del zodíaco.', true)
+        //if(visible)zoolVoicePlayer.stop()
+        if(visible)zoolVoicePlayer.speak('Sección de Simbología de los 360 grados del zodíaco.', true)
     }
     Behavior on x{enabled: apps.enableFullAnimation;NumberAnimation{duration: app.msDesDuration}}
     Flickable{
@@ -405,8 +405,8 @@ Rectangle {
         //Component.onCompleted: xSabianos=sabianosView
     }
     Component.onCompleted: {
-        //zsm.aPanelsIds.push(app.j.qmltypeof(r))
-        //zsm.aPanelesTits.push('Sabianos')
+        zsm.aPanelsIds.push(app.j.qmltypeof(r))
+        zsm.aPanelesTits.push('Sabianos')
     }
     function ctrlDown(){
         if(r.numSign<11){

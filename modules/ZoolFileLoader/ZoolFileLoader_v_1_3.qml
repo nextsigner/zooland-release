@@ -2,14 +2,14 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import Qt.labs.folderlistmodel 2.12
 import ZoolButton 1.2
-import ZoolText 0.1
+import ZoolText 1.0
 import Qt.labs.settings 1.1
 
 
 Rectangle {
     id: r
     width: xLatIzq.width
-    height: //zsm.getPanel('ZoolFileManager').hp
+    height: zsm.getPanel('ZoolFileManager').hp
     visible: false
     color: apps.backgroundColor
     border.width: 2
@@ -21,11 +21,11 @@ Rectangle {
     property alias currentIndex: lv.currentIndex
     property alias listModel: lm
     property string currentFile: ''
-    property int svIndex: //zsm.currentIndex
+    property int svIndex: zsm.currentIndex
     property int itemIndex: -1
     onVisibleChanged: {
-        //if(visible)//zoolVoicePlayer.stop()
-        //if(visible)//zoolVoicePlayer.speak('Sección para buscar y cargar archivos.', true)
+        //if(visible)zoolVoicePlayer.stop()
+        if(visible)zoolVoicePlayer.speak('Sección para buscar y cargar archivos.', true)
     }
     Settings{
         id: s
@@ -121,7 +121,7 @@ Rectangle {
                         //xApp.focus=true
                     }
                     onTextChanged: {
-                        //zsm.currentSectionFocused=r
+                        zsm.currentSectionFocused=r
                         updateList()
                     }
                     onFocusChanged: {
@@ -170,13 +170,12 @@ Rectangle {
                 //color: apps.backgroundColor
                 anchors.horizontalCenter: parent.horizontalCenter
                 clip: true
-                Text {
+                ZoolText {
                     id: txtTitInfo
-                    text: '<b>Cantidad Total:</b> '+flm.count+' <b>Encontrados:</b> '+lm.count+'<br/>'//+'<b>Carpeta: </b>'+flm.folder//.replace('file://', '')
-                    //text: 'Cantidad Total: '+flm.count+' Encontrados: '+lm.count+' Carpeta: '+(''+flm.folder)
+                    text: '<b>Cantidad Total:</b> '+flm.count+' <b>Encontrados:</b> '+lm.count+'<br/><b>Carpeta: </b>'+(''+flm.folder).replace('file://', '')
                     font.pixelSize: app.fs*0.35
                     //width: parent.width-app.fs
-                    //w: parent.width-app.fs
+                    w: parent.width-app.fs
                     wrapMode: Text.WordWrap
                     color: apps.fontColor
                     anchors.centerIn: parent
@@ -194,7 +193,7 @@ Rectangle {
             clip: true
             onCurrentIndexChanged: {
                 if(currentIndex>=0){
-                    //zsm.currentSectionFocused=r
+                    zsm.currentSectionFocused=r
                     ti.focus=false
                 }
                 if(!lm.get(currentIndex) || !lm.get(currentIndex).fileName)return

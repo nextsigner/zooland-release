@@ -1,6 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.0
-//import QtQuick.Dialogs 1.2
+import QtQuick.Dialogs 1.2
 import Qt.WebSockets 1.0
 import "qwebchannel.js" as WebChannel
 

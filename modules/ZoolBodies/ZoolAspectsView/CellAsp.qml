@@ -8,7 +8,7 @@ Rectangle {
     property int indexAsp: -1
     property int indexPosAsp: -1
     SequentialAnimation{
-        //running: indexPosAsp===sweg.objAspsCircle.currentAspSelected&&sweg.objAspsCircle.currentAspSelected!==-1
+        running: indexPosAsp===sweg.objAspsCircle.currentAspSelected&&sweg.objAspsCircle.currentAspSelected!==-1
         loops: Animation.Infinite
         onRunningChanged: {
             if(!running){

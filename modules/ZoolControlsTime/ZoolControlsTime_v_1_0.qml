@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import ZoolText 0.1
+import ZoolText 1.0
 
 Rectangle {
     id: r

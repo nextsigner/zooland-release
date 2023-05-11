@@ -1,5 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
+import "../../js/Funcs.js" as JS
 import "../../js/Capture.js" as Cap
 Menu {
     id: r
@@ -11,7 +12,7 @@ Menu {
     property int uY: 0
     onOpenedChanged:  menuBar.expanded=opened
     //onCurrentIndexChanged: menuBar.uCMI=aMI[currentIndex]
-    //Component.onCompleted: menuBar.aMenuItems.push(this)
+    Component.onCompleted: menuBar.aMenuItems.push(this)
     delegate: MenuItem {
         id: menuItem
         implicitWidth: 200
@@ -76,7 +77,7 @@ Menu {
     Action {enabled: app.mod==='rs'; text: qsTr("Guardar Revolución"); onTriggered: {
                            //if(app.dev)log.lv('MenuBack: '+JSON.stringify(JSON.parse(app.fileDataBack, null, 2)))                       }
             zfdm.addExtData(JSON.parse(app.fileDataBack))
-            //zsm.currentIndex=1
+            zsm.currentIndex=1
         }
     }
     Action {enabled: app.dev; text: qsTr("Cargar Ricardo"); onTriggered: {

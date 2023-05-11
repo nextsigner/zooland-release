@@ -65,6 +65,7 @@ Item{
                 let j=JSON.parse(data)
                 if(j.isData){
                     sweg.loadSweJson(JSON.stringify(j.data, null, 2))
+                    //zoolDataView.load(app.fileData)
                     //log.lv(JSON.stringify(j.data, null, 2))
                 }else{
                     app.j.showMsgDialog('Zool Informa Error!', 'Los datos no han sido guardados.', j.error)
@@ -115,8 +116,34 @@ Item{
 
     Component.onCompleted: {
         let sj='{"params":{"tipo":"vn","ms":1633701422850,"n":"Ricardo","d":20,"m":6,"a":1975,"h":23,"min":4,"gmt":-3,"lat":-35.4752134,"lon":-69.585934,"ciudad":"Malargue Mendoza Argentina","msmod":1681568075071}}'
-        let j=JSON.parse(sj)
-        getZoolandData(j)
+        loadParamsFromString(sj)
+    }
+    function loadParamsFromString(s){        {
+                let j=JSON.parse(s)
+                log.lv('getZoolandData(j)...')
+                let aL=[]
+                aL.push(''+j.params.n)
+                aL.push(''+j.params.d+'/'+j.params.m+'/'+j.params.a)
+                aL.push(''+j.params.h+':'+j.params.min+'hs')
+                aL.push('<b>GMT:</b> '+j.params.gmt)
+                aL.push('<b>Ubicación:</b> '+j.params.ciudad)
+                aL.push('<b>Lat:</b> '+parseFloat(j.params.lat).toFixed(2))
+                aL.push('<b>Lon:</b> '+parseFloat(j.params.lon).toFixed(2))
+                aL.push('<b>Alt:</b> '+j.params.alt)
+                let tipo=j.tipo
+                let strSep=''
+                if(tipo==='vn'){
+                    strSep='Carta Natal'
+                }
+                if(tipo==='sin'){
+                    strSep='Sinastría'
+                }
+                if(tipo==='rs')strSep='Rev. Solar '+va
+                if(tipo==='trans')strSep='Tránsitos'
+                if(tipo==='dirprim')strSep='Dir. Primarias'
+                zoolDataView.setDataView(strSep, aL, [])
+                getZoolandData(j)
+            }
     }
 }
 

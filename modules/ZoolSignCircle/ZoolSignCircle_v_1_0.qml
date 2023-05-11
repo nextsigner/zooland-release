@@ -60,7 +60,7 @@ Item {
         //12 Signos
         Repeater{
             model: 3
-            SignArc{
+            ZoolandSignArc{
                 objectName: 'signArc'+n
                 width: r.width
                 height: width
@@ -73,7 +73,7 @@ Item {
         }
         Repeater{
             model: 3
-            SignArc{
+            ZoolandSignArc{
                 objectName: 'signArc'+n
                 width: r.width
                 height: width
@@ -86,7 +86,7 @@ Item {
         }
         Repeater{
             model: 3
-            SignArc{
+            ZoolandSignArc{
                 objectName: 'signArc'+n
                 width: r.width
                 height: width
@@ -99,7 +99,7 @@ Item {
         }
         Repeater{
             model: 3
-            SignArc{
+            ZoolandSignArc{
                 objectName: 'signArc'+n
                 width: r.width
                 height: width

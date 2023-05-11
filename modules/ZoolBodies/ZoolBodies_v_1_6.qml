@@ -514,7 +514,7 @@ Item {
         var scorrJson=json.replace(/\n/g, '')
         //app.currentJson=JSON.parse(scorrJson)
         aspsCircle.clear()
-        //zsm.getPanel('ZoolRevolutionList').clear()
+        zsm.getPanel('ZoolRevolutionList').clear()
         //panelRsList.clear()
         //planetsCircleBack.visible=false
         app.ev=false
@@ -548,13 +548,13 @@ Item {
         eclipseCircle.arrayWg=housesCircle.arrayWg
         eclipseCircle.isEclipse=-1
         r.v=true
-        let sabianos=//zsm.getPanel('ZoolSabianos')
+        let sabianos=zsm.getPanel('ZoolSabianos')
         sabianos.numSign=app.currentJson.ph.h1.is
         sabianos.numDegree=parseInt(app.currentJson.ph.h1.rsgdeg - 1)
         sabianos.loadData()
         if(apps.sabianosAutoShow){
             //panelSabianos.state='show'
-            //zsm.currentIndex=1
+            zsm.currentIndex=1
         }     }
     function loadSweJsonBack(json){
         //console.log('JSON::: '+json)

@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import ZoolText 0.1
+import ZoolText 1.0
 import "../"
 
 Item {
@@ -29,93 +29,93 @@ Item {
     //Behavior on w{enabled: apps.enableFullAnimation;NumberAnimation{duration: 500}}
     //Behavior on width{enabled: apps.enableFullAnimation;NumberAnimation{duration:500}}
 
-//    state: sweg.state
-//    states: [
-//        State {
-//            name: sweg.aStates[0]
-//            PropertyChanges {
-//                target: ejeV
-//                width:  r.width+sweg.fs*2//.5
-//            }
-//            PropertyChanges {
-//                target: canvas2
-//                opacity:  0.0
-//            }
-//            PropertyChanges {
-//                target: r
-//                //colors: r.colors//[apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor]
-//                extraWidth: 0
-//                w: (sweg.width-sweg.objAspsCircle.width)/2//housesCircle.parent.objectName==='sweg'?(!r.selected?sweg.fs*2.5:sweg.fs*6):(!r.selected?sweg.fs*3:sweg.fs*7)
-//            }
-//        },
-//        State {
-//            name: sweg.aStates[1]
-//            PropertyChanges {
-//                target: ejeV
-//                width:  r.width+sweg.fs*2.5
-//            }
-//            PropertyChanges {
-//                target: canvas2
-//                opacity:  1.0
-//            }
-//            PropertyChanges {
-//                target: r
-//                //colors: ['red', '#FBE103', '#09F4E2', '#0D9FD6','red', '#FBE103', '#09F4E2', '#0D9FD6','red', '#FBE103', '#09F4E2', '#0D9FD6']
-//                extraWidth: sweg.fs*2.5
-//                w: (sweg.width-sweg.objAspsCircle.width)/2
-//                //w: housesCircle.parent.objectName==='sweg'?(!r.selected?sweg.fs*2.5:sweg.fs*6):(!r.selected?sweg.fs*2.5:sweg.fs*8)
-//            }
-//        },
-//        State {
-//            name: sweg.aStates[2]
-//            PropertyChanges {
-//                target: ejeV
-//                width: r.width+sweg.fs*2
-//            }
-//            PropertyChanges {
-//                target: canvas2
-//                opacity:  0.0
-//            }
-//            PropertyChanges {
-//                target: r
-//                //colors: [apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor]
-//                extraWidth: 0
-//                //w: housesCircle.parent.objectName==='sweg'?(sweg.fs*2):(sweg.fs*4)
-//                w: (sweg.width-sweg.objAspsCircle.width)/2
-//            }
-//        }
-//    ]
+    state: sweg.state
+    states: [
+        State {
+            name: sweg.aStates[0]
+            PropertyChanges {
+                target: ejeV
+                width:  r.width+sweg.fs*2//.5
+            }
+            PropertyChanges {
+                target: canvas2
+                opacity:  0.0
+            }
+            PropertyChanges {
+                target: r
+                //colors: r.colors//[apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor]
+                extraWidth: 0
+                w: (sweg.width-sweg.objAspsCircle.width)/2//housesCircle.parent.objectName==='sweg'?(!r.selected?sweg.fs*2.5:sweg.fs*6):(!r.selected?sweg.fs*3:sweg.fs*7)
+            }
+        },
+        State {
+            name: sweg.aStates[1]
+            PropertyChanges {
+                target: ejeV
+                width:  r.width+sweg.fs*2.5
+            }
+            PropertyChanges {
+                target: canvas2
+                opacity:  1.0
+            }
+            PropertyChanges {
+                target: r
+                //colors: ['red', '#FBE103', '#09F4E2', '#0D9FD6','red', '#FBE103', '#09F4E2', '#0D9FD6','red', '#FBE103', '#09F4E2', '#0D9FD6']
+                extraWidth: sweg.fs*2.5
+                w: (sweg.width-sweg.objAspsCircle.width)/2
+                //w: housesCircle.parent.objectName==='sweg'?(!r.selected?sweg.fs*2.5:sweg.fs*6):(!r.selected?sweg.fs*2.5:sweg.fs*8)
+            }
+        },
+        State {
+            name: sweg.aStates[2]
+            PropertyChanges {
+                target: ejeV
+                width: r.width+sweg.fs*2
+            }
+            PropertyChanges {
+                target: canvas2
+                opacity:  0.0
+            }
+            PropertyChanges {
+                target: r
+                //colors: [apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor]
+                extraWidth: 0
+                //w: housesCircle.parent.objectName==='sweg'?(sweg.fs*2):(sweg.fs*4)
+                w: (sweg.width-sweg.objAspsCircle.width)/2
+            }
+        }
+    ]
 
 
     onColorsChanged: {
-//        canvas.requestPaint()
-//        canvas2.requestPaint()
-//        canvasSen.requestPaint()
+        canvas.requestPaint()
+        canvas2.requestPaint()
+        canvasSen.requestPaint()
     }
     onWidthChanged: {
-//        canvas.anchors.centerIn= r
-//        canvas2.anchors.centerIn= r
-//        canvas.requestPaint()
-//        canvas2.requestPaint()
+        canvas.anchors.centerIn= r
+        canvas2.anchors.centerIn= r
+        canvas.requestPaint()
+        canvas2.requestPaint()
     }
     onWChanged: {
-//        canvas.requestPaint()
-//        canvas2.requestPaint()
+        canvas.requestPaint()
+        canvas2.requestPaint()
     }
     onSelectedChanged: {
-        //if(!selected)canvas.opacity=0.5
+        if(!selected)canvas.opacity=0.5
     }
     onWgChanged:{
-        //canvas.opacity=0.5
+        canvas.opacity=0.5
     }
     Behavior on opacity{enabled: apps.enableFullAnimation;
         NumberAnimation{duration: r.opacitySpeed}
     }
     onRotationChanged: {
-//        canvas.clear_canvas()
-//        canvas.requestPaint()
-//        canvas2.clear_canvas()
-//        canvas2.requestPaint()
+        canvas.clear_canvas()
+        canvas.requestPaint()
+        canvas2.clear_canvas()
+        canvas2.requestPaint()
     }
     Rectangle{
         anchors.fill: r
@@ -137,30 +137,28 @@ Item {
         anchors.left: parent.left
         anchors.leftMargin: !housesCircleBack.visible?0-sweg.fs*2:0-sweg.fs*2-housesCircleBack.extraWidth-sweg.fs*2.5
         visible: c===0
-
-//        Canvas {
-//            id:canvasSen
-//            width: sweg.fs*0.5
-//            height: width
-//            anchors.verticalCenter: parent.verticalCenter
-//            anchors.left: parent.left
-//            antialiasing: true
-//            onPaint:{
-//                var ctx = canvasSen.getContext('2d');
-//                ctx.clearRect(0, 0, canvas.width, canvas.height);
-//                ctx.beginPath();
-//                ctx.moveTo(0, canvasSen.width*0.5);
-//                ctx.lineTo(canvasSen.width, 0);
-//                ctx.lineTo(canvasSen.width, canvasSen.width);
-//                ctx.lineTo(0, canvasSen.width*0.5);
-//                ctx.strokeStyle = canvas.parent.color
-//                ctx.lineWidth = canvasSen.parent.height;
-//                ctx.fillStyle = canvasSen.parent.color
-//                ctx.fill();
-//                ctx.stroke();
-//            }
-//        }
-
+        Canvas {
+            id:canvasSen
+            width: sweg.fs*0.5
+            height: width
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            antialiasing: true
+            onPaint:{
+                var ctx = canvasSen.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.beginPath();
+                ctx.moveTo(0, canvasSen.width*0.5);
+                ctx.lineTo(canvasSen.width, 0);
+                ctx.lineTo(canvasSen.width, canvasSen.width);
+                ctx.lineTo(0, canvasSen.width*0.5);
+                ctx.strokeStyle = canvas.parent.color
+                ctx.lineWidth = canvasSen.parent.height;
+                ctx.fillStyle = canvasSen.parent.color
+                ctx.fill();
+                ctx.stroke();
+            }
+        }
         Rectangle{
             width: sweg.fs*2.2
             height: sweg.fs
@@ -181,59 +179,57 @@ Item {
             }
         }
     }
+    Canvas {
+        id: canvas
+        width: r.width//-sweg.fs
+        height: width
+        opacity: 0.65
+        antialiasing: true
+        onPaint:{
+            var ctx = canvas.getContext('2d');
+            ctx.reset();
+            var x = canvas.width*0.5;
+            var y = canvas.height*0.5;
+            //var radius = canvas.width*0.5-r.w*0.5;
+            var rad=parseInt(canvas.width*0.5-r.w*0.5)
 
-//    Canvas {
-//        id: canvas
-//        width: r.width//-sweg.fs
-//        height: width
-//        opacity: 0.65
-//        antialiasing: true
-//        onPaint:{
-//            var ctx = canvas.getContext('2d');
-//            ctx.reset();
-//            var x = canvas.width*0.5;
-//            var y = canvas.height*0.5;
-//            //var radius = canvas.width*0.5-r.w*0.5;
-//            var rad=parseInt(canvas.width*0.5-r.w*0.5)
-
-//            //console.log('Rad: '+rad)
-//            var radius = rad>0?rad:r.width;
-//            if(radius<=0)return
-//            ctx.beginPath();
-//            ctx.arc(x, y, radius, ((2 * Math.PI) / 360 * 180)-(2 * Math.PI) / 360 * r.wg, (2 * Math.PI) / 360 * 180);
-//            ctx.lineWidth = r.w;
-//            ctx.strokeStyle = sweg.state===sweg.aStates[1]?r.colors2[r.c]:r.colors[r.c];
-//            ctx.stroke();
-//        }
-//        function clear_canvas() {
-//            canvas.requestPaint();
-//        }
-//    }
-//    Canvas {
-//        id:canvas2
-//        width: r.width
-//        height: width
-//        opacity: canvas.opacity
-//        antialiasing: true
-//        onPaint:{
-//            var ctx = canvas2.getContext('2d')
-//            ctx.reset();
-//            var x = canvas2.width*0.5+r.wb;
-//            var y = canvas2.height*0.5
-//            var rad=parseInt(canvas.width*0.5)
-//            var radius = rad>0?rad:r.width;
-//            if(radius<=0)return
-//            ctx.beginPath();
-//            ctx.arc(x, y, radius, ((2 * Math.PI) / 360 * 180)-(2 * Math.PI) / 360 * r.wg, (2 * Math.PI) / 360 * 180);
-//            ctx.lineWidth = r.wb;
-//            ctx.strokeStyle = sweg.state===sweg.aStates[1]?r.colors2[r.c]:r.colors[r.c];
-//            ctx.stroke();
-//        }
-//        function clear_canvas() {
-//            canvas2.requestPaint();
-//        }
-//    }
-
+            //console.log('Rad: '+rad)
+            var radius = rad>0?rad:r.width;
+            if(radius<=0)return
+            ctx.beginPath();
+            ctx.arc(x, y, radius, ((2 * Math.PI) / 360 * 180)-(2 * Math.PI) / 360 * r.wg, (2 * Math.PI) / 360 * 180);
+            ctx.lineWidth = r.w;
+            ctx.strokeStyle = sweg.state===sweg.aStates[1]?r.colors2[r.c]:r.colors[r.c];
+            ctx.stroke();
+        }
+        function clear_canvas() {
+            canvas.requestPaint();
+        }
+    }
+    Canvas {
+        id:canvas2
+        width: r.width
+        height: width
+        opacity: canvas.opacity
+        antialiasing: true
+        onPaint:{
+            var ctx = canvas2.getContext('2d')
+            ctx.reset();
+            var x = canvas2.width*0.5+r.wb;
+            var y = canvas2.height*0.5
+            var rad=parseInt(canvas.width*0.5)
+            var radius = rad>0?rad:r.width;
+            if(radius<=0)return
+            ctx.beginPath();
+            ctx.arc(x, y, radius, ((2 * Math.PI) / 360 * 180)-(2 * Math.PI) / 360 * r.wg, (2 * Math.PI) / 360 * 180);
+            ctx.lineWidth = r.wb;
+            ctx.strokeStyle = sweg.state===sweg.aStates[1]?r.colors2[r.c]:r.colors[r.c];
+            ctx.stroke();
+        }
+        function clear_canvas() {
+            canvas2.requestPaint();
+        }
+    }
     Rectangle{
         id: ejeV
         height: r.wb
@@ -292,11 +288,10 @@ Item {
         }
         Rectangle{
             id: circleBot
-//            width: sweg.objHousesCircle.houseShowSelectadIndex===-1?
-//                       sweg.fs*0.75
-//                     :
-//                       sweg.objHousesCircle.houseShowSelectadIndex===r.c?(sweg.fs*0.75+r.wb*2)*2:(sweg.fs*0.75*2)
-            width: app.fs*3
+            width: sweg.objHousesCircle.houseShowSelectadIndex===-1?
+                       sweg.fs*0.75
+                     :
+                       sweg.objHousesCircle.houseShowSelectadIndex===r.c?(sweg.fs*0.75+r.wb*2)*2:(sweg.fs*0.75*2)
             height: width
             radius: width*0.5
             //color: apps.enableBackgroundColor?apps.fontColor:'white'
@@ -386,7 +381,7 @@ Item {
     }
     Rectangle{
         id: ejeCentro
-        width: sweg.width//canvas.width
+        width: canvas.width
         height: 4
         color: 'blue'//'transparent'
         anchors.centerIn: r
@@ -418,7 +413,7 @@ Item {
         repeat: true
         interval: 350
         onTriggered: {
-            //canvas.opacity=canvas.opacity===1.0?0.65:1.0
+            canvas.opacity=canvas.opacity===1.0?0.65:1.0
         }
     }
     Timer{
@@ -427,10 +422,10 @@ Item {
         repeat: true
         interval: 350
         onRunningChanged: {
-            //if(!running)canvas.opacity=1.0
+            if(!running)canvas.opacity=1.0
         }
         onTriggered: {
-            //canvas.opacity=0.0
+            canvas.opacity=0.0
         }
     }
 
@@ -449,12 +444,12 @@ Item {
     }
 
     function refresh(){
-        //canvas.clear_canvas()
-        //canvas.requestPaint()
-        //canvas.update()
+        canvas.clear_canvas()
+        canvas.requestPaint()
+        canvas.update()
 
-//        canvas2.clear_canvas()
-//        canvas2.requestPaint()
-//        canvas2.update()
+        canvas2.clear_canvas()
+        canvas2.requestPaint()
+        canvas2.update()
     }
 }

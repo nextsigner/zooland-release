@@ -38,8 +38,8 @@ Item{
         }
     }
     Component.onCompleted: {
-        //zsm.aPanelsIds.push(app.j.qmltypeof(r))
-        //zsm.aPanelesTits.push('Usuario Zool')
+        zsm.aPanelsIds.push(app.j.qmltypeof(r))
+        zsm.aPanelesTits.push('Usuario Zool')
         //r.showSection(s.currentQmlTypeShowed)
     }
     function getPanel(typeOfSection){
@@ -77,7 +77,7 @@ Item{
             if(app.dev)log.lv('getPanel( '+typeOfSection+' ): ' +app.j.qmltypeof(o))
             if(''+app.j.qmltypeof(o)===''+typeOfSection){
                 obj=o
-                ci=//zsm.aPanelsIds.indexOf(app.j.qmltypeof(o))
+                ci=zsm.aPanelsIds.indexOf(app.j.qmltypeof(o))
                 break
             }
         }

@@ -12,7 +12,7 @@ Item{
     signal clicked
     property bool pressed: false
     property int borderWidth: 1//bg.border.width
-    property color borderColor: apps.fontColor//bg.border.color
+    property color borderColor: 'white'//bg.border.color
     Timer{
         id: tP
         running: r.pressed

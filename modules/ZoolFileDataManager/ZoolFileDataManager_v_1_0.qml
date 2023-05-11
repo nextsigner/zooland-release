@@ -121,7 +121,7 @@ Item{
         if(saved){
             let njson=JSON.stringify(json)
             app.fileData=njson
-            //zsm.getPanel('ZoolFileExtDataManager').updateList()
+            zsm.getPanel('ZoolFileExtDataManager').updateList()
             if(apps.enableShareInServer){
                 zsfdm.save(json)
             }
@@ -195,7 +195,7 @@ Item{
         }
         if(app.dev)log.lv('saveExtToJsonFile( '+extId+'): Nuevo Json: '+JSON.stringify(njson, null, 2))
         let isSaved=unik.setFile(apps.url, JSON.stringify(njson))
-        if(isSaved)//zsm.getPanel('ZoolFileExtDataManager').updateList()
+        if(isSaved)zsm.getPanel('ZoolFileExtDataManager').updateList()
         return isSaved
     }
     function deleteExtToJsonFile(extId){
