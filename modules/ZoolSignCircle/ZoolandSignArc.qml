@@ -3,17 +3,14 @@ import QtGraphicalEffects 1.12
 
 Rectangle {
     id: r
-    //width: sweg.width
-    //height: width
     radius: width*0.5
-    //rotation: -90-30
-    //color:'blue'
     color:'transparent'
     clip: true
     property int gr: 0
     property int n: -1
     property int w: signCircle.w
     property int c: 0
+    //visible: c===0
     Rectangle{
         id: bug
         width: r.width//*0.5
@@ -90,7 +87,24 @@ Rectangle {
         source: mask
         maskSource: bug
         invert: true
-        rotation: 45
+        rotation: -45-30
+        Rectangle{
+            width: 1
+            height: r.width
+            anchors.centerIn: parent
+            color: 'blue'
+            Image {
+                id: iconoSigno
+                source: "../../resources/imgs/signos/"+parseInt(r.n - 1)+".svg"
+                //property int w: xImg.width*0.75
+                width: r.w
+                height: width
+                anchors.top: parent.top
+                //rotation: 0-r.rotation-15-r.gr
+                rotation: 0-r.rotation+75-r.gr
+                antialiasing: true
+            }
+        }
     }
     Rectangle{
         id: ctb
@@ -103,83 +117,91 @@ Rectangle {
         anchors.centerIn: bug
         visible: false
     }
-    Rectangle{
-        width: r.width//-((r.w-xImg.width)/2)
-        height: 8
-        anchors.centerIn: r
-        color: 'transparent'//'blue'
-        rotation: 15
-        antialiasing: true
-        Rectangle{
-            id: xImg
-            //width: apps.signCircleWidth*0.8//signCircle.w*0.5
-            width: r.w*0.8
-            height: width
-            //border.width: 10
-            //border.color: 'red'
-            color: 'transparent'
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: !app.ev?0-(xImg.width-apps.signCircleWidth)*0.5:0-(xImg.width-apps.signCircleWidth*0.5)*0.5
-            //x:(0-xImg.width*0.5)+apps.signCircleWidth*0.5
-            //x:((r.w-xImg.width)/4)
-            //x:(apps.signCircleWidth-xImg.width)/4
-            //x:100
-            rotation: 0-r.rotation-15-r.gr//-90
-            antialiasing: true
-            property bool resaltado: false//panelDataBodies.currentIndexSign === r.n - 1
-            //onWidthChanged: canvas.requestPaint()
-            MouseArea{
-                anchors.fill: parent
-                onClicked: parent.resaltado=!parent.resaltado
-            }
-            Rectangle{
-                width: xImg.width*3
-                height: width
-                radius: width*0.5
-                border.width: 4
-                border.color: app.signColors[r.c]
-                anchors.centerIn: parent
-                z: parent.z-1
-                opacity: xImg.resaltado?1.0:0.0
-                Behavior on opacity{
-                    NumberAnimation{duration: 350}
-                }
-                Rectangle{
-                    anchors.fill: parent
-                    color: app.signColors[c]
-                    radius: width*0.5
-                    opacity: 0.35
-                }
-            }
-            Column{
-                anchors.centerIn: parent
-                //ZoolText {
-                Text {
-                    text: '<b>'+app.signos[r.n - 1]+'</b>'
-                    font.pixelSize: r.w*0.5
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    visible: xImg.resaltado
-                    opacity: xImg.resaltado?1.0:0.0
-//                    Behavior on width{
-//                        NumberAnimation{duration: 350}
-//                    }
-                }
-                Image {
-                    id: iconoSigno
-                    source: "../../resources/imgs/signos/"+parseInt(r.n - 1)+".svg"
-                    property int w: xImg.width*0.75
-                    width: xImg.width//!xImg.resaltado?r.w:r.w*2
-                    height: width
-                    //anchors.centerIn: parent
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    //x:100
-                    antialiasing: true
 
-                }
-            }
-        }
-    }
+//    Rectangle{
+//        //z:mask+1000
+//        width: r.width//-((r.w-xImg.width)/2)
+//        height: 8
+//        anchors.centerIn: r
+//        color: 'yellow'//'blue'
+//        rotation: 15
+//        antialiasing: true
+//        Rectangle{
+//            width: xImg.width*3
+//            height: width
+//            radius: width*0.5
+//            border.width: 4
+//            border.color: app.signColors[r.c]
+//            anchors.centerIn: parent
+//            //z: parent.z-1
+//            opacity: xImg.resaltado?1.0:0.0
+//            Behavior on opacity{
+//                NumberAnimation{duration: 350}
+//            }
+//            Rectangle{
+//                anchors.fill: parent
+//                color: app.signColors[c]
+//                radius: width*0.5
+//                opacity: 0.35
+//            }
+//        }
+
+
+//        Rectangle{
+//            id: xImg
+//            //width: apps.signCircleWidth*0.8//signCircle.w*0.5
+//            width: app.fs//r.w*0.8
+//            height: width
+//            //border.width: 10
+//            //border.color: 'red'
+//            color: 'yellow'
+//            anchors.verticalCenter: parent.verticalCenter
+//            anchors.left: parent.left
+//            anchors.leftMargin: !app.ev?0-(xImg.width-apps.signCircleWidth)*0.5:0-(xImg.width-apps.signCircleWidth*0.5)*0.5
+//            //x:(0-xImg.width*0.5)+apps.signCircleWidth*0.5
+//            //x:((r.w-xImg.width)/4)
+//            //x:(apps.signCircleWidth-xImg.width)/4
+//            //x:100
+//            rotation: 0-r.rotation-15-r.gr//-90
+//            antialiasing: true
+//            property bool resaltado: false//panelDataBodies.currentIndexSign === r.n - 1
+//            //onWidthChanged: canvas.requestPaint()
+//            MouseArea{
+//                anchors.fill: parent
+//                onClicked: parent.resaltado=!parent.resaltado
+//            }
+//            Column{
+//                anchors.centerIn: parent
+//                //ZoolText {
+//                Text {
+//                    text: '<b>'+app.signos[r.n - 1]+'</b>'
+//                    font.pixelSize: r.w*0.5
+//                    anchors.horizontalCenter: parent.horizontalCenter
+//                    visible: xImg.resaltado
+//                    opacity: xImg.resaltado?1.0:0.0
+////                    Behavior on width{
+////                        NumberAnimation{duration: 350}
+////                    }
+//                }
+//                Image {
+//                    id: iconoSigno
+//                    source: "../../resources/imgs/signos/"+parseInt(r.n - 1)+".svg"
+//                    property int w: xImg.width*0.75
+//                    width: xImg.width//!xImg.resaltado?r.w:r.w*2
+//                    height: width
+//                    //anchors.centerIn: parent
+//                    anchors.horizontalCenter: parent.horizontalCenter
+//                    //x:100
+//                    antialiasing: true
+
+//                }
+//                Rectangle{
+//                    anchors.fill: iconoSigno
+//                    color: 'blue'
+//                }
+//            }
+//        }
+//    }
 
 
 }

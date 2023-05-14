@@ -45,6 +45,14 @@ Window {
         onActivated: app.close()
     }
     Shortcut{
+        sequence: 'Enter'
+        onActivated: {
+            if(app.ci){
+                app.ci.enter()
+            }
+        }
+    }
+    Shortcut{
         sequence: 'Up'
         onActivated: {
             if(app.currentPlanetIndex>0){

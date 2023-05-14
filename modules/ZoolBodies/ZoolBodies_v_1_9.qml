@@ -11,7 +11,7 @@ import ZoolBodies.ZoolAspectsView 1.0
 import ZoolBodies.ZoolAspectsViewBack 1.0
 
 import ZoolSignCircle 1.0
-import ZoolAutoPanZoom 1.0
+//import ZoolAutoPanZoom 1.0
 
 //import "./comps" as Comps
 
@@ -34,7 +34,7 @@ Item {
 
     property int  verticalOffSet: 0//xDataBar.state==='show'?sweg.fs*1.25:0
     property int fs: r.objectName==='sweg'?apps.sweFs*1.5:apps.sweFs*3
-    property int w: apps.signCircleWidth//fs
+    property int w: app.fs*2//apps.signCircleWidth//fs
     property bool v: false
     property alias expand: planetsCircle.expand
     property alias objAspsCircle: aspsCircle
@@ -330,7 +330,7 @@ Item {
                     anchors.centerIn: parent
                     visible: app.showCenterLine
                 }
-                ZoolAutoPanZoom{id:zoolAutoPanZoom}
+                //ZoolAutoPanZoom{id:zoolAutoPanZoom}
             }
         }
     }

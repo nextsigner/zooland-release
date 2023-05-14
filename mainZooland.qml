@@ -13,7 +13,7 @@ import "./comps" as Comps
 
 //Default Modules
 import comps.ZoolAppSettings 1.0
-import ZoolNewsAndUpdates 3.4
+//import ZoolNewsAndUpdates 3.4
 import ZoolMainWindow 1.0
 //import ZoolTopMenuBar 1.0
 import ZoolText 1.0
@@ -21,7 +21,7 @@ import ZoolDataBar 3.1
 import ZoolDataView 1.1
 import ZoolLogView 1.0
 
-import ZoolFileDataManager 1.0
+//import ZoolFileDataManager 1.0
 import web.ZoolandServerFileDataManager 1.0
 import ZoolBodies 1.9
 import ZoolBodiesGuiTools 1.0
@@ -59,6 +59,11 @@ ZoolMainWindow{
     color: apps.enableBackgroundColor?apps.backgroundColor:'black'
     //title: argtitle && argtitle.length>1?argtitle:'Zool '+version
     title:'Zooland'
+
+    //Zooland VarsonCom
+    property var ci: xApp
+
+
     property bool dev: Qt.application.arguments.indexOf('-dev')>=0
     property string version: '0.0.-1'
     property string sweBodiesPythonFile: 'astrologica_swe_v2.py'
@@ -193,6 +198,8 @@ ZoolMainWindow{
     property bool showPointerXAsBack: true
 
     property bool sspEnabled: false
+
+    property var aParams: ['{"params":{"tipo":"vn","ms":1633701422850,"n":"Ricardo", "d":20,"m":6,"a":1975,"h":23,"min":4,"gmt":-3,"lat":-35.4752134,"lon":-69.585934,"ciudad":"Malargue Mendoza Argentina","msmod":1681568075071}}', '{"params":{"tipo":"vn","ms":1622602994892,"n":"Natalia S. Pintos", "d":8, "m":9, "a":1980, "h":17,"min":0, "gmt":-3, "lat":-34.769249, "lon":-58.6480318, "ciudad":"Gonzalez Catán Buenos Aires Argentina", "msmod":1680626575611}}', '{"params":{"tipo":"vn","ms":1622602707398,"n":"Nico","d":3,"m":11,"a":2000,"h":1,"min":45,"gmt":-3,"lat":-34.7047876,"lon":-58.5861609,"ciudad":"Isidro Casanova Buenos Aires Argentina","msmod":1680658423514}}', '{"params":{"tipo":"vn","ms":1657287434162,"n":"Hugo_13-45hs","d":1,"m":11,"a":1963,"h":13,"min":45,"gmt":-3,"lat":-34.6075682,"lon":-58.4370894,"ciudad":"Ciudad de Buenos Aires Argentina","msmod":1657287598347}}']
 
     onClosing:Qt.quit()
 
@@ -572,6 +579,7 @@ ZoolMainWindow{
     //        onTriggered: JS.loadModules()
     //    }
     Component.onCompleted: {
+        app.j.showMsgDialog('Zool Informa', 'Numero de Versión del Paquete', 'Número: '+unik.getFile('version'))
         JS.setFs()
 
         //Check is dev with the arg -dev
@@ -579,16 +587,12 @@ ZoolMainWindow{
             app.dev=true
         }
 
-        if(Qt.platform.os==='linux'){
+        if(true){
             let compMinyma=Qt.createComponent('./modules/comps/MinymaClient/MinymaClient.qml')
-            let objMinyma=compMinyma.createObject(app, {loginUserName: 'zool'+(app.dev?'-dev':''), host: apps.minymaClientHost, port: apps.minymaClientPort})
+            let objMinyma=compMinyma.createObject(app, {loginUserName: 'zooland', host: 'ws://192.168.1.51', port: 12345})
             objMinyma.newMessageForMe.connect(function(from, data) {
-                if(data==='isWindowTool'){
-                    if(app.flags===Qt.Tool){
-                        minymaClient.sendData(minymaClient.loginUserName, from, 'isWindowTool=true')
-                    }else{
-                        minymaClient.sendData(minymaClient.loginUserName, from, 'isWindowTool=false')
-                    }
+                if(data==='now'){
+                    minymaClient.sendData(minymaClient.loginUserName, from, 'Ahora!')
                 }
                 if(data==='windowToWindow'){
                     app.flags=Qt.Window
@@ -641,7 +645,7 @@ ZoolMainWindow{
             app.mainLocation="\""+app.mainLocation+"\""
         }
         console.log('app.mainLocation: '+app.mainLocation)
-        console.log('documentsPath: '+documentsPath)
+        //console.log('documentsPath: '+documentsPath)
         console.log('Init app.url: '+app.url)
 
     }

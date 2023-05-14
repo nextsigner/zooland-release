@@ -50,4 +50,8 @@ Rectangle{
             }
         }
     }
+    Component.onCompleted: app.ci=r
+    function enter(){
+        r.destroy(0)
+    }
 }

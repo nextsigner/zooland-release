@@ -5,7 +5,7 @@ Item{
     id: r
     property bool expand: false
     property var cAs: r
-    property int planetSize: sweg.fs*0.75
+    property int planetSize: sweg.fs*1.5//sweg.fs*0.75
 
     property int totalPosX: 0
 

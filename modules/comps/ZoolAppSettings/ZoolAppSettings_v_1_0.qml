@@ -101,7 +101,7 @@ Settings{
 
     //Reproductor de Lectura
     property bool repLectVisible: false
-    property url repLectCurrentFolder: documentsPath
+    //property url repLectCurrentFolder: documentsPath
     property int repLectX: 0
     property int repLectY: Screen.height*0.7
     property int repLectW: Screen.width*0.21
@@ -111,7 +111,7 @@ Settings{
     property string repLectCurrentVidClose: ''
 
     //Reproductor Audio Texto a Voz
-    property url repAudioTAVCurrentFolder: documentsPath+'/audio'
+    //property url repAudioTAVCurrentFolder: documentsPath+'/audio'
 
 
     property int lupaMod: 2

@@ -120,7 +120,8 @@ Item{
     }
     function loadParamsFromString(s){        {
                 let j=JSON.parse(s)
-                log.lv('getZoolandData(j)...')
+                //ñalskdfjñla
+                //log.lv('getZoolandData(j)...')
                 let aL=[]
                 aL.push(''+j.params.n)
                 aL.push(''+j.params.d+'/'+j.params.m+'/'+j.params.a)
