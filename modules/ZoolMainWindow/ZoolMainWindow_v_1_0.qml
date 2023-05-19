@@ -73,10 +73,20 @@ Window {
         }
     }
     Shortcut{
+        sequence: 'Left'
+        onActivated: {
+            if(log.visible){
+                log.visible=false
+                return
+            }
+            //Qt.quit()
+        }
+    }
+    Shortcut{
         sequence: 'Right'
         property int v: 0
         onActivated: {
-            if(v<app.aParams.length){
+            if(v<app.aParams.length-1){
                 v++
             }else{
                 v=0

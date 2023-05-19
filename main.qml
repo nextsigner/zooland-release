@@ -54,8 +54,8 @@ ZoolMainWindow{
     visibility: "Maximized"
     width: Screen.width
     height: Screen.height
-    minimumWidth: Screen.desktopAvailableWidth-app.fs*4
-    minimumHeight: Screen.desktopAvailableHeight-app.fs*4
+    //minimumWidth: Screen.desktopAvailableWidth-app.fs*4
+    //minimumHeight: Screen.desktopAvailableHeight-app.fs*4
     color: apps.enableBackgroundColor?apps.backgroundColor:'black'
     //title: argtitle && argtitle.length>1?argtitle:'Zool '+version
     title:'Zooland'
@@ -199,7 +199,7 @@ ZoolMainWindow{
 
     property bool sspEnabled: false
 
-    property var aParams: ['{"params":{"tipo":"vn","ms":1633701422850,"n":"Ricardo", "d":20,"m":6,"a":1975,"h":23,"min":4,"gmt":-3,"lat":-35.4752134,"lon":-69.585934,"ciudad":"Malargue Mendoza Argentina","msmod":1681568075071}}', '{"params":{"tipo":"vn","ms":1622602994892,"n":"Natalia S. Pintos", "d":8, "m":9, "a":1980, "h":17,"min":0, "gmt":-3, "lat":-34.769249, "lon":-58.6480318, "ciudad":"Gonzalez Catán Buenos Aires Argentina", "msmod":1680626575611}}', '{"params":{"tipo":"vn","ms":1622602707398,"n":"Nico","d":3,"m":11,"a":2000,"h":1,"min":45,"gmt":-3,"lat":-34.7047876,"lon":-58.5861609,"ciudad":"Isidro Casanova Buenos Aires Argentina","msmod":1680658423514}}', '{"params":{"tipo":"vn","ms":1657287434162,"n":"Hugo_13-45hs","d":1,"m":11,"a":1963,"h":13,"min":45,"gmt":-3,"lat":-34.6075682,"lon":-58.4370894,"ciudad":"Ciudad de Buenos Aires Argentina","msmod":1657287598347}}']
+    property var aParams: ['{"params":{"tipo":"vn","ms":1633701422850,"n":"Ricardo", "d":20,"m":6,"a":1975,"h":23,"min":4,"gmt":-3,"lat":-35.4752134,"lon":-69.585934,"ciudad":"Malargue Mendoza Argentina","msmod":1681568075071}}', '{"params":{"tipo":"vn","ms":1622602994892,"n":"Natalia S. Pintos", "d":8, "m":9, "a":1980, "h":17,"min":0, "gmt":-3, "lat":-34.769249, "lon":-58.6480318, "ciudad":"Gonzalez Catán Buenos Aires Argentina", "msmod":1680626575611}}', '{"params":{"tipo":"vn","ms":1622602707398,"n":"Nico","d":3,"m":11,"a":2000,"h":1,"min":45,"gmt":-3,"lat":-34.7047876,"lon":-58.5861609,"ciudad":"Isidro Casanova Buenos Aires Argentina","msmod":1680658423514}}', '{"params":{"tipo":"vn","ms":1657287434162,"n":"Hugo_13-45hs","d":1,"m":11,"a":1963,"h":13,"min":45,"gmt":-3,"lat":-34.6075682,"lon":-58.4370894,"ciudad":"Ciudad de Buenos Aires Argentina","msmod":1657287598347}}', '{"params":{"tipo":"vn","ms":1684454531469,"n":"Mario_Eduardo_Pizarro","d":3,"m":1,"a":1972,"h":9,"min":30,"gmt":-3,"lat":-34.6075682,"lon":-58.4370894,"alt":0,"ciudad":"Ciudad de Buenos Aires Argentina","hsys":"P","shared":false,"extId":"id_3_1_1972_9_30_-3_-34.6075682_-58.4370894_0_vn_P"}}']
 
     onClosing:Qt.quit()
 

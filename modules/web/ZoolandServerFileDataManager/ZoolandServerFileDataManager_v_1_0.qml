@@ -56,6 +56,7 @@ Item{
         url+='&ms='+ms
         url+='&adminId='+apps.zoolUserId
         url+='&msReq='+msReq
+        console.log('Url  saveZoolParams: '+url)
         app.j.getRD(url, saveZoolParams)
     }
     QtObject{
@@ -111,6 +112,7 @@ Item{
         url+='&ms='+ms
         url+='&adminId='+apps.zoolUserId
         url+='&msReq='+msReq
+        console.log('Url objGetZoolandData: '+url)
         app.j.getRD(url, objGetZoolandData)
     }
 
