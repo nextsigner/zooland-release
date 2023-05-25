@@ -26,13 +26,14 @@ Item{
                 border.width: 1
                 border.color: apps.fontColor
                 anchors.bottom: parent.bottom
-                Behavior on width{NumberAnimation{duration: 500}}
-                Behavior on height{NumberAnimation{duration: 500}}
+                Behavior on width{NumberAnimation{duration: 200}}
+                Behavior on height{NumberAnimation{duration: 200}}
                 Rectangle{
                     anchors.fill: parent
                     color: 'transparent'
                     border.width: 2
                     border.color: 'red'
+                    radius: parent.radius
                     visible: false
                     Timer{
                         running: app.ci===r && r.currentIndex===index
@@ -84,7 +85,11 @@ Item{
         }
     }
     function toLeft(){
-
+        if(r.currentIndex>0){
+            r.currentIndex--
+        }else{
+            r.currentIndex=r.maximunIndex
+        }
     }
     function toRight(){
         if(r.currentIndex<rep.model.length-1){

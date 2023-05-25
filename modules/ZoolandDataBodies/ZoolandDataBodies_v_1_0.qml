@@ -7,6 +7,7 @@ import ZoolDataBodies.ZoolDataBodiesItem 1.0
 
 Rectangle {
     id: r
+    objectName: 'zoolDataBodies'
     width: parent.width
     height: parent.height
     anchors.bottom: parent.bottom

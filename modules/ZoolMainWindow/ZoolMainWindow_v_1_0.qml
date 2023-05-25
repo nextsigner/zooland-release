@@ -85,9 +85,25 @@ Window {
                 log.visible=false
                 return
             }
-            if(app.ci){
-                app.ci.toLeft()
+            if(app.ci && app.ci.objectName==='list'){
+                app.ci=zoolDataBodies
+                return
+            }else if(app.ci && app.ci.objectName==='zoolDataBodies'){
+                zbtb.currentIndex=zbtb.maximunIndex
+                app.ci=zbtb
+                return
+            }else if(app.ci && app.ci.objectName==='bottomBar'){
+                if(zbtb.currentIndex === 0){
+                    app.ci=zsm.getPanel('ZoolRemoteParamsList')
+                    return
+                }
+                //app.ci=zoolDataBodies
+                //return
+            }else{
+                zbtb.currentIndex=zbtb.maximunIndex
+                app.ci=zbtb
             }
+            app.ci.toLeft()
 
             //Qt.quit()
         }
@@ -97,6 +113,7 @@ Window {
         property int v: 0
         onActivated: {
             if(app.ci && app.ci.objectName==='list'){
+                zbtb.currentIndex=0
                 app.ci=zbtb
                 return
             }else if(app.ci && app.ci.objectName==='bottomBar'){
