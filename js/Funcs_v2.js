@@ -55,6 +55,42 @@ function loadNow(){
     let nom="Tránsitos de "+dia+'/'+mes+'/'+anio+' '+hora+':'+minutos
     loadFromArgs(d.getDate(), parseInt(d.getMonth() +1),d.getFullYear(), d.getHours(), d.getMinutes(), currentGmtUser,0.0,0.0,6, nom, "United Kingston", "vn", true)
 }
+function getParamsNow(gmt){
+    let date=new Date(Date.now())
+    let currentUserHours=date.getHours()
+    let diffHours=date.getUTCHours()
+    let currentGmtUser=0
+    if(currentUserHours>diffHours){
+        currentGmtUser=parseFloat(currentUserHours-diffHours)
+    }else{
+        currentGmtUser=parseFloat(0-(diffHours-currentUserHours)).toFixed(1)
+    }
+
+    //log.ls('currentGmtUser: '+currentGmtUser, 0, xLatIzq.width)
+    let d=date.getDate()
+    let m=date.getMonth()+1
+    let a=date.getFullYear()
+    let h=date.getHours()
+    let min=date.getMinutes()
+    let lat=0.0
+    let lon=0.0
+    let alt=6
+    let p={}
+    p.params={}
+    p.params.n='Tránsitos de ahora'
+    p.params.d=d
+    p.params.m=m
+    p.params.a=a
+    p.params.h=h
+    p.params.min=min
+    p.params.ciudad='United Kingston'
+    p.params.gmt=gmt
+    p.params.lat=lat
+    p.params.lon=lon
+    p.params.alt=alt
+    p.params.tipo='trans'
+    return p
+}
 function setFs() {
     let w = Screen.width
     let h = Screen.height

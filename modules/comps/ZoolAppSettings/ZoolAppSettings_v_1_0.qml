@@ -4,7 +4,7 @@ import Qt.labs.settings 1.1
 
 Settings{
     id: r
-    fileName:'zool_'+Qt.platform.os+'.cfg'
+    fileName:'zooland.cfg'
 
     property string lastVersion: '3.14.0'
 
@@ -15,7 +15,7 @@ Settings{
     }
 
 
-    property string zoolUser: ''
+    property string zoolUser: 'public'
     property string zoolUserId: ''
     property string zoolKey: ''
     property bool enableShareInServer: false
@@ -26,7 +26,7 @@ Settings{
     property bool showLog: false
     property int fs: app.width*0.02
     property int fsSbValue: 50
-    property string host: 'http://localhost'
+    property string host: 'http://zool.loca.lt'
     property string hostQuiron: 'https://github.com/nextsigner/quiron/raw/master/data'
     property bool newClosed: false
 

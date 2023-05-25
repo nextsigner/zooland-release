@@ -2,17 +2,25 @@ import QtQuick 2.0
 
 Item{
     id: r
+    property string host
+
+    //property string host: app.dev?'http://zooldev.loca.lt':apps.host
+    //property string host: apps.host
+
+    //property string host: 'http://vps-3339713-x.dattaweb.com'
+    //property string host: 'http://localhost'
+
     QtObject{
         id: saveZoolParams
         function setData(data, isData){
             if(app.dev){
-                log.lv('getUserAndSet:\n'+JSON.stringify(JSON.parse(data), null, 2))
+                //log.lv('getUserAndSet:\n'+JSON.stringify(JSON.parse(data), null, 2))
             }
             if(isData){
                 let j=JSON.parse(data)
                 if(j.isRec){
                     if(app.dev){
-                        log.lv('New remote params, id: '+j.params._id)
+                        //log.lv('New remote params, id: '+j.params._id)
                     }
                     app.j.showMsgDialog('Zool Informa', 'Los datos se han guardado.', 'Una copia del archivo '+app.currentNom+' ha sido respaldado en el servidor de Zool.')
                 }else{
@@ -40,7 +48,8 @@ Item{
         let ciudad=j.params.ciudad.replace(/ /g, '%20')
         let ms=j.params.ms
         let msReq=new Date(Date.now()).getTime()
-        let url=apps.host
+        //let url=apps.host
+        let url=r.host+':8100'
         url+='/zool/saveZoolParams'
         url+='?n='+n
         url+='&d='+d
@@ -73,7 +82,7 @@ Item{
                 }
 
             }else{
-                app.j.showMsgDialog('Zool Informa', 'Los datos no se han cargado los datos del servidor Zool-Server.', 'El servidor no está encendido o está fallando la conexión a internet.')
+                app.j.showMsgDialog('Zool Informa', 'Los datos no se han cargado los datos del servidor Zool-Server.\nHost: '+r.host, 'El servidor no está encendido o está fallando la conexión a internet.')
             }
         }
     }
@@ -96,7 +105,9 @@ Item{
         let ms=j.params.ms
         let msReq=new Date(Date.now()).getTime()
         //let url=apps.host
-        let url='http://zool.loca.lt'
+        //let url='http://zool.loca.lt'
+        //let url=r.host
+        let url=r.host+':8100'
         url+='/zool/getZoolData'
         url+='?n='+n
         url+='&d='+d
@@ -116,7 +127,43 @@ Item{
         app.j.getRD(url, objGetZoolandData)
     }
 
+
+    //--> Get Data Params List
+    QtObject{
+        id: setZoolandParamsList
+        function setData(data, isData){
+            //Qt.quit()
+            if(app.dev){
+                //log.lv('setZoolandParamsList:\n'+JSON.stringify(JSON.parse(data), null, 2))
+                //console.log('setZoolandParamsList data: '+data)
+            }
+            if(isData){
+                let j=JSON.parse(data)
+                //log.lv('setZoolandParamsLis(): '+JSON.stringify(j))
+                zsm.getPanel('ZoolRemoteParamsList').load(j)
+            }
+        }
+    }
+    function getZoolandParamsList(){
+        let msReq=new Date(Date.now()).getTime()
+        //let url=apps.host
+        //let url=r.host
+        let url=r.host+':8100'
+        url+='/zool/getZoolandParamsList'
+        url+='?adminId='+apps.zoolUser+'&r='+msReq
+        app.j.getRD(url, setZoolandParamsList)
+    }
+    //<-- Get Data Params List
+
+
+
     Component.onCompleted: {
+        let fp=unik.getPath(4)+'/host'
+        let h=unik.getFile(fp)//.replace(/ /g, '').replace(/\n/g, '')
+        if(h==='' || h.lenght < 3){
+            h='http://zool.loca.lt'
+        }
+        r.host=h
         let sj='{"params":{"tipo":"vn","ms":1633701422850,"n":"Ricardo","d":20,"m":6,"a":1975,"h":23,"min":4,"gmt":-3,"lat":-35.4752134,"lon":-69.585934,"ciudad":"Malargue Mendoza Argentina","msmod":1681568075071}}'
         loadParamsFromString(sj)
     }

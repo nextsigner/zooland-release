@@ -7,13 +7,12 @@ import Qt.labs.folderlistmodel 2.12
 //import unik.UnikQProcess 1.0
 import unik.Unik 1.0
 
-
 import "./js/Funcs_v2.js" as JS
 import "./comps" as Comps
 
 //Default Modules
 import comps.ZoolAppSettings 1.0
-//import ZoolNewsAndUpdates 3.4
+import ZoolSectionsManager 1.1
 import ZoolMainWindow 1.0
 //import ZoolTopMenuBar 1.0
 import ZoolText 1.0
@@ -24,7 +23,7 @@ import ZoolLogView 1.0
 //import ZoolFileDataManager 1.0
 import web.ZoolandServerFileDataManager 1.0
 import ZoolBodies 1.9
-import ZoolBodiesGuiTools 1.0
+//import ZoolBodiesGuiTools 1.0
 
 import ZoolControlsTime 1.0
 
@@ -40,7 +39,7 @@ import comps.Zbg 1.0
 
 //import ZoolMediaLive 1.1
 //import ZoolVoicePlayer 1.0
-import ZoolDataEditor 1.0
+//import ZoolDataEditor 1.0
 //import ZoolVideoPlayer 1.0
 import ZoolInfoDataView 1.0
 //import ZoolBottomBar 1.0
@@ -51,11 +50,25 @@ import ZoolInfoDataView 1.0
 ZoolMainWindow{
     id: app
     visible: true
+
+
+    //Código que falló en la Tv de Mario
+    /*
     visibility: "Maximized"
     width: Screen.width
     height: Screen.height
     minimumWidth: Screen.desktopAvailableWidth-app.fs*4
     minimumHeight: Screen.desktopAvailableHeight-app.fs*4
+    */
+
+    //Código nuevo para probar
+    visibility: Qt.platform.os==='android'?"FullScreen":"Maximized"
+    width: 1920
+    height: 1080
+
+
+
+
     color: apps.enableBackgroundColor?apps.backgroundColor:'black'
     //title: argtitle && argtitle.length>1?argtitle:'Zool '+version
     title:'Zooland'
@@ -199,7 +212,7 @@ ZoolMainWindow{
 
     property bool sspEnabled: false
 
-    property var aParams: ['{"params":{"tipo":"vn","ms":1633701422850,"n":"Ricardo", "d":20,"m":6,"a":1975,"h":23,"min":4,"gmt":-3,"lat":-35.4752134,"lon":-69.585934,"ciudad":"Malargue Mendoza Argentina","msmod":1681568075071}}', '{"params":{"tipo":"vn","ms":1622602994892,"n":"Natalia S. Pintos", "d":8, "m":9, "a":1980, "h":17,"min":0, "gmt":-3, "lat":-34.769249, "lon":-58.6480318, "ciudad":"Gonzalez Catán Buenos Aires Argentina", "msmod":1680626575611}}', '{"params":{"tipo":"vn","ms":1622602707398,"n":"Nico","d":3,"m":11,"a":2000,"h":1,"min":45,"gmt":-3,"lat":-34.7047876,"lon":-58.5861609,"ciudad":"Isidro Casanova Buenos Aires Argentina","msmod":1680658423514}}', '{"params":{"tipo":"vn","ms":1657287434162,"n":"Hugo_13-45hs","d":1,"m":11,"a":1963,"h":13,"min":45,"gmt":-3,"lat":-34.6075682,"lon":-58.4370894,"ciudad":"Ciudad de Buenos Aires Argentina","msmod":1657287598347}}']
+    property var aParams: ['{"params":{"tipo":"vn","ms":1633701422850,"n":"Ricardo", "d":20,"m":6,"a":1975,"h":23,"min":4,"gmt":-3,"lat":-35.4752134,"lon":-69.585934,"ciudad":"Malargue Mendoza Argentina","msmod":1681568075071}}', '{"params":{"tipo":"vn","ms":1622602994892,"n":"Natalia S. Pintos", "d":8, "m":9, "a":1980, "h":17,"min":0, "gmt":-3, "lat":-34.769249, "lon":-58.6480318, "ciudad":"Gonzalez Catán Buenos Aires Argentina", "msmod":1680626575611}}', '{"params":{"tipo":"vn","ms":1622602707398,"n":"Nico","d":3,"m":11,"a":2000,"h":1,"min":45,"gmt":-3,"lat":-34.7047876,"lon":-58.5861609,"ciudad":"Isidro Casanova Buenos Aires Argentina","msmod":1680658423514}}', '{"params":{"tipo":"vn","ms":1657287434162,"n":"Hugo_13-45hs","d":1,"m":11,"a":1963,"h":13,"min":45,"gmt":-3,"lat":-34.6075682,"lon":-58.4370894,"ciudad":"Ciudad de Buenos Aires Argentina","msmod":1657287598347}}', '{"params":{"tipo":"vn","ms":1684454531469,"n":"Mario_Eduardo_Pizarro","d":3,"m":1,"a":1972,"h":9,"min":30,"gmt":-3,"lat":-34.6075682,"lon":-58.4370894,"alt":0,"ciudad":"Ciudad de Buenos Aires Argentina","hsys":"P","shared":false,"extId":"id_3_1_1972_9_30_-3_-34.6075682_-58.4370894_0_vn_P"}}']
 
     onClosing:Qt.quit()
 
@@ -342,10 +355,10 @@ ZoolMainWindow{
             Rectangle{
                 id: xLatIzq
                 width: xApp.width*0.2
-                height: parent.height
+                height: parent.parent.height-zoolDataView.height
                 color: apps.backgroundColor
                 visible: apps.showLatIzq
-                //ZoolSectionsManager{id: zsm}
+                ZoolSectionsManager{id: zsm}
                 Rectangle{
                     width: parent.width
                     height: 3
@@ -370,7 +383,7 @@ ZoolMainWindow{
                 //ExtId
                 Rectangle{}
                 Text{
-                    text: '<b>Versión: '+unik.getFile('version')+'</b>'
+                    text: '<b>Versión: '+unik.getFile('version')+'</b><br /><b>Host: </b>'+apps.host
                     font.pixelSize: app.fs*0.45
                     color: apps.fontColor
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -507,27 +520,9 @@ ZoolMainWindow{
                 //ZoolPanelNotifications{id: zpn}
             }
         }
-        //Comps.XDataStatusBar{id: xDataStatusBar}
-        ZoolBodiesGuiTools{
-            id: xTools
-            anchors.bottom: parent.bottom
-            anchors.right: parent.right
-            anchors.rightMargin: app.width*0.2
-        }
-        //ZoolBottomBar{id: xBottomBar}
         ZoolInfoDataView{id: xInfoData}
-        ZoolDataEditor{id: xEditor}
-        //Num.PanelLog{id: panelLog}
-        //ZoolVideoPlayer{id: panelVideLectura;}
-        //Comps.VideoListEditor{id: videoListEditor}
     }
     ZoolLogView{id: log}
-    //ZoolWebStatusManager{id: zwsm}
-    //    Text{
-    //        text: '->'+menuBar.expanded
-    //        font.pixelSize: app.fs*3
-    //        color: 'red'
-    //    }
     Timer{
         id: tAutoMaticPlanets
         running: false
@@ -579,7 +574,7 @@ ZoolMainWindow{
     //        onTriggered: JS.loadModules()
     //    }
     Component.onCompleted: {
-        app.j.showMsgDialog('Zool Informa', 'Numero de Versión del Paquete', 'Número: '+unik.getFile('version'))
+        //app.j.showMsgDialog('Zool Informa', 'Numero de Versión del Paquete', 'Número: '+unik.getFile('version'))
         JS.setFs()
 
         //Check is dev with the arg -dev

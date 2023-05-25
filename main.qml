@@ -7,13 +7,12 @@ import Qt.labs.folderlistmodel 2.12
 //import unik.UnikQProcess 1.0
 import unik.Unik 1.0
 
-
 import "./js/Funcs_v2.js" as JS
 import "./comps" as Comps
 
 //Default Modules
 import comps.ZoolAppSettings 1.0
-//import ZoolNewsAndUpdates 3.4
+import ZoolSectionsManager 1.1
 import ZoolMainWindow 1.0
 //import ZoolTopMenuBar 1.0
 import ZoolText 1.0
@@ -24,23 +23,25 @@ import ZoolLogView 1.0
 //import ZoolFileDataManager 1.0
 import web.ZoolandServerFileDataManager 1.0
 import ZoolBodies 1.9
-import ZoolBodiesGuiTools 1.0
+//import ZoolBodiesGuiTools 1.0
 
 import ZoolControlsTime 1.0
 
 
-import ZoolDataBodies 3.1
+import ZoolandDataBodies 1.0
 import ZoolElementsBack 1.0
 import ZoolElementsView 1.0
 
 import comps.Zbg 1.0
+import ZoolBottomToolBar 1.0
+import comps.ZoolHostEditor 1.0
 //import comps.ZoolPanelNotifications 1.0
 //import web.ZoolWebStatusManager 1.0
 //import comps.MinymaClient 1.0
 
 //import ZoolMediaLive 1.1
 //import ZoolVoicePlayer 1.0
-import ZoolDataEditor 1.0
+//import ZoolDataEditor 1.0
 //import ZoolVideoPlayer 1.0
 import ZoolInfoDataView 1.0
 //import ZoolBottomBar 1.0
@@ -51,11 +52,25 @@ import ZoolInfoDataView 1.0
 ZoolMainWindow{
     id: app
     visible: true
+
+
+    //Código que falló en la Tv de Mario
+    /*
     visibility: "Maximized"
     width: Screen.width
     height: Screen.height
-    //minimumWidth: Screen.desktopAvailableWidth-app.fs*4
-    //minimumHeight: Screen.desktopAvailableHeight-app.fs*4
+    minimumWidth: Screen.desktopAvailableWidth-app.fs*4
+    minimumHeight: Screen.desktopAvailableHeight-app.fs*4
+    */
+
+    //Código nuevo para probar
+    visibility: Qt.platform.os==='android'?"FullScreen":"Maximized"
+    width: 1920
+    height: 1080
+
+
+
+
     color: apps.enableBackgroundColor?apps.backgroundColor:'black'
     //title: argtitle && argtitle.length>1?argtitle:'Zool '+version
     title:'Zooland'
@@ -342,10 +357,10 @@ ZoolMainWindow{
             Rectangle{
                 id: xLatIzq
                 width: xApp.width*0.2
-                height: parent.height
+                height: parent.parent.height-zoolDataView.height
                 color: apps.backgroundColor
                 visible: apps.showLatIzq
-                //ZoolSectionsManager{id: zsm}
+                ZoolSectionsManager{id: zsm}
                 Rectangle{
                     width: parent.width
                     height: 3
@@ -370,7 +385,7 @@ ZoolMainWindow{
                 //ExtId
                 Rectangle{}
                 Text{
-                    text: '<b>Versión: '+unik.getFile('version')+'</b>'
+                    text: '<b>Versión: '+unik.getFile('version')+'</b><br /><b>Host: </b>'+apps.host
                     font.pixelSize: app.fs*0.45
                     color: apps.fontColor
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -494,7 +509,7 @@ ZoolMainWindow{
 
                 //Chat{id: chat; z: onTop?panelPronEdit.z+1:panelControlsSign.z-1}
                 //PanelControlsSign{id: panelControlsSign}
-                ZoolDataBodies{id: zoolDataBodies}
+                ZoolandDataBodies{id: zoolDataBodies}
                 //PanelPronEdit{id: panelPronEdit;}
                 //ZoolVoicePlayer{id: zoolVoicePlayer}
                 Rectangle{
@@ -507,27 +522,9 @@ ZoolMainWindow{
                 //ZoolPanelNotifications{id: zpn}
             }
         }
-        //Comps.XDataStatusBar{id: xDataStatusBar}
-        ZoolBodiesGuiTools{
-            id: xTools
-            anchors.bottom: parent.bottom
-            anchors.right: parent.right
-            anchors.rightMargin: app.width*0.2
-        }
-        //ZoolBottomBar{id: xBottomBar}
         ZoolInfoDataView{id: xInfoData}
-        ZoolDataEditor{id: xEditor}
-        //Num.PanelLog{id: panelLog}
-        //ZoolVideoPlayer{id: panelVideLectura;}
-        //Comps.VideoListEditor{id: videoListEditor}
     }
     ZoolLogView{id: log}
-    //ZoolWebStatusManager{id: zwsm}
-    //    Text{
-    //        text: '->'+menuBar.expanded
-    //        font.pixelSize: app.fs*3
-    //        color: 'red'
-    //    }
     Timer{
         id: tAutoMaticPlanets
         running: false
@@ -547,6 +544,8 @@ ZoolMainWindow{
             }
         }
     }
+    ZoolBottomToolBar{id: zbtb}
+    ZoolHostEditor{id: zhe}
     //Comps.MenuPlanets{id: menuPlanets}
     //ZoolMenuCtxZodiacBack{id: menuRuedaZodiacal}
     //ZoolMenuPlanetsCtxAsc{id: menuPlanetsCtxAsc}
@@ -579,7 +578,7 @@ ZoolMainWindow{
     //        onTriggered: JS.loadModules()
     //    }
     Component.onCompleted: {
-        app.j.showMsgDialog('Zool Informa', 'Numero de Versión del Paquete', 'Número: '+unik.getFile('version'))
+        //app.j.showMsgDialog('Zool Informa', 'Numero de Versión del Paquete', 'Número: '+unik.getFile('version'))
         JS.setFs()
 
         //Check is dev with the arg -dev

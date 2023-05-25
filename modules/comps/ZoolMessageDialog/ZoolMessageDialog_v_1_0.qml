@@ -51,7 +51,19 @@ Rectangle{
         }
     }
     Component.onCompleted: app.ci=r
-    function enter(){
+    function toEnter(){
         r.destroy(0)
+    }
+    function toLeft(){
+
+    }
+    function toRight(){
+
+    }
+    function toDown(){
+
+    }
+    function toUp(){
+
     }
 }

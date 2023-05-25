@@ -48,15 +48,18 @@ Window {
         sequence: 'Enter'
         onActivated: {
             if(app.ci){
-                app.ci.enter()
+                app.ci.toEnter()
             }
         }
     }
     Shortcut{
         sequence: 'Up'
         onActivated: {
+            if(app.ci){
+                app.ci.toUp()
+            }
             if(app.currentPlanetIndex>0){
-               app.currentPlanetIndex--
+                app.currentPlanetIndex--
             }else{
                 app.currentPlanetIndex=21
             }
@@ -65,10 +68,13 @@ Window {
     Shortcut{
         sequence: 'Down'
         onActivated: {
+            if(app.ci){
+                app.ci.toDown()
+            }
             if(app.currentPlanetIndex<21){
-               app.currentPlanetIndex++
+                app.currentPlanetIndex++
             }else{
-               app.currentPlanetIndex=0
+                app.currentPlanetIndex=0
             }
         }
     }
@@ -79,6 +85,10 @@ Window {
                 log.visible=false
                 return
             }
+            if(app.ci){
+                app.ci.toLeft()
+            }
+
             //Qt.quit()
         }
     }
@@ -86,12 +96,23 @@ Window {
         sequence: 'Right'
         property int v: 0
         onActivated: {
-            if(v<app.aParams.length-1){
+            if(app.ci && app.ci.objectName==='list'){
+                app.ci=zbtb
+                return
+            }else if(app.ci && app.ci.objectName==='bottomBar'){
+                //zbtb.toRight()
+                //app.ci=zoolDataBodies
+                //return
+            }else{
+                app.ci=zsm.getPanel('ZoolRemoteParamsList')
+            }
+            app.ci.toRight()
+            /*if(v<app.aParams.length-1){
                 v++
             }else{
                 v=0
             }
-            zsfdm.loadParamsFromString(app.aParams[v])
+            zsfdm.loadParamsFromString(app.aParams[v])*/
         }
     }
 

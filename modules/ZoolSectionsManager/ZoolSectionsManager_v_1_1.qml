@@ -2,15 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import '../../comps' as Comps
 
-import ZoolDataText 1.0
-import ZoolFileExtDataManager 1.2
-import ZoolFileManager 1.3
-import ZoolSabianos 1.1
-import ZoolRevolutionList 1.5
-import ZoolNumPit 1.0
-import ZoolModulesManager 1.0
-import ZoolHelp 1.0
-
+import ZoolRemoteParamsList 1.0
 import ZoolButton 1.2
 
 import web.ZoolUserManager 1.0
@@ -31,7 +23,7 @@ Item{
     onCurrentIndexChanged:{
         apps.currentSwipeViewIndex=currentIndex
         r.showPanel(r.aPanelsIds[zsm.currentIndex])
-        zsm.getPanel('ZoolRevolutionList').desactivar()
+        //zsm.getPanel('ZoolRevolutionList').desactivar()
     }
     Column{
         width: r.width
@@ -55,40 +47,8 @@ Item{
             id: xPanels
             width: r.width
             height: r.height-xPanelesTits.height-xIndicadorSV.height
-
-            //Comps.XPaneles{Comps.PanelZoolModules{id: panelZoolModules;itemIndex: 5}}
-            //XPaneles{PanelBotsFuncs{id: panelBotsFuncs;itemIndex: 6}}
-            //XPaneles{PanelVideoLectura{id: panelVideLectura;itemIndex: 9}}
-
-            //10
-            Comps.XPaneles{ZoolUserManager{id: zoolUserManager;}}
-
-            //9
-            Comps.XPaneles{ZoolHelp{id: zoolHelp;}}
-
-            //8
-            Comps.XPaneles{ZoolDataText{id: panelZoolText;}}
-
-            //7
-            //Comps.XPaneles{Comps.PanelZoolData{id: panelZoolData}}
-
-            //6
-            //Comps.XPaneles{ZoolModulesManager{}}
-
-            //5
-            Comps.XPaneles{ZoolSabianos{id: panelSabianos}}
-
-            //4
-            Comps.XPaneles{ZoolNumPit{id: ncv}}
-
-            //3
-            Comps.XPaneles{ZoolRevolutionList{id: panelRsList}}
-
-            //2
-            //Comps.XPaneles{ZoolFileExtDataManager{id: zoolFileExtDataManager;}}
-
             //1
-            //Comps.XPaneles{ZoolFileManager{id: zoolFileManager}}
+            Comps.XPaneles{ZoolRemoteParamsList{id: zoolRemoteParamsList}}
         }
         Rectangle{
             id: xIndicadorSV
