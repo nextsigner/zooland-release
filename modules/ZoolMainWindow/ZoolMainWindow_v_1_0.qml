@@ -58,11 +58,11 @@ Window {
             if(app.ci){
                 app.ci.toUp()
             }
-            if(app.currentPlanetIndex>0){
-                app.currentPlanetIndex--
-            }else{
-                app.currentPlanetIndex=21
-            }
+//            if(app.currentPlanetIndex>0){
+//                app.currentPlanetIndex--
+//            }else{
+//                app.currentPlanetIndex=21
+//            }
         }
     }
     Shortcut{
@@ -71,11 +71,11 @@ Window {
             if(app.ci){
                 app.ci.toDown()
             }
-            if(app.currentPlanetIndex<21){
-                app.currentPlanetIndex++
-            }else{
-                app.currentPlanetIndex=0
-            }
+//            if(app.currentPlanetIndex<21){
+//                app.currentPlanetIndex++
+//            }else{
+//                app.currentPlanetIndex=0
+//            }
         }
     }
     Shortcut{
@@ -100,7 +100,10 @@ Window {
                 app.ci=zbtb
                 return
             }else if(app.ci && app.ci.objectName==='bottomBar'){
-                //zbtb.toRight()
+                if(zbtb.maximunIndex === zbtb.currentIndex){
+                    app.ci=zoolDataBodies
+                    return
+                }
                 //app.ci=zoolDataBodies
                 //return
             }else{

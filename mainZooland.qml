@@ -28,11 +28,13 @@ import ZoolBodies 1.9
 import ZoolControlsTime 1.0
 
 
-import ZoolDataBodies 3.1
+import ZoolandDataBodies 1.0
 import ZoolElementsBack 1.0
 import ZoolElementsView 1.0
 
 import comps.Zbg 1.0
+import ZoolBottomToolBar 1.0
+import comps.ZoolHostEditor 1.0
 //import comps.ZoolPanelNotifications 1.0
 //import web.ZoolWebStatusManager 1.0
 //import comps.MinymaClient 1.0
@@ -507,7 +509,7 @@ ZoolMainWindow{
 
                 //Chat{id: chat; z: onTop?panelPronEdit.z+1:panelControlsSign.z-1}
                 //PanelControlsSign{id: panelControlsSign}
-                ZoolDataBodies{id: zoolDataBodies}
+                ZoolandDataBodies{id: zoolDataBodies}
                 //PanelPronEdit{id: panelPronEdit;}
                 //ZoolVoicePlayer{id: zoolVoicePlayer}
                 Rectangle{
@@ -542,6 +544,8 @@ ZoolMainWindow{
             }
         }
     }
+    ZoolBottomToolBar{id: zbtb}
+    ZoolHostEditor{id: zhe}
     //Comps.MenuPlanets{id: menuPlanets}
     //ZoolMenuCtxZodiacBack{id: menuRuedaZodiacal}
     //ZoolMenuPlanetsCtxAsc{id: menuPlanetsCtxAsc}

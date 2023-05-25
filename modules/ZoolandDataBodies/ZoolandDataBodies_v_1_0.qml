@@ -58,6 +58,19 @@ Rectangle {
             anchors.centerIn: parent
         }
     }
+    Rectangle{
+        anchors.fill: parent
+        color: 'transparent'
+        border.width: 2
+        border.color: 'red'
+        visible: false
+        Timer{
+            running: app.ci===r
+            repeat: true
+            interval: 500
+            onTriggered: parent.visible=!parent.visible
+        }
+    }
     function loadJson(json){
         r.latFocus=0
         xBodiesInt.loadJson(json)
@@ -67,14 +80,14 @@ Rectangle {
         xBodiesExt.loadJson(json)
     }
     function toUp(){
-        if(panelDataBodies.latFocus===0){
+        if(zoolDataBodies.latFocus===0){
             if(currentIndex>-1){
                 currentIndex--
             }else{
                 currentIndex=21
             }
         }
-        if(panelDataBodies.latFocus===1){
+        if(zoolDataBodies.latFocus===1){
             if(currentIndexBack>-1){
                 currentIndexBack--
             }else{
@@ -83,14 +96,14 @@ Rectangle {
         }
     }
     function toDown(){
-        if(panelDataBodies.latFocus===0){
+        if(zoolDataBodies.latFocus===0){
             if(currentIndex<16){
                 currentIndex++
             }else{
                 currentIndex=-1
             }
         }
-        if(panelDataBodies.latFocus===1){
+        if(zoolDataBodies.latFocus===1){
             if(currentIndexBack<16){
                 currentIndexBack++
             }else{

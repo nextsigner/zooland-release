@@ -8,6 +8,7 @@ Item{
     anchors.bottom: parent.bottom
     visible: app.ci===r
     property int currentIndex: 0
+    property int maximunIndex: rep.model.length-1
     property int w: app.fs*2
 
     Row{
@@ -74,7 +75,7 @@ Item{
         a.push(['TA', 'Tamaño de Aspectos'])
         a.push(['IC', 'Ver Simbolos o Planetas'])
         a.push(['CS', 'Configurar Servidor'])
-        a.push(['CS', 'Configurar Servidor'])
+        //a.push(['CS', 'Configurar Servidor'])
         rep.model=a
     }
     function toEnter(){
