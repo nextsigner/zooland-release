@@ -3,7 +3,7 @@ import QtQuick 2.12
 Rectangle {
     id: r
     //width: planetsCircle.width-((planetsCircle.totalPosX*planetsCircle.planetSize)*2)-sweg.fs*2-(apps.showNumberLines?sweg.fs:0)
-    width: planetsCircle.width-((planetsCircle.totalPosX*sweg.fs*0.65)*2)-sweg.fs*2-(apps.showNumberLines?sweg.fs:0)
+    width: planetsCircle.width-((planetsCircle.totalPosX*sweg.fs*0.5)*2)-sweg.fs*2-(apps.showNumberLines+ew?sweg.fs+ew:0+ew)
     height: width
     radius: width*0.5
     color: 'red'//'transparent'
@@ -16,6 +16,9 @@ Rectangle {
     property int widthNodosAspSelected: 8
     property var aAspStr1: []
     property var aAspStr2: []
+
+    property int ew: 0
+
     onWidthChanged: {
         currentAspSelected=-1
         currentAspSelectedBack=-1
@@ -153,6 +156,16 @@ Rectangle {
                 }
             }
         }
+    }
+    Rectangle{
+        id: borde
+        width: r.width
+        height: width
+        color: 'transparent'
+        border.width: 2
+        border.color: apps.fontColor
+        radius: width*0.5
+        anchors.centerIn: r
     }
     function drawAsp(cx, cy, gdeg1, gdeg2, c, i, item, isBack){
         var angulo= gdeg1

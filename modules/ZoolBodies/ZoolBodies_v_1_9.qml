@@ -43,6 +43,7 @@ Item {
     property alias objHousesCircle: housesCircle
     property alias objHousesCircleBack: housesCircleBack
     property alias objSignsCircle: signCircle
+    property alias objaspsCircle: aspsCircle
     property alias objAscMcCircle: ascMcCircle
     property alias objEclipseCircle: eclipseCircle
 
