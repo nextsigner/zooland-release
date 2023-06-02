@@ -204,6 +204,7 @@ Rectangle {
         return [ x, y ];
     }
     function load(json){
+        clearSL(bg)
         clearSL(bgTotal)
         r.aAspStr1=[]
         bgTotal.json=json

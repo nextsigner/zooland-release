@@ -100,6 +100,7 @@ Item{
     }
     function toUp(){
         if(r.currentIndex===0){
+            sweg.clearAspsCircles()
             sweg.fs=sweg.fs+app.fs*0.1
         }
         if(r.currentIndex===1){
@@ -112,6 +113,7 @@ Item{
     }
     function toDown(){
         if(r.currentIndex===0){
+            sweg.clearAspsCircles()
             sweg.fs=sweg.fs-app.fs*0.1
         }
         if(r.currentIndex===1){

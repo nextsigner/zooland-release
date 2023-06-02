@@ -87,6 +87,7 @@ Rectangle {
         }
     }
     function loguin(){
+        if(!r.channel)return
         r.channel.objects.chatserver.login(r.loginUserName, function(arg) {
             //check the return value for success
             if (arg === true) {
