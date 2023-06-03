@@ -22,7 +22,7 @@ import ZoolLogView 1.0
 
 //import ZoolFileDataManager 1.0
 import web.ZoolandServerFileDataManager 1.0
-import ZoolBodies 1.9
+import ZoolBodies 1.10
 //import ZoolBodiesGuiTools 1.0
 
 import ZoolControlsTime 1.0
@@ -320,7 +320,7 @@ ZoolMainWindow{
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.horizontalCenterOffset: xLatIzq.visible?0:0-xLatIzq.width*0.5
             anchors.bottom: parent.bottom
-            clip: xLatIzq.visible
+            //clip: xLatIzq.visible
             ZoolBodies{id: sweg;objectName: 'sweg'}            
         }
 

@@ -566,7 +566,9 @@ function qmltypeof(obj) {
     let m0=str.split('_')
     return m0[0]
 }
-
+function randomNumber(min, max) {
+    return Math.random() * (max - min) + min;
+}
 //Zool
 function loadJson(file){
     let fileLoaded=zfdm.loadFile(file)

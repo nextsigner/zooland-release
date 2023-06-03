@@ -8,13 +8,15 @@ import ZoolBodies.ZoolAsCotaText 1.0
 
 Item{
     id: r
-    width: apps.xAsShowIcon?
-               /*Mostrando Imagen*/
-               //(parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec):
-               (parent.width-(r.fs*0.5*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec):
-               /*Mostrando Símbolo de Planeta*/
-               //(parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec)
-               (parent.width-(r.fs*0.5*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec)
+//    width: apps.xAsShowIcon?
+//               /*Mostrando Imagen*/
+//               //(parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec):
+//               (parent.width-(r.fs*0.5*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec):
+//               /*Mostrando Símbolo de Planeta*/
+//               //(parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec)
+//               (parent.width-(r.fs*0.5*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec)
+    //width: parent.width-(planetsCircle.distanciaEntrPlanetas*objData.p)-sweg.w*2+planetsCircle.distanciaEntrPlanetas*0.5
+    width: signCircle.width
     height: 1
     anchors.centerIn: parent
     z: !selected?numAstro:15
@@ -48,42 +50,7 @@ Item{
     property bool isZoomAndPosSeted: false
     property alias objOointerPlanet: pointerPlanet
 
-    state: sweg.state
-    states: [
-        State {
-            name: sweg.aStates[0]
-            PropertyChanges {
-                target: r
-                colorCuerpo: '#ffffff'
-            }
-            //            PropertyChanges {
-            //                target: xIcon
-            //                width: r.fs*0.85
-            //            }
-        },
-        State {
-            name: sweg.aStates[1]
-            PropertyChanges {
-                target: r
-                colorCuerpo: '#000000'
-            }
-            //            PropertyChanges {
-            //                target: xIcon
-            //                width: r.fs*0.5
-            //            }
-        },
-        State {
-            name: sweg.aStates[2]
-            PropertyChanges {
-                target: r
-                colorCuerpo: '#ffffff'
-            }
-            //            PropertyChanges {
-            //                target: xIcon
-            //                width: r.fs*0.5
-            //            }
-        }
-    ]
+
     onSelectedChanged: {
         if(selected)app.uSon=''+app.planetasRes[r.numAstro]+'_'+app.objSignsNames[r.is]+'_'+objData.ih
         if(selected){
@@ -94,6 +61,43 @@ Item{
             setRot()
             setZoomAndPos()
             app.showPointerXAs=true
+        }
+    }
+    property int uW: 0
+    onWidthChanged: {
+        if(uW>width){
+            r.visible=true
+        }
+        if(width<signCircle.width+app.fs){
+            //r.visible=true
+        }
+
+        if(width===signCircle.width+app.fs){
+            tSetWidth.restart()
+            //planetsCircle.widthAllPlanets=200
+        }
+        if(numAstro===19){
+            //planetsCircle.cl.width=signCircle.width-r.width
+        }
+        uW=width
+    }
+
+    Behavior on width{NumberAnimation{duration: 500}}
+    Behavior on opacity{NumberAnimation{duration: 500}}
+    Behavior on rotation{NumberAnimation{duration: 2500; easing.type: Easing.InOutElastic}}
+    Timer{
+        id: tSetWidth
+        running: false
+        repeat: false
+        interval: 2500
+        onTriggered: {
+            r.opacity=1.0
+            r.width=r.parent.width-(planetsCircle.distanciaEntrPlanetas*objData.p)-planetsCircle.distanciaEntrPlanetas*0.5//-sweg.w*2+planetsCircle.distanciaEntrPlanetas*0.5
+            if(r.numAstro===19){
+                //aspsCircle.opacity=0.5
+                aspsCircle.width=(signCircle.width-sweg.w*2)-planetsCircle.widthAllPlanets*2-planetsCircle.distanciaEntrPlanetas*0.5
+                //planetsCircle.cl.width=signCircle.width-sweg.w*2-r.width-planetsCircle.widthAllPlanets*2-planetsCircle.planetSize
+            }
         }
     }
     Rectangle{

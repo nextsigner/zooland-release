@@ -12,56 +12,59 @@ Item {
     property int gdegMC: -1
     property int mdegMC: -1
     property alias ejeAscendente: ejeAsc
-    state: sweg.state
-    states: [
-        State {
-            name: sweg.aStates[0]
-            PropertyChanges {
-                target: r
-                width: !housesCircleBack.visible?sweg.width:sweg.width+housesCircleBack.extraWidth*2+sweg.fs
-            }
-            PropertyChanges {
-                target: ejeAsc
-                width: !housesCircleBack.visible?sweg.objSignsCircle.width+sweg.fs*0.5:sweg.objSignsCircle.width+sweg.fs*0.5+housesCircleBack.extraWidth*2+sweg.fs*5
-            }
-            PropertyChanges {
-                target: ejeMC
-                width: !housesCircleBack.visible?sweg.objSignsCircle.width+sweg.fs*2:sweg.objSignsCircle.width+sweg.fs*2+housesCircleBack.extraWidth*2+sweg.fs*4
-            }
-        },
-        State {
-            name: sweg.aStates[1]
-            PropertyChanges {
-                target: r
-                width: !housesCircleBack.visible?sweg.width-sweg.fs*5:sweg.width-sweg.fs*5+housesCircleBack.extraWidth*2+sweg.fs
-            }
-            PropertyChanges {
-                target: ejeAsc
-                width: !housesCircleBack.visible?sweg.objSignsCircle.width+sweg.fs*3:sweg.objSignsCircle.width+sweg.fs*3+housesCircleBack.extraWidth*2+sweg.fs*5
-            }
-            PropertyChanges {
-                target: ejeMC
-                width: !housesCircleBack.visible?sweg.objSignsCircle.width+sweg.fs*3:sweg.objSignsCircle.width+sweg.fs*3+housesCircleBack.extraWidth*2+sweg.fs*4
-            }
-        },
-        State {
-            name: sweg.aStates[2]
-            PropertyChanges {
-                target: r
-                width: !housesCircleBack.visible?sweg.width-sweg.fs:sweg.width-sweg.fs+housesCircleBack.extraWidth*2+sweg.fs
-            }
-            PropertyChanges {
-                target: ejeAsc
-                //width: sweg.objSignsCircle.width
-                width: !housesCircleBack.visible?sweg.width-sweg.fs:sweg.width-sweg.fs+housesCircleBack.extraWidth*2+sweg.fs*5
-            }
-            PropertyChanges {
-                target: ejeMC
-                //width: sweg.objSignsCircle.width
-                width: !housesCircleBack.visible?sweg.width-sweg.fs:sweg.width-sweg.fs+housesCircleBack.extraWidth*2+sweg.fs*4
-            }
-        }
-    ]
+
+//    state: sweg.state
+//    states: [
+//        State {
+//            name: sweg.aStates[0]
+//            PropertyChanges {
+//                target: r
+//                width: !housesCircleBack.visible?sweg.width:sweg.width+housesCircleBack.extraWidth*2+sweg.fs
+//            }
+//            PropertyChanges {
+//                target: ejeAsc
+//                width: !housesCircleBack.visible?sweg.objSignsCircle.width+sweg.fs*0.5:sweg.objSignsCircle.width+sweg.fs*0.5+housesCircleBack.extraWidth*2+sweg.fs*5
+//            }
+//            PropertyChanges {
+//                target: ejeMC
+//                width: !housesCircleBack.visible?sweg.objSignsCircle.width+sweg.fs*2:sweg.objSignsCircle.width+sweg.fs*2+housesCircleBack.extraWidth*2+sweg.fs*4
+//            }
+//        },
+//        State {
+//            name: sweg.aStates[1]
+//            PropertyChanges {
+//                target: r
+//                width: !housesCircleBack.visible?sweg.width-sweg.fs*5:sweg.width-sweg.fs*5+housesCircleBack.extraWidth*2+sweg.fs
+//            }
+//            PropertyChanges {
+//                target: ejeAsc
+//                width: !housesCircleBack.visible?sweg.objSignsCircle.width+sweg.fs*3:sweg.objSignsCircle.width+sweg.fs*3+housesCircleBack.extraWidth*2+sweg.fs*5
+//            }
+//            PropertyChanges {
+//                target: ejeMC
+//                width: !housesCircleBack.visible?sweg.objSignsCircle.width+sweg.fs*3:sweg.objSignsCircle.width+sweg.fs*3+housesCircleBack.extraWidth*2+sweg.fs*4
+//            }
+//        },
+//        State {
+//            name: sweg.aStates[2]
+//            PropertyChanges {
+//                target: r
+//                width: !housesCircleBack.visible?sweg.width-sweg.fs:sweg.width-sweg.fs+housesCircleBack.extraWidth*2+sweg.fs
+//            }
+//            PropertyChanges {
+//                target: ejeAsc
+//                //width: sweg.objSignsCircle.width
+//                width: !housesCircleBack.visible?sweg.width-sweg.fs:sweg.width-sweg.fs+housesCircleBack.extraWidth*2+sweg.fs*5
+//            }
+//            PropertyChanges {
+//                target: ejeMC
+//                //width: sweg.objSignsCircle.width
+//                width: !housesCircleBack.visible?sweg.width-sweg.fs:sweg.width-sweg.fs+housesCircleBack.extraWidth*2+sweg.fs*4
+//            }
+//        }
+//    ]
+
+
     Rectangle{
         id: ejeAsc
         width: sweg.objSignsCircle.width//+sweg.fs
@@ -243,6 +246,7 @@ Item {
     }
     Rectangle{
         id: ejeMC
+        width: ejeAsc.width+app.fs*2
         height: 1
         anchors.centerIn: parent
         color: 'transparent'

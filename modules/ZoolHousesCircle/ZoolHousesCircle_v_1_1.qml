@@ -2,7 +2,7 @@ import QtQuick 2.0
 import ZoolHousesCircle.ZoolHouseArc 1.3
 Item {
     id: r
-    width: signCircle.width
+    //width: signCircle.width
     property int currentHouse: app.currentHouseIndex
     property int houseShowSelectadIndex: -1
     property int w: sweg.fs*3
