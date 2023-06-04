@@ -5,9 +5,10 @@ import ZoolBodies.ZoolAs 3.6
 Item{
     id: r
     clip: true
+    property int planetIndexMinWidht: -1
     property bool expand: false
     property var cAs: r
-    property int planetSize: sweg.fs*1.5//sweg.fs*0.75
+    property int planetSize: apps.planetsSize//sweg.fs*1.5//sweg.fs*0.75
 
     property int totalPosX: 0
     property real widthAllPlanets: distanciaEntrPlanetas*totalPosX
@@ -46,7 +47,29 @@ Item{
     //            }
     //        }
     //    ]
-
+    onPlanetSizeChanged: {
+        calcAspDiam()
+    }
+    function calcAspDiam(){
+        distanciaEntrPlanetas= planetSize*totalPosX>signCircle.width-sweg.w*2*0.6?planetSize:planetSize*0.5
+        widthAllPlanets=distanciaEntrPlanetas*totalPosX
+        //aspsCircle.width=(signCircle.width-sweg.w*2)-widthAllPlanets*2-distanciaEntrPlanetas//*0.5
+        let minXAsWidth=8000//sweg.width
+        let np=-1
+        for(var i=0;i<app.planetasRes.length;i++){
+            let p=xPlanets.children[i]
+            //console.log('p.numAstro: '+p.numAstro)
+            if(!p)continue
+            if(p.width<minXAsWidth){
+                minXAsWidth=p.width
+                p.width=xPlanets.width-(distanciaEntrPlanetas*p.objData.p)//-distanciaEntrPlanetas*0.5//-sweg.w*2+planetsCircle.distanciaEntrPlanetas*0.5
+                np=i
+            }
+        }
+        r.planetIndexMinWidht=np
+        aspsCircle.width=(sweg.width)-((sweg.width)-minXAsWidth)-sweg.w*2-r.planetSize*0.5
+        //aspsCircle.visible=true
+    }
 
     Rectangle{
         id: xPlanets
@@ -54,7 +77,7 @@ Item{
         color: 'transparent'
         anchors.fill: parent
         clip: true
-        visible: false
+        visible: apps.xAsShowIcon
         Repeater{
             //model: 20//app.planetasRes
             model: app.planetasRes
@@ -65,7 +88,7 @@ Item{
         id: mask
         width: r.width
         height: r.height
-        color: apps.planetColor
+        color: apps.xAsColor
         radius: width*0.5
         visible: false
         anchors.centerIn: xPlanets
@@ -76,6 +99,7 @@ Item{
         maskSource: xPlanets
         invert: false
         //rotation: -45-30
+        visible: !apps.xAsShowIcon
     }
 
     Rectangle{
@@ -89,17 +113,17 @@ Item{
         anchors.centerIn: parent
         //Behavior on width{NumberAnimation{duration: 5000}}
     }
-//    Rectangle{
-//        id: cicleLimit
-//        width: r.width-widthAllPlanets*2-planetSize*0.5
-//        height: width
-//        color: 'transparent'
-//        radius: width*0.5
-//        border.width: 10
-//        border.color: 'red'
-//        anchors.centerIn: parent
-//        //Behavior on width{NumberAnimation{duration: 5000}}
-//    }
+    //    Rectangle{
+    //        id: cicleLimit
+    //        width: r.width-widthAllPlanets*2-planetSize*0.5
+    //        height: width
+    //        color: 'transparent'
+    //        radius: width*0.5
+    //        border.width: 10
+    //        border.color: 'red'
+    //        anchors.centerIn: parent
+    //        //Behavior on width{NumberAnimation{duration: 5000}}
+    //    }
     function loadJson(json){
         r.totalPosX=-1
         r.objSigns = [0,0,0,0,0,0,0,0,0,0,0,0]

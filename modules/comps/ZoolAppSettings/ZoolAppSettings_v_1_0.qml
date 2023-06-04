@@ -77,6 +77,7 @@ Settings{
     property real signCircleWidth: Screen.width*0.02
     property real signCircleWidthSbValue: 8000
     property int sweFs: Screen.width*0.020
+    property int planetsSize: Screen.width*0.020
     property bool showAspCircle: true
     property bool showAspCircleBack: true
     property bool showAspPanel: true

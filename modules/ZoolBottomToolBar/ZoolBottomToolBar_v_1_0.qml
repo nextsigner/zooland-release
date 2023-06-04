@@ -100,8 +100,9 @@ Item{
     }
     function toUp(){
         if(r.currentIndex===0){
-            sweg.clearAspsCircles()
-            sweg.fs=sweg.fs+app.fs*0.1
+            //sweg.clearAspsCircles()
+            apps.planetsSize=apps.planetsSize+app.fs*0.1
+            sweg.objPlanetsCircle.calcAspDiam()
         }
         if(r.currentIndex===1){
             sweg.objaspsCircle.ew=sweg.objaspsCircle.ew-10
@@ -113,8 +114,9 @@ Item{
     }
     function toDown(){
         if(r.currentIndex===0){
-            sweg.clearAspsCircles()
-            sweg.fs=sweg.fs-app.fs*0.1
+            //sweg.clearAspsCircles()
+            apps.planetsSize=apps.planetsSize-app.fs*0.1
+            sweg.objPlanetsCircle.calcAspDiam()
         }
         if(r.currentIndex===1){
             sweg.objaspsCircle.ew=sweg.objaspsCircle.ew+10

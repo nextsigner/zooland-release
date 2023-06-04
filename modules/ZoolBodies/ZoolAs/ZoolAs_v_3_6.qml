@@ -79,6 +79,9 @@ Item{
         if(numAstro===19){
             //planetsCircle.cl.width=signCircle.width-r.width
         }
+        if(r.numAstro-1===planetsCircle.planetIndexMinWidht){
+            tCallSetAspWidth.start()
+        }
         uW=width
     }
 
@@ -86,17 +89,27 @@ Item{
     Behavior on opacity{NumberAnimation{duration: 500}}
     Behavior on rotation{NumberAnimation{duration: 2500; easing.type: Easing.InOutElastic}}
     Timer{
+        id: tCallSetAspWidth
+        running: false
+        repeat: false
+        interval: 500
+        onTriggered: {
+          planetsCircle.calcAspDiam()
+        }
+    }
+
+    Timer{
         id: tSetWidth
         running: false
         repeat: false
-        interval: 2500
+        interval: 500
         onTriggered: {
             r.opacity=1.0
             r.width=r.parent.width-(planetsCircle.distanciaEntrPlanetas*objData.p)-planetsCircle.distanciaEntrPlanetas*0.5//-sweg.w*2+planetsCircle.distanciaEntrPlanetas*0.5
             if(r.numAstro===19){
                 //aspsCircle.opacity=0.5
-                aspsCircle.width=(signCircle.width-sweg.w*2)-planetsCircle.widthAllPlanets*2-planetsCircle.distanciaEntrPlanetas*0.5
-                //planetsCircle.cl.width=signCircle.width-sweg.w*2-r.width-planetsCircle.widthAllPlanets*2-planetsCircle.planetSize
+                //aspsCircle.width=(signCircle.width-sweg.w*2)-planetsCircle.widthAllPlanets*2-planetsCircle.distanciaEntrPlanetas*0.5
+                //planetsCircle.calcAspDiam()
             }
         }
     }

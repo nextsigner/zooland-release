@@ -418,6 +418,7 @@ Item {
 
     function load(j){
         console.log('Ejecutando SweGraphic.load()...')
+        //aspsCircle.visible=false
         for(var i=0;i<xuqp.children.length;i++){
             xuqp.children[i].destroy(0)
         }

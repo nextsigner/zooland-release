@@ -63,6 +63,23 @@ Rectangle {
         property var json
         onJsonChanged: tLoadJsonBack.restart()
         visible: apps.showAspCircleBack
+        onWidthChanged: {
+            r.visible=false
+            r.opacity=0.0
+            tShow.restart()
+        }
+        Behavior on opacity{NumberAnimation{duration: 500}}
+        Timer{
+            id: tShow
+            running: false
+            repeat: false
+            interval: 1500
+            onTriggered: {
+                r.visible=true
+                r.opacity=1.0
+            }
+        }
+
         Timer{
             id: tLoadJsonBack
             running: false
