@@ -17,7 +17,7 @@ import ZoolSignCircle 1.1
 
 Item {
     id: r
-    width: xApp.height-zoolDataView.height-app.fs*3
+    width: apps.fs*35//xApp.height-zoolDataView.height-app.fs*3
 
     //width: !app.ev?
     //               parent.height://*apps.sweMargin-app.fs*6:

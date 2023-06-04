@@ -72,8 +72,8 @@ Item{
     }
     Component.onCompleted: {
         let a =[]
+        a.push(['FS', 'Tamaño de Objetos'])
         a.push(['PS', 'Tamaño de Planetas'])
-        a.push(['TA', 'Tamaño de Aspectos'])
         a.push(['IC', 'Ver Simbolos o Planetas'])
         a.push(['CS', 'Configurar Servidor'])
         //a.push(['CS', 'Configurar Servidor'])
@@ -100,16 +100,20 @@ Item{
     }
     function toUp(){
         if(r.currentIndex===0){
-            //sweg.clearAspsCircles()
+            if(apps.fs<40){
+               apps.fs++
+            }else{
+                apps.fs=40
+            }
+        }
+        if(r.currentIndex===1){
             if(apps.planetsSize>app.fs*3){
                 apps.planetsSize=app.fs*3
             }
             apps.planetsSize=apps.planetsSize+app.fs*0.1
             sweg.objPlanetsCircle.calcAspDiam()
             sweg.objHousesCircle.width+=app.fs
-        }
-        if(r.currentIndex===1){
-            sweg.objaspsCircle.ew=sweg.objaspsCircle.ew-10
+            //sweg.objaspsCircle.ew=sweg.objaspsCircle.ew-10
             //apps.xAsShowIcon=!apps.xAsShowIcon
         }
         if(r.currentIndex===2){
@@ -118,16 +122,20 @@ Item{
     }
     function toDown(){
         if(r.currentIndex===0){
-            //sweg.clearAspsCircles()
+            if(apps.fs>20){
+               apps.fs--
+            }else{
+                apps.fs=20
+            }
+        }
+        if(r.currentIndex===1){
             if(apps.planetsSize<app.fs*0.5){
                 apps.planetsSize=app.fs*0.5
             }
             apps.planetsSize=apps.planetsSize-app.fs*0.1
             sweg.objPlanetsCircle.calcAspDiam()
-            sweg.objHousesCircle.width-=app.fs
-        }
-        if(r.currentIndex===1){
-            sweg.objaspsCircle.ew=sweg.objaspsCircle.ew+10
+
+            //sweg.objaspsCircle.ew=sweg.objaspsCircle.ew+10
             //apps.xAsShowIcon=!apps.xAsShowIcon
         }
         if(r.currentIndex===2){
