@@ -273,7 +273,7 @@ Item {
                     visible: app.ev
                     //visible: planetsCircleBack.visible
                     Timer{
-                        running: parent.width<app.fs*3
+                        running: parent.width<=0
                         repeat: false
                         interval: 1000
                         onTriggered: {
