@@ -277,7 +277,7 @@ Item {
                         repeat: true
                         interval: 1000
                         onTriggered: {
-                            housesCircle.width=sweg.width*2-sweg.fs*3
+                            //housesCircle.width=sweg.width*2-sweg.fs*3
                             log.lv('Set width housesCircle!')
                         }
                     }

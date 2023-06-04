@@ -106,6 +106,7 @@ Item{
             }
             apps.planetsSize=apps.planetsSize+app.fs*0.1
             sweg.objPlanetsCircle.calcAspDiam()
+            sweg.objHousesCircle.width+=app.fs
         }
         if(r.currentIndex===1){
             sweg.objaspsCircle.ew=sweg.objaspsCircle.ew-10
@@ -123,6 +124,7 @@ Item{
             }
             apps.planetsSize=apps.planetsSize-app.fs*0.1
             sweg.objPlanetsCircle.calcAspDiam()
+            sweg.objHousesCircle.width-=app.fs
         }
         if(r.currentIndex===1){
             sweg.objaspsCircle.ew=sweg.objaspsCircle.ew+10

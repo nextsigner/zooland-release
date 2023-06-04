@@ -55,18 +55,18 @@ ZoolMainWindow{
 
 
     //Código que falló en la Tv de Mario
-    /*
+
     visibility: "Maximized"
     width: Screen.width
     height: Screen.height
     minimumWidth: Screen.desktopAvailableWidth-app.fs*4
     minimumHeight: Screen.desktopAvailableHeight-app.fs*4
-    */
+
 
     //Código nuevo para probar
-    visibility: Qt.platform.os==='android'?"FullScreen":"Maximized"
-    width: 1920
-    height: 1080
+//    visibility: Qt.platform.os==='android'?"Windowed":"Windowed"
+//    width: 1920
+//    height: 1080
 
 
 
