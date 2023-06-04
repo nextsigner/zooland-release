@@ -272,6 +272,15 @@ Item {
                     widthAspCircle: aspsCircle.width
                     visible: app.ev
                     //visible: planetsCircleBack.visible
+                    Timer{
+                        running: parent.width<app.fs*3
+                        repeat: false
+                        interval: 1000
+                        onTriggered: {
+                            housesCircle.width=signCircle.width+app.fs
+                            log.lv('Set width housesCircle!')
+                        }
+                    }
                 }
                 ZoolHousesCircle{//rotation: parseInt(signCircle.rot);//z:signCircle.z+1;
                     id: housesCircle
