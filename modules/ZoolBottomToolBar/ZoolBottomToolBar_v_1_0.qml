@@ -40,6 +40,9 @@ Item{
                         repeat: true
                         interval: 500
                         onTriggered: parent.visible=!parent.visible
+                        onRunningChanged: {
+                            if(!running)parent.visible=false
+                        }
                     }
                 }
                 Text{
@@ -76,11 +79,16 @@ Item{
         a.push(['PS', 'Tamaño de Planetas'])
         a.push(['IC', 'Ver Simbolos o Planetas'])
         a.push(['CS', 'Configurar Servidor'])
+        a.push(['CU', 'Configurar Coordenadas de Usuario'])
         //a.push(['CS', 'Configurar Servidor'])
         rep.model=a
     }
     function toEnter(){
-        if(r.currentIndex===rep.model.length-1){
+        let str=rep.model[r.currentIndex][0]
+        if(str==='CU'){
+            zuce.visible=true
+        }
+        if(str==='CS'){
             zhe.visible=true
         }
     }
@@ -99,46 +107,42 @@ Item{
         }
     }
     function toUp(){
-        if(r.currentIndex===0){
+        let str=rep.model[r.currentIndex][0]
+        if(str==='FS'){
             if(apps.fs<40){
                apps.fs++
             }else{
                 apps.fs=40
             }
         }
-        if(r.currentIndex===1){
+        if(str==='PS'){
             if(apps.planetsSize>app.fs*3){
                 apps.planetsSize=app.fs*3
             }
             apps.planetsSize=apps.planetsSize+app.fs*0.1
             sweg.objPlanetsCircle.calcAspDiam()
-            //sweg.objHousesCircle.width+=app.fs
-            //sweg.objaspsCircle.ew=sweg.objaspsCircle.ew-10
-            //apps.xAsShowIcon=!apps.xAsShowIcon
         }
-        if(r.currentIndex===2){
+        if(str==='IC'){
             apps.xAsShowIcon=!apps.xAsShowIcon
         }
     }
     function toDown(){
-        if(r.currentIndex===0){
+        let str=rep.model[r.currentIndex][0]
+        if(str==='FS'){
             if(apps.fs>20){
                apps.fs--
             }else{
                 apps.fs=20
             }
         }
-        if(r.currentIndex===1){
+        if(str==='PS'){
             if(apps.planetsSize<app.fs*0.5){
                 apps.planetsSize=app.fs*0.5
             }
             apps.planetsSize=apps.planetsSize-app.fs*0.1
             sweg.objPlanetsCircle.calcAspDiam()
-
-            //sweg.objaspsCircle.ew=sweg.objaspsCircle.ew+10
-            //apps.xAsShowIcon=!apps.xAsShowIcon
         }
-        if(r.currentIndex===2){
+        if(str==='IC'){
             apps.xAsShowIcon=!apps.xAsShowIcon
         }
     }

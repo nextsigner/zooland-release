@@ -266,7 +266,7 @@ Item {
                 ZoolHousesCircleBack{//rotation: parseInt(signCircle.rot);//z:signCircle.z+1;
                     id: housesCircleBack
                     width: signCircle.width
-                    height: width
+                    height: apps.fs*35//width
                     anchors.centerIn: signCircle
                     w: r.fs
                     widthAspCircle: aspsCircle.width

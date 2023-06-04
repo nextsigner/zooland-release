@@ -20,6 +20,12 @@ Settings{
     property string zoolKey: ''
     property bool enableShareInServer: false
 
+    property string userCity: 'United Kingdom'
+    property real userLat: 0.0
+    property real userLon: 0.0
+    property int userAlt: 0
+    property int userGmt: 0
+
     //Minyma
     property string minymaClientHost: 'ws://192.168.1.51'
     property int minymaClientPort: 12345

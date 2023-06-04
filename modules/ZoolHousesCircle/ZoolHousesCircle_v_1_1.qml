@@ -22,10 +22,15 @@ Item {
     }
     Item{
         id: xHomeArcs
-        anchors.fill: r
+        width: apps.fs*60
+        height: width
+        anchors.centerIn: parent
+        //anchors.fill: r
         Item{
             id:xArcs
-            anchors.fill: parent
+            width: apps.fs*60
+            height: width
+            anchors.centerIn: parent
             Repeater{
                 model: 12
                 ZoolHouseArc{

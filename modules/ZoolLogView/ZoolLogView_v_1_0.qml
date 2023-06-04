@@ -40,7 +40,7 @@ Rectangle{
                 anchors.horizontalCenter: parent.horizontalCenter
                 //anchors.top: parent.top
                 //anchors.topMargin: app.fs*0.5
-                font.pixelSize: app.fs*0.5
+                font.pixelSize: app.fs*2
                 color: 'white'
                 background: Rectangle{color: 'black'}
                 clip: true
