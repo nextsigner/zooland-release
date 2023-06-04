@@ -53,22 +53,19 @@ Item{
     function calcAspDiam(){
         distanciaEntrPlanetas= planetSize*totalPosX>signCircle.width-sweg.w*2*0.6?planetSize:planetSize*0.5
         widthAllPlanets=distanciaEntrPlanetas*totalPosX
-        //aspsCircle.width=(signCircle.width-sweg.w*2)-widthAllPlanets*2-distanciaEntrPlanetas//*0.5
         let minXAsWidth=8000//sweg.width
         let np=-1
         for(var i=0;i<app.planetasRes.length;i++){
             let p=xPlanets.children[i]
-            //console.log('p.numAstro: '+p.numAstro)
             if(!p)continue
             if(p.width<minXAsWidth){
                 minXAsWidth=p.width
-                p.width=xPlanets.width-(distanciaEntrPlanetas*p.objData.p)//-distanciaEntrPlanetas*0.5//-sweg.w*2+planetsCircle.distanciaEntrPlanetas*0.5
+                p.width=xPlanets.width-(distanciaEntrPlanetas*p.objData.p)
                 np=i
             }
         }
         r.planetIndexMinWidht=np
         aspsCircle.width=(sweg.width)-((sweg.width)-minXAsWidth)-sweg.w*2-r.planetSize*0.5
-        //aspsCircle.visible=true
     }
 
     Rectangle{
