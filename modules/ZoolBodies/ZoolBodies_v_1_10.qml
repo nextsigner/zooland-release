@@ -284,7 +284,7 @@ Item {
                 }
                 ZoolHousesCircle{//rotation: parseInt(signCircle.rot);//z:signCircle.z+1;
                     id: housesCircle
-                    width: r.width*2//signCircle.width+app.fs
+                    width: apps.fs*60//signCircle.width+app.fs
                     height: width
                     anchors.centerIn: signCircle
                     //w: r.fs*6
