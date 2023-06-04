@@ -124,7 +124,7 @@ Item {
 
     onStateChanged: {
         //swegz.sweg.state=state
-        apps.swegMod=state
+        //apps.swegMod=state
     }
     onEnableAnZoomAndPosChanged: {
         tEnableAnZoomAndPos.restart()
@@ -273,11 +273,11 @@ Item {
                     visible: app.ev
                     //visible: planetsCircleBack.visible
                     Timer{
-                        running: parent.width<=0
-                        repeat: false
+                        running: true//parent.width<=0
+                        repeat: true
                         interval: 1000
                         onTriggered: {
-                            housesCircle.width=signCircle.width+app.fs
+                            housesCircle.width=sweg.width*2-sweg.fs*3
                             log.lv('Set width housesCircle!')
                         }
                     }
