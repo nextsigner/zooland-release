@@ -1,5 +1,4 @@
 import QtQuick 2.0
-import QtGraphicalEffects 1.12
 import ZoolBodies.ZoolAs 3.6
 
 Item{
@@ -57,7 +56,7 @@ Item{
         let np=-1
         for(var i=0;i<app.planetasRes.length;i++){
             let p=xPlanets.children[i]
-            if(!p)continue
+            if(!p || !p.objData)continue
             if(p.width<minXAsWidth){
                 minXAsWidth=p.width
                 p.width=xPlanets.width-(distanciaEntrPlanetas*p.objData.p)
@@ -74,42 +73,23 @@ Item{
         color: 'transparent'
         anchors.fill: parent
         clip: true
-        visible: apps.xAsShowIcon
         Repeater{
             //model: 20//app.planetasRes
             model: app.planetasRes
             ZoolAs{fs:r.planetSize;astro:modelData;numAstro: index}
         }
     }
-    Rectangle{
-        id: mask
-        width: r.width
-        height: r.height
-        color: apps.xAsColor
-        radius: width*0.5
-        visible: false
-        anchors.centerIn: xPlanets
-    }
-    OpacityMask {
-        anchors.fill: r
-        source: mask
-        maskSource: xPlanets
-        invert: false
-        //rotation: -45-30
-        visible: !apps.xAsShowIcon
-    }
-
-    Rectangle{
-        id: cicleBorder
-        width: r.width
-        height: width
-        color: 'transparent'
-        radius: width*0.5
-        border.width: 0
-        border.color: 'red'
-        anchors.centerIn: parent
-        //Behavior on width{NumberAnimation{duration: 5000}}
-    }
+//    Rectangle{
+//        id: cicleBorder
+//        width: r.width
+//        height: width
+//        color: 'transparent'
+//        radius: width*0.5
+//        border.width: 0
+//        border.color: 'red'
+//        anchors.centerIn: parent
+//        //Behavior on width{NumberAnimation{duration: 5000}}
+//    }
     //    Rectangle{
     //        id: cicleLimit
     //        width: r.width-widthAllPlanets*2-planetSize*0.5

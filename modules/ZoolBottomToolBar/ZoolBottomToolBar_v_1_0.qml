@@ -101,6 +101,9 @@ Item{
     function toUp(){
         if(r.currentIndex===0){
             //sweg.clearAspsCircles()
+            if(apps.planetsSize>app.fs*3){
+                apps.planetsSize=app.fs*3
+            }
             apps.planetsSize=apps.planetsSize+app.fs*0.1
             sweg.objPlanetsCircle.calcAspDiam()
         }
@@ -115,6 +118,9 @@ Item{
     function toDown(){
         if(r.currentIndex===0){
             //sweg.clearAspsCircles()
+            if(apps.planetsSize<app.fs*0.5){
+                apps.planetsSize=app.fs*0.5
+            }
             apps.planetsSize=apps.planetsSize-app.fs*0.1
             sweg.objPlanetsCircle.calcAspDiam()
         }

@@ -136,7 +136,8 @@ Item{
         width:
             !apps.xAsShowIcon||r.aIcons.indexOf(r.numAstro)<0?
                 (!app.ev?r.fs*0.85:/*Tam glifo interior*/r.fs*0.85):
-                (!app.ev?r.fs*2:r.fs)
+                (!app.ev?r.fs:r.fs*0.65)
+        //width: sweg.fs//parseInt(apps.planetSize)//!apps.xAsShowIcon?apps.planetSize:apps.planetSize*0.5
         height: width
         anchors.left: parent.left
         //anchors.leftMargin: !r.selected?0:width*0.5
@@ -206,7 +207,7 @@ Item{
             onEntered: {
                 r.isHovered=true
                 vClick=0
-                r.parent.cAs=r
+                //r.parent.cAs=r
             }
             onMouseXChanged:{
                 r.isHovered=true
