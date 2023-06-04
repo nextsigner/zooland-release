@@ -24,7 +24,7 @@ Settings{
     property string minymaClientHost: 'ws://192.168.1.51'
     property int minymaClientPort: 12345
     property bool showLog: false
-    property int fs: app.width*0.02
+    property int fs: 50
     property int fsSbValue: 50
     property string host: 'http://zool.loca.lt'
     property string hostQuiron: 'https://github.com/nextsigner/quiron/raw/master/data'
