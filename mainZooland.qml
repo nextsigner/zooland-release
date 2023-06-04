@@ -22,7 +22,7 @@ import ZoolLogView 1.0
 
 //import ZoolFileDataManager 1.0
 import web.ZoolandServerFileDataManager 1.0
-import ZoolBodies 1.9
+import ZoolBodies 1.10
 //import ZoolBodiesGuiTools 1.0
 
 import ZoolControlsTime 1.0
@@ -35,6 +35,7 @@ import ZoolElementsView 1.0
 import comps.Zbg 1.0
 import ZoolBottomToolBar 1.0
 import comps.ZoolHostEditor 1.0
+import comps.ZoolUserCoordsEditor 1.0
 //import comps.ZoolPanelNotifications 1.0
 //import web.ZoolWebStatusManager 1.0
 import MinymaClient 1.0
@@ -55,18 +56,18 @@ ZoolMainWindow{
 
 
     //Código que falló en la Tv de Mario
-    /*
+
     visibility: "Maximized"
     width: Screen.width
     height: Screen.height
     minimumWidth: Screen.desktopAvailableWidth-app.fs*4
     minimumHeight: Screen.desktopAvailableHeight-app.fs*4
-    */
+
 
     //Código nuevo para probar
-    visibility: Qt.platform.os==='android'?"FullScreen":"Maximized"
-    width: 1920
-    height: 1080
+//    visibility: Qt.platform.os==='android'?"Windowed":"Windowed"
+//    width: 1920
+//    height: 1080
 
 
 
@@ -320,7 +321,7 @@ ZoolMainWindow{
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.horizontalCenterOffset: xLatIzq.visible?0:0-xLatIzq.width*0.5
             anchors.bottom: parent.bottom
-            clip: xLatIzq.visible
+            //clip: xLatIzq.visible
             ZoolBodies{id: sweg;objectName: 'sweg'}            
         }
 
@@ -546,6 +547,7 @@ ZoolMainWindow{
     }
     ZoolBottomToolBar{id: zbtb}
     ZoolHostEditor{id: zhe}
+    ZoolUserCoordsEditor{id: zuce}
     //Comps.MenuPlanets{id: menuPlanets}
     //ZoolMenuCtxZodiacBack{id: menuRuedaZodiacal}
     //ZoolMenuPlanetsCtxAsc{id: menuPlanetsCtxAsc}
