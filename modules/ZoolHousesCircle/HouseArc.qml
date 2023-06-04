@@ -5,7 +5,8 @@ import "../"
 Item {
     id: r
     //width: housesCircle.currentHouse!==n?xArcs.width:xArcs.width+extraWidth
-    width: app.currentHouseIndex!==n?xArcs.width:xArcs.width+extraWidth
+    //width: app.currentHouseIndex!==n?xArcs.width:xArcs.width+extraWidth
+    width: xArcs.width//app.currentHouseIndex!==n?xArcs.width:xArcs.width+extraWidth
 
     height: width
     anchors.centerIn: parent

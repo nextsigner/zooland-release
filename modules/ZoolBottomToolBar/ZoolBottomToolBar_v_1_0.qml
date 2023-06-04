@@ -112,7 +112,7 @@ Item{
             }
             apps.planetsSize=apps.planetsSize+app.fs*0.1
             sweg.objPlanetsCircle.calcAspDiam()
-            sweg.objHousesCircle.width+=app.fs
+            //sweg.objHousesCircle.width+=app.fs
             //sweg.objaspsCircle.ew=sweg.objaspsCircle.ew-10
             //apps.xAsShowIcon=!apps.xAsShowIcon
         }

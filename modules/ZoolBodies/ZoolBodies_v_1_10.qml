@@ -17,7 +17,7 @@ import ZoolSignCircle 1.1
 
 Item {
     id: r
-    width: apps.fs*35//xApp.height-zoolDataView.height-app.fs*3
+    width: apps.fs*30//xApp.height-zoolDataView.height-app.fs*3
 
     //width: !app.ev?
     //               parent.height://*apps.sweMargin-app.fs*6:
@@ -277,14 +277,14 @@ Item {
                         repeat: true
                         interval: 1000
                         onTriggered: {
-                            housesCircle.width=sweg.width*2-sweg.fs*3
-                            log.lv('Set width housesCircle!')
+                            //housesCircle.width=sweg.width*2-sweg.fs*3
+                            //log.lv('Set width housesCircle!')
                         }
                     }
                 }
                 ZoolHousesCircle{//rotation: parseInt(signCircle.rot);//z:signCircle.z+1;
                     id: housesCircle
-                    width: signCircle.width+app.fs
+                    width: r.width*2//signCircle.width+app.fs
                     height: width
                     anchors.centerIn: signCircle
                     //w: r.fs*6
@@ -295,7 +295,7 @@ Item {
                 NumberLines{}
                 ZoolSignCircle{
                     id: signCircle
-                    width: r.width*2-r.w*3
+                    width: r.width*2//-apps.fs*4//-r.w
                     //width: planetsCircle.expand?r.width-r.fs*6+r.fs*2:r.width-r.fs*6
                     anchors.centerIn: parent
                     showBorder: true
