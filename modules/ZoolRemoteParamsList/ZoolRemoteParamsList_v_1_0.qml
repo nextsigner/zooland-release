@@ -72,9 +72,6 @@ Rectangle {
             running: app.ci===r
             repeat: true
             interval: 500
-            onRunningChanged: {
-                if(!running)parent.visible=false
-            }
             onTriggered: parent.visible=!parent.visible
         }
     }
@@ -139,7 +136,7 @@ Rectangle {
         }
         if(lv.currentIndex===1){
             //console.log(app.j.getParamsNow(0))
-            zsfdm.loadParamsFromString(JSON.stringify(app.j.getParamsNow(apps.userLat, apps.userLon, apps.userAlt, apps.userGmt, apps.userCity)))
+            zsfdm.loadParamsFromString(JSON.stringify(app.j.getParamsNow(0)))
             return
         }
         if(lv.currentIndex>1){

@@ -8,15 +8,13 @@ import ZoolBodies.ZoolAsCotaText 1.0
 
 Item{
     id: r
-//    width: apps.xAsShowIcon?
-//               /*Mostrando Imagen*/
-//               //(parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec):
-//               (parent.width-(r.fs*0.5*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec):
-//               /*Mostrando Símbolo de Planeta*/
-//               //(parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec)
-//               (parent.width-(r.fs*0.5*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec)
-    //width: parent.width-(planetsCircle.distanciaEntrPlanetas*objData.p)-sweg.w*2+planetsCircle.distanciaEntrPlanetas*0.5
-    width: signCircle.width
+    width: apps.xAsShowIcon?
+               /*Mostrando Imagen*/
+               //(parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec):
+               (parent.width-(r.fs*0.5*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec):
+               /*Mostrando Símbolo de Planeta*/
+               //(parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec)
+               (parent.width-(r.fs*0.5*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec)
     height: 1
     anchors.centerIn: parent
     z: !selected?numAstro:15
@@ -26,7 +24,7 @@ Item{
     property bool isHovered: false
 
     //property bool isPron: JSON.parse(app.currentData).params.tipo==='pron'
-    property bool isPron: false//JSON.parse(app.fileData).params.tipo==='pron'
+    property bool isPron: JSON.parse(app.fileData).params.tipo==='pron'
     property int widthRestDec:apps.showDec?sweg.objSignsCircle.w*2:0
     property bool selected: numAstro === app.currentPlanetIndex//panelDataBodies.currentIndex
     property string astro
@@ -50,7 +48,42 @@ Item{
     property bool isZoomAndPosSeted: false
     property alias objOointerPlanet: pointerPlanet
 
-
+    state: sweg.state
+    states: [
+        State {
+            name: sweg.aStates[0]
+            PropertyChanges {
+                target: r
+                colorCuerpo: '#ffffff'
+            }
+            //            PropertyChanges {
+            //                target: xIcon
+            //                width: r.fs*0.85
+            //            }
+        },
+        State {
+            name: sweg.aStates[1]
+            PropertyChanges {
+                target: r
+                colorCuerpo: '#000000'
+            }
+            //            PropertyChanges {
+            //                target: xIcon
+            //                width: r.fs*0.5
+            //            }
+        },
+        State {
+            name: sweg.aStates[2]
+            PropertyChanges {
+                target: r
+                colorCuerpo: '#ffffff'
+            }
+            //            PropertyChanges {
+            //                target: xIcon
+            //                width: r.fs*0.5
+            //            }
+        }
+    ]
     onSelectedChanged: {
         if(selected)app.uSon=''+app.planetasRes[r.numAstro]+'_'+app.objSignsNames[r.is]+'_'+objData.ih
         if(selected){
@@ -61,56 +94,6 @@ Item{
             setRot()
             setZoomAndPos()
             app.showPointerXAs=true
-        }
-    }
-    property int uW: 0
-    onWidthChanged: {
-        if(uW>width){
-            r.visible=true
-        }
-        if(width<signCircle.width+app.fs){
-            //r.visible=true
-        }
-
-        if(width===signCircle.width+app.fs){
-            tSetWidth.restart()
-            //planetsCircle.widthAllPlanets=200
-        }
-        if(numAstro===19){
-            //planetsCircle.cl.width=signCircle.width-r.width
-        }
-        if(r.numAstro-1===planetsCircle.planetIndexMinWidht){
-            tCallSetAspWidth.start()
-        }
-        uW=width
-    }
-
-    Behavior on width{NumberAnimation{duration: 500}}
-    Behavior on opacity{NumberAnimation{duration: 500}}
-    Behavior on rotation{NumberAnimation{duration: 2500; easing.type: Easing.InOutElastic}}
-    Timer{
-        id: tCallSetAspWidth
-        running: false
-        repeat: false
-        interval: 500
-        onTriggered: {
-          planetsCircle.calcAspDiam()
-        }
-    }
-
-    Timer{
-        id: tSetWidth
-        running: false
-        repeat: false
-        interval: 500
-        onTriggered: {
-            r.opacity=1.0
-            r.width=r.parent.width-(planetsCircle.distanciaEntrPlanetas*objData.p)-planetsCircle.distanciaEntrPlanetas*0.5//-sweg.w*2+planetsCircle.distanciaEntrPlanetas*0.5
-            if(r.numAstro===19){
-                //aspsCircle.opacity=0.5
-                //aspsCircle.width=(signCircle.width-sweg.w*2)-planetsCircle.widthAllPlanets*2-planetsCircle.distanciaEntrPlanetas*0.5
-                //planetsCircle.calcAspDiam()
-            }
         }
     }
     Rectangle{
@@ -136,8 +119,7 @@ Item{
         width:
             !apps.xAsShowIcon||r.aIcons.indexOf(r.numAstro)<0?
                 (!app.ev?r.fs*0.85:/*Tam glifo interior*/r.fs*0.85):
-                (!app.ev?r.fs:r.fs*0.65)
-        //width: sweg.fs//parseInt(apps.planetSize)//!apps.xAsShowIcon?apps.planetSize:apps.planetSize*0.5
+                (!app.ev?r.fs*2:r.fs)
         height: width
         anchors.left: parent.left
         //anchors.leftMargin: !r.selected?0:width*0.5
@@ -207,7 +189,7 @@ Item{
             onEntered: {
                 r.isHovered=true
                 vClick=0
-                //r.parent.cAs=r
+                r.parent.cAs=r
             }
             onMouseXChanged:{
                 r.isHovered=true

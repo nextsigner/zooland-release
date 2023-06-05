@@ -70,9 +70,6 @@ Rectangle {
             repeat: true
             interval: 500
             onTriggered: parent.visible=!parent.visible
-            onRunningChanged: {
-                if(!running)parent.visible=false
-            }
         }
     }
     function loadJson(json){

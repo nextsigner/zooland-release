@@ -20,17 +20,11 @@ Settings{
     property string zoolKey: ''
     property bool enableShareInServer: false
 
-    property string userCity: 'United Kingdom'
-    property real userLat: 0.0
-    property real userLon: 0.0
-    property int userAlt: 0
-    property int userGmt: 0
-
     //Minyma
     property string minymaClientHost: 'ws://192.168.1.51'
     property int minymaClientPort: 12345
     property bool showLog: false
-    property int fs: 20
+    property int fs: app.width*0.02
     property int fsSbValue: 50
     property string host: 'http://zool.loca.lt'
     property string hostQuiron: 'https://github.com/nextsigner/quiron/raw/master/data'
@@ -83,7 +77,6 @@ Settings{
     property real signCircleWidth: Screen.width*0.02
     property real signCircleWidthSbValue: 8000
     property int sweFs: Screen.width*0.020
-    property int planetsSize: Screen.width*0.020
     property bool showAspCircle: true
     property bool showAspCircleBack: true
     property bool showAspPanel: true

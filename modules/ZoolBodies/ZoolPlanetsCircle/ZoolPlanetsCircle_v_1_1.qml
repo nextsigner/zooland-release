@@ -3,104 +3,61 @@ import ZoolBodies.ZoolAs 3.6
 
 Item{
     id: r
-    clip: true
-    property int planetIndexMinWidht: -1
     property bool expand: false
     property var cAs: r
-    property int planetSize: apps.planetsSize//sweg.fs*1.5//sweg.fs*0.75
+    property int planetSize: sweg.fs*1.5//sweg.fs*0.75
 
     property int totalPosX: 0
-    property real widthAllPlanets: distanciaEntrPlanetas*totalPosX
-    property int distanciaEntrPlanetas: planetSize*totalPosX>signCircle.width-sweg.w*2*0.6?planetSize:planetSize*0.5
 
     property var objSignsNames: ['ari', 'tau', 'gem', 'cnc', 'leo', 'vir', 'lib', 'sco', 'sgr', 'cap', 'aqr', 'psc']
     property var objSigns: [0,0,0,0,0,0,0,0,0,0,0,0]
 
-    //property alias cl: cicleLimit
-
     signal cnLoaded(string nombre, string dia, string mes, string anio, string hora, string minuto, string lon, string lat, string ciudad)
     signal doubleClick
     signal posChanged(int px, int py)
-
-    //    state: sweg.state
-    //    states: [
-    //        State {
-    //            name: sweg.aStates[0]
-    //            PropertyChanges {
-    //                target: r
-    //                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*2.5-sweg.fs):(sweg.width-sweg.fs*3.5)
-    //            }
-    //        },
-    //        State {
-    //            name: sweg.aStates[1]
-    //            PropertyChanges {
-    //                target: r
-    //                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*6-sweg.fs):(sweg.width-sweg.fs*4)
-    //            }
-    //        },
-    //        State {
-    //            name: sweg.aStates[2]
-    //            PropertyChanges {
-    //                target: r
-    //                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*2-sweg.fs):(sweg.width-sweg.fs*2)
-    //            }
-    //        }
-    //    ]
-    onPlanetSizeChanged: {
-        calcAspDiam()
-    }
-    function calcAspDiam(){
-        distanciaEntrPlanetas= planetSize*totalPosX>signCircle.width-sweg.w*2*0.6?planetSize:planetSize*0.5
-        widthAllPlanets=distanciaEntrPlanetas*totalPosX
-        let minXAsWidth=8000//sweg.width
-        let np=-1
-        for(var i=0;i<app.planetasRes.length;i++){
-            let p=xPlanets.children[i]
-            if(!p || !p.objData)continue
-            if(p.width<minXAsWidth){
-                minXAsWidth=p.width
-                p.width=xPlanets.width-(distanciaEntrPlanetas*p.objData.p)
-                np=i
+    state: sweg.state
+    states: [
+        State {
+            name: sweg.aStates[0]
+            PropertyChanges {
+                target: r
+                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*2.5-sweg.fs):(sweg.width-sweg.fs*3.5)
+            }
+        },
+        State {
+            name: sweg.aStates[1]
+            PropertyChanges {
+                target: r
+                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*6-sweg.fs):(sweg.width-sweg.fs*4)
+            }
+        },
+        State {
+            name: sweg.aStates[2]
+            PropertyChanges {
+                target: r
+                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*2-sweg.fs):(sweg.width-sweg.fs*2)
             }
         }
-        r.planetIndexMinWidht=np
-        aspsCircle.width=(sweg.width)-((sweg.width)-minXAsWidth)-sweg.w*2-r.planetSize*0.5
+    ]
+    Repeater{
+        //model: 20//app.planetasRes
+        model: app.planetasRes
+        ZoolAs{fs:r.planetSize;astro:modelData;numAstro: index}
+    }
+    function pressed(o){
+        if(app.currentPlanetIndex!==o.numAstro){
+            app.currentPlanetIndex=o.numAstro
+            app.currentHouseIndex=o.ih
+        }else{
+            app.currentPlanetIndex=-1
+            app.currentHouseIndex=-1
+        }
+        //unik.speak(''+app.planetas[o.numAstro]+' en '+app.signos[o.objData.ns]+' en el grado '+o.objData.g+' en la casa '+o.objData.h)
+    }
+    function doublePressed(o){
+
     }
 
-    Rectangle{
-        id: xPlanets
-        radius: width*0.5
-        color: 'transparent'
-        anchors.fill: parent
-        clip: true
-        Repeater{
-            //model: 20//app.planetasRes
-            model: app.planetasRes
-            ZoolAs{fs:r.planetSize;astro:modelData;numAstro: index}
-        }
-    }
-//    Rectangle{
-//        id: cicleBorder
-//        width: r.width
-//        height: width
-//        color: 'transparent'
-//        radius: width*0.5
-//        border.width: 0
-//        border.color: 'red'
-//        anchors.centerIn: parent
-//        //Behavior on width{NumberAnimation{duration: 5000}}
-//    }
-    //    Rectangle{
-    //        id: cicleLimit
-    //        width: r.width-widthAllPlanets*2-planetSize*0.5
-    //        height: width
-    //        color: 'transparent'
-    //        radius: width*0.5
-    //        border.width: 10
-    //        border.color: 'red'
-    //        anchors.centerIn: parent
-    //        //Behavior on width{NumberAnimation{duration: 5000}}
-    //    }
     function loadJson(json){
         r.totalPosX=-1
         r.objSigns = [0,0,0,0,0,0,0,0,0,0,0,0]
@@ -108,13 +65,8 @@ Item{
         let o
         var houseSun=-1
         //for(var i=0;i<15;i++){
-        //let rotAll=app.j.randomNumber(0,359)
         for(var i=0;i<20;i++){
-            var objAs=xPlanets.children[i]
-            objAs.visible=false
-            objAs.width=signCircle.width+app.fs
-            objAs.opacity=0.0
-            //objAs.rotation=rotAll
+            var objAs=r.children[i]
             jo=json.pc['c'+i]
             let degRed=0.0
             if(jo.mdeg>=10&&jo.mdeg<=20){
@@ -266,17 +218,4 @@ Item{
         objSigns[o.is]++*/
     }
 
-    function pressed(o){
-        if(app.currentPlanetIndex!==o.numAstro){
-            app.currentPlanetIndex=o.numAstro
-            app.currentHouseIndex=o.ih
-        }else{
-            app.currentPlanetIndex=-1
-            app.currentHouseIndex=-1
-        }
-        //unik.speak(''+app.planetas[o.numAstro]+' en '+app.signos[o.objData.ns]+' en el grado '+o.objData.g+' en la casa '+o.objData.h)
-    }
-    function doublePressed(o){
-
-    }
 }

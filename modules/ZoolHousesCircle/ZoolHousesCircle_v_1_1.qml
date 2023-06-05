@@ -2,7 +2,7 @@ import QtQuick 2.0
 import ZoolHousesCircle.ZoolHouseArc 1.3
 Item {
     id: r
-    //width: signCircle.width
+    width: signCircle.width
     property int currentHouse: app.currentHouseIndex
     property int houseShowSelectadIndex: -1
     property int w: sweg.fs*3
@@ -22,15 +22,10 @@ Item {
     }
     Item{
         id: xHomeArcs
-        width: apps.fs*60
-        height: width
-        anchors.centerIn: parent
-        //anchors.fill: r
+        anchors.fill: r
         Item{
             id:xArcs
-            width: apps.fs*60
-            height: width
-            anchors.centerIn: parent
+            anchors.fill: parent
             Repeater{
                 model: 12
                 ZoolHouseArc{

@@ -3,10 +3,10 @@ import QtQuick 2.12
 Rectangle {
     id: r
     //width: planetsCircle.width-((planetsCircle.totalPosX*planetsCircle.planetSize)*2)-sweg.fs*2-(apps.showNumberLines?sweg.fs:0)
-    //width: planetsCircle.width-((planetsCircle.totalPosX*sweg.fs*0.5)*2)-sweg.fs*2-(apps.showNumberLines+ew?sweg.fs+ew:0+ew)
+    width: planetsCircle.width-((planetsCircle.totalPosX*sweg.fs*0.5)*2)-sweg.fs*2-(apps.showNumberLines+ew?sweg.fs+ew:0+ew)
     height: width
     radius: width*0.5
-    color: 'transparent'
+    color: 'red'//'transparent'
     border.width: 2
     border.color: 'white'
     anchors.centerIn: parent
@@ -63,23 +63,6 @@ Rectangle {
         property var json
         onJsonChanged: tLoadJsonBack.restart()
         visible: apps.showAspCircleBack
-        onWidthChanged: {
-            r.visible=false
-            r.opacity=0.0
-            tShow.restart()
-        }
-        Behavior on opacity{NumberAnimation{duration: 500}}
-        Timer{
-            id: tShow
-            running: false
-            repeat: false
-            interval: 1500
-            onTriggered: {
-                r.visible=true
-                r.opacity=1.0
-            }
-        }
-
         Timer{
             id: tLoadJsonBack
             running: false
@@ -221,7 +204,6 @@ Rectangle {
         return [ x, y ];
     }
     function load(json){
-        clearSL(bg)
         clearSL(bgTotal)
         r.aAspStr1=[]
         bgTotal.json=json

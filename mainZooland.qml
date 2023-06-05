@@ -22,7 +22,7 @@ import ZoolLogView 1.0
 
 //import ZoolFileDataManager 1.0
 import web.ZoolandServerFileDataManager 1.0
-import ZoolBodies 1.10
+import ZoolBodies 1.9
 //import ZoolBodiesGuiTools 1.0
 
 import ZoolControlsTime 1.0
@@ -35,10 +35,9 @@ import ZoolElementsView 1.0
 import comps.Zbg 1.0
 import ZoolBottomToolBar 1.0
 import comps.ZoolHostEditor 1.0
-import comps.ZoolUserCoordsEditor 1.0
 //import comps.ZoolPanelNotifications 1.0
 //import web.ZoolWebStatusManager 1.0
-import MinymaClient 1.0
+//import comps.MinymaClient 1.0
 
 //import ZoolMediaLive 1.1
 //import ZoolVoicePlayer 1.0
@@ -56,18 +55,18 @@ ZoolMainWindow{
 
 
     //Código que falló en la Tv de Mario
-
+    /*
     visibility: "Maximized"
     width: Screen.width
     height: Screen.height
     minimumWidth: Screen.desktopAvailableWidth-app.fs*4
     minimumHeight: Screen.desktopAvailableHeight-app.fs*4
-
+    */
 
     //Código nuevo para probar
-//    visibility: Qt.platform.os==='android'?"Windowed":"Windowed"
-//    width: 1920
-//    height: 1080
+    visibility: Qt.platform.os==='android'?"FullScreen":"Maximized"
+    width: 1920
+    height: 1080
 
 
 
@@ -321,7 +320,7 @@ ZoolMainWindow{
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.horizontalCenterOffset: xLatIzq.visible?0:0-xLatIzq.width*0.5
             anchors.bottom: parent.bottom
-            //clip: xLatIzq.visible
+            clip: xLatIzq.visible
             ZoolBodies{id: sweg;objectName: 'sweg'}            
         }
 
@@ -547,7 +546,6 @@ ZoolMainWindow{
     }
     ZoolBottomToolBar{id: zbtb}
     ZoolHostEditor{id: zhe}
-    ZoolUserCoordsEditor{id: zuce}
     //Comps.MenuPlanets{id: menuPlanets}
     //ZoolMenuCtxZodiacBack{id: menuRuedaZodiacal}
     //ZoolMenuPlanetsCtxAsc{id: menuPlanetsCtxAsc}
@@ -579,12 +577,6 @@ ZoolMainWindow{
     //        interval: 5000
     //        onTriggered: JS.loadModules()
     //    }
-    MinymaClient{
-        host: 'ws://192.168.1.51'
-        port: 1616
-        url:'ws://192.168.1.51:1616'
-        loginUserName: 'zooland'
-    }
     Component.onCompleted: {
         //app.j.showMsgDialog('Zool Informa', 'Numero de Versión del Paquete', 'Número: '+unik.getFile('version'))
         JS.setFs()
@@ -594,9 +586,9 @@ ZoolMainWindow{
             app.dev=true
         }
 
-        if(1===2){
+        if(true){
             let compMinyma=Qt.createComponent('./modules/comps/MinymaClient/MinymaClient.qml')
-            let objMinyma=compMinyma.createObject(app, {loginUserName: 'zooland', host: 'ws://192.168.1.51', port: 1616})
+            let objMinyma=compMinyma.createObject(app, {loginUserName: 'zooland', host: 'ws://192.168.1.51', port: 12345})
             objMinyma.newMessageForMe.connect(function(from, data) {
                 if(data==='now'){
                     minymaClient.sendData(minymaClient.loginUserName, from, 'Ahora!')

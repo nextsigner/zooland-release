@@ -651,7 +651,4 @@ Item {
         sec: (0 | (((D * 60) % 1) * 6000)) / 100,
       };
     }
-    function clearAspsCircles(){
-        aspsCircle.clear()
-    }
 }

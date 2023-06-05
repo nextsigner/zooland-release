@@ -25,14 +25,14 @@ ApplicationWindow{
             height: xApp.height
             anchors.horizontalCenter: parent.horizontalCenter
             clip: true
-//            Rectangle{
-//                anchors.fill: parent
-//                color: 'transparent'
-//                border.width: 1
-//                border.color: 'red'
-//                //radius: width*0.5
-//                anchors.centerIn: parent
-//            }
+            Rectangle{
+                anchors.fill: parent
+                color: 'transparent'
+                border.width: 1
+                border.color: 'red'
+                //radius: width*0.5
+                anchors.centerIn: parent
+            }
             Rectangle{
                 width: txt1.contentWidth+12
                 height: txt1.contentHeight+12
