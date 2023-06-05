@@ -35,6 +35,7 @@ import ZoolElementsView 1.0
 import comps.Zbg 1.0
 import ZoolBottomToolBar 1.0
 import comps.ZoolHostEditor 1.0
+import comps.ZoolUserCoordsEditor 1.0
 //import comps.ZoolPanelNotifications 1.0
 //import web.ZoolWebStatusManager 1.0
 //import comps.MinymaClient 1.0
@@ -546,6 +547,7 @@ ZoolMainWindow{
     }
     ZoolBottomToolBar{id: zbtb}
     ZoolHostEditor{id: zhe}
+    ZoolUserCoordsEditor{id: zuce}
     //Comps.MenuPlanets{id: menuPlanets}
     //ZoolMenuCtxZodiacBack{id: menuRuedaZodiacal}
     //ZoolMenuPlanetsCtxAsc{id: menuPlanetsCtxAsc}
