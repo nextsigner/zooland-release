@@ -26,7 +26,7 @@ Item{
     property bool isHovered: false
 
     //property bool isPron: JSON.parse(app.currentData).params.tipo==='pron'
-    property bool isPron: JSON.parse(app.fileData).params.tipo==='pron'
+    property bool isPron: false//JSON.parse(app.fileData).params.tipo==='pron'
     property int widthRestDec:apps.showDec?sweg.objSignsCircle.w*2:0
     property bool selected: numAstro === app.currentPlanetIndex//panelDataBodies.currentIndex
     property string astro
