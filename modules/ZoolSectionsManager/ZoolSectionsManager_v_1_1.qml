@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import '../../comps' as Comps
 
-import ZoolRemoteParamsList 1.0
+import ZoolRemoteParamsList 1.1
 import ZoolButton 1.2
 
 import web.ZoolUserManager 1.0

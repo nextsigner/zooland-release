@@ -98,7 +98,7 @@ Rectangle {
     }
     function toDown(){
         if(zoolDataBodies.latFocus===0){
-            if(currentIndex<16){
+            if(currentIndex<21){
                 currentIndex++
             }else{
                 currentIndex=-1
@@ -114,7 +114,7 @@ Rectangle {
     }
     function toEnter(){
         if(latFocus===0){
-            if(xBodiesInt.currentIndex>16){
+            if(xBodiesInt.currentIndex>21){
                 sweg.objHousesCircle.currentHouse=xBodiesInt.currentIndex-16
             }else{
                 if(app.currentPlanetIndex!==xBodiesInt.currentIndex){
@@ -125,7 +125,7 @@ Rectangle {
                 }
             }
         }else{
-            if(xBodiesExt.currentIndex>16){
+            if(xBodiesExt.currentIndex>21){
                 sweg.objHousesCircle.currentHouse=xBodiesExt.currentIndex-16
             }else{
                 if(app.currentPlanetIndexBack!==xBodiesExt.currentIndex){
@@ -136,7 +136,5 @@ Rectangle {
                 }
             }
         }
-
-
     }
 }

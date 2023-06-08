@@ -427,10 +427,6 @@ Item {
     }
 
     function loadBack(j){
-        //console.log('Ejecutando SweGraphic.load()...')
-        for(var i=0;i<xuqp.children.length;i++){
-            xuqp.children[i].destroy(0)
-        }
         let params
         params=j.params
 
@@ -447,30 +443,7 @@ Item {
         let hsys=apps.currentHsys
         app.currentFechaBack=vd+'/'+vm+'/'+va
         if(params.hsys)hsys=params.hsys
-        let c='import QtQuick 2.0\n'
-        c+='import unik.UnikQProcess 1.0\n'
-        c+='UnikQProcess{\n'
-        c+='    id: uqp'+ms+'\n'
-        c+='    onLogDataChanged:{\n'
-        //c+='        if(!r.enableLoadBack)return\n'
-        c+='        let json=(\'\'+logData)\n'
-        //c+='        log.lv(\'JSON Back: \'+json)\n'
-        //c+='        console.log(\'JSON Back: \'+json)\n'
-        c+='        loadSweJsonBack(json)\n'
-        c+='        app.ev=true\n'
-        c+='        app.objZoolFileExtDataManager.updateList()\n'
-        c+='        //swegz.sweg.loadSweJsonBack(json)\n'
-        c+='        uqp'+ms+'.destroy(3000)\n'
-        c+='    }\n'
-        c+='    Component.onCompleted:{\n'
-        c+='        let cmd=\'sweg.loadBack() '+app.pythonLocation+' "'+unik.currentFolderPath()+'/py/'+app.sweBodiesPythonFile+'" '+vd+' '+vm+' '+va+' '+vh+' '+vmin+' '+vgmt+' '+vlat+' '+vlon+' '+hsys+' "'+unik.currentFolderPath()+'"\'\n'
-        c+='    if(apps.showLog){\n'
-        c+='        log.ls(cmd, 0, xApp.width)\n'
-        c+='    }\n'
-        c+='        run(\''+app.pythonLocation+' "'+unik.currentFolderPath()+'/py/'+app.sweBodiesPythonFile+'" '+vd+' '+vm+' '+va+' '+vh+' '+vmin+' '+vgmt+' '+vlat+' '+vlon+' '+hsys+' "'+unik.currentFolderPath()+'"\')\n'
-        c+='    }\n'
-        c+='}\n'
-        let comp=Qt.createQmlObject(c, xuqp, 'uqpcode')
+
         app.mod=j.params.tipo
         app.fileDataBack=JSON.stringify(j)
     }

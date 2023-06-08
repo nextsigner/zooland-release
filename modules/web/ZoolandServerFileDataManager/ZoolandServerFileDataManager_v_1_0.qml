@@ -68,6 +68,9 @@ Item{
         console.log('Url  saveZoolParams: '+url)
         app.j.getRD(url, saveZoolParams)
     }
+
+
+    //--> Get Zooland Data
     QtObject{
         id: objGetZoolandData
         function setData(data, isData){
@@ -126,6 +129,68 @@ Item{
         console.log('Url objGetZoolandData: '+url)
         app.j.getRD(url, objGetZoolandData)
     }
+    //<-- Get Zooland Data
+
+    //--> Get Zooland Data Back
+    QtObject{
+        id: objGetZoolandDataBack
+        function setData(data, isData){
+            if(isData){
+                let j=JSON.parse(data)
+                if(j.isData){
+                    sweg.loadSweJsonBack(JSON.stringify(j.data, null, 2))
+                    //zoolDataView.load(app.fileData)
+                    //log.lv(JSON.stringify(j.data, null, 2))
+                }else{
+                    app.j.showMsgDialog('Zool Informa Error!', 'Los datos no han sido guardados.', j.error)
+                }
+
+            }else{
+                app.j.showMsgDialog('Zool Informa', 'Los datos no se han cargado los datos del servidor Zool-Server.\nHost: '+r.host, 'El servidor no está encendido o está fallando la conexión a internet.')
+            }
+        }
+    }
+    function getZoolandDataBack(j){
+        sweg.loadBack(j)
+        app.fileDataBack=JSON.stringify(j)
+        let t=j.params.tipo
+        let hsys=j.params.hsys
+        let n=j.params.n.replace(/ /g, '%20')
+        let d=j.params.d
+        let m=j.params.m
+        let a=j.params.a
+        let h=j.params.h
+        let min=j.params.min
+        let gmt=j.params.gmt
+        let lat=j.params.lat
+        let lon=j.params.lon
+        let alt=j.params.alt
+        let ciudad=j.params.ciudad.replace(/ /g, '%20')
+        let ms=j.params.ms
+        let msReq=new Date(Date.now()).getTime()
+        //let url=apps.host
+        //let url='http://zool.loca.lt'
+        //let url=r.host
+        let url=r.host+':8100'
+        url+='/zool/getZoolData'
+        url+='?n='+n
+        url+='&d='+d
+        url+='&m='+m
+        url+='&a='+a
+        url+='&h='+h
+        url+='&min='+min
+        url+='&gmt='+gmt
+        url+='&lat='+lat
+        url+='&lon='+lon
+        url+='&alt='+alt
+        url+='&ciudad='+ciudad
+        url+='&ms='+ms
+        url+='&adminId='+apps.zoolUserId
+        url+='&msReq='+msReq
+        console.log('Url objGetZoolandDataBack: '+url)
+        app.j.getRD(url, objGetZoolandDataBack)
+    }
+    //<-- Get Zooland Data Back
 
 
     //--> Get Data Params List
@@ -164,7 +229,7 @@ Item{
             h='http://zool.loca.lt'
         }
         r.host=h
-        let sj='{"params":{"tipo":"vn","ms":1633701422850,"n":"Ricardo","d":20,"m":6,"a":1975,"h":23,"min":4,"gmt":-3,"lat":-35.4752134,"lon":-69.585934,"ciudad":"Malargue Mendoza Argentina","msmod":1681568075071}}'
+        let sj='{"params":{"tipo":"vn","ms":1633701422850,"n":"Ricardo","d":20,"m":6,"a":1975,"h":23,"min":4,"gmt":-3,"lat":-35.4752134,"lon":-69.585934, "alt": 0, "ciudad":"Malargue Mendoza Argentina","msmod":1681568075071}}'
         loadParamsFromString(sj)
     }
     function loadParamsFromString(s){        {

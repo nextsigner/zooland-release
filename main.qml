@@ -580,6 +580,7 @@ ZoolMainWindow{
     //        onTriggered: JS.loadModules()
     //    }
     Component.onCompleted: {
+        app.requestActivate()
         //app.j.showMsgDialog('Zool Informa', 'Numero de Versión del Paquete', 'Número: '+unik.getFile('version'))
         JS.setFs()
 
