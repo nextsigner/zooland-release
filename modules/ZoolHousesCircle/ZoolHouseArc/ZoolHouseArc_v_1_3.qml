@@ -2,6 +2,7 @@ import QtQuick 2.12
 import ZoolText 1.0
 import "../"
 
+import ZoolBodies.ZoolArc 1.0
 
 Item {
     id: r
@@ -86,11 +87,11 @@ Item {
     }
 
 
-    ZoolOpacityMaskArc{
+    ZoolArc{
         id: zsa
         width: r.width
         height: width
-        w: 100//sweg.width-aspsCircle.width
+        w: sweg.width-aspsCircle.width
         n: r.n//index===0?1:(index===1?9:5)
         c:r.n
         gr: r.gr//xSignArcs.rotation
