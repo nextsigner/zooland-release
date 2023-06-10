@@ -290,7 +290,7 @@ Item {
                     //w: r.fs*6
                     widthAspCircle: aspsCircle.width
                     //visible: r.v
-                    z:99999
+                    //z:99999
 //                    Rectangle{
 //                        anchors.fill: parent
 //                        radius: width*0.5
@@ -315,7 +315,7 @@ Item {
                 AspCircleV2{
                     id: aspsCircle
                     //width: signCircle.width-r.w-planetsCircle.widthAllPlanets*2-planetsCircle.planetSize
-                    width: 100//signCircle.width-sweg.w*2-r.width-planetsCircle.widthAllPlanets*2-planetsCircle.planetSize
+                    width: signCircle.width-sweg.w*2-r.width-planetsCircle.widthAllPlanets*2-planetsCircle.planetSize
                     rotation: signCircle.rot - 90// + 1
                 }
                 AscMcCircle{id: ascMcCircle;width: signCircle.width}

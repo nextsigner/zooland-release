@@ -6,6 +6,8 @@ Rectangle {
     radius: width*0.5
     color:'transparent'
     clip: true
+    property bool isBack: false
+    property bool selected: !isBack?(housesCircle.currentHouse===n):(housesCircleBack.currentHouse===n)
     property real wg: 0.0
     property int wb: apps.widthHousesAxis
     property int gr: 0
@@ -13,29 +15,21 @@ Rectangle {
     //property int w: housesCircle.currentHouse!==n?housesCircle.w*0.5:sweg.fs*6.5
     property int w: app.fs
     property int c: 0
-    property var colors: [apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor]
-    property var colors2: ['red', '#FBE103', '#09F4E2', '#0D9FD6','red', '#FBE103', '#09F4E2', '#0D9FD6','red', '#FBE103', '#09F4E2', '#0D9FD6']
     property bool showBorder: false
-    property bool selected: app.currentHouseIndex===n
+    //property bool selected: app.currentHouseIndex===n
     property  real op: 100.0
     property int opacitySpeed: 100
-    property int extraWidth: 0
-    //visible: n===1 || n === 2
     Rectangle{
-        id: bug
+        id: arc
         width: r.width//*0.5
         height: r.height//*0.5
-        //color: 'yellow'
         radius: width*0.5
         color: 'transparent'
-        //border.width: 10
         border.color: '#ff5833'
         clip: true
         visible: false
         Rectangle{
             id: tb
-            //width: parent.width+border.width
-            //height: parent.height+border.width
             width: r.width+border.width*2
             height: r.height+border.width*2
             color: 'transparent'
@@ -45,7 +39,7 @@ Rectangle {
         }
         Rectangle{
             id: vacioCentral
-            width: r.width*0.5//-r.w*2
+            width: r.width-r.w*2
             height: width
             color: 'blue'
             radius: width*0.5
@@ -87,34 +81,18 @@ Rectangle {
         id: mask
         width: r.width
         height: r.height
-        //color: app.signColors[r.c]
         rotation: -180
-        color: r.colors2[r.n]
+        color: !r.isBack?apps.houseColor:apps.houseColorBack
         visible: false
-        anchors.centerIn: bug
+        anchors.centerIn: arc
     }
 
     OpacityMask {
-        anchors.fill: bug
+        anchors.fill: arc
         source: mask
-        maskSource: bug
+        maskSource: arc
         invert: true
-        rotation:0//-90-15//-15//-45//-30+10
-        Rectangle{
-            width: 300
-            height: 80//r.width
-            x:100
-            anchors.verticalCenter: parent.verticalCenter
-            //anchors.centerIn: parent
-            color: 'blue'
-            rotation: 0
-            Text{
-                text: 'H'+r.n+' Wg: '+r.wg
-                font.pixelSize: 50
-                color: 'yellow'
-                anchors.centerIn: parent
-            }
-        }
+        opacity: r.selected?1.0:0.5
     }
     Rectangle{
         id: ctb
@@ -124,16 +102,7 @@ Rectangle {
         radius: width*0.5
         border.width:r.width*0.5
         border.color: 'pink'
-        anchors.centerIn: bug
+        anchors.centerIn: arc
         visible: false
     }
-    Rectangle{
-        id: eje0
-        width: r.width*2
-        height: 4
-        color: 'red'
-        anchors.centerIn: parent
-    }
-
-
 }
