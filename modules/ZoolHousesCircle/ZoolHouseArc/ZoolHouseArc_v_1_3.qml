@@ -2,6 +2,7 @@ import QtQuick 2.12
 import ZoolText 1.0
 import "../"
 
+
 Item {
     id: r
     height: width
@@ -85,7 +86,7 @@ Item {
     }
 
 
-    ZoolandSignArc{
+    ZoolOpacityMaskArc{
         id: zsa
         width: r.width
         height: width
