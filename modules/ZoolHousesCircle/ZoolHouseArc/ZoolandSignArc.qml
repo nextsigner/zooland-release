@@ -3,19 +3,24 @@ import QtGraphicalEffects 1.12
 
 Rectangle {
     id: r
-    //width: sweg.width
-    //height: width
     radius: width*0.5
-    //rotation: -90-30
-    //color:'blue'
     color:'transparent'
     clip: true
-    property var aColors: ['red', 'blue', 'yellow', 'green', 'gray', 'pink', 'white', '#ff88330', '#88ff33', '#8833ff', '#008833', '#88aa33']
+    property real wg: 0.0
+    property int wb: apps.widthHousesAxis
     property int gr: 0
     property int n: -1
-    property int w: signCircle.w
+    //property int w: housesCircle.currentHouse!==n?housesCircle.w*0.5:sweg.fs*6.5
+    property int w: app.fs
     property int c: 0
-    visible: c===0
+    property var colors: [apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor]
+    property var colors2: ['red', '#FBE103', '#09F4E2', '#0D9FD6','red', '#FBE103', '#09F4E2', '#0D9FD6','red', '#FBE103', '#09F4E2', '#0D9FD6']
+    property bool showBorder: false
+    property bool selected: app.currentHouseIndex===n
+    property  real op: 100.0
+    property int opacitySpeed: 100
+    property int extraWidth: 0
+    //visible: n===1 || n === 2
     Rectangle{
         id: bug
         width: r.width//*0.5
@@ -40,7 +45,7 @@ Rectangle {
         }
         Rectangle{
             id: vacioCentral
-            width: r.width-r.w*2
+            width: r.width*0.5//-r.w*2
             height: width
             color: 'blue'
             radius: width*0.5
@@ -50,7 +55,7 @@ Rectangle {
             id: e1
             width: parent.width
             height: 1
-            rotation: 0
+            rotation: -90//r.wr//180+r.wr//-15
             anchors.centerIn: parent
             Rectangle{
                 width: parent.parent.width
@@ -64,7 +69,7 @@ Rectangle {
             id: e2
             width: parent.width
             height: 1
-            rotation: r.gr
+            rotation: -90-r.wg//r.wr
             anchors.centerIn: parent
             Rectangle{
                 width: parent.parent.width
@@ -82,7 +87,9 @@ Rectangle {
         id: mask
         width: r.width
         height: r.height
-        color: 'red'//r.aColors[r.c]
+        //color: app.signColors[r.c]
+        rotation: -180
+        color: r.colors2[r.n]
         visible: false
         anchors.centerIn: bug
     }
@@ -92,7 +99,22 @@ Rectangle {
         source: mask
         maskSource: bug
         invert: true
-        rotation: -90
+        rotation:0//-90-15//-15//-45//-30+10
+        Rectangle{
+            width: 300
+            height: 80//r.width
+            x:100
+            anchors.verticalCenter: parent.verticalCenter
+            //anchors.centerIn: parent
+            color: 'blue'
+            rotation: 0
+            Text{
+                text: 'H'+r.n+' Wg: '+r.wg
+                font.pixelSize: 50
+                color: 'yellow'
+                anchors.centerIn: parent
+            }
+        }
     }
     Rectangle{
         id: ctb
@@ -106,55 +128,11 @@ Rectangle {
         visible: false
     }
     Rectangle{
-        width: r.width//-((r.w-xImg.width)/2)
-        height: 8
-        anchors.centerIn: r
-        color: 'transparent'//'blue'
-        rotation: 15
-        antialiasing: true
-        Rectangle{
-            id: xImg
-            //width: apps.signCircleWidth*0.8//signCircle.w*0.5
-            width: r.w*0.8
-            height: width
-            //border.width: 10
-            //border.color: 'red'
-            color: 'transparent'
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: !app.ev?0-(xImg.width-apps.signCircleWidth)*0.5:0-(xImg.width-apps.signCircleWidth*0.5)*0.5
-            //x:(0-xImg.width*0.5)+apps.signCircleWidth*0.5
-            //x:((r.w-xImg.width)/4)
-            //x:(apps.signCircleWidth-xImg.width)/4
-            //x:100
-            rotation: 0-r.rotation-15-r.gr//-90
-            antialiasing: true
-            property bool resaltado: false//panelDataBodies.currentIndexSign === r.n - 1
-            //onWidthChanged: canvas.requestPaint()
-            MouseArea{
-                anchors.fill: parent
-                onClicked: parent.resaltado=!parent.resaltado
-            }
-            Rectangle{
-                width: xImg.width*3
-                height: width
-                radius: width*0.5
-                border.width: 4
-                border.color: 'blue'//app.signColors[r.c]
-                anchors.centerIn: parent
-                z: parent.z-1
-                opacity: xImg.resaltado?1.0:0.0
-                Behavior on opacity{
-                    NumberAnimation{duration: 350}
-                }
-                Rectangle{
-                    anchors.fill: parent
-                    color: '#ff8833'//app.signColors[c]
-                    radius: width*0.5
-                    opacity: 0.35
-                }
-            }
-        }
+        id: eje0
+        width: r.width*2
+        height: 4
+        color: 'red'
+        anchors.centerIn: parent
     }
 
 

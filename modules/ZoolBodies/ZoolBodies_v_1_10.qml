@@ -5,7 +5,7 @@ import "../../js/Funcs.js" as JS
 
 import ZoolBodies.ZoolPlanetsCircle 1.1
 import ZoolBodies.ZoolPlanetsCircleBack 1.4
-import ZoolHousesCircle 1.1
+import ZoolHousesCircle 1.2
 import ZoolHousesCircleBack 1.2
 import ZoolBodies.ZoolAspectsView 1.0
 import ZoolBodies.ZoolAspectsViewBack 1.0
@@ -284,18 +284,26 @@ Item {
                 }
                 ZoolHousesCircle{//rotation: parseInt(signCircle.rot);//z:signCircle.z+1;
                     id: housesCircle
-                    width: apps.fs*60//signCircle.width+app.fs
+                    width: signCircle.width
                     height: width
                     anchors.centerIn: signCircle
                     //w: r.fs*6
                     widthAspCircle: aspsCircle.width
                     //visible: r.v
+                    z:99999
+//                    Rectangle{
+//                        anchors.fill: parent
+//                        radius: width*0.5
+//                        color: 'transparent'
+//                        border.width: 10
+//                        border.color: 'green'
+//                    }
                 }
                 AxisCircle{id: axisCircle}
                 NumberLines{}
                 ZoolSignCircle{
                     id: signCircle
-                    width: r.width*2//-apps.fs*4//-r.w
+                    width: !app.ev?r.width*2:r.width*2-housesCircleBack.extraWidth-300//-apps.fs*4//-r.w
                     //width: planetsCircle.expand?r.width-r.fs*6+r.fs*2:r.width-r.fs*6
                     anchors.centerIn: parent
                     showBorder: true
@@ -307,7 +315,7 @@ Item {
                 AspCircleV2{
                     id: aspsCircle
                     //width: signCircle.width-r.w-planetsCircle.widthAllPlanets*2-planetsCircle.planetSize
-                    width: signCircle.width-sweg.w*2-r.width-planetsCircle.widthAllPlanets*2-planetsCircle.planetSize
+                    width: 100//signCircle.width-sweg.w*2-r.width-planetsCircle.widthAllPlanets*2-planetsCircle.planetSize
                     rotation: signCircle.rot - 90// + 1
                 }
                 AscMcCircle{id: ascMcCircle;width: signCircle.width}
@@ -425,9 +433,150 @@ Item {
 //        }
     }
 
+//    function load(j){
+//        console.log('Ejecutando SweGraphic.load()...')
+//        //aspsCircle.visible=false
+//        for(var i=0;i<xuqp.children.length;i++){
+//            xuqp.children[i].destroy(0)
+//        }
+//        let vd=j.params.d
+//        let vm=j.params.m
+//        let va=j.params.a
+//        let vh=j.params.h
+//        let vmin=j.params.min
+//        let vgmt=j.params.gmt
+//        let vlon=j.params.lon
+//        let vlat=j.params.lat
+//        let d = new Date(Date.now())
+//        let ms=d.getTime()
+//        let hsys=j.params.hsys?j.params.hsys:apps.currentHsys
+//        if(j.params.hsys)hsys=j.params.hsys
+//        app.mod=j.params.tipo
+//        app.fileData=JSON.stringify(j)
+//    }
+
+//    function loadBack(j){
+//        let params
+//        params=j.params
+
+//        let vd=params.d
+//        let vm=params.m
+//        let va=params.a
+//        let vh=params.h
+//        let vmin=params.min
+//        let vgmt=params.gmt
+//        let vlon=params.lon
+//        let vlat=params.lat
+//        let d = new Date(Date.now())
+//        let ms=d.getTime()
+//        let hsys=apps.currentHsys
+//        app.currentFechaBack=vd+'/'+vm+'/'+va
+//        if(params.hsys)hsys=params.hsys
+
+//        app.mod=j.params.tipo
+//        app.fileDataBack=JSON.stringify(j)
+//    }
+//    function loadSweJson(json){
+//        //console.log('JSON::: '+json)
+//        //log.visible=true
+//        //log.l(JSON.stringify(json))
+//        var scorrJson=json.replace(/\n/g, '')
+//        //app.currentJson=JSON.parse(scorrJson)
+//        aspsCircle.clear()
+//        //zsm.getPanel('ZoolRevolutionList').clear()
+//        //panelRsList.clear()
+//        //planetsCircleBack.visible=false
+//        app.ev=false
+//        apps.urlBack=''
+//        panelAspectsBack.visible=false
+//        app.currentPlanetIndex=-1
+//        app.currentPlanetIndexBack=-1
+//        app.currentHouseIndex=-1
+//        app.currentHouseIndexBack=-1
+//        //sweg.objHousesCircle.currentHouse=-1
+//        //swegz.sweg.objHousesCircle.currentHouse=-1
+//        app.currentPlanetIndex=-1
+//        app.currentHouseIndex=-1
+
+//        //console.log('json: '+json)
+//        var j
+//        //try {
+
+//        //log.l(scorrJson)
+//        //log.visible=true
+//        //log.width=xApp.width*0.4
+//        j=JSON.parse(scorrJson)
+
+//        //r.aTexts[] reset
+//        let nATexts=[]
+//        for(var i=0;i<Object.keys(j.pc).length;i++){
+//            nATexts.push('')
+//        }
+//        r.aTexts=nATexts
+
+//        app.currentJson=j
+//        signCircle.rot=parseFloat(j.ph.h1.gdec).toFixed(2)
+//        ascMcCircle.loadJson(j)
+//        housesCircle.loadHouses(j)
+//        planetsCircle.loadJson(j)
+//        panelAspects.load(j)
+//        zoolDataBodies.loadJson(j)
+//        aspsCircle.load(j)
+//        zoolElementsView.load(j, false)
+//        eclipseCircle.arrayWg=housesCircle.arrayWg
+//        eclipseCircle.isEclipse=-1
+//        r.v=true
+//        //        let sabianos=zsm.getPanel('ZoolSabianos')
+//        //        sabianos.numSign=app.currentJson.ph.h1.is
+//        //        sabianos.numDegree=parseInt(app.currentJson.ph.h1.rsgdeg - 1)
+//        //        sabianos.loadData()
+//        //        if(apps.sabianosAutoShow){
+//        //            //panelSabianos.state='show'
+//        //            zsm.currentIndex=1
+//        //        }
+//    }
+//    function loadSweJsonBack(json){
+//        //console.log('JSON::: '+json)
+//        app.currentJsonBack=JSON.parse(json)
+//        //        if(app.dev)
+//        //            log.lv('ZoolBodies.loadSweJsonBack(json): '+json)
+//        //            log.lv('ZoolBodies.loadSweJsonBack(json) app.currentJsonBack: '+app.currentJsonBack)
+//        let scorrJson=json.replace(/\n/g, '')
+//        //console.log('json: '+json)
+//        let j=JSON.parse(scorrJson)
+//        //signCircle.rot=parseInt(j.ph.h1.gdec)
+//        //planetsCircleBack.rotation=parseFloat(j.ph.h1.gdec).toFixed(2)
+//        if(r.objectName==='sweg'){
+//            panelAspectsBack.visible=true
+//        }
+//        panelAspectsBack.load(j)
+//        aspsCircle.add(j)
+//        if(app.mod!=='rs'){
+//            //panelElementsBack.load(j)
+//            zoolElementsView.load(j, true)
+//            //panelElementsBack.visible=true
+//            //Qt.quit()
+//        }else{
+//            //panelElementsBack.visible=false
+//        }
+//        housesCircleBack.loadHouses(j)
+//        //if(app.mod==='dirprim')housesCircleBack.rotation-=360-housesCircle.rotation
+//        //if(JSON.parse(app))
+//        planetsCircleBack.loadJson(j)
+//        zoolDataBodies.loadJsonBack(j)
+//        //panelDataBodiesV2.loadJson(j)
+//        let isSaved=false
+//        if(app.fileDataBack){
+//            isSaved=JSON.parse(app.fileDataBack).ms>=0
+//        }
+//        app.backIsSaved=isSaved
+//        if(app.dev)log.lv('sweg.loadSweJsonBack() isSaved: '+isSaved)
+//        app.ev=true
+//        //centerZoomAndPos()
+//    }
+
     function load(j){
         console.log('Ejecutando SweGraphic.load()...')
-        //aspsCircle.visible=false
         for(var i=0;i<xuqp.children.length;i++){
             xuqp.children[i].destroy(0)
         }
@@ -446,7 +595,6 @@ Item {
         app.mod=j.params.tipo
         app.fileData=JSON.stringify(j)
     }
-
     function loadBack(j){
         let params
         params=j.params
@@ -518,14 +666,14 @@ Item {
         eclipseCircle.arrayWg=housesCircle.arrayWg
         eclipseCircle.isEclipse=-1
         r.v=true
-        //        let sabianos=zsm.getPanel('ZoolSabianos')
-        //        sabianos.numSign=app.currentJson.ph.h1.is
-        //        sabianos.numDegree=parseInt(app.currentJson.ph.h1.rsgdeg - 1)
-        //        sabianos.loadData()
-        //        if(apps.sabianosAutoShow){
-        //            //panelSabianos.state='show'
-        //            zsm.currentIndex=1
-        //        }
+//        let sabianos=zsm.getPanel('ZoolSabianos')
+//        sabianos.numSign=app.currentJson.ph.h1.is
+//        sabianos.numDegree=parseInt(app.currentJson.ph.h1.rsgdeg - 1)
+//        sabianos.loadData()
+//        if(apps.sabianosAutoShow){
+//            //panelSabianos.state='show'
+//            zsm.currentIndex=1
+//        }
     }
     function loadSweJsonBack(json){
         //console.log('JSON::: '+json)
@@ -566,6 +714,7 @@ Item {
         app.ev=true
         //centerZoomAndPos()
     }
+
     function nextState(){
         let currentIndexState=r.aStates.indexOf(r.state)
         if(currentIndexState<r.aStates.length-1){

@@ -40,7 +40,7 @@ Item{
         let ciudad=j.params.ciudad.replace(/ /g, '%20')
         let ms=j.params.ms
         let msReq=new Date(Date.now()).getTime()
-        let url=apps.host
+        let url=r.host+':8100'
         url+='/zool/saveZoolParams'
         url+='?n='+n
         url+='&d='+d

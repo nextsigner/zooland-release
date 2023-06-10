@@ -2,6 +2,7 @@ import QtQuick 2.0
 
 Item{
     id:r
+    property string host: zsfdm.host
     property bool isServerOnLine: false
     onIsServerOnLineChanged: {
         if(isServerOnLine){
@@ -67,7 +68,7 @@ Item{
         repeat: true
         onTriggered: {
             log.lv('timerSetAppId...')
-            app.j.getRD(apps.host+'/zool/setNewAppId', setAppId)
+            app.j.getRD(r.host+'/zool/setNewAppId', setAppId)
         }
     }
     Timer{
@@ -85,7 +86,7 @@ Item{
         interval: 5000
         repeat: true
         onTriggered: {
-            app.j.getRD(apps.host, setIsServerOnLine)
+            app.j.getRD(r.host, setIsServerOnLine)
         }
     }
     Timer{
@@ -94,7 +95,7 @@ Item{
         interval: 5000
         repeat: true
         onTriggered: {
-            app.j.getRD(apps.host+'/zool/setUserId?appId='+apps.appId+'&userId='+apps.zoolUserId, setUserAndAppId)
+            app.j.getRD(r.host+'/zool/setUserId?appId='+apps.appId+'&userId='+apps.zoolUserId, setUserAndAppId)
         }
     }
     Component.onCompleted: {

@@ -425,7 +425,6 @@ Item {
         app.mod=j.params.tipo
         app.fileData=JSON.stringify(j)
     }
-
     function loadBack(j){
         let params
         params=j.params
@@ -545,6 +544,7 @@ Item {
         app.ev=true
         //centerZoomAndPos()
     }
+
     function nextState(){
         let currentIndexState=r.aStates.indexOf(r.state)
         if(currentIndexState<r.aStates.length-1){

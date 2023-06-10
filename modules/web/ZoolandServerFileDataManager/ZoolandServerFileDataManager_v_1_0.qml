@@ -4,12 +4,6 @@ Item{
     id: r
     property string host
 
-    //property string host: app.dev?'http://zooldev.loca.lt':apps.host
-    //property string host: apps.host
-
-    //property string host: 'http://vps-3339713-x.dattaweb.com'
-    //property string host: 'http://localhost'
-
     QtObject{
         id: saveZoolParams
         function setData(data, isData){
@@ -48,7 +42,6 @@ Item{
         let ciudad=j.params.ciudad.replace(/ /g, '%20')
         let ms=j.params.ms
         let msReq=new Date(Date.now()).getTime()
-        //let url=apps.host
         let url=r.host+':8100'
         url+='/zool/saveZoolParams'
         url+='?n='+n
@@ -65,8 +58,9 @@ Item{
         url+='&ms='+ms
         url+='&adminId='+apps.zoolUserId
         url+='&msReq='+msReq
-        console.log('Url  saveZoolParams: '+url)
-        app.j.getRD(url, saveZoolParams)
+        const encoded = encodeURI(url);
+        console.log('Url saveZoolParams: '+encoded)
+        app.j.getRD(""+encoded+"", saveZoolParams)
     }
 
 
@@ -107,9 +101,6 @@ Item{
         let ciudad=j.params.ciudad.replace(/ /g, '%20')
         let ms=j.params.ms
         let msReq=new Date(Date.now()).getTime()
-        //let url=apps.host
-        //let url='http://zool.loca.lt'
-        //let url=r.host
         let url=r.host+':8100'
         url+='/zool/getZoolData'
         url+='?n='+n
@@ -126,8 +117,9 @@ Item{
         url+='&ms='+ms
         url+='&adminId='+apps.zoolUserId
         url+='&msReq='+msReq
-        console.log('Url objGetZoolandData: '+url)
-        app.j.getRD(url, objGetZoolandData)
+        const encoded = encodeURI(url);
+        console.log('Url objGetZoolandData: '+encoded)
+        app.j.getRD(""+encoded+"", objGetZoolandData)
     }
     //<-- Get Zooland Data
 
@@ -187,8 +179,9 @@ Item{
         url+='&ms='+ms
         url+='&adminId='+apps.zoolUserId
         url+='&msReq='+msReq
-        console.log('Url objGetZoolandDataBack: '+url)
-        app.j.getRD(url, objGetZoolandDataBack)
+        const encoded = encodeURI(url);
+        console.log('Url objGetZoolandDataBack: '+encoded)
+        app.j.getRD(""+encoded+"", objGetZoolandDataBack)
     }
     //<-- Get Zooland Data Back
 
@@ -211,12 +204,12 @@ Item{
     }
     function getZoolandParamsList(){
         let msReq=new Date(Date.now()).getTime()
-        //let url=apps.host
-        //let url=r.host
         let url=r.host+':8100'
         url+='/zool/getZoolandParamsList'
         url+='?adminId='+apps.zoolUser+'&r='+msReq
-        app.j.getRD(url, setZoolandParamsList)
+        const encoded = encodeURI(url);
+        console.log('Url getZoolandParamsList: '+encoded)
+        app.j.getRD(""+encoded+"", setZoolandParamsList)
     }
     //<-- Get Data Params List
 
@@ -228,7 +221,12 @@ Item{
         if(h==='' || h.lenght < 3){
             h='http://zool.loca.lt'
         }
-        r.host=h
+        if(!app.dev){
+            r.host=h
+        }else{
+            r.host='http://localhost'
+        }
+
         let sj='{"params":{"tipo":"vn","ms":1633701422850,"n":"Ricardo","d":20,"m":6,"a":1975,"h":23,"min":4,"gmt":-3,"lat":-35.4752134,"lon":-69.585934, "alt": 0, "ciudad":"Malargue Mendoza Argentina","msmod":1681568075071}}'
         loadParamsFromString(sj)
     }

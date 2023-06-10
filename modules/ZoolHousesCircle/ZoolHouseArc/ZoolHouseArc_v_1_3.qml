@@ -4,9 +4,6 @@ import "../"
 
 Item {
     id: r
-    //width: housesCircle.currentHouse!==n?xArcs.width:xArcs.width+extraWidth
-    width: app.currentHouseIndex!==n?xArcs.width:xArcs.width+extraWidth
-    //width: r.width+sweg.fs*2
     height: width
     anchors.centerIn: parent
     property real wg: 0.0
@@ -24,67 +21,7 @@ Item {
     property  real op: 100.0
     property int opacitySpeed: 100
     property int extraWidth: 0
-    //property alias showEjeCentro: ejeCentro.visible
 
-    //Behavior on w{enabled: apps.enableFullAnimation;NumberAnimation{duration: 500}}
-    //Behavior on width{enabled: apps.enableFullAnimation;NumberAnimation{duration:500}}
-
-    state: sweg.state
-    states: [
-        State {
-            name: sweg.aStates[0]
-            PropertyChanges {
-                target: ejeV
-                width:  r.width+sweg.fs*2//.5
-            }
-//            PropertyChanges {
-//                target: canvas2
-//                opacity:  0.0
-//            }
-            PropertyChanges {
-                target: r
-                //colors: r.colors//[apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor]
-                extraWidth: 0
-                w: (sweg.width-sweg.objAspsCircle.width)/2//housesCircle.parent.objectName==='sweg'?(!r.selected?sweg.fs*2.5:sweg.fs*6):(!r.selected?sweg.fs*3:sweg.fs*7)
-            }
-        },
-        State {
-            name: sweg.aStates[1]
-            PropertyChanges {
-                target: ejeV
-                width:  r.width+sweg.fs*2.5
-            }
-//            PropertyChanges {
-//                target: canvas2
-//                opacity:  1.0
-//            }
-            PropertyChanges {
-                target: r
-                //colors: ['red', '#FBE103', '#09F4E2', '#0D9FD6','red', '#FBE103', '#09F4E2', '#0D9FD6','red', '#FBE103', '#09F4E2', '#0D9FD6']
-                extraWidth: sweg.fs*2.5
-                w: (sweg.width-sweg.objAspsCircle.width)/2
-                //w: housesCircle.parent.objectName==='sweg'?(!r.selected?sweg.fs*2.5:sweg.fs*6):(!r.selected?sweg.fs*2.5:sweg.fs*8)
-            }
-        },
-        State {
-            name: sweg.aStates[2]
-            PropertyChanges {
-                target: ejeV
-                width: r.width+sweg.fs*2
-            }
-//            PropertyChanges {
-//                target: canvas2
-//                opacity:  0.0
-//            }
-            PropertyChanges {
-                target: r
-                //colors: [apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor]
-                extraWidth: 0
-                //w: housesCircle.parent.objectName==='sweg'?(sweg.fs*2):(sweg.fs*4)
-                w: (sweg.width-sweg.objAspsCircle.width)/2
-            }
-        }
-    ]
 
 
 
@@ -92,8 +29,11 @@ Item {
         id: ejeCard1
         //width: sweg.fs*2
         width: !housesCircleBack.visible?sweg.fs*2:sweg.fs*2+housesCircleBack.extraWidth+sweg.fs*5
+        //width: 500
         height: 1
         color: apps.houseLineColor
+        border.color: 'red'
+        border.width: 10
         //anchors.centerIn: r
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
@@ -146,24 +86,35 @@ Item {
 
 
     ZoolandSignArc{
+        id: zsa
         width: r.width
         height: width
-        w: sweg.width-aspsCircle.width
+        w: 100//sweg.width-aspsCircle.width
         n: r.n//index===0?1:(index===1?9:5)
         c:r.n
         gr: r.gr//xSignArcs.rotation
+        wg: r.wg
         //rotation: index*(360/3)-30
         anchors.centerIn: parent
+
     }
+//    Rectangle{
+//        anchors.fill: r
+//        radius: width*0.5
+//        color: 'transparent'
+//        border.width: 10
+//        border.color: 'green'
+//    }
     Rectangle{
         id: ejeV
+        width: r.width//+sweg.w*2+apps.fs*2
         height: r.wb
         color: 'transparent'
         anchors.centerIn: r
         antialiasing: true
         Rectangle{
             //visible: false//Depurando
-            visible: app.dev
+            visible: false//app.dev
             width: parent.width*3
             height: r.wb
             color: 'yellow'
@@ -174,7 +125,8 @@ Item {
             //visible: false
             Rectangle{
                 id: lineaEje
-                width: ((ejeV.width-r.width)*0.5-circleBot.width)
+                //width: app.fs*0.5
+                width: ((ejeV.width-r.width)*0.5-circleBot.width+app.fs*2)
 //                width: sweg.objHousesCircle.houseShowSelectadIndex===-1?
 //                         ((ejeV.width-r.width)*0.5-circleBot.width)
 //                         :
@@ -213,10 +165,11 @@ Item {
         }
         Rectangle{
             id: circleBot
-            width: sweg.objHousesCircle.houseShowSelectadIndex===-1?
-                       sweg.fs*0.75
-                     :
-                       sweg.objHousesCircle.houseShowSelectadIndex===r.c?(sweg.fs*0.75+r.wb*2)*2:(sweg.fs*0.75*2)
+            width: apps.fs*2
+            //width: sweg.objHousesCircle.houseShowSelectadIndex===-1?
+//                       sweg.fs*0.75
+//                     :
+//                       sweg.objHousesCircle.houseShowSelectadIndex===r.c?(sweg.fs*0.75+r.wb*2)*2:(sweg.fs*0.75*2)
             height: width
             radius: width*0.5
             //color: apps.enableBackgroundColor?apps.fontColor:'white'
@@ -224,40 +177,9 @@ Item {
             border.width: r.wb
             border.color: apps.houseLineColor//apps.enableBackgroundColor?apps.fontColor:'white'//lineaEje.color
             anchors.verticalCenter: parent.verticalCenter
+            anchors.right: parent.left
+            anchors.rightMargin: app.fs
             antialiasing: true
-            state: sweg.state
-
-            states: [
-                State {
-                    name: sweg.aStates[0]
-                    PropertyChanges {
-                        target: circleBot
-                        width: sweg.fs*0.75
-                        border.width: 1
-                        border.color: apps.enableBackgroundColor?apps.fontColor:'white'//'white'
-                    }
-                },
-                State {
-                    name: sweg.aStates[1]
-                    PropertyChanges {
-                        //        canvas2.clear_canvas()
-                        //        canvas2.requestPaint()
-                        //        canvas2.update()                target: circleBot
-                        width: sweg.fs*0.75+r.wb*2
-                        border.width: r.wb
-                        border.color: lineaEje.color
-                    }
-                },
-                State {
-                    name: sweg.aStates[2]
-                    PropertyChanges {
-                        target: circleBot
-                        width: sweg.fs*0.75
-                        border.width: 1
-                        border.color: apps.fontColor//'white'
-                    }
-                }
-            ]
 
             MouseArea{
                 anchors.fill: parent
