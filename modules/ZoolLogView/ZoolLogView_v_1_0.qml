@@ -3,7 +3,7 @@ import QtQuick.Controls 2.0
 
 Rectangle{
     id: r
-    width: xLatIzq.width
+    width: 300//xLatIzq.width
     //height: xApp.height-(xApp.height-xBottomBar.y)-(xDataBar.state==='show'?xDataBar.height:0)
     //height: xApp.height-(xApp.height-xBottomBar.y)-(zoolDataView.state==='show'?zoolDataView.height:0)
     height: xApp.height-zoolDataView.height

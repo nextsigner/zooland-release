@@ -273,19 +273,19 @@ ZoolMainWindow{
         //tReloadBack.restart()
     }
 
-    FontLoader {name: "fa-brands-400";source: "./fonts/fa-brands-400.ttf";}
-    FontLoader {name: "FontAwesome";source: "./fonts/fontawesome-webfont.ttf";}
-    FontLoader {name: "ArialMdm";source: "./fonts/ArialMdm.ttf";}
-    FontLoader {name: "TypeWriter";source: "./fonts/typewriter.ttf";}
+//    FontLoader {name: "fa-brands-400";source: "./fonts/fa-brands-400.ttf";}
+//    FontLoader {name: "FontAwesome";source: "./fonts/fontawesome-webfont.ttf";}
+//    FontLoader {name: "ArialMdm";source: "./fonts/ArialMdm.ttf";}
+//    FontLoader {name: "TypeWriter";source: "./fonts/typewriter.ttf";}
     Unik{
         id: unik
         onUkStdChanged: {
-            let std=ukStd
-            std=std.replace(/&quot;/g, '"')
-            log.lv(std)
+//            let std=ukStd
+//            std=std.replace(/&quot;/g, '"')
+//            log.lv(std)
         }
         Component.onCompleted: {
-            unik.setEngine(engine)
+            //unik.setEngine(engine)
         }
     }
     ZoolAppSettings{id: apps}
@@ -308,213 +308,194 @@ ZoolMainWindow{
             //clip: xLatIzq.visible
             ZoolandBodies{id: sweg;objectName: 'sweg'}
         }
-
-        Rectangle{
-            id: xMsgProcDatos
-            width: txtPD.contentWidth+app.fs
-            height: app.fs*4
-            color: 'black'
-            border.width: 2
-            border.color: 'white'
-            visible: false
-            anchors.centerIn: parent
-            ZoolText {
-                id: txtPD
-                text: 'Procesando datos...'
-                //font.pixelSize: app.fs
-                //color: 'white'
-                anchors.centerIn: parent
-            }
-            MouseArea{
-                anchors.fill: parent
-                onClicked: parent.visible=false
-            }
-        }
-        //Keys.onDownPressed: Qt.quit()
-    }
-    Item{
-        id: capa101
-        anchors.fill: xApp
         ZoolDataView{id: zoolDataView;}
-        Row{
-            anchors.top: zoolDataView.bottom
-            anchors.bottom: parent.top
-            Rectangle{
-                id: xLatIzq
-                width: xApp.width*0.2
-                height: parent.parent.height-zoolDataView.height
-                color: apps.backgroundColor
-                visible: apps.showLatIzq
-                ZoolSectionsManager{id: zsm}
-                Rectangle{
-                    width: parent.width
-                    height: 3
-                    color: 'red'
-                    anchors.bottom: parent.bottom
-                    visible: apps.zFocus==='xLatIzq'
-                }
-            }
-            Item{
-                width: xLatIzq.width;
-                height: 1;
-                visible: !xLatIzq.visible
 
+    }
 
-            }
-            Item{
-                id: xMed
-                width: xApp.width-xLatIzq.width-xLatDer.width
-                height: xApp.height-zoolDataView.height
-                //Zbg{}
-                //ZoolElementsView{id: zoolElementsView}
-                //ExtId
-                Rectangle{}
-                Text{
-                    text: '<b>Versión: '+unik.getFile('version')+'</b><br /><b>Host: </b>'+zsfdm.host
-                    font.pixelSize: app.fs*0.45
-                    color: apps.fontColor
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
-                Text{
-                    text: '<b>uExtId: '+zoolDataView.uExtIdLoaded+'</b>'
-                    font.pixelSize: app.fs*0.5
-                    color: apps.fontColor
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    visible: app.dev
-                }
-
-
-//                Item{
-//                    id: xControlsTime
-//                    width: controlsTime.width
-//                    height: controlsTime.height
+//    Item{
+//        id: capa101
+//        anchors.fill: xApp
+//        ZoolDataView{id: zoolDataView;}
+//        Row{
+//            anchors.top: zoolDataView.bottom
+//            anchors.bottom: parent.top
+//            Rectangle{
+//                id: xLatIzq
+//                width: xApp.width*0.2
+//                height: parent.parent.height-zoolDataView.height
+//                color: apps.backgroundColor
+//                visible: apps.showLatIzq
+//                ZoolSectionsManager{id: zsm}
+//                Rectangle{
+//                    width: parent.width
+//                    height: 3
+//                    color: 'red'
 //                    anchors.bottom: parent.bottom
-//                    anchors.horizontalCenter: parent.horizontalCenter
-//                    property bool showCT: false
-//                    MouseArea{
-//                        anchors.fill: parent
-//                        onClicked: xControlsTime.showCT=!xControlsTime.showCT
-//                    }
-//                    Item{
-//                        id:xIconClock
-//                        width: app.fs
-//                        height: width
-//                        //anchors.horizontalCenter: parent.horizontalCenter
-//                        anchors.right: parent.left
-//                        anchors.bottom: parent.bottom
-//                        anchors.bottomMargin: app.fs*0.1
-//                        MouseArea{
-//                            anchors.fill: parent
-//                            onClicked: {
-//                                xControlsTime.showCT=!xControlsTime.showCT
-//                                xControlsTimeBack.showCT=false
-//                            }
-//                        }
-//                        Text{
-//                            id:ccinit
-//                            text:'\uf017'
-//                            font.family: 'FontAwesome'
-//                            font.pixelSize: app.fs*0.75
-//                            color: apps.houseColor
-//                            anchors.centerIn: parent
-//                        }
-//                    }
-//                    //Comps.ControlsTime{
+//                    visible: apps.zFocus==='xLatIzq'
+//                }
+//            }
+//            Item{
+//                width: xLatIzq.width;
+//                height: 1;
+//                visible: !xLatIzq.visible
 
-////                    ZoolControlsTime{
-////                        id: controlsTime
+
+//            }
+//            Item{
+//                id: xMed
+//                width: xApp.width-xLatIzq.width-xLatDer.width
+//                height: xApp.height-zoolDataView.height
+//                //Zbg{}
+//                //ZoolElementsView{id: zoolElementsView}
+//                //ExtId
+//                Rectangle{}
+//                Text{
+//                    text: '<b>Versión: '+unik.getFile('version')+'</b><br /><b>Host: </b>'+zsfdm.host
+//                    font.pixelSize: app.fs*0.45
+//                    color: apps.fontColor
+//                    anchors.horizontalCenter: parent.horizontalCenter
+//                }
+//                Text{
+//                    text: '<b>uExtId: '+zoolDataView.uExtIdLoaded+'</b>'
+//                    font.pixelSize: app.fs*0.5
+//                    color: apps.fontColor
+//                    anchors.horizontalCenter: parent.horizontalCenter
+//                    visible: app.dev
+//                }
+
+
+////                Item{
+////                    id: xControlsTime
+////                    width: controlsTime.width
+////                    height: controlsTime.height
+////                    anchors.bottom: parent.bottom
+////                    anchors.horizontalCenter: parent.horizontalCenter
+////                    property bool showCT: false
+////                    MouseArea{
+////                        anchors.fill: parent
+////                        onClicked: xControlsTime.showCT=!xControlsTime.showCT
+////                    }
+////                    Item{
+////                        id:xIconClock
+////                        width: app.fs
+////                        height: width
+////                        //anchors.horizontalCenter: parent.horizontalCenter
+////                        anchors.right: parent.left
+////                        anchors.bottom: parent.bottom
+////                        anchors.bottomMargin: app.fs*0.1
+////                        MouseArea{
+////                            anchors.fill: parent
+////                            onClicked: {
+////                                xControlsTime.showCT=!xControlsTime.showCT
+////                                xControlsTimeBack.showCT=false
+////                            }
+////                        }
+////                        Text{
+////                            id:ccinit
+////                            text:'\uf017'
+////                            font.family: 'FontAwesome'
+////                            font.pixelSize: app.fs*0.75
+////                            color: apps.houseColor
+////                            anchors.centerIn: parent
+////                        }
+////                    }
+////                    //Comps.ControlsTime{
+
+//////                    ZoolControlsTime{
+//////                        id: controlsTime
+//////                        anchors.horizontalCenter: parent.horizontalCenter
+//////                        anchors.bottom: parent.bottom
+//////                        anchors.bottomMargin: h
+//////                        property int h: parent.showCT?0:0-height
+//////                        setAppTime: true
+//////                        onGmtChanged: app.currentGmt=gmt
+//////                        Behavior on h{NumberAnimation{duration: 250; easing.type: Easing.InOutQuad}}
+//////                    }
+
+////                }
+
+
+////                Item{
+////                    id: xControlsTimeBack
+////                    width: controlsTimeBack.width
+////                    height: controlsTimeBack.height
+////                    anchors.bottom: parent.bottom
+////                    anchors.horizontalCenter: parent.horizontalCenter
+////                    visible: app.ev
+////                    property bool showCT: false
+////                    MouseArea{
+////                        anchors.fill: parent
+////                        onClicked: xControlsTimeBack.showCT=!xControlsTimeBack.showCT
+////                    }
+////                    Item{
+////                        id:xIconClockBack
+////                        width: app.fs
+////                        height: width
+////                        //anchors.horizontalCenter: parent.horizontalCenter
+////                        //anchors.horizontalCenterOffset: width+app.fs*0.5
+////                        anchors.left: parent.right
+////                        anchors.bottom: parent.bottom
+////                        anchors.bottomMargin: app.fs*0.1
+////                        MouseArea{
+////                            anchors.fill: parent
+////                            onClicked: {
+////                                xControlsTimeBack.showCT=!xControlsTimeBack.showCT
+////                                xControlsTime.showCT=false
+////                            }
+////                        }
+////                        Text{
+////                            id:ccinitBack
+////                            text:'\uf017'
+////                            font.family: 'FontAwesome'
+////                            font.pixelSize: app.fs*0.75
+////                            color: apps.houseColorBack//apps.fontColor
+////                            anchors.centerIn: parent
+////                        }
+////                    }
+////                    Comps.ControlsTime{
+////                        id: controlsTimeBack
+////                        isBack: true
 ////                        anchors.horizontalCenter: parent.horizontalCenter
 ////                        anchors.bottom: parent.bottom
 ////                        anchors.bottomMargin: h
 ////                        property int h: parent.showCT?0:0-height
 ////                        setAppTime: true
-////                        onGmtChanged: app.currentGmt=gmt
+////                        onGmtChanged: app.currentGmtBack=gmt
 ////                        Behavior on h{NumberAnimation{duration: 250; easing.type: Easing.InOutQuad}}
 ////                    }
+////                }
 
-//                }
-
-
-//                Item{
-//                    id: xControlsTimeBack
-//                    width: controlsTimeBack.width
-//                    height: controlsTimeBack.height
+//                Rectangle{
+//                    width: parent.width
+//                    height: 3
+//                    color: 'red'
 //                    anchors.bottom: parent.bottom
-//                    anchors.horizontalCenter: parent.horizontalCenter
-//                    visible: app.ev
-//                    property bool showCT: false
-//                    MouseArea{
-//                        anchors.fill: parent
-//                        onClicked: xControlsTimeBack.showCT=!xControlsTimeBack.showCT
-//                    }
-//                    Item{
-//                        id:xIconClockBack
-//                        width: app.fs
-//                        height: width
-//                        //anchors.horizontalCenter: parent.horizontalCenter
-//                        //anchors.horizontalCenterOffset: width+app.fs*0.5
-//                        anchors.left: parent.right
-//                        anchors.bottom: parent.bottom
-//                        anchors.bottomMargin: app.fs*0.1
-//                        MouseArea{
-//                            anchors.fill: parent
-//                            onClicked: {
-//                                xControlsTimeBack.showCT=!xControlsTimeBack.showCT
-//                                xControlsTime.showCT=false
-//                            }
-//                        }
-//                        Text{
-//                            id:ccinitBack
-//                            text:'\uf017'
-//                            font.family: 'FontAwesome'
-//                            font.pixelSize: app.fs*0.75
-//                            color: apps.houseColorBack//apps.fontColor
-//                            anchors.centerIn: parent
-//                        }
-//                    }
-//                    Comps.ControlsTime{
-//                        id: controlsTimeBack
-//                        isBack: true
-//                        anchors.horizontalCenter: parent.horizontalCenter
-//                        anchors.bottom: parent.bottom
-//                        anchors.bottomMargin: h
-//                        property int h: parent.showCT?0:0-height
-//                        setAppTime: true
-//                        onGmtChanged: app.currentGmtBack=gmt
-//                        Behavior on h{NumberAnimation{duration: 250; easing.type: Easing.InOutQuad}}
-//                    }
+//                    visible: apps.zFocus==='xMed'
 //                }
+//            }
+//            Item{
+//                id: xLatDer
+//                width: xApp.width*0.2
+//                height: xMed.height
 
-                Rectangle{
-                    width: parent.width
-                    height: 3
-                    color: 'red'
-                    anchors.bottom: parent.bottom
-                    visible: apps.zFocus==='xMed'
-                }
-            }
-            Item{
-                id: xLatDer
-                width: xApp.width*0.2
-                height: xMed.height
+//                //Chat{id: chat; z: onTop?panelPronEdit.z+1:panelControlsSign.z-1}
+//                //PanelControlsSign{id: panelControlsSign}
+//                ZoolandDataBodies{id: zoolDataBodies}
+//                //PanelPronEdit{id: panelPronEdit;}
+//                //ZoolVoicePlayer{id: zoolVoicePlayer}
+//                Rectangle{
+//                    width: parent.width
+//                    height: 3
+//                    color: 'red'
+//                    anchors.bottom: parent.bottom
+//                    visible: apps.zFocus==='xLatDer'
+//                }
+//                //ZoolPanelNotifications{id: zpn}
+//            }
+//        }
+//        ZoolInfoDataView{id: xInfoData}
+//    }
 
-                //Chat{id: chat; z: onTop?panelPronEdit.z+1:panelControlsSign.z-1}
-                //PanelControlsSign{id: panelControlsSign}
-                ZoolandDataBodies{id: zoolDataBodies}
-                //PanelPronEdit{id: panelPronEdit;}
-                //ZoolVoicePlayer{id: zoolVoicePlayer}
-                Rectangle{
-                    width: parent.width
-                    height: 3
-                    color: 'red'
-                    anchors.bottom: parent.bottom
-                    visible: apps.zFocus==='xLatDer'
-                }
-                //ZoolPanelNotifications{id: zpn}
-            }
-        }
-        ZoolInfoDataView{id: xInfoData}
-    }
     ZoolLogView{id: log}
     Timer{
         id: tAutoMaticPlanets
