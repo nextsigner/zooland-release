@@ -30,7 +30,7 @@ Item {
     Rectangle{
         id: ejeCard1
         //width: sweg.fs*2
-        width: !housesCircleBack.visible?sweg.fs*2:sweg.fs*2+housesCircleBack.extraWidth+sweg.fs*5
+        //width: !housesCircleBack.visible?sweg.fs*2:sweg.fs*2+housesCircleBack.extraWidth+sweg.fs*5
         //width: 500
         height: 1
         color: apps.houseLineColor
@@ -39,7 +39,7 @@ Item {
         //anchors.centerIn: r
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
-        anchors.leftMargin: !housesCircleBack.visible?0-sweg.fs*2:0-sweg.fs*2-housesCircleBack.extraWidth-sweg.fs*2.5
+        //anchors.leftMargin: !housesCircleBack.visible?0-sweg.fs*2:0-sweg.fs*2-housesCircleBack.extraWidth-sweg.fs*2.5
         visible: c===0
 
 //        Canvas {
@@ -91,7 +91,7 @@ Item {
         id: zsa
         width: r.width
         height: width
-        w: sweg.width-aspsCircle.width
+        w: sweg.width*0.25//-aspsCircle.width
         n: r.n//index===0?1:(index===1?9:5)
         c:r.n
         gr: r.gr//xSignArcs.rotation

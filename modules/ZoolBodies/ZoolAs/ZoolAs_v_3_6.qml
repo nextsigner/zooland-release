@@ -8,13 +8,6 @@ import ZoolBodies.ZoolAsCotaText 1.0
 
 Item{
     id: r
-    width: apps.xAsShowIcon?
-               /*Mostrando Imagen*/
-               //(parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec):
-               (parent.width-(r.fs*0.5*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec):
-               /*Mostrando Símbolo de Planeta*/
-               //(parent.width-(r.fs*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec)
-               (parent.width-(r.fs*0.5*objData.p)-sweg.objSignsCircle.w-(!apps.showNumberLines?0:r.fs*2)-widthRestDec)
     height: 1
     anchors.centerIn: parent
     z: !selected?numAstro:15
@@ -24,7 +17,7 @@ Item{
     property bool isHovered: false
 
     //property bool isPron: JSON.parse(app.currentData).params.tipo==='pron'
-    property bool isPron: JSON.parse(app.fileData).params.tipo==='pron'
+    property bool isPron: false//JSON.parse(app.fileData).params.tipo==='pron'
     property int widthRestDec:apps.showDec?sweg.objSignsCircle.w*2:0
     property bool selected: numAstro === app.currentPlanetIndex//panelDataBodies.currentIndex
     property string astro
@@ -48,42 +41,6 @@ Item{
     property bool isZoomAndPosSeted: false
     property alias objOointerPlanet: pointerPlanet
 
-    state: sweg.state
-    states: [
-        State {
-            name: sweg.aStates[0]
-            PropertyChanges {
-                target: r
-                colorCuerpo: '#ffffff'
-            }
-            //            PropertyChanges {
-            //                target: xIcon
-            //                width: r.fs*0.85
-            //            }
-        },
-        State {
-            name: sweg.aStates[1]
-            PropertyChanges {
-                target: r
-                colorCuerpo: '#000000'
-            }
-            //            PropertyChanges {
-            //                target: xIcon
-            //                width: r.fs*0.5
-            //            }
-        },
-        State {
-            name: sweg.aStates[2]
-            PropertyChanges {
-                target: r
-                colorCuerpo: '#ffffff'
-            }
-            //            PropertyChanges {
-            //                target: xIcon
-            //                width: r.fs*0.5
-            //            }
-        }
-    ]
     onSelectedChanged: {
         if(selected)app.uSon=''+app.planetasRes[r.numAstro]+'_'+app.objSignsNames[r.is]+'_'+objData.ih
         if(selected){

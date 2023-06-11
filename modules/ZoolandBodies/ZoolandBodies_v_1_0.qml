@@ -53,10 +53,6 @@ Item {
     //property alias objZoolAspectsView: panelAspects
     //property alias objZoolAspectsViewBack: panelAspectsBack
 
-    property int speedRotation: 1000
-    property var aStates: ['ps', 'pc', 'pa']
-    property color backgroundColor: enableBackgroundColor?apps.backgroundColor:'transparent'
-    property bool enableBackgroundColor: apps.enableBackgroundColor
     property string currentHsys: apps.currentHsys
 
     property bool enableAnZoomAndPos: true
@@ -71,68 +67,12 @@ Item {
 
     property var aTexts: []
 
-    //state: apps.swegMod//aStates[0]
 
 
-    //    state: aStates[0]
-    //    states: [
-    //        State {//PS
-    //            name: aStates[0]
-    //            PropertyChanges {
-    //                target: r
-    //                //width: app.ev?r.fs*(12 +6):r.fs*(12 +10)
-    //            }
-    //            PropertyChanges {
-    //                target: signCircle
-    //                width: !housesCircleBack.visible?sweg.width-sweg.fs*2:sweg.width-sweg.fs*2-housesCircleBack.extraWidth*2
-    //            }
-    //            PropertyChanges {
-    //                target: planetsCircle
-    //                width: signCircle.width-signCircle.w
-    //            }
-    //        },
-    //        State {//PC
-    //            name: aStates[1]
-    //            PropertyChanges {
-    //                target: r
-    //                //width: app.ev?r.fs*(15 +6):r.fs*(15 +10)
-    //            }
-    //            PropertyChanges {
-    //                target: signCircle
-    //                width: !housesCircleBack.visible?sweg.width-sweg.fs*6:sweg.width-sweg.fs*6-housesCircleBack.extraWidth*2
-    //            }
-    //            PropertyChanges {
-    //                target: planetsCircle
-    //                width: signCircle.width-signCircle.w
-    //            }
-    //        },
-    //        State {//PA
-    //            name: aStates[2]
-    //            PropertyChanges {
-    //                target: r
-    //                //width: app.ev?r.fs*(12 +6):r.fs*(12 +10)
-    //            }
-    //            PropertyChanges {
-    //                target: signCircle
-    //                width: !housesCircleBack.visible?sweg.width-sweg.fs*2:sweg.width-sweg.fs*2-housesCircleBack.extraWidth*2
-    //            }
-    //            PropertyChanges {
-    //                target: planetsCircle
-    //                width: signCircle.width-signCircle.w
-    //            }
-    //        }
-    //    ]
 
-    onStateChanged: {
-        //swegz.sweg.state=state
-        //apps.swegMod=state
-    }
     onEnableAnZoomAndPosChanged: {
         tEnableAnZoomAndPos.restart()
     }
-    Behavior on opacity{NumberAnimation{duration: 1500}}
-    Behavior on verticalOffSet{NumberAnimation{duration: app.msDesDuration}}
-    Item{id: xuqp}
     Flickable{
         id: flick
         anchors.fill: parent
@@ -255,15 +195,6 @@ Item {
                 width: r.width//*0.25
                 height: width
                 anchors.centerIn: parent
-                //anchors.horizontalCenterOffset: xSweg.width*0.5
-                Rectangle{
-                    id: bg
-                    width: parent.width*10
-                    height: width
-                    color: backgroundColor
-                    visible: signCircle.v
-                }
-//                BackgroundImages{id: backgroundImages}
                 /*ZoolHousesCircleBack{//rotation: parseInt(signCircle.rot);//z:signCircle.z+1;
                     id: housesCircleBack
                     width: signCircle.width
@@ -382,40 +313,6 @@ Item {
         border.width: 2
         border.color: 'white'
         anchors.centerIn: parent
-    }
-    Rectangle{
-        anchors.fill: r
-        color: 'transparent'
-        border.width: 12
-        border.color: 'red'
-        visible: app.dev
-    }
-    Rectangle{
-        width: txtMod.contentWidth+app.fs
-        height: txtMod.contentHeight+app.fs
-        color: apps.fontColor
-        anchors.centerIn: parent
-        anchors.verticalCenterOffset: app.fs*3
-        visible: app.dev
-        Text{
-            id: txtMod
-            text: app.mod
-            font.pixelSize: app.fs
-            color: apps.backgroundColor
-            anchors.centerIn: parent
-        }
-    }
-    Rectangle{
-        anchors.fill: parent
-        anchors.centerIn: parent
-        color: 'transparent'
-        border.width: 0
-        border.color: 'blue'
-//        Text{
-//            id: ihr
-//            font.pixelSize: app.fs*2
-//            anchors.centerIn: parent
-//        }
     }
 
 //    function load(j){
@@ -562,9 +459,6 @@ Item {
 
     function load(j){
         console.log('Ejecutando SweGraphic.load()...')
-        for(var i=0;i<xuqp.children.length;i++){
-            xuqp.children[i].destroy(0)
-        }
         let vd=j.params.d
         let vm=j.params.m
         let va=j.params.a
