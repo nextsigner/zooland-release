@@ -7,8 +7,9 @@ import ZoolBodies.ZoolPlanetsCircle 1.1
 import ZoolBodies.ZoolPlanetsCircleBack 1.4
 import ZoolHousesCircle 1.2
 import ZoolHousesCircleBack 1.2
-import ZoolBodies.ZoolAspectsView 1.0
-import ZoolBodies.ZoolAspectsViewBack 1.0
+
+//import ZoolBodies.ZoolAspectsView 1.0
+//import ZoolBodies.ZoolAspectsViewBack 1.0
 
 import ZoolSignCircle 1.1
 //import ZoolAutoPanZoom 1.0
@@ -49,8 +50,8 @@ Item {
 //    property alias objAscMcCircle: ascMcCircle
 //    property alias objEclipseCircle: eclipseCircle
 
-    property alias objZoolAspectsView: panelAspects
-    property alias objZoolAspectsViewBack: panelAspectsBack
+    //property alias objZoolAspectsView: panelAspects
+    //property alias objZoolAspectsViewBack: panelAspectsBack
 
     property int speedRotation: 1000
     property var aStates: ['ps', 'pc', 'pa']
@@ -313,54 +314,57 @@ Item {
                 //                    anchors.centerIn: parent
                 //                    visible: app.ev
                 //                }
-                ZoolPlanetsCircleBack{
-                    id:planetsCircleBack
-                    height: width
-                    anchors.centerIn: parent
-                    visible: app.ev
-                }
-                EclipseCircle{
-                    id: eclipseCircle
-                    width: housesCircle.width
-                    height: width
-                }
-                Rectangle{
-                    width: 3
-                    height: r.height*2
-                    color: apps.fontColor
-                    anchors.centerIn: parent
-                    visible: app.showCenterLine
-                }
-                Rectangle{
-                    width: r.height*2
-                    height: 3
-                    color: apps.fontColor
-                    anchors.centerIn: parent
-                    visible: app.showCenterLine
-                }
+//                ZoolPlanetsCircleBack{
+//                    id:planetsCircleBack
+//                    height: width
+//                    anchors.centerIn: parent
+//                    visible: app.ev
+//                }
+//                EclipseCircle{
+//                    id: eclipseCircle
+//                    width: housesCircle.width
+//                    height: width
+//                }
+//                Rectangle{
+//                    width: 3
+//                    height: r.height*2
+//                    color: apps.fontColor
+//                    anchors.centerIn: parent
+//                    visible: app.showCenterLine
+//                }
+//                Rectangle{
+//                    width: r.height*2
+//                    height: 3
+//                    color: apps.fontColor
+//                    anchors.centerIn: parent
+//                    visible: app.showCenterLine
+//                }
                 //ZoolAutoPanZoom{id:zoolAutoPanZoom}
             }
         }
     }
-    ZoolAspectsView{
-        id: panelAspects
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.leftMargin: xLatIzq.visible?0:0-xLatIzq.width
-        parent: xMed
-        visible: r.objectName==='sweg'
-    }
-    ZoolAspectsViewBack{
-        id: panelAspectsBack
-        anchors.top: parent.top
-        //anchors.topMargin: 0-(r.parent.height-r.height)/2
-        parent: xMed
-        anchors.left: parent.left
-        anchors.leftMargin: xLatIzq.visible?width:width-xLatIzq.width
-        transform: Scale{ xScale: -1 }
-        rotation: 180
-        visible: r.objectName==='sweg'&&planetsCircleBack.visible
-    }
+
+//    ZoolAspectsView{
+//        id: panelAspects
+//        anchors.bottom: parent.bottom
+//        anchors.left: parent.left
+//        anchors.leftMargin: xLatIzq.visible?0:0-xLatIzq.width
+//        parent: xMed
+//        visible: r.objectName==='sweg'
+//    }
+//    ZoolAspectsViewBack{
+//        id: panelAspectsBack
+//        anchors.top: parent.top
+//        //anchors.topMargin: 0-(r.parent.height-r.height)/2
+//        parent: xMed
+//        anchors.left: parent.left
+//        anchors.leftMargin: xLatIzq.visible?width:width-xLatIzq.width
+//        transform: Scale{ xScale: -1 }
+//        rotation: 180
+//        visible: r.objectName==='sweg'&&planetsCircleBack.visible
+//    }
+
+
     //    Rectangle{
     //        color: 'red'
     //        border.color: 'blue'
@@ -604,7 +608,7 @@ Item {
 
         app.ev=false
         apps.urlBack=''
-        panelAspectsBack.visible=false
+        //panelAspectsBack.visible=false
         app.currentPlanetIndex=-1
         app.currentPlanetIndexBack=-1
         app.currentHouseIndex=-1
@@ -638,7 +642,7 @@ Item {
         //panelAspects.load(j)
         zoolDataBodies.loadJson(j)
         //aspsCircle.load(j)
-        zoolElementsView.load(j, false)
+        //zoolElementsView.load(j, false)
         //eclipseCircle.arrayWg=housesCircle.arrayWg
         //eclipseCircle.isEclipse=-1
         r.v=true
