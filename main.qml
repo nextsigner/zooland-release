@@ -8,6 +8,10 @@ import unik.Unik 1.0
 import "./js/Funcs_v2.js" as JS
 import "./comps" as Comps
 
+import unik.Unik 1.0
+import ZoolMainWindow 1.0
+import comps.ZoolAppSettings 1.0
+
 ZoolMainWindow{
     id: app
     visible: true
@@ -19,8 +23,11 @@ ZoolMainWindow{
     minimumWidth: Screen.desktopAvailableWidth//-app.fs*4
     minimumHeight: Screen.desktopAvailableHeight//-app.fs*4
 
+    Unik{id: unik}
+    ZoolAppSettings{id: apps}
 
 
-
-
+    Component.onCompleted: {
+        unik.clearDir(unik.getPath(2))
+    }
 }

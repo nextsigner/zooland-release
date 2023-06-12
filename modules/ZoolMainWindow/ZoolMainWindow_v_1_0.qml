@@ -7,6 +7,7 @@ import "../../js/Capture.js" as Cap
 Window {
     id: r
     property alias ip: itemXPlanets
+    color: apps?apps.backgroundColor:'red'
     Item{
         id: itemXPlanets
         anchors.fill: parent
