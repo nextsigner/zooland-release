@@ -4,7 +4,7 @@ import QtQuick.Controls 2.12
 import "../../js/Funcs.js" as JS
 import "../../js/Capture.js" as Cap
 
-Window {
+ApplicationWindow {
     id: r
     property alias ip: itemXPlanets
     color: apps?apps.backgroundColor:'red'
