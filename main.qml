@@ -24,10 +24,10 @@ ZoolMainWindow{
     visible: true
 
     visibility: "Maximized"
-    width: 1920//Screen.width
-    height: 1080//Screen.height
-    minimumWidth: Screen.desktopAvailableWidth//-app.fs*4
-    minimumHeight: Screen.desktopAvailableHeight//-app.fs*4
+    width: Qt.platform.os==='android'?640:Screen.width
+    height: Qt.platform.os==='android'?400:Screen.height
+    //minimumWidth: Screen.desktopAvailableWidth//-app.fs*4
+    //minimumHeight: Screen.desktopAvailableHeight//-app.fs*4
 
 
 
