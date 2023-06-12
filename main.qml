@@ -46,7 +46,6 @@ ZoolMainWindow{
                     id: xLatIzq
                     width: xApp.width*0.2
                     height: parent.height
-                    wb:3
                     Text{
                         id: txtUCommit
                         width: parent.width-10
@@ -64,13 +63,11 @@ ZoolMainWindow{
                     id: xMed
                     width: xApp.width*0.6
                     height: parent.height
-                    wb:3
                 }
                 ZRect{
                     id: xLatDer
                     width: xApp.width*0.2
                     height: parent.height
-                    wb:3
                 }
             }
         }
