@@ -47,6 +47,18 @@ ZoolMainWindow{
                     width: xApp.width*0.2
                     height: parent.height
                     wb:3
+                    Text{
+                        id: txtUCommit
+                        width: parent.width-10
+                        color: apps.fontColor
+                        font.pixelSize: 20
+                        wrapMode: Text.WordWrap
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.bottom: parent.bottom
+                        Component.onCompleted: {
+                            text=unik.getFile('ucommit.txt')
+                        }
+                    }
                 }
                 ZRect{
                     id: xMed
