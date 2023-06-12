@@ -24,8 +24,8 @@ ZoolMainWindow{
     visible: true
 
     visibility: "Maximized"
-    width: Qt.platform.os==='android'?640:Screen.width
-    height: Qt.platform.os==='android'?400:Screen.height
+    width: Qt.platform.os==='android'?1920:Screen.width
+    height: Qt.platform.os==='android'?1080:Screen.height
     //minimumWidth: Screen.desktopAvailableWidth//-app.fs*4
     //minimumHeight: Screen.desktopAvailableHeight//-app.fs*4
 
@@ -46,19 +46,19 @@ ZoolMainWindow{
                     id: xLatIzq
                     width: xApp.width*0.2
                     height: parent.height
-                    wb:20
+                    wb:3
                 }
                 ZRect{
                     id: xMed
                     width: xApp.width*0.6
                     height: parent.height
-                    wb:20
+                    wb:3
                 }
                 ZRect{
                     id: xLatDer
                     width: xApp.width*0.2
                     height: parent.height
-                    wb:20
+                    wb:3
                 }
             }
         }
