@@ -23,12 +23,11 @@ ZoolMainWindow{
     id: app
     visible: true
 
-    //Código que falló en la Tv de Mario
     visibility: "Maximized"
     width: 1920//Screen.width
     height: 1080//Screen.height
-    //minimumWidth: Screen.desktopAvailableWidth//-app.fs*4
-    //minimumHeight: Screen.desktopAvailableHeight//-app.fs*4
+    minimumWidth: Screen.desktopAvailableWidth//-app.fs*4
+    minimumHeight: Screen.desktopAvailableHeight//-app.fs*4
 
 
 
@@ -47,16 +46,19 @@ ZoolMainWindow{
                     id: xLatIzq
                     width: xApp.width*0.2
                     height: parent.height
+                    wb:20
                 }
                 ZRect{
                     id: xMed
                     width: xApp.width*0.6
                     height: parent.height
+                    wb:20
                 }
                 ZRect{
                     id: xLatDer
                     width: xApp.width*0.2
                     height: parent.height
+                    wb:20
                 }
             }
         }
