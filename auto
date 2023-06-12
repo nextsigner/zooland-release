@@ -2,7 +2,7 @@ import QtQuick 2.0
 
 Item{
     Component.onCompleted: {
-        splash.t='Zooland Release'
-        splash.visible=true
+        //splash.t='Zooland Release'
+        //splash.visible=true
     }
 }
