@@ -118,7 +118,7 @@ Rectangle {
         border.width: 4
         border.color: 'red'
         color: 'transparent'
-        visible: v.dev
+        visible: vars.dev
     }
     Component{
         id: compCellData

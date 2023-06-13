@@ -77,7 +77,7 @@ Rectangle {
         id: mask
         width: r.width
         height: r.height
-        color: app.signColors[r.c]
+        color: vars.signColors[r.c]
         visible: false
         anchors.centerIn: bug
     }

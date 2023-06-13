@@ -30,6 +30,14 @@ Item {
     anchors.horizontalCenter: parent.horizontalCenter
     //anchors.horizontalCenterOffset: sweg.fs
     //clip: true
+
+    property int currentPlanetIndex: -1
+    property int currentPlanetIndexBack: -1
+    property int currentHouseIndex: -1
+    property int currentHouseIndexBack: -1
+    property var currentJson: ''
+    property var currentJsonBack: ''
+
     property bool zoomAndPosCentered: pinchArea.m_x1===0 && pinchArea.m_y1===0 && pinchArea.m_y2===0 && pinchArea.m_x2===0 && pinchArea.m_zoom1===0.5 && pinchArea.m_zoom2===0.5 && pinchArea.m_max===6 && pinchArea.m_min===0.5
     property real xs: scaler.xScale
     property real z1: pinchArea.m_zoom1
@@ -471,8 +479,8 @@ Item {
         let ms=d.getTime()
         let hsys=j.params.hsys?j.params.hsys:apps.currentHsys
         if(j.params.hsys)hsys=j.params.hsys
-        app.mod=j.params.tipo
-        app.fileData=JSON.stringify(j)
+        vars.tipo=j.params.tipo
+        vars.cParams=JSON.stringify(j)
     }
     function loadBack(j){
         let params
@@ -500,17 +508,15 @@ Item {
 
         //aspsCircle.clear()
 
-        app.ev=false
+        vars.ev=false
         apps.urlBack=''
         //panelAspectsBack.visible=false
-        app.currentPlanetIndex=-1
-        app.currentPlanetIndexBack=-1
-        app.currentHouseIndex=-1
-        app.currentHouseIndexBack=-1
-        //sweg.objHousesCircle.currentHouse=-1
-        //swegz.sweg.objHousesCircle.currentHouse=-1
-        app.currentPlanetIndex=-1
-        app.currentHouseIndex=-1
+        r.currentPlanetIndex=-1
+        r.currentPlanetIndexBack=-1
+        r.currentHouseIndex=-1
+        r.currentHouseIndexBack=-1
+        //app.currentPlanetIndex=-1
+        //app.currentHouseIndex=-1
 
         //console.log('json: '+json)
         var j
@@ -528,7 +534,7 @@ Item {
         }
         r.aTexts=nATexts
 
-        app.currentJson=j
+        r.currentJson=j
         signCircle.rot=parseFloat(j.ph.h1.gdec).toFixed(2)
         //ascMcCircle.loadJson(j)
         housesCircle.loadHouses(j)

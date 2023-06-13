@@ -50,7 +50,7 @@ Rectangle{
             }
         }
     }
-    Component.onCompleted: app.ci=r
+    Component.onCompleted: vars.ci=r
     function toEnter(){
         r.destroy(0)
     }

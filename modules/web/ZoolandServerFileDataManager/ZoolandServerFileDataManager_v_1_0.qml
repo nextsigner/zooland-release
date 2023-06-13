@@ -68,6 +68,9 @@ Item{
     QtObject{
         id: objGetZoolandData
         function setData(data, isData){
+            if(vars.dev){
+                zpn.addNot('objGetZoolandData.setData.data: '+data, false, 5000)
+            }
             if(isData){
                 let j=JSON.parse(data)
                 if(j.isData){
@@ -75,17 +78,17 @@ Item{
                     //zoolDataView.load(app.fileData)
                     //log.lv(JSON.stringify(j.data, null, 2))
                 }else{
-                    app.j.showMsgDialog('Zool Informa Error!', 'Los datos no han sido guardados.', j.error)
+                    vars.j.showMsgDialog('Zool Informa Error!', 'Los datos no han sido guardados.', j.error)
                 }
 
             }else{
-                app.j.showMsgDialog('Zool Informa', 'Los datos no se han cargado los datos del servidor Zool-Server.\nHost: '+r.host, 'El servidor no está encendido o está fallando la conexión a internet.')
+                vars.j.showMsgDialog('Zool Informa', 'Los datos no se han cargado los datos del servidor Zool-Server.\nHost: '+r.host, 'El servidor no está encendido o está fallando la conexión a internet.')
             }
         }
     }
     function getZoolandData(j){
         sweg.load(j)
-        app.fileData=JSON.stringify(j)
+        vars.cParams=JSON.stringify(j)
         let t=j.params.tipo
         let hsys=j.params.hsys
         let n=j.params.n.replace(/ /g, '%20')
@@ -118,8 +121,11 @@ Item{
         url+='&adminId='+apps.zoolUserId
         url+='&msReq='+msReq
         const encoded = encodeURI(url);
-        console.log('Url objGetZoolandData: '+encoded)
-        app.j.getRD(""+encoded+"", objGetZoolandData)
+        vars.j.getRD(""+url+"", objGetZoolandData)
+        if(vars.dev){
+            zpn.addNot('Url objGetZoolandData: '+url, false, 5000)
+        }
+        console.log('Url: '+url)
     }
     //<-- Get Zooland Data
 
@@ -181,7 +187,7 @@ Item{
         url+='&msReq='+msReq
         const encoded = encodeURI(url);
         console.log('Url objGetZoolandDataBack: '+encoded)
-        app.j.getRD(""+encoded+"", objGetZoolandDataBack)
+        vars.j.getRD(""+encoded+"", objGetZoolandDataBack)
     }
     //<-- Get Zooland Data Back
 
@@ -221,10 +227,11 @@ Item{
         if(h==='' || h.lenght < 3){
             h='http://zool.loca.lt'
         }
-        if(!app.dev){
+        if(!vars.dev){
             r.host=h
         }else{
-            r.host='http://localhost'
+            r.host=h
+            //r.host='http://localhost'
         }
 
         let sj='{"params":{"tipo":"vn","ms":1633701422850,"n":"Ricardo","d":20,"m":6,"a":1975,"h":23,"min":4,"gmt":-3,"lat":-35.4752134,"lon":-69.585934, "alt": 0, "ciudad":"Malargue Mendoza Argentina","msmod":1681568075071}}'

@@ -15,7 +15,7 @@ Item {
     property alias contentWidth: txt.contentWidth
     property alias contentHeight: txt.contentHeight
     property alias wrapMode: txt.wrapMode
-    property int fs: app.fs
+    property int fs: vars.fs
     property color textBackgroundColor: 'transparent'
     property int padding:  0
     property int borderWidth: 0

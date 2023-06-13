@@ -16,7 +16,7 @@ Item{
         width: parent.width
         height: r.height
         contentWidth: r.width
-        contentHeight: col.height+app.fs
+        contentHeight: col.height+vars.fs
         anchors.bottom: parent.bottom
         //rotation: 180
         Column{
@@ -45,11 +45,11 @@ Item{
         Rectangle{
             id: xTxt
             width: r.width
-            height: txt.contentHeight+app.fs
+            height: txt.contentHeight+vars.fs
             color: apps.backgroundColor
             border.width: 1
             border.color: apps.fontColor
-            radius: app.fs*0.25
+            radius: vars.fs*0.25
             property string t: '?'
             property bool ad: false
             property int adTimerInterval: 10000
@@ -72,17 +72,17 @@ Item{
             ZoolText {
                 id: txt
                 text: xTxt.t
-                w: parent.width-app.fs
-                fs: app.fs*0.5
+                w: parent.width-vars.fs
+                fs: vars.fs*0.5
                 color: apps.fontColor
                 anchors.centerIn: parent
             }
             ZoolButton{
                 text: 'X'
                 anchors.right: parent.right
-                anchors.rightMargin: app.fs*0.25
+                anchors.rightMargin: vars.fs*0.25
                 anchors.top: parent.top
-                anchors.topMargin: app.fs*0.25
+                anchors.topMargin: vars.fs*0.25
                 onClicked: xTxt.destroy(0)
             }
             Component.onCompleted: updateHeight()

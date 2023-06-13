@@ -3,7 +3,7 @@ import ZoolHousesCircle.ZoolHouseArc 1.3
 Item {
     id: r
     //width: signCircle.width
-    property int currentHouse: app.currentHouseIndex
+    property int currentHouse: -1//app.currentHouseIndex
     property int houseShowSelectadIndex: -1
     property int w: sweg.fs*3
     property int wb: 1//sweg.fs*0.15
@@ -87,7 +87,7 @@ Item {
         var degRet=0.0
         for(i=0;i<12;i++){
             if(i===0){
-                app.uAscDegreeTotal=jsonData.ph.h1.gdec
+                vars.uAscDegreeTotal=jsonData.ph.h1.gdec
             }
             nh=i
             let h=xArcs.children[i]

@@ -1236,7 +1236,7 @@ function loadJsonNow(file){
 //Funciones de Internet
 function getRD(url, item){//Remote Data
     var request = new XMLHttpRequest()
-    request.open('GET', url, true);
+    request.open('GET', url.replace(/\n/g, ''), true);
     request.onreadystatechange = function() {
         if (request.readyState === XMLHttpRequest.DONE) {
             if (request.status && request.status === 200) {

@@ -13,7 +13,7 @@ Item {
     property int gr: 0
     property int n: -1
     //property int w: housesCircle.currentHouse!==n?housesCircle.w*0.5:sweg.fs*6.5
-    property int w: app.fs
+    property int w: vars.fs
     property int c: 0
     //property var colors: ['red', '#FBE103', '#09F4E2', '#0D9FD6','red', '#FBE103', '#09F4E2', '#0D9FD6','red', '#FBE103', '#09F4E2', '#0D9FD6']
     property var colors: [apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor]
