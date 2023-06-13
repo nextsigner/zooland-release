@@ -5,10 +5,10 @@ QtObject{
     id: r
 
     //App
-    property bool dev: true
+    property bool dev: false
     property var j: JS
     property var ci: xApp
-    property int fs: 40
+    property int fs: 20
 
     //--> Variables Astrológicas
     property var planetasArchivos: ['sol', 'luna', 'mercurio', 'venus', 'marte', 'jupiter', 'saturno', 'urano', 'neptuno', 'pluton', 'nodo_norte', 'nodo_sur', 'quiron', 'selena', 'lilith', 'pholus', 'ceres', 'pallas', 'juno', 'vesta', 'asc', 'mc']
