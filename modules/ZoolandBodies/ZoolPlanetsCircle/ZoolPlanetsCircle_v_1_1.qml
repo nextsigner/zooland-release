@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import ZoolBodies.ZoolAs 3.6
+import ZoolandBodies.ZoolAs 3.7
 
 Item{
     id: r
@@ -15,44 +15,20 @@ Item{
     signal cnLoaded(string nombre, string dia, string mes, string anio, string hora, string minuto, string lon, string lat, string ciudad)
     signal doubleClick
     signal posChanged(int px, int py)
-    state: sweg.state
-    states: [
-        State {
-            name: sweg.aStates[0]
-            PropertyChanges {
-                target: r
-                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*2.5-sweg.fs):(sweg.width-sweg.fs*3.5)
-            }
-        },
-        State {
-            name: sweg.aStates[1]
-            PropertyChanges {
-                target: r
-                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*6-sweg.fs):(sweg.width-sweg.fs*4)
-            }
-        },
-        State {
-            name: sweg.aStates[2]
-            PropertyChanges {
-                target: r
-                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*2-sweg.fs):(sweg.width-sweg.fs*2)
-            }
-        }
-    ]
     Repeater{
-        //model: 20//app.planetasRes
-        model: app.planetasRes
+        //model: 20//vars.planetasRes
+        model: vars.planetasRes
         ZoolAs{fs:r.planetSize;astro:modelData;numAstro: index}
     }
     function pressed(o){
-        if(app.currentPlanetIndex!==o.numAstro){
-            app.currentPlanetIndex=o.numAstro
-            app.currentHouseIndex=o.ih
+        if(vars.currentPlanetIndex!==o.numAstro){
+            vars.currentPlanetIndex=o.numAstro
+            vars.currentHouseIndex=o.ih
         }else{
-            app.currentPlanetIndex=-1
-            app.currentHouseIndex=-1
+            vars.currentPlanetIndex=-1
+            vars.currentHouseIndex=-1
         }
-        //unik.speak(''+app.planetas[o.numAstro]+' en '+app.signos[o.objData.ns]+' en el grado '+o.objData.g+' en la casa '+o.objData.h)
+        //unik.speak(''+vars.planetas[o.numAstro]+' en '+vars.signos[o.objData.ns]+' en el grado '+o.objData.g+' en la casa '+o.objData.h)
     }
     function doublePressed(o){
 
@@ -85,7 +61,7 @@ Item{
                 degRed=1.0
             }
             objAs.rotation=signCircle.rot-jo.gdeg-(jo.mdeg/60)//+degRed
-            if(i===0)app.currentRotationxAsSol=objAs.rotation
+            if(i===0)vars.currentRotationxAsSol=objAs.rotation
             o={}
             o.p=objSigns[jo.is]
             if(r.totalPosX<o.p){
@@ -115,107 +91,12 @@ Item{
             objAs.objData=o
             objSigns[jo.is]++
             if(i===0){
-                app.currentAbsolutoGradoSolar=jo.rsgdeg
-                app.currentGradoSolar=jo.gdeg
-                app.currentMinutoSolar=jo.mdeg
-                app.currentSegundoSolar=jo.sdeg
+                vars.currentAbsolutoGradoSolar=jo.rsgdeg
+                vars.currentGradoSolar=jo.gdeg
+                vars.currentMinutoSolar=jo.mdeg
+                vars.currentSegundoSolar=jo.sdeg
                 houseSun=jo.ih
             }
-        }
-
-        //Fortuna
-        //        let joHouses=json.ph['h1']
-        //        let joSol=json.pc['c0']
-        //        let joLuna=json.pc['c1']
-        //        objAs=r.children[15]
-        //        var gf
-        //        if(houseSun>=6){
-        //            //Fortuna en Carta Diurna
-        //            //Calculo para Fortuna Diurna Asc + Luna - Sol
-        //            gf=joHouses.gdec+joLuna.gdec - joSol.gdec
-        //            if(gf>=360)gf=gf-360
-        //            objAs.rotation=signCircle.rot-gf
-        //        }else{
-        //            //Fortuna en Carta Nocturna
-        //            //Calculo para Fortuna Nocturna Asc + Sol - Luna
-        //            gf=joHouses.gdec+joSol.gdec - joLuna.gdec
-        //            if(gf>=360)gf=gf-360
-        //            objAs.rotation=signCircle.rot-gf
-        //        }
-        //        //console.log('gf: '+JS.deg_to_dms(gf))
-        //        var arrayDMS=JS.deg_to_dms(gf)
-        //        o={}
-        //        o.g=arrayDMS[0]
-        //        o.m=arrayDMS[1]
-        //        var rsDegSign=gf
-        //        for(var i2=1;i2<13;i2++){
-        //            if(i2*30<gf){
-        //                objAs.is=i2
-        //                rsDegSign-=30
-        //                o.p=objSigns[i2]
-        //            }
-
-        //            if(json.ph['h'+i2].gdec<gf){
-        //                o.h=i2
-        //                o.ih=i2
-        //            }
-        //        }
-        //        if(r.totalPosX<o.p){
-        //            r.totalPosX=o.p
-        //        }
-        //        o.ns=objSignsNames.indexOf(o.is)
-        //        o.rsg=rsDegSign
-        //        objAs.objData=o
-        //        objSigns[o.is]++
-
-        /*
-        //Infortunio
-        //Diurna Ascendente + Marte - Saturno
-        //Nocturna Ascendente + Saturno - Marte
-        //joHouses=json.ph['h1']
-        let joMarte=json.pc['c4']
-        let joSaturno=json.pc['c6']
-        objAs=r.children[15]
-        //var gf
-        if(houseSun>=6){
-            //Fortuna en Carta Diurna
-            //Calculo para Fortuna Diurna Asc + Luna - Sol
-            gf=joHouses.gdec + joMarte.gdec - joSaturno.gdec
-            if(gf>=360)gf=gf-360
-            if(gf<0)gf=360-gf
-            objAs.rotation=signCircle.rot-gf
-        }else{
-            //Fortuna en Carta Nocturna
-            //Calculo para Fortuna Nocturna Asc + Sol - Luna
-            gf=joHouses.gdec + joSaturno.gdec - joMarte.gdec
-            if(gf>=360)gf=gf-360
-            if(gf<0)gf=360-gf
-            objAs.rotation=signCircle.rot-gf
-        }
-        arrayDMS=JS.deg_to_dms(gf)
-        o={}
-        o.g=arrayDMS[0]
-        o.m=arrayDMS[1]
-        rsDegSign=gf
-        for(var i2=1;i2<13;i2++){
-            if(i2*30<gf){
-                objAs.is=i2
-                rsDegSign-=30
-                o.p=objSigns[i2]
-            }
-
-            if(json.ph['h'+i2].gdec<gf){
-                o.h=i2
-                o.ih=i2
-            }
-        }
-        if(r.totalPosX<o.p){
-            r.totalPosX=o.p
-        }
-        o.ns=objSignsNames.indexOf(o.is)
-        o.rsg=rsDegSign
-        objAs.objData=o
-        objSigns[o.is]++*/
+        }        
     }
-
 }

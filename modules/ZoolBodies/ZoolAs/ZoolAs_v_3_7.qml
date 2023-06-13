@@ -16,10 +16,10 @@ Item{
 
     property bool isHovered: false
 
-    //property bool isPron: JSON.parse(app.currentData).params.tipo==='pron'
-    property bool isPron: false//JSON.parse(app.fileData).params.tipo==='pron'
+    //property bool isPron: JSON.parse(vars.currentData).params.tipo==='pron'
+    property bool isPron: false//JSON.parse(vars.fileData).params.tipo==='pron'
     property int widthRestDec:apps.showDec?sweg.objSignsCircle.w*2:0
-    property bool selected: numAstro === app.currentPlanetIndex//panelDataBodies.currentIndex
+    property bool selected: numAstro === vars.currentPlanetIndex//panelDataBodies.currentIndex
     property string astro
     property int fs
     property var objData: ({g:0, m:0,s:0,ih:0,is:0, rsgdeg:0,rsg:0, gdec:0.000})
@@ -42,15 +42,15 @@ Item{
     property alias objOointerPlanet: pointerPlanet
 
     onSelectedChanged: {
-        if(selected)app.uSon=''+app.planetasRes[r.numAstro]+'_'+app.objSignsNames[r.is]+'_'+objData.ih
+        if(selected)vars.uSon=''+vars.planetasRes[r.numAstro]+'_'+vars.objSignsNames[r.is]+'_'+objData.ih
         if(selected){
             pointerPlanet.setPointerFs()
             housesCircle.currentHouse=objData.ih
-            app.currentHouseIndex=objData.ih
-            app.currentXAs=r
+            vars.currentHouseIndex=objData.ih
+            vars.currentXAs=r
             setRot()
             setZoomAndPos()
-            app.showPointerXAs=true
+            vars.showPointerXAs=true
         }
     }
     Rectangle{
@@ -59,7 +59,15 @@ Item{
         height: 1
         anchors.centerIn: parent
         color: apps.fontColor
-        visible: app.mod==='dirprim'
+        visible: vars.tipo==='dirprim'
+    }
+    Rectangle{
+        id: eje100
+        width: sweg.width*3
+        height: 3
+        anchors.centerIn: parent
+        color: apps.fontColor
+        //visible: vars.tipo==='dirprim'
     }
     Rectangle{
         width: r.width*4
@@ -72,11 +80,11 @@ Item{
     Rectangle{
         id: xIcon
         //width: !selected?r.fs*0.85:r.fs*1.4
-        //width: !apps.xAsShowIcon||r.aIcons.indexOf(r.numAstro)<0?(!app.ev?r.fs*0.85:r.fs*0.425):(!app.ev?r.fs*2:r.fs)
+        //width: !apps.xAsShowIcon||r.aIcons.indexOf(r.numAstro)<0?(!vars.ev?r.fs*0.85:r.fs*0.425):(!vars.ev?r.fs*2:r.fs)
         width:
             !apps.xAsShowIcon||r.aIcons.indexOf(r.numAstro)<0?
-                (!app.ev?r.fs*0.85:/*Tam glifo interior*/r.fs*0.85):
-                (!app.ev?r.fs*2:r.fs)
+                (!vars.ev?r.fs*0.85:/*Tam glifo interior*/r.fs*0.85):
+                (!vars.ev?r.fs*2:r.fs)
         height: width
         anchors.left: parent.left
         //anchors.leftMargin: !r.selected?0:width*0.5
@@ -84,24 +92,26 @@ Item{
         anchors.verticalCenter: parent.verticalCenter
         color: !apps.xAsShowIcon?(r.selected?apps.backgroundColor:'transparent'):'transparent'
         radius: width*0.5
-        PointerPlanet{
-            id: pointerPlanet
-            is:r.is
-            gdeg: objData.g
-            mdeg: objData.m
-            rsgdeg:objData.rsg
-            ih:objData.ih
-            expand: r.selected
-            iconoSignRot: img.rotation
-            p: r.numAstro
-            opacity: r.selected&&app.showPointerXAs?1.0:0.0// && JSON.parse(app.currentData).params.tipo!=='pron'
-            pointerRot:180
-            onPointerRotChanged: {
-                r.uRot=pointerRot
-                //saveRot()
-                //setRot()
-            }
-        }
+
+//        PointerPlanet{
+//            id: pointerPlanet
+//            is:r.is
+//            gdeg: objData.g
+//            mdeg: objData.m
+//            rsgdeg:objData.rsg
+//            ih:objData.ih
+//            expand: r.selected
+//            iconoSignRot: img.rotation
+//            p: r.numAstro
+//            opacity: r.selected&&vars.showPointerXAs?1.0:0.0// && JSON.parse(vars.currentData).params.tipo!=='pron'
+//            pointerRot:180
+//            onPointerRotChanged: {
+//                r.uRot=pointerRot
+//                //saveRot()
+//                //setRot()
+//            }
+//        }
+
         MouseArea{
             id: maSig
             property int vClick: 0
@@ -112,9 +122,9 @@ Item{
                 //apps.enableFullAnimation=false
                 if (wheel.modifiers & Qt.ControlModifier) {
                     if(wheel.angleDelta.y>=0){
-                        pointerPlanet.pointerRot+=5
+                        //pointerPlanet.pointerRot+=5
                     }else{
-                        pointerPlanet.pointerRot-=5
+                        //pointerPlanet.pointerRot-=5
                     }
                 }else if (wheel.modifiers & Qt.ShiftModifier){
                     if(wheel.angleDelta.y>=0){
@@ -126,19 +136,19 @@ Item{
                     tWaitHovered.restart()
                 }else{
                     if(wheel.angleDelta.y>=0){
-                        //                    if(reSizeAppsFs.fs<app.fs*2){
+                        //                    if(reSizeAppsFs.fs<vars.fs*2){
                         //                        reSizeAppsFs.fs+=reSizeAppsFs.fs*0.1
                         //                    }else{
-                        //                        reSizeAppsFs.fs=app.fs
+                        //                        reSizeAppsFs.fs=vars.fs
                         //                    }
                         pointerPlanet.pointerRot+=45
                     }else{
-                        //                    if(reSizeAppsFs.fs>app.fs){
+                        //                    if(reSizeAppsFs.fs>vars.fs){
                         //                        reSizeAppsFs.fs-=reSizeAppsFs.fs*0.1
                         //                    }else{
-                        //                        reSizeAppsFs.fs=app.fs*2
+                        //                        reSizeAppsFs.fs=vars.fs*2
                         //                    }
-                        pointerPlanet.pointerRot-=45
+                        //pointerPlanet.pointerRot-=45
                     }
                 }
                 //reSizeAppsFs.restart()
@@ -162,9 +172,9 @@ Item{
                 //r.parent.cAs=r.parent
             }
             onClicked: {
-                //apps.sweFs=app.fs
+                //apps.sweFs=vars.fs
                 if (mouse.button === Qt.RightButton) { // 'mouse' is a MouseEvent argument passed into the onClicked signal handler
-                    app.uSonFCMB=''+app.planetasRes[r.numAstro]+'_'+app.objSignsNames[r.is]+'_'+objData.ih
+                    vars.uSonFCMB=''+vars.planetasRes[r.numAstro]+'_'+vars.objSignsNames[r.is]+'_'+objData.ih
 
                     menuPlanets.isBack=false
                     menuPlanets.currentIndexPlanet=r.numAstro
@@ -187,8 +197,8 @@ Item{
                     if(maSig.vClick<=1){
                         if(!r.selected){
 
-                            let msg='Mostrando '+app.planetasReferencia[r.numAstro]
-                            msg+=' en el signo '+app.signos[r.is]
+                            let msg='Mostrando '+vars.planetasReferencia[r.numAstro]
+                            msg+=' en el signo '+vars.signos[r.is]
                             msg+=' en el grado '+r.objData.rsg+' '+r.objData.m+' minutos '+r.objData.s+' segundos. Casa '+r.ih
                             zoolVoicePlayer.speak(msg, true)
                         }
@@ -298,7 +308,7 @@ Item{
     }
     Rectangle{
         width: r.width*0.5-xIcon.width
-        height: app.fs*0.25
+        height: vars.fs*0.25
         color: 'transparent'
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
@@ -307,7 +317,7 @@ Item{
 //        Comps.XSignal{
 //            width: parent.width
 //            anchors.verticalCenter: parent.verticalCenter
-//            height: app.fs*6
+//            height: vars.fs*6
 //            numAstro: r.numAstro
 //            //visible: r.numAstro===0
 //            visible: r.selected
@@ -315,10 +325,10 @@ Item{
     }
 //    Comps.XCircleSignal{
 //        id: xCircleSignal
-//        width: app.fs*16
+//        width: vars.fs*16
 //        height: width
 //        anchors.centerIn: xIcon
-//        visible: app.dev && r.selected && !r.isZoomAndPosSeted && JSON.parse(app.currentData).params.tipo!=='pron'
+//        visible: vars.dev && r.selected && !r.isZoomAndPosSeted && JSON.parse(vars.currentData).params.tipo!=='pron'
 //    }
     Timer{
         running: !r.isZoomAndPosSeted && r.selected
@@ -337,9 +347,9 @@ Item{
     }
     function rot(d){
         if(d){
-            pointerPlanet.pointerRot+=5
+            //pointerPlanet.pointerRot+=5
         }else{
-            pointerPlanet.pointerRot-=5
+            //pointerPlanet.pointerRot-=5
         }
         saveRot(parseInt(pointerPlanet.pointerRot))
     }
@@ -359,7 +369,7 @@ Item{
     //Rot
     function setRot(){
         if(!r.isPron){
-            let json=JSON.parse(app.fileData)
+            let json=JSON.parse(vars.fileData)
             if(json.rots&&json.rots['rc'+r.numAstro]){
                 r.uRot=json.rots['rc'+r.numAstro]
                 pointerPlanet.pointerRot=r.uRot
@@ -375,13 +385,13 @@ Item{
     //Zoom And Pos
     function saveZoomAndPos(){
         let json=zfdm.getJson()
-        if(!json[app.stringRes+'zoompos']){
-            json[app.stringRes+'zoompos']={}
+        if(!json[vars.stringRes+'zoompos']){
+            json[vars.stringRes+'zoompos']={}
         }
-        json[app.stringRes+'zoompos']['zpc'+r.numAstro]=sweg.getZoomAndPos()
-        if(app.dev){
+        json[vars.stringRes+'zoompos']['zpc'+r.numAstro]=sweg.getZoomAndPos()
+        if(vars.dev){
             //log.ls('xAs'+r.numAstro+': saveZoomAndPos()'+JSON.stringify(json, null, 2), 0, log.width)
-            log.ls('json['+app.stringRes+'zoompos][zpc'+r.numAstro+']=sweg.getZoomAndPos()'+JSON.stringify(json[app.stringRes+'zoompos']['zpc'+r.numAstro], null, 2), 0, log.width)
+            log.ls('json['+vars.stringRes+'zoompos][zpc'+r.numAstro+']=sweg.getZoomAndPos()'+JSON.stringify(json[vars.stringRes+'zoompos']['zpc'+r.numAstro], null, 2), 0, log.width)
         }
         if(unik.fileExist(apps.url.replace('file://', ''))){
             let dataModNow=new Date(Date.now())
@@ -390,9 +400,9 @@ Item{
         zfdm.saveJson(json)
     }
     function setZoomAndPos(){
-        let json=JSON.parse(app.fileData)
-        if(json[app.stringRes+'zoompos']&&json[app.stringRes+'zoompos']['zpc'+r.numAstro]){
-            sweg.setZoomAndPos(json[app.stringRes+'zoompos']['zpc'+r.numAstro])
+        let json=JSON.parse(vars.fileData)
+        if(json[vars.stringRes+'zoompos']&&json[vars.stringRes+'zoompos']['zpc'+r.numAstro]){
+            sweg.setZoomAndPos(json[vars.stringRes+'zoompos']['zpc'+r.numAstro])
             r.isZoomAndPosSeted=true
         }else{
             r.isZoomAndPosSeted=false

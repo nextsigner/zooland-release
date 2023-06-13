@@ -9,6 +9,7 @@ QtObject{
     property var j: JS
     property var ci: xApp
     property int fs: 20
+    property int xAppMargin: 10
 
     //--> Variables Astrológicas
     property var planetasArchivos: ['sol', 'luna', 'mercurio', 'venus', 'marte', 'jupiter', 'saturno', 'urano', 'neptuno', 'pluton', 'nodo_norte', 'nodo_sur', 'quiron', 'selena', 'lilith', 'pholus', 'ceres', 'pallas', 'juno', 'vesta', 'asc', 'mc']
@@ -26,8 +27,40 @@ QtObject{
     property bool ev: false
 
     property real uAscDegreeTotal
+    property real currentRotationxAsSol
+    property real currentAbsolutoGradoSolar
+    property real currentGradoSolar
+    property real currentMinutoSolar
+    property real currentSegundoSolar
     //<-- Variables SWEG
 
+    onCParamsChanged:{
+        let j=JSON.parse(cParams)
+        //ñalskdfjñla
+        //log.lv('getZoolandData(j)...')
+        let aL=[]
+        aL.push(''+j.params.n)
+        aL.push(''+j.params.d+'/'+j.params.m+'/'+j.params.a)
+        aL.push(''+j.params.h+':'+j.params.min+'hs')
+        aL.push('<b>GMT:</b> '+j.params.gmt)
+        aL.push('<b>Ubicación:</b> '+j.params.ciudad)
+        aL.push('<b>Lat:</b> '+parseFloat(j.params.lat).toFixed(2))
+        aL.push('<b>Lon:</b> '+parseFloat(j.params.lon).toFixed(2))
+        aL.push('<b>Alt:</b> '+j.params.alt)
+        let tipo=j.tipo
+        let strSep=''
+        if(tipo==='vn'){
+            strSep='Carta Natal'
+        }
+        if(tipo==='sin'){
+            strSep='Sinastría'
+        }
+        if(tipo==='rs')strSep='Rev. Solar '+va
+        if(tipo==='trans')strSep='Tránsitos'
+        if(tipo==='dirprim')strSep='Dir. Primarias'
+        zoolDataView.setDataView(strSep, aL, [])
+        zpn.addNot(cParams, true, 5000)
+    }
 
 
     /*

@@ -89,7 +89,7 @@ Item {
 
     ZoolArc{
         id: zsa
-        width: r.width
+        width: r.width-vars.fs*8
         height: width
         w: sweg.width*0.25//-aspsCircle.width
         n: r.n//index===0?1:(index===1?9:5)
@@ -111,7 +111,7 @@ Item {
         id: ejeV
         width: r.width//+sweg.w*2+apps.fs*2
         height: r.wb
-        color: 'transparent'
+        color: 'red'
         anchors.centerIn: r
         antialiasing: true
         Rectangle{
@@ -156,9 +156,9 @@ Item {
                 //anchors.verticalCenter: parent.top
                 Component.onCompleted: {
                     if(c===0){
-                        y=0-height*0.25
+                        //y=0-height*0.25
                     }else  if(c===6){
-                        y=height*0.25
+                        //y=height*0.25
                     }else{
                         //y=height*0.5
                     }
@@ -167,11 +167,7 @@ Item {
         }
         Rectangle{
             id: circleBot
-            width: apps.fs*2
-            //width: sweg.objHousesCircle.houseShowSelectadIndex===-1?
-//                       sweg.fs*0.75
-//                     :
-//                       sweg.objHousesCircle.houseShowSelectadIndex===r.c?(sweg.fs*0.75+r.wb*2)*2:(sweg.fs*0.75*2)
+            width: vars.fs*3
             height: width
             radius: width*0.5
             //color: apps.enableBackgroundColor?apps.fontColor:'white'
@@ -180,7 +176,7 @@ Item {
             border.color: apps.houseLineColor//apps.enableBackgroundColor?apps.fontColor:'white'//lineaEje.color
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.left
-            anchors.rightMargin: app.fs
+            anchors.rightMargin: 0-width
             antialiasing: true
 
             MouseArea{

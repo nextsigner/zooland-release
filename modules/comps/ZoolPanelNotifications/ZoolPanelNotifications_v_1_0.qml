@@ -73,7 +73,7 @@ Item{
                 id: txt
                 text: xTxt.t
                 w: parent.width-vars.fs
-                fs: vars.fs*0.5
+                fs: vars.fs
                 color: apps.fontColor
                 anchors.centerIn: parent
             }

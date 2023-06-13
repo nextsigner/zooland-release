@@ -16,8 +16,7 @@ Item{
     signal doubleClick
     signal posChanged(int px, int py)
     Repeater{
-        //model: 20//app.planetasRes
-        model: app.planetasRes
+        model: vars.planetasRes
         ZoolAs{fs:r.planetSize;astro:modelData;numAstro: index}
     }
     function pressed(o){
@@ -61,7 +60,7 @@ Item{
                 degRed=1.0
             }
             objAs.rotation=signCircle.rot-jo.gdeg-(jo.mdeg/60)//+degRed
-            if(i===0)app.currentRotationxAsSol=objAs.rotation
+            if(i===0)vars.currentRotationxAsSol=objAs.rotation
             o={}
             o.p=objSigns[jo.is]
             if(r.totalPosX<o.p){
@@ -91,10 +90,10 @@ Item{
             objAs.objData=o
             objSigns[jo.is]++
             if(i===0){
-                app.currentAbsolutoGradoSolar=jo.rsgdeg
-                app.currentGradoSolar=jo.gdeg
-                app.currentMinutoSolar=jo.mdeg
-                app.currentSegundoSolar=jo.sdeg
+                vars.currentAbsolutoGradoSolar=jo.rsgdeg
+                vars.currentGradoSolar=jo.gdeg
+                vars.currentMinutoSolar=jo.mdeg
+                vars.currentSegundoSolar=jo.sdeg
                 houseSun=jo.ih
             }
         }

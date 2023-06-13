@@ -11,7 +11,8 @@ Item {
     property int rot: 0
     Behavior on w{enabled: apps.enableFullAnimation; NumberAnimation{duration: sweg.speedRotation}}
     Repeater{
-        model: apps.enableWheelAspCircle?36:0
+        //model: apps.enableWheelAspCircle?36:0
+        model: 0
         Item{
             width: r.width
             height: 1

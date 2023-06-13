@@ -28,7 +28,7 @@ Item {
         //anchors.fill: r
         Item{
             id:xArcs
-            width: apps.fs*60
+            width: sweg.width
             height: width
             anchors.centerIn: parent
             Repeater{

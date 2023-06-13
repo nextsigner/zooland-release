@@ -18,10 +18,10 @@ Item {
     property int ih: -1
     property bool expand: false
     property int wtc: (sweg.fs*0.5)/(sweg.xs*0.5) //width of each circle de triple circle
-    property int p: -1
+    property int p: 0
     property alias pointerRot: eje.rotation
     property int pointerFs: app.fs*5.5
-    property real xs: sweg.xs
+    property real xs: 1.0//sweg.xs
     property var aMargins: [0.5, 0.3, 0.4, 0.4, 0.4, 0.5, 0.5, 0.5, 0.4, 0.3, 0.5, 0.5, 0.3, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
 
     property bool isBack: false
@@ -106,7 +106,7 @@ Item {
                             Image {
                                 id: img0
                                 //source: "../../resources/imgs/planetas/"+app.planetasRes[r.p]+".svg"
-                                source: r.folderImg+"/"+app.planetasRes[r.p]+".svg"
+                                source: r.folderImg+"/"+vars.planetasRes[r.p]+".svg"
                                 width: parent.width*0.8
                                 height: width
                                 anchors.centerIn: parent
@@ -158,7 +158,7 @@ Item {
                         spacing: r.pointerFs*0.25
                         anchors.horizontalCenter: parent.horizontalCenter
                         Text{
-                            text: app.planetas[r.p]+' en '+app.signos[r.is]
+                            //text: vars.planetas[r.p]+' en '+vars.signos[r.is]
                             font.pixelSize: r.pointerFs*0.5
                             color: apps.backgroundColor
                             anchors.verticalCenter: parent.verticalCenter

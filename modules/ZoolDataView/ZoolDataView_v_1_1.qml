@@ -199,20 +199,6 @@ Rectangle {
             }
         }
     }
-//    Timer{
-//        id: tWaitUpdateData
-//        running: false
-//        repeat: false
-//        interval: 1500
-//        onTriggered: {
-//            if(row.width>app.fs*53){
-//                //tResizeFs.start()
-//            }else{
-//                //tResizeFs.stop()
-//                //row.visible=true
-//            }
-//        }
-//    }
     Timer{
         id: tResizeFs
         running: row.width>xApp.width
@@ -220,11 +206,6 @@ Rectangle {
         interval: 50
         onTriggered: {
             r.fs-=1
-//            //if(row.width<r.width-app.fs){
-//            if(row.width<app.fs*53){
-//                //stop()
-//                row.visible=true
-//            }
         }
     }
     function setDataView(sep, aL, aR){

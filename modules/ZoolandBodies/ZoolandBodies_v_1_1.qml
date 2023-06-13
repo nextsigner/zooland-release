@@ -1,12 +1,32 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 
+import ZoolandBodies.ZoolPlanetsCircle 1.1
+import ZoolandBodies.ZoolPlanetsCircleBack 1.4
+import ZoolHousesCircle 1.2
+import ZoolHousesCircleBack 1.2
+
+//import ZoolBodies.ZoolAspectsView 1.0
+//import ZoolBodies.ZoolAspectsViewBack 1.0
+
+import ZoolandBodies.ZoolandSignCircle 1.1
+
+
 Rectangle {
     id: r
-    width: apps.fs*30
+    width: vars.fs*24
     height: width
     radius: width*0.5
+    color: 'transparent'
+    border.width: 1
+    border.color: apps.fontColor
+    anchors.centerIn: parent
+
+    //Alias
+    property alias objHousesCircle: housesCircle
+
     //Variables de Houses y Planets
+    property int pz: 80
     property int currentPlanetIndex: -1
     property int currentPlanetIndexBack: -1
     property int currentHouseIndex: -1
@@ -15,63 +35,223 @@ Rectangle {
     property var currentJsonBack: ''
 
     //Variables
+    property var listCotasShowing: []
     property var aTexts: []
+    property int w: vars.fs*2
+    property bool v: false
+
+    Rectangle {
+        id: rect
+        border.width: 0
+        //width: r.width//Math.max(xSweg.width, flick.width)*2
+        width: Math.max(xSweg.width, r.width)*2
+        height: Math.max(xSweg.height, r.height)*2
+        border.color: '#ff8833'
+        color: 'transparent'
+        antialiasing: true
+        //anchors.centerIn: parent
+        //x:(parent.width-width)/2
+        transform: Scale {
+            id: scaler
+            origin.x: pinchArea.m_x2
+            origin.y: pinchArea.m_y2
+            xScale: pinchArea.m_zoom2
+            yScale: pinchArea.m_zoom2
+            Behavior on origin.x{NumberAnimation{duration: r.enableAnZoomAndPos?2500:1}}
+            Behavior on origin.y{NumberAnimation{duration: r.enableAnZoomAndPos?2500:1}}
+            Behavior on xScale{NumberAnimation{duration: r.enableAnZoomAndPos?2500:1}}
+            Behavior on yScale{NumberAnimation{duration: r.enableAnZoomAndPos?2500:1}}
+        }
+        Behavior on x{NumberAnimation{duration: r.enableAnZoomAndPos?2500:1}}
+        Behavior on y{NumberAnimation{duration: r.enableAnZoomAndPos?2500:1}}
+        PinchArea {
+            id: pinchArea
+            anchors.fill: parent
+
+            property real m_x1: 0
+            property real m_y1: 0
+            property real m_y2: 0
+            property real m_x2: 0
+            property real m_zoom1: 0.5
+            property real m_zoom2: 0.5
+            property real m_max: 6
+            property real m_min: 0.5
+
+            onPinchStarted: {
+                console.log("Pinch Started")
+                m_x1 = scaler.origin.x
+                m_y1 = scaler.origin.y
+                m_x2 = pinch.startCenter.x
+                m_y2 = pinch.startCenter.y
+                rect.x = rect.x + (pinchArea.m_x1-pinchArea.m_x2)*(1-pinchArea.m_zoom1)
+                rect.y = rect.y + (pinchArea.m_y1-pinchArea.m_y2)*(1-pinchArea.m_zoom1)
+            }
+            onPinchUpdated: {
+                console.log("Pinch Updated")
+                m_zoom1 = scaler.xScale
+                var dz = pinch.scale-pinch.previousScale
+                var newZoom = m_zoom1+dz
+                if (newZoom <= m_max && newZoom >= m_min) {
+                    m_zoom2 = newZoom
+                }
+            }
+            Timer{
+                id: tEnableAnZoomAndPos
+                running: false
+                repeat: false
+                interval: 1500
+                onTriggered: r.enableAnZoomAndPos=true
+            }
+            MouseArea {
+                //z:parent.z-1
+                id: dragArea
+                hoverEnabled: true
+                anchors.fill: parent
+                drag.target: rect
+                drag.filterChildren: true
+                onWheel: {
+                    r.enableAnZoomAndPos=false
+                    pinchArea.m_x1 = scaler.origin.x
+                    pinchArea.m_y1 = scaler.origin.y
+                    pinchArea.m_zoom1 = scaler.xScale
+                    pinchArea.m_x2 = mouseX
+                    pinchArea.m_y2 = mouseY
+
+                    var newZoom
+                    if (wheel.angleDelta.y > 0) {
+                        newZoom = pinchArea.m_zoom1+0.1
+                        if (newZoom <= pinchArea.m_max) {
+                            pinchArea.m_zoom2 = newZoom
+                        } else {
+                            pinchArea.m_zoom2 = pinchArea.m_max
+                        }
+                    } else {
+                        newZoom = pinchArea.m_zoom1-0.1
+                        if (newZoom >= pinchArea.m_min) {
+                            pinchArea.m_zoom2 = newZoom
+                        } else {
+                            pinchArea.m_zoom2 = pinchArea.m_min
+                        }
+                    }
+                    rect.x = rect.x + (pinchArea.m_x1-pinchArea.m_x2)*(1-pinchArea.m_zoom1)
+                    rect.y = rect.y + (pinchArea.m_y1-pinchArea.m_y2)*(1-pinchArea.m_zoom1)
+                    //console.debug(rect.width+" -- "+rect.height+"--"+rect.scale)
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    acceptedButtons: Qt.AllButtons;
+                    onClicked: {
+                        apps.zFocus='xMed'
+                        if (mouse.button === Qt.RightButton) {
+
+                            menuRuedaZodiacal.uX=mouseX
+                            menuRuedaZodiacal.uY=mouseY
+                            menuRuedaZodiacal.isBack=false
+                            menuRuedaZodiacal.popup()
+                        }
+                    }
+                    onDoubleClicked: {
+                        centerZoomAndPos()
+                    }
+                }
+            }
+        }
+        Item{
+            id: xSweg
+            width: r.width//*0.25
+            height: width
+            anchors.centerIn: parent
+            /*ZoolHousesCircleBack{//rotation: parseInt(signCircle.rot);//z:signCircle.z+1;
+                id: housesCircleBack
+                width: signCircle.width
+                height: apps.fs*35//width
+                anchors.centerIn: signCircle
+                w: r.fs
+                widthAspCircle: aspsCircle.width
+                visible: app.ev
+            }*/
+            ZoolHousesCircle{//rotation: parseInt(signCircle.rot);//z:signCircle.z+1;
+                id: housesCircle
+                width: r.width*2//signCircle.width
+                height: width
+                anchors.centerIn: signCircle
+            }
+            //                AxisCircle{id: axisCircle}
+            //                NumberLines{}
+            ZoolandSignCircle{
+                id: signCircle
+                width: !vars.ev?r.width*2-(vars.fs*8):r.width*2-housesCircleBack.extraWidth-300//-apps.fs*4//-r.w
+                //width: planetsCircle.expand?r.width-r.fs*6+r.fs*2:r.width-r.fs*6
+                anchors.centerIn: parent
+                showBorder: true
+                v:r.v
+                w: r.w
+                onRotChanged: housesCircle.rotation=rot
+                //onShowDecChanged: Qt.quit()
+            }
+            //                AspCircleV2{
+            //                    id: aspsCircle
+            //                    //width: signCircle.width-r.w-planetsCircle.widthAllPlanets*2-planetsCircle.planetSize
+            //                    width: signCircle.width-sweg.w*2-r.width-planetsCircle.widthAllPlanets*2-planetsCircle.planetSize
+            //                    rotation: signCircle.rot - 90// + 1
+            //                }
+            //AscMcCircle{id: ascMcCircle;width: signCircle.width}
+            ZoolPlanetsCircle{
+                id: planetsCircle
+                width: signCircle.width-r.w*2
+                height: width
+                anchors.centerIn: parent
+                //showBorder: true
+            }
+            //                PlanetsCircleBack{
+            //                    id:planetsCircleBack
+            //                    height: width
+            //                    anchors.centerIn: parent
+            //                    visible: app.ev
+            //                }
+            //                ZoolPlanetsCircleBack{
+            //                    id:planetsCircleBack
+            //                    height: width
+            //                    anchors.centerIn: parent
+            //                    visible: app.ev
+            //                }
+            //                EclipseCircle{
+            //                    id: eclipseCircle
+            //                    width: housesCircle.width
+            //                    height: width
+            //                }
+            //                Rectangle{
+            //                    width: 3
+            //                    height: r.height*2
+            //                    color: apps.fontColor
+            //                    anchors.centerIn: parent
+            //                    visible: app.showCenterLine
+            //                }
+            //                Rectangle{
+            //                    width: r.height*2
+            //                    height: 3
+            //                    color: apps.fontColor
+            //                    anchors.centerIn: parent
+            //                    visible: app.showCenterLine
+            //                }
+            //ZoolAutoPanZoom{id:zoolAutoPanZoom}
+        }
+    }
 
 
 
+
+    //Rect Central
     Rectangle{
-        //Este esta en el centro
-        visible: false
-        opacity: 0.5
-        width: r.fs*2//planetsCircle.children[0].fs*0.85+4
+        width: vars.fs
         height: width
-        color: 'red'
-        radius: width*0.5
-        border.width: 2
-        border.color: 'white'
+        color: 'yellow'
         anchors.centerIn: parent
     }
 
-
-    function load(j){
-        console.log('Ejecutando SweGraphic.load()...')
-        let vd=j.params.d
-        let vm=j.params.m
-        let va=j.params.a
-        let vh=j.params.h
-        let vmin=j.params.min
-        let vgmt=j.params.gmt
-        let vlon=j.params.lon
-        let vlat=j.params.lat
-        let d = new Date(Date.now())
-        let ms=d.getTime()
-        let hsys=j.params.hsys?j.params.hsys:apps.currentHsys
-        if(j.params.hsys)hsys=j.params.hsys
-        vars.tipo=j.params.tipo
-        vars.cParams=JSON.stringify(j)
-    }
-    function loadBack(j){
-        let params
-        params=j.params
-
-        let vd=params.d
-        let vm=params.m
-        let va=params.a
-        let vh=params.h
-        let vmin=params.min
-        let vgmt=params.gmt
-        let vlon=params.lon
-        let vlat=params.lat
-        let d = new Date(Date.now())
-        let ms=d.getTime()
-        let hsys=apps.currentHsys
-        app.currentFechaBack=vd+'/'+vm+'/'+va
-        if(params.hsys)hsys=params.hsys
-
-        app.mod=j.params.tipo
-        app.fileDataBack=JSON.stringify(j)
-    }
-    function loadSweJson(json){
+    function loadSweJson(json, jsonPromesaParams){
+        vars.tipo=jsonPromesaParams.params.tipo
+        vars.cParams=JSON.stringify(jsonPromesaParams)
         var scorrJson=json.replace(/\n/g, '')
 
         //aspsCircle.clear()
@@ -83,17 +263,8 @@ Rectangle {
         r.currentPlanetIndexBack=-1
         r.currentHouseIndex=-1
         r.currentHouseIndexBack=-1
-        //app.currentPlanetIndex=-1
-        //app.currentHouseIndex=-1
 
-        //console.log('json: '+json)
-        var j
-        //try {
-
-        //log.l(scorrJson)
-        //log.visible=true
-        //log.width=xApp.width*0.4
-        j=JSON.parse(scorrJson)
+        let j=JSON.parse(scorrJson)
 
         //r.aTexts[] reset
         let nATexts=[]
@@ -103,10 +274,13 @@ Rectangle {
         r.aTexts=nATexts
 
         r.currentJson=j
-        //signCircle.rot=parseFloat(j.ph.h1.gdec).toFixed(2)
+
+        signCircle.rot=parseFloat(j.ph.h1.gdec).toFixed(2)
+        housesCircle.loadHouses(j)
+        planetsCircle.loadJson(j)
+
         //ascMcCircle.loadJson(j)
-        //housesCircle.loadHouses(j)
-        //planetsCircle.loadJson(j)
+
         //panelAspects.load(j)
         //zoolDataBodies.loadJson(j)
         //aspsCircle.load(j)
@@ -114,14 +288,14 @@ Rectangle {
         //eclipseCircle.arrayWg=housesCircle.arrayWg
         //eclipseCircle.isEclipse=-1
         //r.v=true
-//        let sabianos=zsm.getPanel('ZoolSabianos')
-//        sabianos.numSign=app.currentJson.ph.h1.is
-//        sabianos.numDegree=parseInt(app.currentJson.ph.h1.rsgdeg - 1)
-//        sabianos.loadData()
-//        if(apps.sabianosAutoShow){
-//            //panelSabianos.state='show'
-//            zsm.currentIndex=1
-//        }
+        //        let sabianos=zsm.getPanel('ZoolSabianos')
+        //        sabianos.numSign=app.currentJson.ph.h1.is
+        //        sabianos.numDegree=parseInt(app.currentJson.ph.h1.rsgdeg - 1)
+        //        sabianos.loadData()
+        //        if(apps.sabianosAutoShow){
+        //            //panelSabianos.state='show'
+        //            zsm.currentIndex=1
+        //        }
     }
     function loadSweJsonBack(json){
         //console.log('JSON::: '+json)

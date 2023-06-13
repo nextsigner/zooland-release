@@ -93,10 +93,10 @@ Rectangle {
             height: r.width
             anchors.centerIn: parent
             color: 'blue'
-            rotation: -5
+            rotation: -2.5
             Image {
                 id: iconoSigno
-                source: "../../resources/imgs/signos/"+parseInt(r.n - 1)+".svg"
+                source: "../../../resources/imgs/signos/"+parseInt(r.n - 1)+".svg"
                 //property int w: xImg.width*0.75
                 width: r.w
                 height: width

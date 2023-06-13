@@ -67,14 +67,15 @@ Item{
     //--> Get Zooland Data
     QtObject{
         id: objGetZoolandData
+        property var promesaParams
         function setData(data, isData){
             if(vars.dev){
-                zpn.addNot('objGetZoolandData.setData.data: '+data, false, 5000)
+                zpn.addNot('objGetZoolandData.setData.data: '+data, true, 1000)
             }
             if(isData){
                 let j=JSON.parse(data)
                 if(j.isData){
-                    sweg.loadSweJson(JSON.stringify(j.data, null, 2))
+                    sweg.loadSweJson(JSON.stringify(j.data, null, 2), objGetZoolandData.promesaParams)
                     //zoolDataView.load(app.fileData)
                     //log.lv(JSON.stringify(j.data, null, 2))
                 }else{
@@ -87,8 +88,7 @@ Item{
         }
     }
     function getZoolandData(j){
-        sweg.load(j)
-        vars.cParams=JSON.stringify(j)
+        objGetZoolandData.promesaParams=j
         let t=j.params.tipo
         let hsys=j.params.hsys
         let n=j.params.n.replace(/ /g, '%20')
@@ -123,7 +123,7 @@ Item{
         const encoded = encodeURI(url);
         vars.j.getRD(""+url+"", objGetZoolandData)
         if(vars.dev){
-            zpn.addNot('Url objGetZoolandData: '+url, false, 5000)
+            zpn.addNot('Url objGetZoolandData: '+url, true, 1000)
         }
         console.log('Url: '+url)
     }
@@ -238,32 +238,8 @@ Item{
         loadParamsFromString(sj)
     }
     function loadParamsFromString(s){        {
-                let j=JSON.parse(s)
-                //ñalskdfjñla
-                //log.lv('getZoolandData(j)...')
-                let aL=[]
-                aL.push(''+j.params.n)
-                aL.push(''+j.params.d+'/'+j.params.m+'/'+j.params.a)
-                aL.push(''+j.params.h+':'+j.params.min+'hs')
-                aL.push('<b>GMT:</b> '+j.params.gmt)
-                aL.push('<b>Ubicación:</b> '+j.params.ciudad)
-                aL.push('<b>Lat:</b> '+parseFloat(j.params.lat).toFixed(2))
-                aL.push('<b>Lon:</b> '+parseFloat(j.params.lon).toFixed(2))
-                aL.push('<b>Alt:</b> '+j.params.alt)
-                let tipo=j.tipo
-                let strSep=''
-                if(tipo==='vn'){
-                    strSep='Carta Natal'
-                }
-                if(tipo==='sin'){
-                    strSep='Sinastría'
-                }
-                if(tipo==='rs')strSep='Rev. Solar '+va
-                if(tipo==='trans')strSep='Tránsitos'
-                if(tipo==='dirprim')strSep='Dir. Primarias'
-                zoolDataView.setDataView(strSep, aL, [])
-                getZoolandData(j)
-            }
+            getZoolandData(JSON.parse(s))
+        }
     }
 }
 
