@@ -3,7 +3,7 @@ import QtQuick.Controls 2.0
 
 import ZoolandBodies.ZoolPlanetsCircle 1.1
 import ZoolandBodies.ZoolPlanetsCircleBack 1.4
-import ZoolHousesCircle 1.2
+import ZoolandBodies.ZoolHousesCircle 1.2
 import ZoolHousesCircleBack 1.2
 
 //import ZoolBodies.ZoolAspectsView 1.0
@@ -26,13 +26,15 @@ Rectangle {
     property alias objHousesCircle: housesCircle
 
     //Variables de Houses y Planets
-    property int pz: 80
+    property int pz: 60
     property int currentPlanetIndex: -1
     property int currentPlanetIndexBack: -1
     property int currentHouseIndex: -1
     property int currentHouseIndexBack: -1
     property var currentJson: ''
     property var currentJsonBack: ''
+    property int waps: pz*3
+
 
     //Variables
     property var listCotasShowing: []
@@ -170,11 +172,20 @@ Rectangle {
                 widthAspCircle: aspsCircle.width
                 visible: app.ev
             }*/
-            ZoolHousesCircle{//rotation: parseInt(signCircle.rot);//z:signCircle.z+1;
+            ZoolHousesCircle{
                 id: housesCircle
-                width: r.width*2//signCircle.width
+                width: r.width*2
                 height: width
                 anchors.centerIn: signCircle
+                z:9999
+                Rectangle{
+                    width: parent.width-(r.border.width*2)
+                    height: width
+                    radius: width*0.5
+                    anchors.centerIn: parent
+                    color: 'red'
+                    visible: false
+                }
             }
             //                AxisCircle{id: axisCircle}
             //                NumberLines{}

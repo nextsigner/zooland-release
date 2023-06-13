@@ -1,8 +1,8 @@
-import QtQuick 2.12
+import QtQuick 2.0
 import ZoolText 1.0
 import "../"
 
-import ZoolBodies.ZoolArc 1.0
+import ZoolandBodies.ZoolArc 1.0
 
 Item {
     id: r
@@ -32,7 +32,7 @@ Item {
         //width: sweg.fs*2
         //width: !housesCircleBack.visible?sweg.fs*2:sweg.fs*2+housesCircleBack.extraWidth+sweg.fs*5
         //width: 500
-        height: 1
+        height: 100
         color: apps.houseLineColor
         border.color: 'red'
         border.width: 10
@@ -42,28 +42,7 @@ Item {
         //anchors.leftMargin: !housesCircleBack.visible?0-sweg.fs*2:0-sweg.fs*2-housesCircleBack.extraWidth-sweg.fs*2.5
         visible: c===0
 
-//        Canvas {
-//            id:canvasSen
-//            width: sweg.fs*0.5
-//            height: width
-//            anchors.verticalCenter: parent.verticalCenter
-//            anchors.left: parent.left
-//            antialiasing: true
-//            onPaint:{
-//                var ctx = canvasSen.getContext('2d');
-//                //ctx.clearRect(0, 0, canvas.width, canvas.height);
-//                ctx.beginPath();
-//                ctx.moveTo(0, canvasSen.width*0.5);
-//                ctx.lineTo(canvasSen.width, 0);
-//                ctx.lineTo(canvasSen.width, canvasSen.width);
-//                ctx.lineTo(0, canvasSen.width*0.5);
-//                ctx.strokeStyle = canvas.parent.color
-//                ctx.lineWidth = canvasSen.parent.height;
-//                ctx.fillStyle = canvasSen.parent.color
-//                ctx.fill();
-//                ctx.stroke();
-//            }
-//        }
+
 
         Rectangle{
             width: sweg.fs*2.2
@@ -89,9 +68,9 @@ Item {
 
     ZoolArc{
         id: zsa
-        width: r.width-vars.fs*8
+        width: r.width
         height: width
-        w: sweg.width*0.25//-aspsCircle.width
+        w: sweg.waps//width*0.5//-aspsCircle.width
         n: r.n//index===0?1:(index===1?9:5)
         c:r.n
         gr: r.gr//xSignArcs.rotation
@@ -167,7 +146,7 @@ Item {
         }
         Rectangle{
             id: circleBot
-            width: vars.fs*3
+            width: sweg.pz
             height: width
             radius: width*0.5
             //color: apps.enableBackgroundColor?apps.fontColor:'white'

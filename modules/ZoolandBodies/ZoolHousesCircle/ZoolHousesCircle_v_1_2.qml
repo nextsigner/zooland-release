@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import ZoolHousesCircle.ZoolHouseArc 1.3
+import ZoolandBodies.ZoolHousesCircle.ZoolHouseArc 1.3
 Item {
     id: r
     //width: signCircle.width
@@ -22,30 +22,30 @@ Item {
     }
     Item{
         id: xHomeArcs
-        width: r.width//apps.fs*60
+        width: 2//r.width//apps.fs*60
         height: width
         anchors.centerIn: parent
         //anchors.fill: r
         Item{
             id:xArcs
-            width: sweg.width
+            width: 2//sweg.width-sweg.pz*2
             height: width
             anchors.centerIn: parent
             Repeater{
                 model: 12
                 ZoolHouseArc{
                     objectName: 'HomeArc'+index+'_'+r.extraObjectName
-                    width: r.width
+                    width: r.width//-sweg.pz*2
                     n: index+1
                     c: index
-                    opacity: r.houseShowSelectadIndex === -1 ? 1.0:(r.houseShowSelectadIndex === index?1.0:0.35)
-                    //                    Rectangle{
-                    //                        anchors.fill: parent
-                    //                        radius: width*0.5
-                    //                        color: 'transparent'
-                    //                        border.width: 10
-                    //                        border.color: 'green'
-                    //                    }
+                    //opacity: r.houseShowSelectadIndex === -1 ? 1.0:(r.houseShowSelectadIndex === index?1.0:0.35)
+//                    Rectangle{
+//                        anchors.fill: parent
+//                        radius: width*0.5
+//                        color: 'transparent'
+//                        border.width: 10
+//                        border.color: 'green'
+//                    }
                 }
             }
         }
@@ -91,7 +91,6 @@ Item {
             }
             nh=i
             let h=xArcs.children[i]
-            console.log('HouseArc.objectName: '+h.objectName)
             h.op=0.0
             let sh1=''
             let sh2=''

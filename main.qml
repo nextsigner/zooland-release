@@ -14,7 +14,7 @@ import comps.ZoolAppSettings 1.0
 import ZoolandVars 1.0
 
 //Objetos GUI
-import ZoolDataView 1.0
+import ZoolDataView 1.1
 import ZoolandBodies 1.1
 
 //Comps GUI
@@ -28,8 +28,10 @@ ZoolMainWindow{
     id: app
     visible: true
     visibility: "Maximized"
-    width: Qt.platform.os==='android'?1920:Screen.width
-    height: Qt.platform.os==='android'?1080:Screen.height
+    //width: Qt.platform.os==='android'?1920:Screen.width
+    //height: Qt.platform.os==='android'?1080:Screen.height
+    width: Screen.width
+    height: Screen.height
     title: 'Zooland'
 
     Unik{id: unik}
@@ -38,27 +40,18 @@ ZoolMainWindow{
 
     Item{
         id: xApp
-        anchors.fill: parent
+        width: app.width-vars.xAppMargin*2
+        height: app.height-vars.xAppMargin*2
+        anchors.centerIn: parent
         Column{
+            width: parent.width
             ZoolDataView{id: zoolDataView}
             Row{
                 height: xApp.height-zoolDataView.height
                 ZRect{
                     id: xLatIzq
                     width: xApp.width*0.2
-                    height: parent.height
-                    Text{
-                        id: txtUCommit
-                        width: parent.width-10
-                        color: apps.fontColor
-                        font.pixelSize: 20
-                        wrapMode: Text.WordWrap
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.bottom: parent.bottom
-                        Component.onCompleted: {
-                            zpn.addNot(unik.getFile('ucommit.txt'), true, 15000)
-                        }
-                    }
+                    height: parent.height                    
                 }
                 ZRect{
                     id: xMed
@@ -70,6 +63,7 @@ ZoolMainWindow{
                     id: xLatDer
                     width: xApp.width*0.2
                     height: parent.height
+                    clip:true
                     ZoolPanelNotifications{id: zpn}
                 }
             }
@@ -79,5 +73,20 @@ ZoolMainWindow{
     Component.onCompleted: {
         unik.clearDir(unik.getPath(2))
         if(Qt.application.arguments.indexOf('-dev')>=0)vars.dev=true
+        zpn.addNot(unik.getFile('ucommit.txt'), true, 15000)
+        let sw=Screen.width
+        let sh=Screen.height
+        zpn.addNot('Resolución de pantalla: '+sw+'x'+sh, true, 10000)
+        if(sw===960 && sh===540){
+            //Resolución 960x540 de ChromeCast HD
+            zpn.addNot('Ejecutando en ChromeCast', true, 10000)
+            sweg.width=vars.fs*24
+            sweg.pz=48
+        }else{
+            //Esta configuracion va bien 1920x1080
+            zpn.addNot('Ejecutando fuera de ChromeCast', true, 10000)
+            sweg.width=vars.fs*46
+            sweg.pz=60
+        }
     }
 }
