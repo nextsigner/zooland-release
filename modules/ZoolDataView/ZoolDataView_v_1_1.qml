@@ -4,13 +4,13 @@ import QtQuick.Controls 2.12
 Rectangle {
     id: r
     width: parent.width
-    height: app.fs*1.5
+    height: vars.fs*1.5
     color: apps.backgroundColor
     border.width: 1
     border.color: apps.fontColor
     property string stringMiddleSeparator: 'VN'
     property url uItemGrabber
-    property int fs: app.fs*0.5
+    property int fs: vars.fs*0.5
     property var atLeft: []
     property var atRight: []
     property string uExtIdLoaded: ''
@@ -21,12 +21,12 @@ Rectangle {
         //setDataView(r.stringMiddleSeparator, r.atLeft, r.atRight)
     }
     Rectangle{
-        width: txtLoading.contentWidth+app.fs*0.3
-        height: txtLoading.contentHeight+app.fs*0.3
+        width: txtLoading.contentWidth+vars.fs*0.3
+        height: txtLoading.contentHeight+vars.fs*0.3
         color: apps.backgroundColor
         border.width: 2
         border.color: apps.fontColor
-        radius: app.fs*0.1
+        radius: vars.fs*0.1
         anchors.centerIn: parent
         visible: !row.visible
         Text{
@@ -57,23 +57,23 @@ Rectangle {
     Row{
         id: row
         width: rowDataLeft.width+xSep.width+rowDataRight.width+spacing*2
-        spacing: app.fs*0.15
+        spacing: vars.fs*0.15
         anchors.centerIn: parent
         visible: !tResizeFs.running
         Rectangle{
             id: circuloSave
-            width: app.fs*0.5
+            width: vars.fs*0.5
             height: width
             radius: width*0.5
-            color: app.fileData===app.currentData?'gray':'red'
+            color: vars.fileData===vars.currentData?'gray':'red'
             border.width: 2
             border.color: apps.fontColor
             anchors.verticalCenter: parent.verticalCenter
             //y:(parent.height-height)/2
-            visible:  !app.ev
+            visible:  !vars.ev
             MouseArea{
                 anchors.fill: parent
-                enabled: app.titleData!==app.currentData
+                //enabled: vars.titleData!==app.currentData
                 onClicked: {
                     app.j.saveJson()
                 }
@@ -81,13 +81,13 @@ Rectangle {
         }
         Row{
             id: rowDataLeft
-            spacing: app.fs*0.15
+            spacing: vars.fs*0.15
             anchors.verticalCenter: parent.verticalCenter
         }
         Item{
             id: xSep
-            width: txtSep.contentWidth+app.fs*0.3+border.width
-            height: txtSep.contentHeight+app.fs*0.3+border.width
+            width: txtSep.contentWidth+vars.fs*0.3+border.width
+            height: txtSep.contentHeight+vars.fs*0.3+border.width
             anchors.verticalCenter: parent.verticalCenter
             visible: r.atRight.length>0
             z:-100
@@ -95,12 +95,12 @@ Rectangle {
                 id: bgSep
                 anchors.fill: parent
                 color: apps.fontColor
-                border.width: app.backIsSaved?2:6
+                border.width: 1//vars.backIsSaved?2:6
                 border.color: apps.backgroundColor
-                radius: app.fs*0.1
+                radius: vars.fs*0.1
                 z:10
                 SequentialAnimation on border.color {
-                    running: !app.backIsSaved
+                    running: false//!app.backIsSaved
                     loops: Animation.Infinite
                     ColorAnimation {
                         from: apps.fontColor
@@ -131,17 +131,17 @@ Rectangle {
                 color: apps.fontColor
                 border.width: 1
                 border.color: bgSep.border.color
-                radius: app.fs*0.1
+                radius: vars.fs*0.1
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.bottom
                 z: txtSep.z+1
-                visible: !app.backIsSaved
+                //visible: !app.backIsSaved
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
                         let isSaved=zfdm.saveExtToJsonFile(r.uExtIdLoaded)
-                        app.backIsSaved=isSaved
-                        if(app.dev)log.lv('Guardado desde zoolDataView: '+app.backIsSaved)
+                        //app.backIsSaved=isSaved
+                        //if(vars.dev)log.lv('Guardado desde zoolDataView: '+app.backIsSaved)
                     }
                 }
                 Text{
@@ -158,7 +158,7 @@ Rectangle {
         }
         Row{
             id: rowDataRight
-            spacing: app.fs*0.15
+            spacing: vars.fs*0.15
             anchors.verticalCenter: parent.verticalCenter
         }
     }
@@ -167,17 +167,17 @@ Rectangle {
         border.width: 4
         border.color: 'red'
         color: 'transparent'
-        visible: app.dev
+        visible: vars.dev
     }
     Component{
         id: compCellData
         Rectangle{
-            width: txtRow.contentWidth+app.fs*0.3
-            height: txtRow.contentHeight+app.fs*0.3
+            width: txtRow.contentWidth+vars.fs*0.3
+            height: txtRow.contentHeight+vars.fs*0.3
             color: apps.backgroundColor
             border.width: 2//modelData==='@'?0:1
             border.color: apps.fontColor
-            radius: app.fs*0.1
+            radius: vars.fs*0.1
             anchors.verticalCenter: parent.verticalCenter
             property string txtData: 'txtData'
 
