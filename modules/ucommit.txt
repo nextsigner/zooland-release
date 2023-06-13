@@ -1,1 +1,1 @@
-Se logra mostrar planetas en ChromeCast
+Se elimina ZoolBodies
