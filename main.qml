@@ -15,7 +15,7 @@ import ZoolandVars 1.0
 
 //Objetos GUI
 import ZoolDataView 1.0
-import ZoolandBodies 1.0
+import ZoolandBodies 1.1
 
 //Comps GUI
 import comps.ZRect 1.0
