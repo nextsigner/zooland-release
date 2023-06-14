@@ -33,7 +33,19 @@ QtObject{
     property real currentGradoSolar
     property real currentMinutoSolar
     property real currentSegundoSolar
+    property var currentDate
+    property var currentDateBack
+    property string currentFecha: ''
     //<-- Variables SWEG
+
+    //--> Variables de Estado
+    property bool capturing: false
+
+    //<-- Variables de Estado
+
+    //--> Variables de Numerología
+    property var arbolGenealogico: ['Raíz', 'Portal', 'Ala', 'Integrador']
+    //<-- Variables de Numerología
 
     onCParamsChanged:{
         let j=JSON.parse(cParams)

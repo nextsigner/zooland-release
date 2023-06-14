@@ -9,7 +9,7 @@ Rectangle{
     border.color: apps.backgroundColor
     color: apps.fontColor
     radius: r.fs*0.25
-    property int fs: app.fs*6
+    property int fs: vars.fs*6
     property bool isBack: false
 
     property int nd: 0
@@ -39,13 +39,13 @@ Rectangle{
     MouseArea{
         anchors.fill: parent
         onClicked: {
-            zsm.getPanel('ZoolNumPit').currentDate=!r.isBack?app.currentDate:app.currentDateBack
-            zsm.getPanel('ZoolNumPit').setCurrentDate(!r.isBack?app.currentDate:app.currentDateBack)
-            zsm.getPanel('ZoolNumPit').setCurrentNombre(!r.isBack?app.currentNom:app.currentNomBack)
-            zsm.getPanel('ZoolNumPit').currentAG=app.arbolGenealogico[r.ag]
-            zsm.getPanel('ZoolNumPit').currentCargaAG=zsm.getPanel('ZoolNumPit').aCargasAG[r.ag]
-            let ci=zsm.getPanelIndex('ZoolNumPit')
-            zsm.currentIndex=ci
+//            zsm.getPanel('ZoolNumPit').currentDate=!r.isBack?vars.currentDate:vars.currentDateBack
+//            zsm.getPanel('ZoolNumPit').setCurrentDate(!r.isBack?app.currentDate:app.currentDateBack)
+//            zsm.getPanel('ZoolNumPit').setCurrentNombre(!r.isBack?app.currentNom:app.currentNomBack)
+//            zsm.getPanel('ZoolNumPit').currentAG=app.arbolGenealogico[r.ag]
+//            zsm.getPanel('ZoolNumPit').currentCargaAG=zsm.getPanel('ZoolNumPit').aCargasAG[r.ag]
+//            let ci=zsm.getPanelIndex('ZoolNumPit')
+//            zsm.currentIndex=ci
         }
     }
     Row{
@@ -56,11 +56,11 @@ Rectangle{
         ZoolText{id: zt3; text: '<b>'+r.arbolGen+'</b>'; color: apps.backgroundColor; font.pixelSize: r.fs}
     }
     function updateNumPit(){
-        let d = !r.isBack?app.j.getNums(app.currentFecha):app.j.getNums(app.currentFechaBack)
+        let d = !r.isBack?vars.j.getNums(vars.currentFecha):vars.j.getNums(vars.currentFechaBack)
         if(d[0]===-1 && d[1]===-1 && d[2]===-1)return
         r.nd=d[0]
         r.ns=d[1]
         r.ag=parseInt(d[2])
-        r.arbolGen=app.arbolGenealogico[parseInt(d[2])][0]
+        r.arbolGen=vars.arbolGenealogico[parseInt(d[2])][0]
     }
 }

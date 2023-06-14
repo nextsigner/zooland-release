@@ -16,7 +16,7 @@ ApplicationWindow {
             let comp=Qt.createComponent("XPlanets.qml")
             let obj=comp.createObject(itemXPlanets)
             if(obj){
-                app.sspEnabled=true
+                vars.sspEnabled=true
             }
         }
         function hideSS(){
@@ -48,34 +48,34 @@ ApplicationWindow {
     Shortcut{
         sequence: 'Enter'
         onActivated: {
-            if(app.ci){
-                app.ci.toEnter()
+            if(vars.ci){
+                vars.ci.toEnter()
             }
         }
     }
     Shortcut{
         sequence: 'Up'
         onActivated: {
-            if(app.ci){
-                app.ci.toUp()
+            if(vars.ci){
+                vars.ci.toUp()
             }
-//            if(app.currentPlanetIndex>0){
-//                app.currentPlanetIndex--
+//            if(vars.currentPlanetIndex>0){
+//                vars.currentPlanetIndex--
 //            }else{
-//                app.currentPlanetIndex=21
+//                vars.currentPlanetIndex=21
 //            }
         }
     }
     Shortcut{
         sequence: 'Down'
         onActivated: {
-            if(app.ci){
-                app.ci.toDown()
+            if(vars.ci){
+                vars.ci.toDown()
             }
-//            if(app.currentPlanetIndex<21){
-//                app.currentPlanetIndex++
+//            if(vars.currentPlanetIndex<21){
+//                vars.currentPlanetIndex++
 //            }else{
-//                app.currentPlanetIndex=0
+//                vars.currentPlanetIndex=0
 //            }
         }
     }
@@ -86,25 +86,25 @@ ApplicationWindow {
                 log.visible=false
                 return
             }
-            if(app.ci && app.ci.objectName==='list'){
-                app.ci=zoolDataBodies
+            if(vars.ci && vars.ci.objectName==='list'){
+                vars.ci=zoolDataBodies
                 return
-            }else if(app.ci && app.ci.objectName==='zoolDataBodies'){
+            }else if(vars.ci && vars.ci.objectName==='zoolDataBodies'){
                 zbtb.currentIndex=zbtb.maximunIndex
-                app.ci=zbtb
+                vars.ci=zbtb
                 return
-            }else if(app.ci && app.ci.objectName==='bottomBar'){
+            }else if(vars.ci && vars.ci.objectName==='bottomBar'){
                 if(zbtb.currentIndex === 0){
-                    app.ci=zsm.getPanel('ZoolRemoteParamsList')
+                    vars.ci=zsm.getPanel('ZoolRemoteParamsList')
                     return
                 }
-                //app.ci=zoolDataBodies
+                //vars.ci=zoolDataBodies
                 //return
             }else{
                 zbtb.currentIndex=zbtb.maximunIndex
-                app.ci=zbtb
+                vars.ci=zbtb
             }
-            app.ci.toLeft()
+            vars.ci.toLeft()
 
             //Qt.quit()
         }
@@ -113,27 +113,27 @@ ApplicationWindow {
         sequence: 'Right'
         property int v: 0
         onActivated: {
-            if(app.ci && app.ci.objectName==='list'){
+            if(vars.ci && vars.ci.objectName==='list'){
                 zbtb.currentIndex=0
-                app.ci=zbtb
+                vars.ci=zbtb
                 return
-            }else if(app.ci && app.ci.objectName==='bottomBar'){
+            }else if(vars.ci && vars.ci.objectName==='bottomBar'){
                 if(zbtb.maximunIndex === zbtb.currentIndex){
-                    app.ci=zoolDataBodies
+                    vars.ci=zoolDataBodies
                     return
                 }
-                //app.ci=zoolDataBodies
+                //vars.ci=zoolDataBodies
                 //return
             }else{
-                app.ci=zsm.getPanel('ZoolRemoteParamsList')
+                vars.ci=zsm.getPanel('ZoolRemoteParamsList')
             }
-            app.ci.toRight()
-            /*if(v<app.aParams.length-1){
+            vars.ci.toRight()
+            /*if(v<vars.aParams.length-1){
                 v++
             }else{
                 v=0
             }
-            zsfdm.loadParamsFromString(app.aParams[v])*/
+            zsfdm.loadParamsFromString(vars.aParams[v])*/
         }
     }
 

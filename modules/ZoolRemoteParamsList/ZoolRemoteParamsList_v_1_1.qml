@@ -13,14 +13,14 @@ Rectangle {
 
     property string prevZFocus: ''
 
-    visible: zsm.aPanelsIds.indexOf(app.j.qmltypeof(r))===zsm.currentIndex
+    visible: zsm.aPanelsIds.indexOf(vars.j.qmltypeof(r))===zsm.currentIndex
     onFocusChanged: {
         if(!focus && !zrol.focus)zrol.visible=false
     }
     Zbg{}
     ListView{
         id: lv
-        spacing: app.fs*0.1
+        spacing: vars.fs*0.1
         anchors.fill: parent
         delegate: compItem
         model: lm
@@ -38,12 +38,12 @@ Rectangle {
         id: compItem
         Rectangle{
             id: xItem
-            width: lv.width-app.fs*0.5
+            width: lv.width-vars.fs*0.5
             height: txt1.contentHeight
             color: selected?apps.fontColor:apps.backgroundColor
             border.width: 1
             border.color: !selected?apps.fontColor:apps.backgroundColor
-            radius: app.fs*0.15
+            radius: vars.fs*0.15
             anchors.horizontalCenter: parent.horizontalCenter
             property bool selected: lv.currentIndex===index
             MouseArea{
@@ -56,8 +56,8 @@ Rectangle {
             Text{
                 id: txt1
                 text: JSON.parse(JSON.stringify(params)).params.n
-                width: parent.width-app.fs
-                font.pixelSize: app.fs
+                width: parent.width-vars.fs
+                font.pixelSize: vars.fs
                 wrapMode: Text.WordWrap
                 horizontalAlignment: Text.AlignHCenter
                 anchors.centerIn: parent
@@ -72,7 +72,7 @@ Rectangle {
         border.color: 'red'
         visible: false
         Timer{
-            running: app.ci===r
+            running: vars.ci===r
             repeat: true
             interval: 500
             onRunningChanged: {
@@ -101,10 +101,10 @@ Rectangle {
         lm.append(lm.addItem(p))
         p=JSON.parse('{"params":{"n":"Ahora"}}')
         lm.append(lm.addItem(p))
-        zsm.aPanelsIds.push(app.j.qmltypeof(r))
+        zsm.aPanelsIds.push(vars.j.qmltypeof(r))
         zsm.aPanelesTits.push('ZoolRemoteParamsList')
         //zsfdm.getZoolandParamsList()
-        app.ci=r
+        vars.ci=r
         //toEnter()
     }
     function load(j){
@@ -145,8 +145,8 @@ Rectangle {
             return
         }
         if(lv.currentIndex===1){
-            //console.log(app.j.getParamsNow(0))
-            zsfdm.loadParamsFromString(JSON.stringify(app.j.getParamsNow(apps.userLat, apps.userLon, apps.userAlt, apps.userGmt, apps.userCity)))
+            //console.log(vars.j.getParamsNow(0))
+            zsfdm.loadParamsFromString(JSON.stringify(vars.j.getParamsNow(apps.userLat, apps.userLon, apps.userAlt, apps.userGmt, apps.userCity)))
             return
         }
         if(lv.currentIndex>1){

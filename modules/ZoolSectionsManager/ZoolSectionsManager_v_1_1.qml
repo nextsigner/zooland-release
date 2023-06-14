@@ -31,14 +31,14 @@ Item{
         Rectangle{
             id: xPanelesTits
             width: xLatIzq.width
-            height: r.aPanelesTits[zsm.currentIndex]?app.fs*0.6:0
+            height: r.aPanelesTits[zsm.currentIndex]?vars.fs*0.6:0
             color: apps.fontColor
             anchors.horizontalCenter: parent.horizontalCenter
 
             Text{
                 text: parseInt(zsm.currentIndex + 1)+': '+r.aPanelesTits[zsm.currentIndex]
                 color: apps.backgroundColor
-                font.pixelSize: app.fs*0.5
+                font.pixelSize: vars.fs*0.5
                 anchors.centerIn: parent
             }
         }
@@ -70,7 +70,7 @@ Item{
                 anchors.centerIn: parent
                 onCurrentIndexChanged: zsm.currentIndex=currentIndex
                 delegate: Rectangle{
-                    width: app.fs*0.5
+                    width: vars.fs*0.5
                     height: width
                     radius: width / 2
                     color: apps.fontColor
@@ -144,8 +144,8 @@ Item{
         let obj
         for(var i=0;i<xPanels.children.length;i++){
             let o=xPanels.children[i].children[0]
-            //if(app.dev)log.lv('getPanel( '+typeOfSection+' ): ' +app.j.qmltypeof(o))
-            if(''+app.j.qmltypeof(o)===''+typeOfSection){
+            //if(vars.dev)log.lv('getPanel( '+typeOfSection+' ): ' +vars.j.qmltypeof(o))
+            if(''+vars.j.qmltypeof(o)===''+typeOfSection){
                 obj=o
                 break
             }
@@ -156,8 +156,8 @@ Item{
         //let newCi=-1
         for(var i=0;i<xPanels.children.length;i++){
             let o=xPanels.children[i].children[0]
-            //if(app.dev)log.lv('getPanel( '+typeOfSection+' ): ' +app.j.qmltypeof(o))
-            if(''+app.j.qmltypeof(o)===''+typeOfSection){
+            //if(vars.dev)log.lv('getPanel( '+typeOfSection+' ): ' +vars.j.qmltypeof(o))
+            if(''+vars.j.qmltypeof(o)===''+typeOfSection){
                 o.visible=true
                 //newCi=i
                 r.currentSectionFocused=o
@@ -172,10 +172,10 @@ Item{
         let obj
         for(var i=0;i<xPanels.children.length;i++){
             let o=xPanels.children[i].children[0]
-            if(app.dev)log.lv('getPanel( '+typeOfSection+' ): ' +app.j.qmltypeof(o))
-            if(''+app.j.qmltypeof(o)===''+typeOfSection){
+            if(vars.dev)log.lv('getPanel( '+typeOfSection+' ): ' +vars.j.qmltypeof(o))
+            if(''+vars.j.qmltypeof(o)===''+typeOfSection){
                 obj=o
-                ci=zsm.aPanelsIds.indexOf(app.j.qmltypeof(o))
+                ci=zsm.aPanelsIds.indexOf(vars.j.qmltypeof(o))
                 break
             }
         }

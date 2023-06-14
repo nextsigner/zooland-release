@@ -16,10 +16,12 @@ import ZoolandVars 1.0
 //Objetos GUI
 import ZoolDataView 1.1
 import ZoolandBodies 1.1
+import ZoolSectionsManager 1.1
 
 //Comps GUI
 import comps.ZRect 1.0
 import comps.ZoolPanelNotifications 1.0
+import ZoolLogView 1.0
 
 //Elementos
 import web.ZoolandServerFileDataManager 1.0
@@ -34,7 +36,17 @@ ZoolMainWindow{
     height: Screen.height
     title: 'Zooland'
 
-    Unik{id: unik}
+    Unik{
+        id: unik
+        onUkStdChanged: {
+            let std=ukStd
+            std=std.replace(/&quot;/g, '"')
+            log.lv(std)
+        }
+        Component.onCompleted: {
+            unik.setEngine(engine)
+        }
+    }
     ZoolAppSettings{id: apps}
     ZoolandVars{id: vars}
 
@@ -51,7 +63,8 @@ ZoolMainWindow{
                 ZRect{
                     id: xLatIzq
                     width: xApp.width*0.2
-                    height: parent.height                    
+                    height: parent.height
+                    ZoolSectionsManager{id: zsm}
                 }
                 ZRect{
                     id: xMed
@@ -68,6 +81,7 @@ ZoolMainWindow{
                 }
             }
         }
+        ZoolLogView{id: log}
     }
     ZoolandServerFileDataManager{id: zsfdm}
     Component.onCompleted: {

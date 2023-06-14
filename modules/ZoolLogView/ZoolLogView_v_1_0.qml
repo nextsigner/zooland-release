@@ -3,17 +3,13 @@ import QtQuick.Controls 2.0
 
 Rectangle{
     id: r
-    width: 300//xLatIzq.width
-    //height: xApp.height-(xApp.height-xBottomBar.y)-(xDataBar.state==='show'?xDataBar.height:0)
-    //height: xApp.height-(xApp.height-xBottomBar.y)-(zoolDataView.state==='show'?zoolDataView.height:0)
+    width: xLatIzq.width
     height: xApp.height-zoolDataView.height
     color: 'black'
     visible: apps.showLog
     border.width: 2
     border.color: 'white'
     clip: true
-    //y: xDataBar.state==='show'?xDataBar.height:0
-    //y: zoolDataView.state==='show'?zoolDataView.height:0
     anchors.bottom: parent.bottom
     property bool ww: true
     MouseArea{

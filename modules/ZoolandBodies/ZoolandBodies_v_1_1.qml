@@ -6,6 +6,8 @@ import ZoolandBodies.ZoolPlanetsCircleBack 1.4
 import ZoolandBodies.ZoolHousesCircle 1.2
 import ZoolHousesCircleBack 1.2
 
+import ZoolElementsView 1.0
+
 //import ZoolBodies.ZoolAspectsView 1.0
 //import ZoolBodies.ZoolAspectsViewBack 1.0
 
@@ -41,6 +43,7 @@ Rectangle {
     property var aTexts: []
     property int w: vars.fs
     property bool v: false
+    property bool enableAnZoomAndPos: false
 
     Rectangle {
         id: rect
@@ -248,7 +251,7 @@ Rectangle {
             //ZoolAutoPanZoom{id:zoolAutoPanZoom}
         }
     }
-
+    ZoolElementsView{id: zoolElementsView;parent: r.parent}
 
 
 
@@ -300,6 +303,7 @@ Rectangle {
     function loadSweJson(json, jsonPromesaParams){
         vars.tipo=jsonPromesaParams.params.tipo
         vars.cParams=JSON.stringify(jsonPromesaParams)
+        vars.currentFecha=jsonPromesaParams.params.d+'/'+jsonPromesaParams.params.m+'/'+jsonPromesaParams.params.a
         var scorrJson=json.replace(/\n/g, '')
 
         aspsCircle.clear()
@@ -332,7 +336,7 @@ Rectangle {
         //panelAspects.load(j)
         //zoolDataBodies.loadJson(j)
         aspsCircle.load(j)
-        //zoolElementsView.load(j, false)
+        zoolElementsView.load(j, false)
         //eclipseCircle.arrayWg=housesCircle.arrayWg
         //eclipseCircle.isEclipse=-1
         //r.v=true

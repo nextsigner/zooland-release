@@ -150,7 +150,7 @@ Item{
     }
     function getZoolandDataBack(j){
         sweg.loadBack(j)
-        app.fileDataBack=JSON.stringify(j)
+        vars.fileDataBack=JSON.stringify(j)
         let t=j.params.tipo
         let hsys=j.params.hsys
         let n=j.params.n.replace(/ /g, '%20')
@@ -196,14 +196,10 @@ Item{
     QtObject{
         id: setZoolandParamsList
         function setData(data, isData){
-            //Qt.quit()
-            if(app.dev){
-                //log.lv('setZoolandParamsList:\n'+JSON.stringify(JSON.parse(data), null, 2))
-                //console.log('setZoolandParamsList data: '+data)
-            }
             if(isData){
                 let j=JSON.parse(data)
                 //log.lv('setZoolandParamsLis(): '+JSON.stringify(j))
+                //zpn.addNot('sdadsa3333', false, 0)
                 zsm.getPanel('ZoolRemoteParamsList').load(j)
             }
         }
@@ -215,7 +211,8 @@ Item{
         url+='?adminId='+apps.zoolUser+'&r='+msReq
         const encoded = encodeURI(url);
         console.log('Url getZoolandParamsList: '+encoded)
-        app.j.getRD(""+encoded+"", setZoolandParamsList)
+        zpn.addNot('Url: '+url, false, 0)
+        vars.j.getRD(""+url+"", setZoolandParamsList)
     }
     //<-- Get Data Params List
 

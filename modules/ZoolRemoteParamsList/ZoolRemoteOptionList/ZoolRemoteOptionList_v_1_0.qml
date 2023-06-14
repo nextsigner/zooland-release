@@ -9,26 +9,26 @@ Rectangle{
     property alias n: txtNom.text
     onVisibleChanged: {
         if(visible){
-            app.ci=r
+            vars.ci=r
         }else{
-            app.ci=r.parent
+            vars.ci=r.parent
         }
     }
     Column{
         id: col
         Rectangle{
             id: xItemNom
-            width: lv.width-app.fs*0.5
+            width: lv.width-vars.fs*0.5
             height: txtNom.contentHeight
             color: apps.backgroundColor
             border.width: 1
             border.color: apps.fontColor
-            radius: app.fs*0.15
+            radius: vars.fs*0.15
             anchors.horizontalCenter: parent.horizontalCenter
             Text{
                 id: txtNom
-                width: parent.width-app.fs
-                font.pixelSize: app.fs
+                width: parent.width-vars.fs
+                font.pixelSize: vars.fs
                 wrapMode: Text.WordWrap
                 horizontalAlignment: Text.AlignHCenter
                 anchors.centerIn: parent
@@ -37,7 +37,7 @@ Rectangle{
         }
         ListView{
             id: lv
-            spacing: app.fs*0.1
+            spacing: vars.fs*0.1
             width: r.width
             height: r.height-xItemNom.height
             delegate: compItem
@@ -57,12 +57,12 @@ Rectangle{
         id: compItem
         Rectangle{
             id: xItem
-            width: lv.width-app.fs*0.5
+            width: lv.width-vars.fs*0.5
             height: txt1.contentHeight
             color: selected?apps.fontColor:apps.backgroundColor
             border.width: 1
             border.color: !selected?apps.fontColor:apps.backgroundColor
-            radius: app.fs*0.15
+            radius: vars.fs*0.15
             anchors.horizontalCenter: parent.horizontalCenter
             property bool selected: lv.currentIndex===index
             MouseArea{
@@ -75,8 +75,8 @@ Rectangle{
             Text{
                 id: txt1
                 //text: JSON.parse(JSON.stringify(params)).params.n
-                width: parent.width-app.fs
-                font.pixelSize: app.fs
+                width: parent.width-vars.fs
+                font.pixelSize: vars.fs
                 wrapMode: Text.WordWrap
                 horizontalAlignment: Text.AlignHCenter
                 anchors.centerIn: parent

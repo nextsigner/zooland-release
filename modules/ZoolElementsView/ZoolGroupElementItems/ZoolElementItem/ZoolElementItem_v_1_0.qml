@@ -7,7 +7,7 @@ Rectangle{
     height: r.fs*1.5
     border.width: 1
     border.color: apps.backgroundColor
-    color: app.signColors[numElement]
+    color: vars.signColors[numElement]
     radius: r.fs*0.25
     property int fs: app.fs*6
     property int numElement: 0
