@@ -41,7 +41,7 @@ Item{
 
     property bool isZoomAndPosSeted: false
     //property alias objOointerPlanet: pointerPlanet
-
+    onWidthChanged: tSetWaps.restart()
     onSelectedChanged: {
         if(selected)vars.uSon=''+vars.planetasRes[r.numAstro]+'_'+vars.objSignsNames[r.is]+'_'+objData.ih
         if(selected){
@@ -68,7 +68,7 @@ Item{
         height: 3
         anchors.centerIn: parent
         color: apps.fontColor
-        visible: vars.dev
+        visible: false//vars.dev
     }
     Rectangle{
         width: r.width*4
@@ -80,21 +80,12 @@ Item{
     }
     Rectangle{
         id: xIcon
-        //width: !selected?r.fs*0.85:r.fs*1.4
-        //width: !apps.xAsShowIcon||r.aIcons.indexOf(r.numAstro)<0?(!vars.ev?r.fs*0.85:r.fs*0.425):(!vars.ev?r.fs*2:r.fs)
-//        width:
-//            !apps.xAsShowIcon||r.aIcons.indexOf(r.numAstro)<0?
-//                (!vars.ev?r.fs*0.85:/*Tam glifo interior*/r.fs*0.85):
-//                (!vars.ev?r.fs*2:r.fs)
         width: sweg.pz
         height: width
         anchors.left: parent.left
-        //anchors.leftMargin: !r.selected?0:width*0.5
-        //anchors.horizontalCenterOffset: apps.xAsShowIcon?0-sweg.fs*0.5:0
         anchors.verticalCenter: parent.verticalCenter
         color: !apps.xAsShowIcon?(r.selected?apps.backgroundColor:'transparent'):'transparent'
         radius: width*0.5
-
 //        PointerPlanet{
 //            id: pointerPlanet
 //            is:r.is
@@ -113,7 +104,6 @@ Item{
 //                //setRot()
 //            }
 //        }
-
         MouseArea{
             id: maSig
             property int vClick: 0
@@ -345,6 +335,17 @@ Item{
         interval: 5000
         onTriggered: {
             r.isHovered=false
+        }
+    }
+    Timer{
+        id: tSetWaps
+        running: false
+        repeat: false
+        interval: 250
+        onTriggered: {
+            if(r.numAstro===vars.planetasRes.length-1){
+                sweg.setWaps()
+            }
         }
     }
     function rot(d){

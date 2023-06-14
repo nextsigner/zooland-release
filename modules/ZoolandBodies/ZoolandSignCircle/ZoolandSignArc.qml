@@ -35,7 +35,7 @@ Rectangle {
         }
         Rectangle{
             id: vacioCentral
-            width: r.width-r.w*2
+            width: r.width-r.w*4
             height: width
             color: 'blue'
             radius: width*0.5
@@ -97,11 +97,9 @@ Rectangle {
             Image {
                 id: iconoSigno
                 source: "../../../resources/imgs/signos/"+parseInt(r.n - 1)+".svg"
-                //property int w: xImg.width*0.75
-                width: r.w
+                width: r.w*2
                 height: width
                 anchors.top: parent.top
-                //rotation: 0-r.rotation-15-r.gr
                 rotation: 0-r.rotation+75-r.gr
                 antialiasing: true
             }
@@ -113,7 +111,7 @@ Rectangle {
         height: tb.height
         color: 'transparent'
         radius: width*0.5
-        border.width:r.width*0.5
+        border.width:r.width//*0.5
         border.color: 'pink'
         anchors.centerIn: bug
         visible: false

@@ -68,7 +68,7 @@ Item {
 
     ZoolArc{
         id: zsa
-        width: r.width
+        width: signCircle.width-(sweg.w*4)
         height: width
         w: sweg.waps//width*0.5//-aspsCircle.width
         n: r.n//index===0?1:(index===1?9:5)
@@ -79,27 +79,21 @@ Item {
         anchors.centerIn: parent
 
     }
-//    Rectangle{
-//        anchors.fill: r
-//        radius: width*0.5
-//        color: 'transparent'
-//        border.width: 10
-//        border.color: 'green'
-//    }
     Rectangle{
         id: ejeV
-        width: r.width//+sweg.w*2+apps.fs*2
+        width: r.width
         height: r.wb
-        color: 'red'
+        color: 'transparent'
         anchors.centerIn: r
         antialiasing: true
         Rectangle{
-            //visible: false//Depurando
-            visible: false//app.dev
-            width: parent.width*3
+            width: parent.width*0.5-vars.fs*4
             height: r.wb
-            color: 'yellow'
+            color: apps.fontColor
             antialiasing: true
+            anchors.left: parent.left
+            anchors.leftMargin: vars.fs*4
+            anchors.verticalCenter: parent.verticalCenter
         }
         Row{
             anchors.left: circleBot.right

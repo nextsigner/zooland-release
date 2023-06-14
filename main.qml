@@ -81,11 +81,14 @@ ZoolMainWindow{
             //Resolución 960x540 de ChromeCast HD
             zpn.addNot('Ejecutando en ChromeCast', true, 10000)
             sweg.width=vars.fs*24
+            sweg.w=vars.fs
             sweg.pz=48
+
         }else{
             //Esta configuracion va bien 1920x1080
             zpn.addNot('Ejecutando fuera de ChromeCast', true, 10000)
             sweg.width=vars.fs*46
+            sweg.w=vars.fs*1.5
             sweg.pz=60
         }
     }

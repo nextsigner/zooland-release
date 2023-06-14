@@ -33,13 +33,14 @@ Rectangle {
     property int currentHouseIndexBack: -1
     property var currentJson: ''
     property var currentJsonBack: ''
-    property int waps: pz*3
+    property int waps: ((signCircle.width-pz*2)*0.5) // Ancho o espacio entre SignCircle y AspsCircle como espacio para los plenetas.
+    property int mesc: (pz*2)+vars.fs // Marger Exterior de SignCircle
 
 
     //Variables
     property var listCotasShowing: []
     property var aTexts: []
-    property int w: vars.fs*2
+    property int w: vars.fs
     property bool v: false
 
     Rectangle {
@@ -177,21 +178,21 @@ Rectangle {
                 width: r.width*2
                 height: width
                 anchors.centerIn: signCircle
-                z:9999
-                Rectangle{
-                    width: parent.width-(r.border.width*2)
-                    height: width
-                    radius: width*0.5
-                    anchors.centerIn: parent
-                    color: 'red'
-                    visible: false
-                }
+                //z:9999
+//                Rectangle{
+//                    width: parent.width-(r.border.width*2)
+//                    height: width
+//                    radius: width*0.5
+//                    anchors.centerIn: parent
+//                    color: 'red'
+//                    visible: false
+//                }
             }
             //                AxisCircle{id: axisCircle}
             //                NumberLines{}
             ZoolandSignCircle{
                 id: signCircle
-                width: !vars.ev?r.width*2-(vars.fs*8):r.width*2-housesCircleBack.extraWidth-300//-apps.fs*4//-r.w
+                width: !vars.ev?r.width*2-(r.mesc):r.width*2-housesCircleBack.extraWidth-300//-apps.fs*4//-r.w
                 //width: planetsCircle.expand?r.width-r.fs*6+r.fs*2:r.width-r.fs*6
                 anchors.centerIn: parent
                 showBorder: true
@@ -200,16 +201,16 @@ Rectangle {
                 onRotChanged: housesCircle.rotation=rot
                 //onShowDecChanged: Qt.quit()
             }
-            //                AspCircleV2{
-            //                    id: aspsCircle
-            //                    //width: signCircle.width-r.w-planetsCircle.widthAllPlanets*2-planetsCircle.planetSize
-            //                    width: signCircle.width-sweg.w*2-r.width-planetsCircle.widthAllPlanets*2-planetsCircle.planetSize
-            //                    rotation: signCircle.rot - 90// + 1
-            //                }
+            AspCircleV2{
+                id: aspsCircle
+                //width: signCircle.width-r.w-planetsCircle.widthAllPlanets*2-planetsCircle.planetSize
+                width: bordeHousesCircleInt.width*2//signCircle.width-sweg.w*2-r.width-planetsCircle.widthAllPlanets*2-planetsCircle.planetSize
+                rotation: signCircle.rot - 90// + 1
+            }
             //AscMcCircle{id: ascMcCircle;width: signCircle.width}
             ZoolPlanetsCircle{
                 id: planetsCircle
-                width: signCircle.width-r.w*2
+                width: signCircle.width-r.w*4
                 height: width
                 anchors.centerIn: parent
                 //showBorder: true
@@ -252,12 +253,49 @@ Rectangle {
 
 
 
+    //Rect Borde SignCircle Ext
+    Rectangle{
+        id: bordeSignCircleExt
+        width: signCircle.width*0.5
+        height: width
+        radius: width*0.5
+        color: 'transparent'
+        border.width: 1
+        border.color: apps.fontColor
+        anchors.centerIn: parent
+        //visible: false
+    }
+    //Rect Borde SignCircle Int
+    Rectangle{
+        id: bordeSignCircleInt
+        width: (signCircle.width*0.5)-sweg.w*2
+        height: width
+        radius: width*0.5
+        color: 'transparent'
+        border.width: 1
+        border.color: apps.fontColor
+        anchors.centerIn: parent
+        //visible: false
+    }
+    //Rect Borde HousesCircle Int
+    Rectangle{
+        id: bordeHousesCircleInt
+        width: bordeSignCircleInt.width-r.waps
+        height: width
+        radius: width*0.5
+        color: 'transparent'
+        border.width: 1
+        border.color: apps.fontColor
+        anchors.centerIn: parent
+        //visible: false
+    }
     //Rect Central
     Rectangle{
         width: vars.fs
         height: width
         color: 'yellow'
         anchors.centerIn: parent
+        visible: false
     }
 
     function loadSweJson(json, jsonPromesaParams){
@@ -265,7 +303,7 @@ Rectangle {
         vars.cParams=JSON.stringify(jsonPromesaParams)
         var scorrJson=json.replace(/\n/g, '')
 
-        //aspsCircle.clear()
+        aspsCircle.clear()
 
         vars.ev=false
         apps.urlBack=''
@@ -289,12 +327,12 @@ Rectangle {
         signCircle.rot=parseFloat(j.ph.h1.gdec).toFixed(2)
         housesCircle.loadHouses(j)
         planetsCircle.loadJson(j)
-
+        aspsCircle.load(j)
         //ascMcCircle.loadJson(j)
 
         //panelAspects.load(j)
         //zoolDataBodies.loadJson(j)
-        //aspsCircle.load(j)
+
         //zoolElementsView.load(j, false)
         //eclipseCircle.arrayWg=housesCircle.arrayWg
         //eclipseCircle.isEclipse=-1
@@ -429,5 +467,15 @@ Rectangle {
     }
     function clearAspsCircles(){
         aspsCircle.clear()
+    }
+    function setWaps(){
+        let mpw=signCircle.width
+        let a=[]
+        for(var i=0;i<vars.planetasRes.length;i++){
+            if(planetsCircle.children[i].width<mpw)mpw=planetsCircle.children[i].width
+        }
+        let w=(bordeSignCircleInt.width*2-mpw)
+        sweg.waps=w
+        //zpn.addNot('W: '+w, false, 5000)
     }
 }
