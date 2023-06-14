@@ -33,8 +33,7 @@ Rectangle {
     property int currentHouseIndexBack: -1
     property var currentJson: ''
     property var currentJsonBack: ''
-    property int waps: ((signCircle.width-pz*2)*0.5) // Ancho o espacio entre SignCircle y AspsCircle como espacio para los plenetas.
-    property int mesc: (pz*2)+vars.fs // Marger Exterior de SignCircle
+    property int waps: ((signCircle.width-pz*2)*0.5)
 
 
     //Variables
@@ -179,20 +178,20 @@ Rectangle {
                 height: width
                 anchors.centerIn: signCircle
                 //z:9999
-//                Rectangle{
-//                    width: parent.width-(r.border.width*2)
-//                    height: width
-//                    radius: width*0.5
-//                    anchors.centerIn: parent
-//                    color: 'red'
-//                    visible: false
-//                }
+                Rectangle{
+                    width: parent.width-(r.border.width*2)
+                    height: width
+                    radius: width*0.5
+                    anchors.centerIn: parent
+                    color: 'red'
+                    visible: false
+                }
             }
             //                AxisCircle{id: axisCircle}
             //                NumberLines{}
             ZoolandSignCircle{
                 id: signCircle
-                width: !vars.ev?r.width*2-(r.mesc):r.width*2-housesCircleBack.extraWidth-300//-apps.fs*4//-r.w
+                width: !vars.ev?r.width*2-(vars.fs*8):r.width*2-housesCircleBack.extraWidth-300//-apps.fs*4//-r.w
                 //width: planetsCircle.expand?r.width-r.fs*6+r.fs*2:r.width-r.fs*6
                 anchors.centerIn: parent
                 showBorder: true
@@ -204,7 +203,7 @@ Rectangle {
             AspCircleV2{
                 id: aspsCircle
                 //width: signCircle.width-r.w-planetsCircle.widthAllPlanets*2-planetsCircle.planetSize
-                width: bordeHousesCircleInt.width*2//signCircle.width-sweg.w*2-r.width-planetsCircle.widthAllPlanets*2-planetsCircle.planetSize
+                width: (bordeHousesCircleInt.width)*2
                 rotation: signCircle.rot - 90// + 1
             }
             //AscMcCircle{id: ascMcCircle;width: signCircle.width}
@@ -327,12 +326,12 @@ Rectangle {
         signCircle.rot=parseFloat(j.ph.h1.gdec).toFixed(2)
         housesCircle.loadHouses(j)
         planetsCircle.loadJson(j)
-        aspsCircle.load(j)
+
         //ascMcCircle.loadJson(j)
 
         //panelAspects.load(j)
         //zoolDataBodies.loadJson(j)
-
+        aspsCircle.load(j)
         //zoolElementsView.load(j, false)
         //eclipseCircle.arrayWg=housesCircle.arrayWg
         //eclipseCircle.isEclipse=-1
