@@ -35,7 +35,7 @@ Item {
             Repeater{
                 model: 12
                 ZoolHouseArc{
-                    width: 800
+                    width: sweg.width*2
                     height: 10
                     //color: 'red'
                     anchors.centerIn: parent
