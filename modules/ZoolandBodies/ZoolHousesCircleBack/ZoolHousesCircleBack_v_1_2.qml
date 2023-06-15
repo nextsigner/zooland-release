@@ -1,9 +1,9 @@
 import QtQuick 2.0
-import ZoolHousesCircle.ZoolHouseArc 1.3
+import ZoolandBodies.ZoolHousesCircleBack.ZoolHouseArc 1.3
 Item {
     id: r
-    width: signCircle.width
-    property int currentHouse: app.currentHouseIndex
+    //width: signCircle.width
+    property int currentHouse: -1//app.currentHouseIndex
     property int houseShowSelectadIndex: -1
     property int w: sweg.fs*3
     property int wb: 1//sweg.fs*0.15
@@ -22,17 +22,30 @@ Item {
     }
     Item{
         id: xHomeArcs
-        anchors.fill: r
+        width: 2//r.width//apps.fs*60
+        height: width
+        anchors.centerIn: parent
+        //anchors.fill: r
         Item{
             id:xArcs
-            anchors.fill: parent
+            width: 2//sweg.width-sweg.pz*2
+            height: width
+            anchors.centerIn: parent
             Repeater{
                 model: 12
                 ZoolHouseArc{
                     objectName: 'HomeArc'+index+'_'+r.extraObjectName
+                    width: !vars.ev?r.width:r.width-(housesCircleBack.extraWidth)+sweg.pz*2+vars.fs//-sweg.pz*2
                     n: index+1
                     c: index
-                    opacity: r.houseShowSelectadIndex === -1 ? 1.0:(r.houseShowSelectadIndex === index?1.0:0.35)
+                    //opacity: r.houseShowSelectadIndex === -1 ? 1.0:(r.houseShowSelectadIndex === index?1.0:0.35)
+//                    Rectangle{
+//                        anchors.fill: parent
+//                        radius: width*0.5
+//                        color: 'transparent'
+//                        border.width: 10
+//                        border.color: 'green'
+//                    }
                 }
             }
         }
@@ -55,6 +68,7 @@ Item {
         visible: false
     }
     function loadHouses(jsonData) {
+
         //return
         r.arrayWg=[]
         xArcs.rotation=360-jsonData.ph.h1.gdec
@@ -73,7 +87,7 @@ Item {
         var degRet=0.0
         for(i=0;i<12;i++){
             if(i===0){
-                app.uAscDegreeTotal=jsonData.ph.h1.gdec
+                vars.uAscDegreeTotal=jsonData.ph.h1.gdec
             }
             nh=i
             let h=xArcs.children[i]

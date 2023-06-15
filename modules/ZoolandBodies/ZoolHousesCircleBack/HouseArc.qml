@@ -28,62 +28,6 @@ Item {
 
     //Behavior on w{enabled: apps.enableFullAnimation;NumberAnimation{duration: 500}}
     //Behavior on width{enabled: apps.enableFullAnimation;NumberAnimation{duration:500}}
-    state: sweg.state
-    states: [
-        State {
-            name: sweg.aStates[0]
-            PropertyChanges {
-                target: ejeV
-                width:  r.width+sweg.fs*2//.5
-            }
-            PropertyChanges {
-                target: canvas2
-                opacity:  0.0
-            }
-            PropertyChanges {
-                target: r
-                //colors: r.colors//[apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor]
-                extraWidth: 0
-                w: (sweg.width-sweg.objAspsCircle.width)/2//housesCircle.parent.objectName==='sweg'?(!r.selected?sweg.fs*2.5:sweg.fs*6):(!r.selected?sweg.fs*3:sweg.fs*7)
-            }
-        },
-        State {
-            name: sweg.aStates[1]
-            PropertyChanges {
-                target: ejeV
-                width:  r.width+sweg.fs*2.5
-            }
-            PropertyChanges {
-                target: canvas2
-                opacity:  1.0
-            }
-            PropertyChanges {
-                target: r
-                //colors: ['red', '#FBE103', '#09F4E2', '#0D9FD6','red', '#FBE103', '#09F4E2', '#0D9FD6','red', '#FBE103', '#09F4E2', '#0D9FD6']
-                extraWidth: sweg.fs*2.5
-                w: (sweg.width-sweg.objAspsCircle.width)/2
-                //w: housesCircle.parent.objectName==='sweg'?(!r.selected?sweg.fs*2.5:sweg.fs*6):(!r.selected?sweg.fs*2.5:sweg.fs*8)
-            }
-        },
-        State {
-            name: sweg.aStates[2]
-            PropertyChanges {
-                target: ejeV
-                width: r.width+sweg.fs*2
-            }
-            PropertyChanges {
-                target: canvas2
-                opacity:  0.0
-            }
-            PropertyChanges {
-                target: r
-                //colors: [apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor, apps.houseColor]
-                extraWidth: 0
-                //w: housesCircle.parent.objectName==='sweg'?(sweg.fs*2):(sweg.fs*4)
-                w: (sweg.width-sweg.objAspsCircle.width)/2
-            }
-        }
-    ]
 
     onColorsChanged: {
         canvas.requestPaint()
