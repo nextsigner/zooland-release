@@ -18,7 +18,7 @@ Rectangle {
     property bool showBorder: false
     //property bool selected: vars.currentHouseIndex===n
     property  real op: 100.0
-    property int opacitySpeed: 100
+    //property int opacitySpeed: 100
     Rectangle{
         id: arc
         width: r.width//*0.5
@@ -37,14 +37,14 @@ Rectangle {
             border.width:r.width*0.5
             anchors.centerIn: parent
         }
-        Rectangle{
-            id: vacioCentral
-            width: r.width-r.w*2
-            height: width
-            color: 'blue'
-            radius: width*0.5
-            anchors.centerIn: parent
-        }
+//        Rectangle{
+//            id: vacioCentral
+//            width: r.width-r.w*2
+//            height: width
+//            color: 'blue'
+//            radius: width*0.5
+//            anchors.centerIn: parent
+//        }
         Item{
             id: e1
             width: parent.width
@@ -82,7 +82,7 @@ Rectangle {
         width: r.width
         height: r.height
         rotation: -180
-        color: !r.isBack?apps.houseColor:apps.houseColorBack
+        color: 'blue'//apps.houseColorBack
         visible: false
         anchors.centerIn: arc
     }
@@ -92,17 +92,6 @@ Rectangle {
         source: mask
         maskSource: arc
         invert: true
-        opacity: r.selected?1.0:0.5
-    }
-    Rectangle{
-        id: ctb
-        width: tb.width
-        height: tb.height
-        color: 'transparent'
-        radius: width*0.5
-        border.width:r.width*0.5
-        border.color: 'pink'
-        anchors.centerIn: arc
-        visible: false
+        //opacity: r.selected?1.0:0.5
     }
 }

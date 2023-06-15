@@ -13,10 +13,10 @@ Rectangle {
     property int gr: 0
     property int n: -1
     //property int w: housesCircle.currentHouse!==n?housesCircle.w*0.5:sweg.fs*6.5
-    property int w: app.fs
+    property int w: vars.fs
     property int c: 0
     property bool showBorder: false
-    //property bool selected: app.currentHouseIndex===n
+    //property bool selected: vars.currentHouseIndex===n
     property  real op: 100.0
     property int opacitySpeed: 100
     Rectangle{
@@ -37,14 +37,14 @@ Rectangle {
             border.width:r.width*0.5
             anchors.centerIn: parent
         }
-        Rectangle{
-            id: vacioCentral
-            width: r.width-r.w*2
-            height: width
-            color: 'blue'
-            radius: width*0.5
-            anchors.centerIn: parent
-        }
+//        Rectangle{
+//            id: vacioCentral
+//            width: r.width-r.w*2
+//            height: width
+//            color: 'blue'
+//            radius: width*0.5
+//            anchors.centerIn: parent
+//        }
         Item{
             id: e1
             width: parent.width
@@ -82,7 +82,7 @@ Rectangle {
         width: r.width
         height: r.height
         rotation: -180
-        color: apps.houseColorBack
+        color: 'yellow'//apps.houseColorBack
         visible: false
         anchors.centerIn: arc
     }
