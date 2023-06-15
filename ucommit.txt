@@ -1,1 +1,1 @@
-Se logra hacer cargar housesCircle y housesCircleBack en zip 221
+Se creo y se cargó bien en ChromeCast ZoolArcBack sin OpacityMask en zip 238

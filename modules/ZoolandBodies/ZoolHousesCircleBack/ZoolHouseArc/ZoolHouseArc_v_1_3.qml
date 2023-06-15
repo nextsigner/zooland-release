@@ -65,20 +65,16 @@ Item {
         }
     }
 
-
     ZoolArcBack{
         id: zsa
-        //width: signCircle.width-(sweg.w*4)
-        width: 500
-        height: width
+        width: 1000
+        height: 1000
         w: 300//width*0.5//-aspsCircle.width
         n: r.n//index===0?1:(index===1?9:5)
         c:r.n
         gr: r.gr//xSignArcs.rotation
         wg: r.wg
-        //rotation: index*(360/3)-30
         anchors.centerIn: parent
-
     }
     Rectangle{
         id: ejeV
@@ -103,11 +99,11 @@ Item {
                 id: lineaEje
                 //width: app.fs*0.5
                 width: ((ejeV.width-r.width)*0.5-circleBot.width+app.fs*2)
-//                width: sweg.objHousesCircle.houseShowSelectadIndex===-1?
-//                         ((ejeV.width-r.width)*0.5-circleBot.width)
-//                         :
-//                           //((ejeV.width-r.width)*0.5-circleBot.width)+circleBot.width*2
-//                           ((ejeV.width-r.width)*0.5)
+                //                width: sweg.objHousesCircle.houseShowSelectadIndex===-1?
+                //                         ((ejeV.width-r.width)*0.5-circleBot.width)
+                //                         :
+                //                           //((ejeV.width-r.width)*0.5-circleBot.width)+circleBot.width*2
+                //                           ((ejeV.width-r.width)*0.5)
 
                 height: r.wb
                 //color: apps.enableBackgroundColor?apps.fontColor:'white'//r.selected?r.colors[r.c]:'white'
@@ -118,10 +114,10 @@ Item {
             Rectangle{
                 id: lineaEje2
                 width: r.w
-//                width: sweg.objHousesCircle.houseShowSelectadIndex===-1?
-//                           r.w
-//                         :
-//                           r.w*3
+                //                width: sweg.objHousesCircle.houseShowSelectadIndex===-1?
+                //                           r.w
+                //                         :
+                //                           r.w*3
                 height: r.wb
                 //color: apps.enableBackgroundColor?apps.fontColor:'white'//'red'//r.colors[r.c]
                 color: apps.houseLineColor

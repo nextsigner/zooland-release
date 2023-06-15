@@ -296,7 +296,7 @@ Rectangle {
         height: width
         radius: width*0.5
         color: 'transparent'
-        border.width: 10
+        border.width: 1
         border.color: apps.fontColor
         anchors.centerIn: parent
         //visible: false

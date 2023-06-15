@@ -15,12 +15,12 @@ Item {
     property var swegParent//: value
     property int widthAspCircle: 10
     property var aWs: []    
-    Rectangle{
-        anchors.fill: parent
-        color: 'yellow'
-        radius: width*0.5
-        visible: false
-    }
+//    Rectangle{
+//        anchors.fill: parent
+//        color: 'yellow'
+//        radius: width*0.5
+//        visible: false
+//    }
     Item{
         id: xHomeArcs
         width: 2//r.width//apps.fs*60
@@ -37,12 +37,9 @@ Item {
                 ZoolHouseArc{
                     width: sweg.width*2
                     height: 10
-                    //color: 'red'
                     anchors.centerIn: parent
                     n: index+1
-                    c: index
-                    //property int n: 0
-                    //property int nc : 0
+                    c: index                    
                 }
                 //                ZoolHouseArc{
 //                    objectName: 'HomeArcBack'+index+'_'
