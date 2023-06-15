@@ -90,6 +90,7 @@ ZoolMainWindow{
         zpn.addNot(unik.getFile('ucommit.txt'), true, 15000)
         let sw=Screen.width
         let sh=Screen.height
+        vars.res=''+sw+'x'+sh+''
         zpn.addNot('Resolución de pantalla: '+sw+'x'+sh, true, 10000)
         if(sw===960 && sh===540){
             //Resolución 960x540 de ChromeCast HD

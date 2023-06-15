@@ -35,7 +35,8 @@ Item {
                 model: 12
                 ZoolHouseArc{
                     objectName: 'HomeArc'+index+'_'+r.extraObjectName
-                    width: !vars.ev?r.width:r.width-(housesCircleBack.extraWidth)+sweg.pz*2+vars.fs//-sweg.pz*2
+                    //width: !vars.ev?r.width:r.width-(housesCircleBack.extraWidth)+sweg.pz*2+vars.fs//-sweg.pz*2
+                    width:r.width//!vars.ev?:
                     n: index+1
                     c: index
                     //opacity: r.houseShowSelectadIndex === -1 ? 1.0:(r.houseShowSelectadIndex === index?1.0:0.35)

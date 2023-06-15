@@ -1,1 +1,1 @@
-Bien: Cargó houses, planets y aspsCircle, Elements, LogView y RemoteParamsList zip 178
+Se logra hacer cargar housesCircle y housesCircleBack en zip 212

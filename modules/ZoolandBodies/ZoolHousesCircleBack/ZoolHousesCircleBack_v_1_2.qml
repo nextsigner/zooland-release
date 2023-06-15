@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import ZoolandBodies.ZoolHousesCircleBack.ZoolHouseArc 1.3
+
 Item {
     id: r
     //width: signCircle.width
@@ -34,19 +35,22 @@ Item {
             Repeater{
                 model: 12
                 ZoolHouseArc{
-                    objectName: 'HomeArc'+index+'_'+r.extraObjectName
-                    width: !vars.ev?r.width:r.width-(housesCircleBack.extraWidth)+sweg.pz*2+vars.fs//-sweg.pz*2
+                    width: 800
+                    height: 10
+                    //color: 'red'
+                    anchors.centerIn: parent
                     n: index+1
                     c: index
-                    //opacity: r.houseShowSelectadIndex === -1 ? 1.0:(r.houseShowSelectadIndex === index?1.0:0.35)
-//                    Rectangle{
-//                        anchors.fill: parent
-//                        radius: width*0.5
-//                        color: 'transparent'
-//                        border.width: 10
-//                        border.color: 'green'
-//                    }
+                    //property int n: 0
+                    //property int nc : 0
                 }
+                //                ZoolHouseArc{
+//                    objectName: 'HomeArcBack'+index+'_'
+//                    //width: !vars.ev?r.width:r.width-(housesCircleBack.extraWidth)+sweg.pz*2+vars.fs//-sweg.pz*2
+//                    width: 500
+//                    n: index+1
+//                    c: index
+//                }
             }
         }
     }
@@ -68,8 +72,7 @@ Item {
         visible: false
     }
     function loadHouses(jsonData) {
-
-        //return
+        vars.ev=true
         r.arrayWg=[]
         xArcs.rotation=360-jsonData.ph.h1.gdec
         var h
@@ -91,6 +94,7 @@ Item {
             }
             nh=i
             let h=xArcs.children[i]
+            if(!h)return
             h.op=0.0
             let sh1=''
             let sh2=''

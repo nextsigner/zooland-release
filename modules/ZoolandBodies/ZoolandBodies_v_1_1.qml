@@ -4,7 +4,7 @@ import QtQuick.Controls 2.0
 import ZoolandBodies.ZoolPlanetsCircle 1.1
 import ZoolandBodies.ZoolPlanetsCircleBack 1.4
 import ZoolandBodies.ZoolHousesCircle 1.2
-import ZoolHousesCircleBack 1.2
+import ZoolandBodies.ZoolHousesCircleBack 1.2
 
 import ZoolElementsView 1.0
 
@@ -36,6 +36,7 @@ Rectangle {
     property var currentJson: ''
     property var currentJsonBack: ''
     property int waps: ((signCircle.width-pz*2)*0.5)
+    property int wapsBack: 300
 
 
     //Variables
@@ -169,7 +170,8 @@ Rectangle {
             anchors.centerIn: parent
             ZoolHousesCircleBack{//rotation: parseInt(signCircle.rot);//z:signCircle.z+1;
                 id: housesCircleBack
-                //width: bordeSignCircleExt.width//signCircle.width
+                width: r.width*2
+                //width: 800
                 height: width
                 anchors.centerIn: signCircle
                 //w: r.fs
@@ -179,7 +181,7 @@ Rectangle {
             }
             ZoolHousesCircle{
                 id: housesCircle
-                width: !vars.ev?r.width*2:500
+                width: !vars.ev?r.width*2:r.width*2-(r.wapsBack*2)+r.pz*2+vars.fs*2
                 height: width
                 anchors.centerIn: signCircle
                 //z: 9999+1
@@ -188,7 +190,7 @@ Rectangle {
             //                NumberLines{}
             ZoolandSignCircle{
                 id: signCircle
-                width: !vars.ev?r.width*2-(vars.fs*8):500//-apps.fs*4//-
+                width: !vars.ev?r.width*2-(vars.fs*8):r.width*2-(r.wapsBack*2)//-apps.fs*4//-
                 //width: r.width*2-(vars.fs*8)
                 //width: !vars.ev?r.width*2-(vars.fs*8):r.width*2-housesCircleBack.extraWidth//-apps.fs*4//-r.w
                 //width: planetsCircle.expand?r.width-r.fs*6+r.fs*2:r.width-r.fs*6

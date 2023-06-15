@@ -68,9 +68,10 @@ Item {
 
     ZoolArc{
         id: zsa
-        width: signCircle.width-(sweg.w*4)
+        //width: signCircle.width-(sweg.w*4)
+        width:500
         height: width
-        w: sweg.waps//width*0.5//-aspsCircle.width
+        w: 300//width*0.5//-aspsCircle.width
         n: r.n//index===0?1:(index===1?9:5)
         c:r.n
         gr: r.gr//xSignArcs.rotation
@@ -152,39 +153,6 @@ Item {
             anchors.rightMargin: 0-width
             antialiasing: true
 
-            MouseArea{
-                anchors.fill: parent
-                acceptedButtons: Qt.AllButtons;
-                onClicked: {
-                    if (mouse.button === Qt.RightButton && (mouse.modifiers & Qt.ControlModifier)) {
-                        //Qt.quit()
-                        //sweg.state= 'pc'
-                    }else if (mouse.button === Qt.LeftButton && (mouse.modifiers & Qt.ControlModifier)) {
-                        if(sweg.objHousesCircle.houseShowSelectadIndex===-1 || sweg.objHousesCircle.houseShowSelectadIndex !== r.c){
-                            sweg.objHousesCircle.houseShowSelectadIndex=r.c
-                            //sweg.state= 'pc'
-                        }else{
-                            sweg.objHousesCircle.houseShowSelectadIndex=-1
-                            //sweg.state= 'ps'
-                        }
-                    }else{
-
-                    }
-                    var ni=-1
-                    ni=sweg.objHousesCircle.currentHouse!==r.n?r.n:-1
-                    sweg.objHousesCircle.currentHouse=ni
-                    app.currentHouseIndex=ni
-                    //                    if(sweg.state!==sweg.aStates[1]){
-                    //                        sweg.state=sweg.aStates[1]
-                    //                        ni=sweg.objHousesCircle.currentHouse!==r.n?r.n:-1
-                    //                        sweg.objHousesCircle.currentHouse=ni
-                    //                        //swegz.sweg.objHousesCircle.currentHouse=ni
-                    //                    }else{
-                    //                        sweg.state=sweg.aStates[0]
-                    //                        sweg.objHousesCircle.currentHouse=-1
-                    //                    }
-                }
-            }
             ZoolText{
                 text: '<b>'+r.n+'</b>'
                 font.pixelSize: parent.width*0.6
