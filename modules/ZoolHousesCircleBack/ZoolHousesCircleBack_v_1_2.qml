@@ -2,13 +2,13 @@ import QtQuick 2.0
 //import "./comps" as Comps
 Item {
     id: r
-    width: sweg.parent.height*apps.sweMargin//-apps.*16
-    visible: false
-//    Rectangle{
-//        anchors.fill: r
-//        color: '#ff8833'
-//    }
-    property int currentHouse: app.currentHouseIndexBack
+    width: parent.width*2//sweg.parent.height*apps.sweMargin//-apps.*16
+    //visible: false
+    Rectangle{
+        anchors.fill: r
+        color: '#ff8833'
+    }
+    property int currentHouse: sweg.currentHouseIndexBack
     property int w: sweg.fs*3
     property int wb: 1//sweg.fs*0.15
     property int f: 0
@@ -19,37 +19,6 @@ Item {
     property int widthAspCircle: 10
     property int extraWidth: 0
     property var aWs: []
-//    state: r.parent.state
-//    states: [
-//        State {
-//            name: r.parent.aStates[0]
-//            PropertyChanges {
-//                target: r
-//                //width: housesCircle.parent.objectName==='sweg'?(r.parent.width-sweg.fs-sweg.fs):(r.parent.width-sweg.fs)
-//                width: r.parent.width-sweg.fs-sweg.fs
-//            }
-//        },
-//        State {
-//            name: r.parent.aStates[1]
-//            PropertyChanges {
-//                target: r
-//                //width: housesCircle.parent.objectName==='sweg'?(r.parent.width-sweg.fs*5-sweg.fs):(r.parent.width-sweg.fs*2.5-sweg.fs*0.5)
-//                width: r.parent.width-sweg.fs*5-sweg.fs
-//            }
-//        },
-//        State {
-//            name: r.parent.aStates[2]
-//            PropertyChanges {
-//                target: r
-//                //width: housesCircle.parent.objectName==='sweg'?(r.parent.width-sweg.fs-sweg.fs):(r.parent.width)
-//                width: r.parent.width-sweg.fs-sweg.fs
-//            }
-//        }
-//    ]
-//    Behavior on rotation{
-//        enabled: apps.enableFullAnimation;
-//        NumberAnimation{duration:2000;easing.type: Easing.InOutQuad}
-//    }
 
     Item{
         id: xHomeArcsBack
@@ -61,6 +30,7 @@ Item {
                 model: 12
                 HouseArcBack{
                     objectName: 'HomeArcBack'+index+'_'+r.extraObjectName
+                    width: r.width*2+r.extraWidth//-sweg.pz*2
                     n: index+1
                     c: index
                 }
@@ -75,9 +45,11 @@ Item {
         visible: false
     }
     function loadHouses(jsonData) {
+        vars.ev=true
         r.arrayWg=[]
         xArcsBack.rotation=360-jsonData.ph.h1.gdec+signCircle.rot//+1
-        if(app.mod==='dirprim'){
+        return
+        if(vars.tipo==='dirprim'){
             xArcsBack.rotation-=sweg.dirPrimRot
         }
         var h
@@ -95,7 +67,7 @@ Item {
         var degRet=0.0
         for(i=0;i<12;i++){
             if(i===0){
-                app.uAscDegreeTotal=jsonData.ph.h1.gdec
+                vars.uAscDegreeTotal=jsonData.ph.h1.gdec
             }
             nh=i
             let h=xArcsBack.children[i]
@@ -121,7 +93,7 @@ Item {
                 p1=indexSign1*30+parseInt(o1.rsgdeg)+(o1.mdeg/60)
             }
 
-            indexSign2=o2.is//app.objSignsNames.indexOf(o2.s)
+            indexSign2=o2.is//vars.objSignsNames.indexOf(o2.s)
             if(i!==0&&i!==6){
                 p2=0.0000+indexSign2*30+o2.rsgdeg+(o2.mdeg/60)
             }else{

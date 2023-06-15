@@ -12,7 +12,7 @@ Rectangle{
     border.width: 0
     border.color:'yellow'
     color: 'transparent'
-    property int fs: vars.fs*4//*s.zoom
+    property int fs: vars.res==='960x540'?vars.fs*2:vars.fs*5//*s.zoom
     property alias settings: s
     property bool showBack: false
     property url uItemGrabber

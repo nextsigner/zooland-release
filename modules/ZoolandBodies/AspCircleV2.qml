@@ -31,13 +31,13 @@ Rectangle {
             easing.type: Easing.InOutQuad
         }
     }
-    Behavior on rotation {
-        enabled: apps.enableFullAnimation
-        NumberAnimation{
-            duration: sweg.speedRotation
-            easing.type: Easing.InOutQuad
-        }
-    }
+//    Behavior on rotation {
+//        enabled: apps.enableFullAnimation
+//        NumberAnimation{
+//            duration: sweg.speedRotation
+//            easing.type: Easing.InOutQuad
+//        }
+//    }
     Rectangle{
         id: bg
         width: r.width

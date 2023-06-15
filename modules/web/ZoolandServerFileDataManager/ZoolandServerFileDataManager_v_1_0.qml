@@ -76,8 +76,6 @@ Item{
                 let j=JSON.parse(data)
                 if(j.isData){
                     sweg.loadSweJson(JSON.stringify(j.data, null, 2), objGetZoolandData.promesaParams)
-                    //zoolDataView.load(app.fileData)
-                    //log.lv(JSON.stringify(j.data, null, 2))
                 }else{
                     vars.j.showMsgDialog('Zool Informa Error!', 'Los datos no han sido guardados.', j.error)
                 }
@@ -132,25 +130,24 @@ Item{
     //--> Get Zooland Data Back
     QtObject{
         id: objGetZoolandDataBack
+        property var promesaParams
         function setData(data, isData){
             if(isData){
                 let j=JSON.parse(data)
                 if(j.isData){
-                    sweg.loadSweJsonBack(JSON.stringify(j.data, null, 2))
-                    //zoolDataView.load(app.fileData)
-                    //log.lv(JSON.stringify(j.data, null, 2))
+                    sweg.loadSweJsonBack(JSON.stringify(j.data, null, 2), objGetZoolandDataBack.promesaParams)
                 }else{
                     app.j.showMsgDialog('Zool Informa Error!', 'Los datos no han sido guardados.', j.error)
                 }
 
             }else{
-                app.j.showMsgDialog('Zool Informa', 'Los datos no se han cargado los datos del servidor Zool-Server.\nHost: '+r.host, 'El servidor no está encendido o está fallando la conexión a internet.')
+                vars.j.showMsgDialog('Zool Informa', 'Los datos no se han cargado los datos del servidor Zool-Server.\nHost: '+r.host, 'El servidor no está encendido o está fallando la conexión a internet.')
             }
         }
     }
     function getZoolandDataBack(j){
-        sweg.loadBack(j)
-        vars.fileDataBack=JSON.stringify(j)
+        objGetZoolandDataBack.promesaParams=j
+        vars.cParamsBack=JSON.stringify(j)
         let t=j.params.tipo
         let hsys=j.params.hsys
         let n=j.params.n.replace(/ /g, '%20')
@@ -166,9 +163,6 @@ Item{
         let ciudad=j.params.ciudad.replace(/ /g, '%20')
         let ms=j.params.ms
         let msReq=new Date(Date.now()).getTime()
-        //let url=apps.host
-        //let url='http://zool.loca.lt'
-        //let url=r.host
         let url=r.host+':8100'
         url+='/zool/getZoolData'
         url+='?n='+n
@@ -187,7 +181,11 @@ Item{
         url+='&msReq='+msReq
         const encoded = encodeURI(url);
         console.log('Url objGetZoolandDataBack: '+encoded)
-        vars.j.getRD(""+encoded+"", objGetZoolandDataBack)
+        vars.j.getRD(""+url+"", objGetZoolandDataBack)
+        if(vars.dev){
+            zpn.addNot('Url objGetZoolandDataBack: '+url, true, 5000)
+        }
+        console.log('Url Back: '+url)
     }
     //<-- Get Zooland Data Back
 
@@ -211,7 +209,7 @@ Item{
         url+='?adminId='+apps.zoolUser+'&r='+msReq
         const encoded = encodeURI(url);
         console.log('Url getZoolandParamsList: '+encoded)
-        zpn.addNot('Url: '+url, false, 0)
+        //zpn.addNot('Url: '+url, false, 0)
         vars.j.getRD(""+url+"", setZoolandParamsList)
     }
     //<-- Get Data Params List

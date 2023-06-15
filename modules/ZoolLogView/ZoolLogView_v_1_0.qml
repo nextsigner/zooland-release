@@ -28,7 +28,7 @@ Rectangle{
             width: r.width-app.fs
             height: taLog.contentHeight
             anchors.horizontalCenter: parent.horizontalCenter
-            TextArea{
+            Text{
                 id: taLog
                 width: parent.width//-app.fs*2//*0.5
                 //height: contentHeight
@@ -36,9 +36,9 @@ Rectangle{
                 anchors.horizontalCenter: parent.horizontalCenter
                 //anchors.top: parent.top
                 //anchors.topMargin: app.fs*0.5
-                font.pixelSize: app.fs*0.5
+                font.pixelSize: vars.fs*0.5
                 color: 'white'
-                background: Rectangle{color: 'black'}
+                //background: Rectangle{color: 'black'}
                 clip: true
             }
         }

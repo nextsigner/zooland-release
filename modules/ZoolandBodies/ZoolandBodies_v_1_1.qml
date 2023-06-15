@@ -44,6 +44,7 @@ Rectangle {
     property int w: vars.fs
     property bool v: false
     property bool enableAnZoomAndPos: false
+    property real dirPrimRot: 0.0
 
     Rectangle {
         id: rect
@@ -166,35 +167,30 @@ Rectangle {
             width: r.width//*0.25
             height: width
             anchors.centerIn: parent
-            /*ZoolHousesCircleBack{//rotation: parseInt(signCircle.rot);//z:signCircle.z+1;
+            ZoolHousesCircleBack{//rotation: parseInt(signCircle.rot);//z:signCircle.z+1;
                 id: housesCircleBack
-                width: signCircle.width
-                height: apps.fs*35//width
-                anchors.centerIn: signCircle
-                w: r.fs
-                widthAspCircle: aspsCircle.width
-                visible: app.ev
-            }*/
-            ZoolHousesCircle{
-                id: housesCircle
-                width: r.width*2
+                //width: bordeSignCircleExt.width//signCircle.width
                 height: width
                 anchors.centerIn: signCircle
-                //z:9999
-                Rectangle{
-                    width: parent.width-(r.border.width*2)
-                    height: width
-                    radius: width*0.5
-                    anchors.centerIn: parent
-                    color: 'red'
-                    visible: false
-                }
+                //w: r.fs
+                //widthAspCircle: aspsCircle.width*2
+                //visible: vars.ev
+                //z: 9999
+            }
+            ZoolHousesCircle{
+                id: housesCircle
+                width: !vars.ev?r.width*2:500
+                height: width
+                anchors.centerIn: signCircle
+                //z: 9999+1
             }
             //                AxisCircle{id: axisCircle}
             //                NumberLines{}
             ZoolandSignCircle{
                 id: signCircle
-                width: !vars.ev?r.width*2-(vars.fs*8):r.width*2-housesCircleBack.extraWidth-300//-apps.fs*4//-r.w
+                width: !vars.ev?r.width*2-(vars.fs*8):500//-apps.fs*4//-
+                //width: r.width*2-(vars.fs*8)
+                //width: !vars.ev?r.width*2-(vars.fs*8):r.width*2-housesCircleBack.extraWidth//-apps.fs*4//-r.w
                 //width: planetsCircle.expand?r.width-r.fs*6+r.fs*2:r.width-r.fs*6
                 anchors.centerIn: parent
                 showBorder: true
@@ -221,13 +217,13 @@ Rectangle {
             //                    id:planetsCircleBack
             //                    height: width
             //                    anchors.centerIn: parent
-            //                    visible: app.ev
+            //                    visible: vars.ev
             //                }
             //                ZoolPlanetsCircleBack{
             //                    id:planetsCircleBack
             //                    height: width
             //                    anchors.centerIn: parent
-            //                    visible: app.ev
+            //                    visible: vars.ev
             //                }
             //                EclipseCircle{
             //                    id: eclipseCircle
@@ -239,14 +235,14 @@ Rectangle {
             //                    height: r.height*2
             //                    color: apps.fontColor
             //                    anchors.centerIn: parent
-            //                    visible: app.showCenterLine
+            //                    visible: vars.showCenterLine
             //                }
             //                Rectangle{
             //                    width: r.height*2
             //                    height: 3
             //                    color: apps.fontColor
             //                    anchors.centerIn: parent
-            //                    visible: app.showCenterLine
+            //                    visible: vars.showCenterLine
             //                }
             //ZoolAutoPanZoom{id:zoolAutoPanZoom}
         }
@@ -291,6 +287,18 @@ Rectangle {
         anchors.centerIn: parent
         //visible: false
     }
+    //Rect Borde HousesCircleBack Int
+    Rectangle{
+        id: bordeHousesCircleBackInt
+        width: housesCircleBack.width*0.5//-r.waps
+        height: width
+        radius: width*0.5
+        color: 'transparent'
+        border.width: 10
+        border.color: apps.fontColor
+        anchors.centerIn: parent
+        //visible: false
+    }
     //Rect Central
     Rectangle{
         width: vars.fs
@@ -331,62 +339,44 @@ Rectangle {
         housesCircle.loadHouses(j)
         planetsCircle.loadJson(j)
 
+
+
+        if(vars.dev){
+            //housesCircle.opacity=0.75
+            //housesCircleBack.loadHouses(j)
+            //housesCircleBack.rotation+=50
+            //housesCircleBack.extraWidth=300
+        }
+
+
         //ascMcCircle.loadJson(j)
 
         //panelAspects.load(j)
         //zoolDataBodies.loadJson(j)
-        aspsCircle.load(j)
+        //aspsCircle.load(j)
         zoolElementsView.load(j, false)
         //eclipseCircle.arrayWg=housesCircle.arrayWg
         //eclipseCircle.isEclipse=-1
         //r.v=true
         //        let sabianos=zsm.getPanel('ZoolSabianos')
-        //        sabianos.numSign=app.currentJson.ph.h1.is
-        //        sabianos.numDegree=parseInt(app.currentJson.ph.h1.rsgdeg - 1)
+        //        sabianos.numSign=vars.currentJson.ph.h1.is
+        //        sabianos.numDegree=parseInt(vars.currentJson.ph.h1.rsgdeg - 1)
         //        sabianos.loadData()
         //        if(apps.sabianosAutoShow){
         //            //panelSabianos.state='show'
         //            zsm.currentIndex=1
         //        }
     }
-    function loadSweJsonBack(json){
-        //console.log('JSON::: '+json)
-        app.currentJsonBack=JSON.parse(json)
-        //        if(app.dev)
-        //            log.lv('ZoolBodies.loadSweJsonBack(json): '+json)
-        //            log.lv('ZoolBodies.loadSweJsonBack(json) app.currentJsonBack: '+app.currentJsonBack)
+    function loadSweJsonBack(json, jsonPromesaParams){
+        //aspsCircle.clear()
+        vars.tipoBack=jsonPromesaParams.params.tipo
+        vars.cParamsBack=JSON.stringify(jsonPromesaParams)
+        vars.currentFechaBack=jsonPromesaParams.params.d+'/'+jsonPromesaParams.params.m+'/'+jsonPromesaParams.params.a
+        //let jsonC1=vars.cParams
         let scorrJson=json.replace(/\n/g, '')
-        //console.log('json: '+json)
         let j=JSON.parse(scorrJson)
-        //signCircle.rot=parseInt(j.ph.h1.gdec)
-        //planetsCircleBack.rotation=parseFloat(j.ph.h1.gdec).toFixed(2)
-        if(r.objectName==='sweg'){
-            panelAspectsBack.visible=true
-        }
-        panelAspectsBack.load(j)
-        aspsCircle.add(j)
-        if(app.mod!=='rs'){
-            //panelElementsBack.load(j)
-            zoolElementsView.load(j, true)
-            //panelElementsBack.visible=true
-            //Qt.quit()
-        }else{
-            //panelElementsBack.visible=false
-        }
         housesCircleBack.loadHouses(j)
-        //if(app.mod==='dirprim')housesCircleBack.rotation-=360-housesCircle.rotation
-        //if(JSON.parse(app))
-        planetsCircleBack.loadJson(j)
-        zoolDataBodies.loadJsonBack(j)
-        //panelDataBodiesV2.loadJson(j)
-        let isSaved=false
-        if(app.fileDataBack){
-            isSaved=JSON.parse(app.fileDataBack).ms>=0
-        }
-        app.backIsSaved=isSaved
-        if(app.dev)log.lv('sweg.loadSweJsonBack() isSaved: '+isSaved)
-        app.ev=true
-        //centerZoomAndPos()
+        //housesCircleBack.extraWidth=300
     }
 
     function nextState(){
@@ -425,7 +415,7 @@ Rectangle {
         rect.x = zp[6]
         rect.y = zp[7]
         if(zp[8]){
-            app.currentXAs.objOointerPlanet.pointerRot=zp[8]
+            vars.currentXAs.objOointerPlanet.pointerRot=zp[8]
         }
     }
     function getZoomAndPos(){
@@ -438,7 +428,7 @@ Rectangle {
         a.push(parseFloat(pinchArea.m_zoom2).toFixed(2))
         a.push(parseInt(rect.x))
         a.push(parseInt(rect.y))
-        a.push(parseInt(app.currentXAs.uRot))
+        a.push(parseInt(vars.currentXAs.uRot))
         return a
     }
     function getIndexSign(gdec){

@@ -8,6 +8,7 @@ QtObject{
     property bool dev: false
     property var j: JS
     property var ci: xApp
+    property string res: ''
     property int fs: 20
     property int xAppMargin: 10
 
@@ -23,6 +24,7 @@ QtObject{
 
     //--> Variables SWEG
     property string tipo: 'vn'
+    property string tipoBack: 'vn'
     property string cParams: '' // ex fileData
     property string cParamsBack: '' // ex fileDataBack
     property bool ev: false
@@ -36,6 +38,7 @@ QtObject{
     property var currentDate
     property var currentDateBack
     property string currentFecha: ''
+    property string currentFechaBack: ''
     //<-- Variables SWEG
 
     //--> Variables de Estado

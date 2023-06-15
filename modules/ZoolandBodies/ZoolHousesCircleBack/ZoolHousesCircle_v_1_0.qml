@@ -1,14 +1,9 @@
 import QtQuick 2.0
-//import "./comps" as Comps
+
 Item {
     id: r
-    width: sweg.parent.height*apps.sweMargin//-apps.*16
-    visible: false
-//    Rectangle{
-//        anchors.fill: r
-//        color: '#ff8833'
-//    }
-    property int currentHouse: app.currentHouseIndexBack
+    width: signCircle.width
+    property int currentHouse: app.currentHouseIndex
     property int w: sweg.fs*3
     property int wb: 1//sweg.fs*0.15
     property int f: 0
@@ -17,71 +12,36 @@ Item {
     property string extraObjectName: ''
     property var swegParent//: value
     property int widthAspCircle: 10
-    property int extraWidth: 0
-    property var aWs: []
-//    state: r.parent.state
-//    states: [
-//        State {
-//            name: r.parent.aStates[0]
-//            PropertyChanges {
-//                target: r
-//                //width: housesCircle.parent.objectName==='sweg'?(r.parent.width-sweg.fs-sweg.fs):(r.parent.width-sweg.fs)
-//                width: r.parent.width-sweg.fs-sweg.fs
-//            }
-//        },
-//        State {
-//            name: r.parent.aStates[1]
-//            PropertyChanges {
-//                target: r
-//                //width: housesCircle.parent.objectName==='sweg'?(r.parent.width-sweg.fs*5-sweg.fs):(r.parent.width-sweg.fs*2.5-sweg.fs*0.5)
-//                width: r.parent.width-sweg.fs*5-sweg.fs
-//            }
-//        },
-//        State {
-//            name: r.parent.aStates[2]
-//            PropertyChanges {
-//                target: r
-//                //width: housesCircle.parent.objectName==='sweg'?(r.parent.width-sweg.fs-sweg.fs):(r.parent.width)
-//                width: r.parent.width-sweg.fs-sweg.fs
-//            }
-//        }
-//    ]
-//    Behavior on rotation{
-//        enabled: apps.enableFullAnimation;
-//        NumberAnimation{duration:2000;easing.type: Easing.InOutQuad}
-//    }
-
+    property var aWs: []    
+    Rectangle{
+        anchors.fill: parent
+        color: 'yellow'
+        radius: width*0.5
+        visible: false
+    }
     Item{
-        id: xHomeArcsBack
-        width: 2//sweg.width-sweg.pz*2
-        height: width
-        anchors.centerIn: parent
+        id: xHomeArcs
+        anchors.fill: r
         Item{
-            id:xArcsBack
-            width: 2//sweg.width-sweg.pz*2
-            height: width
-            anchors.centerIn: parent
+            id:xArcs
+            anchors.fill: parent
             Repeater{
-                model: 12
-                HouseArcBack{
-                    objectName: 'HomeArcBack'+index+'_'+r.extraObjectName
+                //model: 12
+                HouseArc{
+                    objectName: 'HomeArc'+index+'_'+r.extraObjectName
                     n: index+1
                     c: index
                 }
             }
         }
     }
-//    HousesAxis{//rotation: parseInt(signCircle.rot);//z:signCircle.z+1;
-//        id:housesAxis
-//        height: width
-//    }
     //Probando/Visualizando rotación
-//    Rectangle{
-//        width: r.width
-//        height: 2
-//        anchors.centerIn: parent
-//        color: '#ff8833'
-//    }
+    //    Rectangle{
+    //        width: r.width
+    //        height: 2
+    //        anchors.centerIn: parent
+    //        color: '#ff8833'
+    //    }
 
 
 
@@ -94,7 +54,7 @@ Item {
     }
     function loadHouses(jsonData) {
         r.arrayWg=[]
-        xArcsBack.rotation=360-jsonData.ph.h1.gdec+signCircle.rot//+1
+        xArcs.rotation=360-jsonData.ph.h1.gdec
         var h
         let aDegs=[]
         let resta=0.000000
@@ -113,7 +73,7 @@ Item {
                 app.uAscDegreeTotal=jsonData.ph.h1.gdec
             }
             nh=i
-            let h=xArcsBack.children[i]
+            let h=xArcs.children[i]
             h.op=0.0
             let sh1=''
             let sh2=''
@@ -176,27 +136,28 @@ Item {
                     //housesAxis.reload(i, 360-(gp[i-1]+gp[i-2]+gp[i-3]+gp[i-4]+gp[i-5]))
                 }
                 if(i===6){
-                    h.rotation=h.rotation=180
+                    h.rotation=180
                     //h.rotation=h.rotation=360-(gp[i-1]+gp[i-2]+gp[i-3]+gp[i-4]+gp[i-5]+gp[i-6])
                     //housesAxis.reload(i, 360-(gp[i-1]+gp[i-2]+gp[i-3]+gp[i-4]+gp[i-5]+gp[i-6]))
                 }
                 if(i===7){
-                    h.rotation=h.rotation=360-(gp[i-1]+gp[i-2]+gp[i-3]+gp[i-4]+gp[i-5]+gp[i-6]+gp[i-7])
+                    h.rotation=360-(gp[i-1]+gp[i-2]+gp[i-3]+gp[i-4]+gp[i-5]+gp[i-6]+gp[i-7])
                     //housesAxis.reload(i, h.rotation=360-(gp[i-1]+gp[i-2]+gp[i-3]+gp[i-4]+gp[i-5]+gp[i-6]+gp[i-7]))
                 }
                 if(i===8){
-                    h.rotation=h.rotation=360-(gp[i-1]+gp[i-2]+gp[i-3]+gp[i-4]+gp[i-5]+gp[i-6]+gp[i-7]+gp[i-8])
+                    h.rotation=360-(gp[i-1]+gp[i-2]+gp[i-3]+gp[i-4]+gp[i-5]+gp[i-6]+gp[i-7]+gp[i-8])
                     //housesAxis.reload(i, h.rotation=360-(gp[i-1]+gp[i-2]+gp[i-3]+gp[i-4]+gp[i-5]+gp[i-6]+gp[i-7]+gp[i-8]))
                 }
                 if(i===9){
-                    h.rotation=h.rotation=360-(gp[i-1]+gp[i-2]+gp[i-3]+gp[i-4]+gp[i-5]+gp[i-6]+gp[i-7]+gp[i-8]+gp[i-9])
+                    h.rotation=360-(gp[i-1]+gp[i-2]+gp[i-3]+gp[i-4]+gp[i-5]+gp[i-6]+gp[i-7]+gp[i-8]+gp[i-9])
+                    //h.rotation=360-(180+parseInt(gp[i-7]+gp[i-8]+gp[i-9]))
                     //housesAxis.reload(i, h.rotation=360-(gp[i-1]+gp[i-2]+gp[i-3]+gp[i-4]+gp[i-5]+gp[i-6]+gp[i-7]+gp[i-8]+gp[i-9]))
                 }
                 if(i===10){
-                    h.rotation=h.rotation=360-(gp[i-1]+gp[i-2]+gp[i-3]+gp[i-4]+gp[i-5]+gp[i-6]+gp[i-7]+gp[i-8]+gp[i-9]+gp[i-10])
+                    h.rotation=360-(gp[i-1]+gp[i-2]+gp[i-3]+gp[i-4]+gp[i-5]+gp[i-6]+gp[i-7]+gp[i-8]+gp[i-9]+gp[i-10])
                 }
                 if(i===11){
-                    h.rotation=h.rotation=360-(gp[i-1]+gp[i-2]+gp[i-3]+gp[i-4]+gp[i-5]+gp[i-6]+gp[i-7]+gp[i-8]+gp[i-9]+gp[i-10]+gp[i-11])
+                    h.rotation=360-(gp[i-1]+gp[i-2]+gp[i-3]+gp[i-4]+gp[i-5]+gp[i-6]+gp[i-7]+gp[i-8]+gp[i-9]+gp[i-10]+gp[i-11])
                 }
                 //if(i!==0&&i!==6&&Qt.platform.os==='windows'){
                 if(i!==0&&i!==6){
@@ -225,17 +186,18 @@ Item {
                 }
             }
             gp.push(wgf)
-            resta+=xArcsBack.children[nh].wg-(o1.mdeg/60)-(o2.mdeg/60)-degRed
+            resta+=xArcs.children[nh].wg-(o1.mdeg/60)-(o2.mdeg/60)-degRed
             r.arrayWg.push(h.wg)
         }
-        let nawgs=0.0
+        ////housesAxis.reload(aDegs)
+        //xArcs.1rotation+=1
         r.aWs=[]
         for(i=0;i<12;i++){
-            h=xArcsBack.children[i]
+            h=xArcs.children[i]
             let g1=0.000
             let g2=0.000
-            g1=xArcsBack.children[i].rotation
-            g2=xArcsBack.children[i +1].rotation
+            g1=xArcs.children[i].rotation
+            g2=xArcs.children[i +1].rotation
             let nwg=g1-g2
             if(nwg<0){
                 nwg=360+nwg
@@ -244,14 +206,8 @@ Item {
                     nwg=nwg-360
                 }
             }
-            if(nwg>=360){
-                nwg=nwg-360
-            }
             h.wg=nwg
             r.aWs.push(nwg)
-            nawgs+=Math.abs(nwg)
-            //console.log('nwg: '+nwg)
-            //console.log('nawgs: '+nawgs)
         }
     }
     function getHousePos(g, rot, ip, defaultRet){
@@ -262,20 +218,26 @@ Item {
             initdeg+=360
         }
         for(var i=0;i<12;i++){
-            findeg=initdeg+housesCircleBack.aWs[i]//-rotDiff
+            findeg=initdeg+housesCircle.aWs[i]//-rotDiff
             if(g>initdeg&&g<findeg){
                 return i + 1
             }
-            initdeg+=housesCircleBack.aWs[i]
+            initdeg+=housesCircle.aWs[i]
         }
         initdeg=0-rotDiff
         for(i=0;i<12;i++){
-            findeg=initdeg+housesCircleBack.aWs[i]
+            findeg=initdeg+housesCircle.aWs[i]
             if(g>initdeg&&g<findeg){
                 return i + 1
             }
-            initdeg+=housesCircleBack.aWs[i]
+            initdeg+=housesCircle.aWs[i]
         }
         return defaultRet
+    }
+    function reloadHousesColors() {
+        for(i=0;i<12;i++){
+            let h=xArcs.children[i]
+            h.colors=['red','red','red','red','red','red','red','red','red','red','red','red']
+        }
     }
 }
