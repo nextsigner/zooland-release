@@ -1,1 +1,1 @@
-Se sube antes de eliminar modules/ZoolHousesCircleBack
+Se eliminó modules/ZoolHousesCircleBack
