@@ -1,1 +1,1 @@
-Bien: Se agrega timer para seterar waps y wapsBack en zip 245
+Bien: Se ajusta el tamaño de wapsBack y se ve bien en ChromeCast en zip 246

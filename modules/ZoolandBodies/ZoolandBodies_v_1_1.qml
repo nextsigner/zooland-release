@@ -49,7 +49,7 @@ Rectangle {
     property var aTexts: []
     property int w: vars.fs
     property bool v: false
-    property bool showBorders: false
+    property bool showBorders: true
     property bool enableAnZoomAndPos: false
     property real dirPrimRot: 0.0
 
@@ -369,6 +369,7 @@ Rectangle {
                 setWaps()
             }else{
                 setWapsBack()
+                //sweg.wapsBack=200
             }
 
         }
@@ -382,12 +383,12 @@ Rectangle {
         sweg.waps=w
     }
     function setWapsBack(){
-        let mpw=signCircle.width
+        let mpw=sweg.width
         for(var i=0;i<vars.planetasRes.length;i++){
-            if(planetsCircleBack.children[i].width>mpw)mpw=planetsCircleBack.children[i].width
+            if(planetsCircleBack.children[i].width<mpw)mpw=planetsCircleBack.children[i].width
         }
-        let w=(bordeSwegExt.width*2-mpw)
-        sweg.wapsBack=w*0.5
+        let w=(sweg.width*2-mpw)
+        sweg.wapsBack=w*0.25+(sweg.pz+vars.fs)
         zpn.addNot('setWapsBack()', true, 10000)
     }
     function loadSweJson(json, jsonPromesaParams){
