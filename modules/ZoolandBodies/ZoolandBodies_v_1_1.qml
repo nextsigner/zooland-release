@@ -20,15 +20,17 @@ Rectangle {
     height: width
     radius: width*0.5
     color: 'transparent'
-    border.width: 1
+    border.width: 0
     border.color: apps.fontColor
     anchors.centerIn: parent
 
     //Alias
+    property alias tsw: tSetWps
     property alias objHousesCircle: housesCircle
     property alias objHousesCircleBack: housesCircleBack
     property alias objPlanetsCircle: planetsCircle
     property alias objPlanetsCircleBack: planetsCircleBack
+
     //Variables de Houses y Planets
     property int pz: 60
     property int currentPlanetIndex: -1
@@ -47,6 +49,7 @@ Rectangle {
     property var aTexts: []
     property int w: vars.fs
     property bool v: false
+    property bool showBorders: false
     property bool enableAnZoomAndPos: false
     property real dirPrimRot: 0.0
 
@@ -226,6 +229,7 @@ Rectangle {
             //                }
             ZoolPlanetsCircleBack{
                 id: planetsCircleBack
+                width: signCircle.width
                 height: width
                 anchors.centerIn: parent
                 visible: vars.ev
@@ -266,7 +270,7 @@ Rectangle {
         border.width: 1
         border.color: apps.fontColor
         anchors.centerIn: parent
-        //visible: false
+        visible: r.showBorders
     }
     //Rect Borde SignCircle Int
     Rectangle{
@@ -278,7 +282,7 @@ Rectangle {
         border.width: 1
         border.color: apps.fontColor
         anchors.centerIn: parent
-        //visible: false
+        visible: r.showBorders
     }
     //Rect Borde HousesCircle Int
     Rectangle{
@@ -290,7 +294,7 @@ Rectangle {
         border.width: 1
         border.color: apps.fontColor
         anchors.centerIn: parent
-        //visible: false
+        visible: r.showBorders
     }
     //Rect Borde HousesCircleBack Int
     Rectangle{
@@ -302,7 +306,31 @@ Rectangle {
         border.width: 1
         border.color: apps.fontColor
         anchors.centerIn: parent
-        //visible: false
+        visible: r.showBorders
+    }
+    //Rect Borde PlanetsCircleBack Int
+    Rectangle{
+        id: bordePlanetssCircleBackInt
+        width: planetsCircleBack.width*0.5//-r.waps
+        height: width
+        radius: width*0.5
+        color: 'transparent'
+        border.width: 1
+        border.color: apps.fontColor
+        anchors.centerIn: parent
+        visible: r.showBorders
+    }
+    //Rect Borde SWEG Ext
+    Rectangle{
+        id: bordeSwegExt
+        width: r.width//*0.5//-r.waps
+        height: width
+        radius: width*0.5
+        color: 'transparent'
+        border.width: 1
+        border.color: apps.fontColor
+        anchors.centerIn: parent
+        visible: r.showBorders
     }
     //Rect Central
     Rectangle{
@@ -310,10 +338,60 @@ Rectangle {
         height: width
         color: 'yellow'
         anchors.centerIn: parent
-        visible: false
+        visible: r.showBorders
     }
+    Rectangle{
+        id: tapa
+        anchors.fill: r
+        color: apps.backgroundColor
+        anchors.centerIn: parent
+        Timer{
+            id: tHideTapa
+            running: false
+            repeat: true
+            interval: 150
+            onTriggered: {
+                tapa.opacity-=0.1
+                if(tapa.opacity<=0.0){
+                    stop()
+                    tapa.opacity=0.0
+                }
+            }
+        }
+    }
+    Timer{
+        id: tSetWps
+        running: false
+        repeat: false
+        interval: 1000
+        onTriggered: {
+            if(!vars.ev){
+                setWaps()
+            }else{
+                setWapsBack()
+            }
 
+        }
+    }
+    function setWaps(){
+        let mpw=signCircle.width
+        for(var i=0;i<vars.planetasRes.length;i++){
+            if(planetsCircle.children[i].width<mpw)mpw=planetsCircle.children[i].width
+        }
+        let w=(bordeSignCircleInt.width*2-mpw)
+        sweg.waps=w
+    }
+    function setWapsBack(){
+        let mpw=signCircle.width
+        for(var i=0;i<vars.planetasRes.length;i++){
+            if(planetsCircleBack.children[i].width>mpw)mpw=planetsCircleBack.children[i].width
+        }
+        let w=(bordeSwegExt.width*2-mpw)
+        sweg.wapsBack=w*0.5
+        zpn.addNot('setWapsBack()', true, 10000)
+    }
     function loadSweJson(json, jsonPromesaParams){
+        tapa.opacity=1.0
         vars.tipo=jsonPromesaParams.params.tipo
         vars.cParams=JSON.stringify(jsonPromesaParams)
         vars.currentFecha=jsonPromesaParams.params.d+'/'+jsonPromesaParams.params.m+'/'+jsonPromesaParams.params.a
@@ -371,8 +449,11 @@ Rectangle {
         //            //panelSabianos.state='show'
         //            zsm.currentIndex=1
         //        }
+        tSetWps.restart()
+        tHideTapa.start()
     }
     function loadSweJsonBack(json, jsonPromesaParams){
+        tapa.opacity=1.0
         //aspsCircle.clear()
         vars.tipoBack=jsonPromesaParams.params.tipo
         vars.cParamsBack=JSON.stringify(jsonPromesaParams)
@@ -384,8 +465,9 @@ Rectangle {
         planetsCircleBack.loadJson(j)
         //planetsCircle
         //housesCircleBack.extraWidth=300
+        tSetWps.restart()
+        tHideTapa.start()
     }
-
     function nextState(){
         let currentIndexState=r.aStates.indexOf(r.state)
         if(currentIndexState<r.aStates.length-1){
@@ -467,15 +549,5 @@ Rectangle {
     }
     function clearAspsCircles(){
         aspsCircle.clear()
-    }
-    function setWaps(){
-        let mpw=signCircle.width
-        let a=[]
-        for(var i=0;i<vars.planetasRes.length;i++){
-            if(planetsCircle.children[i].width<mpw)mpw=planetsCircle.children[i].width
-        }
-        let w=(bordeSignCircleInt.width*2-mpw)
-        sweg.waps=w
-        //zpn.addNot('W: '+w, false, 5000)
     }
 }

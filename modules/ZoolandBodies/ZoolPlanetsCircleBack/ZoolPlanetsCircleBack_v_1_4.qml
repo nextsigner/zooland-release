@@ -6,7 +6,7 @@ Item{
     id: r
     property bool expand: false
     property var cAs: r
-    property int planetSize: sweg.fs*0.75
+    property int planetSize: vars.fs*0.75
 
     property int totalPosX: 0
 
@@ -36,7 +36,7 @@ Item{
         //housesCircleBack.extraWidth=0
         var pMax=0
         var adeg=[]
-        //<--Código no presene en PlanetsCircle
+        //<--Código no presente en PlanetsCircle
 
         r.totalPosX=-1
         r.objSigns = [0,0,0,0,0,0,0,0,0,0,0,0]
@@ -130,6 +130,7 @@ Item{
 
         //housesCircleBack.extraWidth=rp*0.25*pMax+r.planetSize
         //sweg.wapsBack=rp*0.25*pMax+r.planetSize
+        sweg.wapsBack=500
     }
 
     function loadJsonFallado(json){

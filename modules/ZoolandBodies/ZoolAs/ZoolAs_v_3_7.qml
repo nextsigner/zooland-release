@@ -344,7 +344,8 @@ Item{
         interval: 250
         onTriggered: {
             if(r.numAstro===vars.planetasRes.length-1){
-                sweg.setWaps()
+                //sweg.tsw.restart()
+                //sweg.setWaps(false, r.width)
             }
         }
     }
