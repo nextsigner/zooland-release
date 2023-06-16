@@ -1,1 +1,1 @@
-Bien: Se ajusta el tamaño de wapsBack y se ve bien en ChromeCast en zip 246
+Bien: Se corrige rotacion de numero de casa en housesCircleBack en zip 248

@@ -49,7 +49,7 @@ Rectangle {
     property var aTexts: []
     property int w: vars.fs
     property bool v: false
-    property bool showBorders: true
+    property bool showBorders: false
     property bool enableAnZoomAndPos: false
     property real dirPrimRot: 0.0
 
