@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-import ZoolBodies.ZoolAsBack 3.4
+import ZoolandBodies.ZoolAsBack 3.4
 
 Item{
     id: r
@@ -16,39 +16,15 @@ Item{
     signal cnLoaded(string nombre, string dia, string mes, string anio, string hora, string minuto, string lon, string lat, string ciudad)
     signal doubleClick
     signal posChanged(int px, int py)
-    state: sweg.state
-    states: [
-        State {
-            name: sweg.aStates[0]
-            PropertyChanges {
-                target: r
-                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*2.5-sweg.fs):(sweg.width-sweg.fs*3.5)
-            }
-        },
-        State {
-            name: sweg.aStates[1]
-            PropertyChanges {
-                target: r
-                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*6-sweg.fs):(sweg.width-sweg.fs*4)
-            }
-        },
-        State {
-            name: sweg.aStates[2]
-            PropertyChanges {
-                target: r
-                //width: housesCircle.parent.objectName==='sweg'?(sweg.width-sweg.fs*2-sweg.fs):(sweg.width-sweg.fs*2)
-            }
-        }
-    ]
     Repeater{
-        model: app.planetasRes
+        model: vars.planetasRes
         ZoolAsBack{fs:r.planetSize;astro:modelData;numAstro: index}
     }
     function pressed(o){
-        if(app.currentPlanetIndexBack!==o.numAstro){
-            app.currentPlanetIndexBack=o.numAstro
+        if(vars.currentPlanetIndexBack!==o.numAstro){
+            vars.currentPlanetIndexBack=o.numAstro
         }else{
-            app.currentPlanetIndexBack=-1
+            vars.currentPlanetIndexBack=-1
             sweg.objHousesCircleBack.currentHouse=-1
         }
     }
@@ -57,7 +33,7 @@ Item{
     }
     function loadJson(json){
         //-->Código no presene en PlanetsCircle
-        housesCircleBack.extraWidth=0
+        //housesCircleBack.extraWidth=0
         var pMax=0
         var adeg=[]
         //<--Código no presene en PlanetsCircle
@@ -99,10 +75,10 @@ Item{
                 degRed=1.0
             }
             objAs.rotation=signCircle.rot-jo.gdeg-(jo.mdeg/60)//+degRed
-            if(app.mod==='dirprim'){
+            if(vars.mod==='dirprim'){
                 objAs.rotation-=sweg.dirPrimRot
             }
-            if(i===0)app.currentRotationxAsSol=objAs.rotation
+            if(i===0)vars.currentRotationxAsSol=objAs.rotation
             o={}
             o.p=objSigns[jo.is]
             if(r.totalPosX<o.p){
@@ -118,7 +94,7 @@ Item{
 
             o.rsg=jo.rsgdeg
             o.gdec=jo.gdec
-            if(app.mod==='dirprim'){
+            if(vars.mod==='dirprim'){
                 o.gdec+=sweg.dirPrimRot
             }
             if(o.gdec>=360.000)o.gdec-=360.000
@@ -127,7 +103,7 @@ Item{
             o.s=jo.sdeg
             o.ih=sweg.objHousesCircleBack.getHousePos(o.gdec, json.ph.h1.gdec, i, jo.ih)
             o.is=jo.is
-            if(app.mod==='dirprim'){
+            if(vars.tipo==='dirprim'){
                 o.is=sweg.getIndexSign(o.gdec)
             }
 
@@ -136,10 +112,10 @@ Item{
             objAs.objData=o
             objSigns[jo.is]++
             if(i===0){
-                app.currentAbsolutoGradoSolarBack=jo.rsgdeg
-                app.currentGradoSolarBack=jo.gdeg
-                app.currentMinutoSolarBack=jo.mdeg
-                app.currentSegundoSolarBack=jo.sdeg
+                vars.currentAbsolutoGradoSolarBack=jo.rsgdeg
+                vars.currentGradoSolarBack=jo.gdeg
+                vars.currentMinutoSolarBack=jo.mdeg
+                vars.currentSegundoSolarBack=jo.sdeg
                 houseSun=jo.ih
             }
         }
@@ -152,11 +128,13 @@ Item{
         }
         r.planetSize=rp
 
-        housesCircleBack.extraWidth=rp*0.25*pMax+r.planetSize
+        //housesCircleBack.extraWidth=rp*0.25*pMax+r.planetSize
+        //sweg.wapsBack=rp*0.25*pMax+r.planetSize
     }
 
     function loadJsonFallado(json){
-        housesCircleBack.extraWidth=0
+        //housesCircleBack.extraWidth=0
+        sweg.wapsBack=0
 
         r.totalPosX=-1
         r.objSigns = [0,0,0,0,0,0,0,0,0,0,0,0]
@@ -192,7 +170,7 @@ Item{
                 degRed=1.0
             }
             objAs.rotation=signCircle.rot-jo.gdeg-(jo.mdeg/60)+degRed
-//            if(app.mod==='dirprim'){
+//            if(vars.mod==='dirprim'){
 //                objAs.rotation+=sweg.dirPrimRot
 //                //Qt.quit()
 //            }
@@ -215,10 +193,10 @@ Item{
             objAs.objData=o
             objSigns[jo.is]++
             if(i===0){
-                app.currentAbsolutoGradoSolar=jo.rsgdeg
-                app.currentGradoSolar=jo.gdeg
-                app.currentMinutoSolar=jo.mdeg
-                app.currentSegundoSolar=jo.sdeg
+                vars.currentAbsolutoGradoSolar=jo.rsgdeg
+                vars.currentGradoSolar=jo.gdeg
+                vars.currentMinutoSolar=jo.mdeg
+                vars.currentSegundoSolar=jo.sdeg
                 //houseSun=jo.ih
             }
 
@@ -236,7 +214,8 @@ Item{
         }
         r.planetSize=rp
 
-        housesCircleBack.extraWidth=rp*0.25*pMax+r.planetSize
+        //housesCircleBack.extraWidth=rp*0.25*pMax+r.planetSize
+        //sweg.wapsBack=rp*0.25*pMax+r.planetSize
 
         //Fortuna
 //        let joHouses=json.ph['h1']
@@ -257,8 +236,8 @@ Item{
 //            if(gf>=360)gf=gf-360
 //            objAs.rotation=signCircle.rot-gf
 //        }
-//        //console.log('gf: '+app.j.deg_to_dms(gf))
-//        var arrayDMS=app.j.deg_to_dms(gf)
+//        //console.log('gf: '+vars.j.deg_to_dms(gf))
+//        var arrayDMS=vars.j.deg_to_dms(gf)
 //        o={}
 //        o.g=arrayDMS[0]
 //        o.m=arrayDMS[1]
@@ -307,7 +286,7 @@ Item{
             if(gf<0)gf=360-gf
             objAs.rotation=signCircle.rot-gf
         }
-        arrayDMS=app.j.deg_to_dms(gf)
+        arrayDMS=vars.j.deg_to_dms(gf)
         o={}
         o.g=arrayDMS[0]
         o.m=arrayDMS[1]

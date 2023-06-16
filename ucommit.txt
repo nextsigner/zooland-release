@@ -1,1 +1,1 @@
-Se creo y se cargó bien en ChromeCast ZoolArcBack sin OpacityMask en zip 238
+Bien: Se logró cargar ZoolPlanestCircleBack pero aún no se ha podido setear wapsBack en zip 242

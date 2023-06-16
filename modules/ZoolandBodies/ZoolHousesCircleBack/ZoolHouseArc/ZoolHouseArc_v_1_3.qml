@@ -158,7 +158,7 @@ Item {
                 //color: apps.enableBackgroundColor?apps.backgroundColor:'black'
                 color: apps.fontColor
                 anchors.centerIn: parent
-                rotation: 0-r.rotation-parent.rotation
+                rotation: 0-r.rotation-45-90//-parent.rotation
             }
 
         }

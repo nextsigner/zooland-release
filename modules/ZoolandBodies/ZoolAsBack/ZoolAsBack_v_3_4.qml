@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtGraphicalEffects 1.0
 import ZoolText 1.1
 
-import ZoolBodies.ZoolAsCotaDeg 1.0
+import ZoolandBodies.ZoolAsCotaDeg 1.0
 
 import "../"
 
@@ -19,7 +19,7 @@ Item{
     property int numAstro: 0
     property string astro
 
-    property bool selected: numAstro === app.currentPlanetIndexBack
+    property bool selected: numAstro === vars.currentPlanetIndexBack
 
     property int is
     property int fs:planetsCircleBack.planetSize
@@ -38,15 +38,15 @@ Item{
 
     onSelectedChanged: {
         if(selected)housesCircleBack.currentHouse=objData.ih
-        if(selected)app.uSon=''+app.planetasRes[r.numAstro]+'_'+app.objSignsNames[r.is]+'_'+objData.ih
+        if(selected)vars.uSon=''+vars.planetasRes[r.numAstro]+'_'+vars.objSignsNames[r.is]+'_'+objData.ih
         if(selected){
             pointerPlanet.setPointerFs()
             housesCircleBack.currentHouse=objData.ih
-            app.currentHouseIndexBack=objData.ih
-            app.currentXAsBack=r
+            vars.currentHouseIndexBack=objData.ih
+            vars.currentXAsBack=r
             setRot()
             setZoomAndPos()
-            app.showPointerXAsBack=true
+            vars.showPointerXAsBack=true
         }
     }
 
@@ -115,7 +115,7 @@ Item{
             expand: r.selected
             iconoSignRot: img0.rotation
             p: r.numAstro
-            opacity: r.selected&&app.showPointerXAs?1.0:0.0
+            opacity: r.selected&&vars.showPointerXAs?1.0:0.0
             isBack: true
         }
         Rectangle{
@@ -161,17 +161,17 @@ Item{
                     }
                 }else{
                     if(wheel.angleDelta.y>=0){
-    //                    if(reSizeAppsFs.fs<app.fs*2){
+    //                    if(reSizeAppsFs.fs<vars.fs*2){
     //                        reSizeAppsFs.fs+=reSizeAppsFs.fs*0.1
     //                    }else{
-    //                        reSizeAppsFs.fs=app.fs
+    //                        reSizeAppsFs.fs=vars.fs
     //                    }
                         pointerPlanet.pointerRot+=45
                     }else{
-    //                    if(reSizeAppsFs.fs>app.fs){
+    //                    if(reSizeAppsFs.fs>vars.fs){
     //                        reSizeAppsFs.fs-=reSizeAppsFs.fs*0.1
     //                    }else{
-    //                        reSizeAppsFs.fs=app.fs*2
+    //                        reSizeAppsFs.fs=vars.fs*2
     //                    }
                         pointerPlanet.pointerRot-=45
                     }
@@ -187,9 +187,9 @@ Item{
                 //r.parent.cAs=r.parent
             }
             onClicked: {
-                //apps.sweFs=app.fs
+                //apps.sweFs=vars.fs
                 if (mouse.button === Qt.RightButton) { // 'mouse' is a MouseEvent argument passed into the onClicked signal handler
-                    app.uSonFCMB=''+app.planetasRes[r.numAstro]+'_'+app.objSignsNames[r.is]+'_'+objData.ih
+                    vars.uSonFCMB=''+vars.planetasRes[r.numAstro]+'_'+vars.objSignsNames[r.is]+'_'+objData.ih
                     menuPlanets.isBack=true
                     menuPlanets.currentIndexPlanet=r.numAstro
                     menuPlanets.popup()
@@ -220,15 +220,15 @@ Item{
         }
         Image{
             id: img0
-            //source: app.planetasRes[r.numAstro]?"./resources/imgs/planetas/"+app.planetasRes[r.numAstro]+".svg":""
-            source: app.planetasRes[r.numAstro]?r.folderImg+"/"+app.planetasRes[r.numAstro]+(apps.xAsShowIcon&&r.aIcons.indexOf(r.numAstro)>=0?"_i.png":".svg"):""
+            //source: vars.planetasRes[r.numAstro]?"./resources/imgs/planetas/"+vars.planetasRes[r.numAstro]+".svg":""
+            source: vars.planetasRes[r.numAstro]?r.folderImg+"/"+vars.planetasRes[r.numAstro]+(apps.xAsShowIcon&&r.aIcons.indexOf(r.numAstro)>=0?"_i.png":".svg"):""
             width: parent.width*0.9
             height: width
             //x:!r.selected?0:r.parent.width*0.5-img0.width*0.5//+sweg.fs*2
             //y: (parent.width-width)/2
             anchors.centerIn: parent
             //rotation: 0-parent.parent.rotation
-            rotation: app.mod!=='dirprim'?0-parent.parent.rotation:0-parent.parent.rotation-sweg.objPlanetsCircleBack.rotation
+            rotation: vars.mod!=='dirprim'?0-parent.parent.rotation:0-parent.parent.rotation-sweg.objPlanetsCircleBack.rotation
             antialiasing: true
             visible: !co.visible
         }
@@ -253,10 +253,10 @@ Item{
                 }
             }
             SequentialAnimation{
-                running: r.selected && !app.capturing//apps.anColorXAs
+                running: r.selected && !vars.capturing//apps.anColorXAs
                 loops: Animation.Infinite
                 onRunningChanged: {
-                    if(!running&&app.capturing){
+                    if(!running&&vars.capturing){
                         co.color=apps.xAsColorBack
                     }
                 }
@@ -354,11 +354,11 @@ Item{
 
     //Zoom And Pos
     function saveZoomAndPos(){
-        let json=JSON.parse(app.fileData)
-        if(!json[app.stringRes+'zoompos']){
-            json[app.stringRes+'zoompos']={}
+        let json=JSON.parse(vars.fileData)
+        if(!json[vars.stringRes+'zoompos']){
+            json[vars.stringRes+'zoompos']={}
         }
-        json[app.stringRes+'zoompos']['zpcBack'+r.numAstro]=sweg.getZoomAndPos()
+        json[vars.stringRes+'zoompos']['zpcBack'+r.numAstro]=sweg.getZoomAndPos()
         if(unik.fileExist(apps.url.replace('file://', ''))){
             let dataModNow=new Date(Date.now())
             json.params.msmod=dataModNow.getTime()
@@ -366,9 +366,9 @@ Item{
         zfdm.saveJson(json)
     }
     function setZoomAndPos(){
-        let json=JSON.parse(app.fileData)
-        if(json[app.stringRes+'zoompos']&&json[app.stringRes+'zoompos']['zpcBack'+r.numAstro]){
-            sweg.setZoomAndPos(json[app.stringRes+'zoompos']['zpcBack'+r.numAstro])
+        let json=JSON.parse(vars.fileData)
+        if(json[vars.stringRes+'zoompos']&&json[vars.stringRes+'zoompos']['zpcBack'+r.numAstro]){
+            sweg.setZoomAndPos(json[vars.stringRes+'zoompos']['zpcBack'+r.numAstro])
         }
     }
 }

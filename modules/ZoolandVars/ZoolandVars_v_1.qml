@@ -31,14 +31,28 @@ QtObject{
 
     property real uAscDegreeTotal
     property real currentRotationxAsSol
+
     property real currentAbsolutoGradoSolar
     property real currentGradoSolar
     property real currentMinutoSolar
     property real currentSegundoSolar
+
+    property real currentAbsolutoGradoSolarBack
+    property real currentGradoSolarBack
+    property real currentMinutoSolarBack
+    property real currentSegundoSolarBack
+
     property var currentDate
     property var currentDateBack
     property string currentFecha: ''
     property string currentFechaBack: ''
+    property string currentLugar: ''
+    //property int currentAbsolutoGradoSolar: -1
+    //property int currentGradoSolar: -1
+    //property int currentRotationxAsSol: -1
+    //property int currentMinutoSolar: -1
+    //property int currentSegundoSolar: -1
+    //property real currentGmt: 0
     //<-- Variables SWEG
 
     //--> Variables de Estado

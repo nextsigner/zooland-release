@@ -158,7 +158,7 @@ Item {
                         spacing: r.pointerFs*0.25
                         anchors.horizontalCenter: parent.horizontalCenter
                         Text{
-                            text: vars.planetas[r.p]+' en '+vars.signos[r.is]
+                            //text: vars.planetas[r.p]+' en '+vars.signos[r.is]
                             font.pixelSize: r.pointerFs*0.5
                             color: apps.backgroundColor
                             anchors.verticalCenter: parent.verticalCenter

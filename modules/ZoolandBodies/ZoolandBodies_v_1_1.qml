@@ -8,8 +8,8 @@ import ZoolandBodies.ZoolHousesCircleBack 1.2
 
 import ZoolElementsView 1.0
 
-//import ZoolBodies.ZoolAspectsView 1.0
-//import ZoolBodies.ZoolAspectsViewBack 1.0
+//import ZoolandBodies.ZoolAspectsView 1.0
+//import ZoolandBodies.ZoolAspectsViewBack 1.0
 
 import ZoolandBodies.ZoolandSignCircle 1.1
 
@@ -26,7 +26,9 @@ Rectangle {
 
     //Alias
     property alias objHousesCircle: housesCircle
-
+    property alias objHousesCircleBack: housesCircleBack
+    property alias objPlanetsCircle: planetsCircle
+    property alias objPlanetsCircleBack: planetsCircleBack
     //Variables de Houses y Planets
     property int pz: 60
     property int currentPlanetIndex: -1
@@ -36,11 +38,12 @@ Rectangle {
     property var currentJson: ''
     property var currentJsonBack: ''
     property int waps: ((signCircle.width-pz*2)*0.5)
-    property int wapsBack: 300
+    property int wapsBack: 100
 
 
     //Variables
     property var listCotasShowing: []
+    property var listCotasShowingBack: []
     property var aTexts: []
     property int w: vars.fs
     property bool v: false
@@ -221,12 +224,12 @@ Rectangle {
             //                    anchors.centerIn: parent
             //                    visible: vars.ev
             //                }
-            //                ZoolPlanetsCircleBack{
-            //                    id:planetsCircleBack
-            //                    height: width
-            //                    anchors.centerIn: parent
-            //                    visible: vars.ev
-            //                }
+            ZoolPlanetsCircleBack{
+                id: planetsCircleBack
+                height: width
+                anchors.centerIn: parent
+                visible: vars.ev
+            }
             //                EclipseCircle{
             //                    id: eclipseCircle
             //                    width: housesCircle.width
@@ -378,6 +381,8 @@ Rectangle {
         let scorrJson=json.replace(/\n/g, '')
         let j=JSON.parse(scorrJson)
         housesCircleBack.loadHouses(j)
+        planetsCircleBack.loadJson(j)
+        //planetsCircle
         //housesCircleBack.extraWidth=300
     }
 
