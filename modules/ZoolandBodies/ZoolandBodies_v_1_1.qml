@@ -423,7 +423,7 @@ Rectangle {
         housesCircle.loadHouses(j)
         planetsCircle.loadJson(j)
         zdb.loadJson(j)
-
+        aspsCircle.load(j)
 
         if(vars.dev){
             //housesCircle.opacity=0.75
@@ -437,7 +437,7 @@ Rectangle {
 
         //panelAspects.load(j)
 
-        //aspsCircle.load(j)
+
         zoolElementsView.load(j, false)
         //eclipseCircle.arrayWg=housesCircle.arrayWg
         //eclipseCircle.isEclipse=-1
@@ -464,6 +464,8 @@ Rectangle {
         let j=JSON.parse(scorrJson)
         housesCircleBack.loadHouses(j)
         planetsCircleBack.loadJson(j)
+        zdb.loadJsonBack(j)
+        aspsCircle.add(j)// loadBack(j)
         //planetsCircle
         //housesCircleBack.extraWidth=300
         tSetWps.restart()

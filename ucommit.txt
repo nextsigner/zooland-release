@@ -1,1 +1,1 @@
-Bien: Se agrega ZoolAs v3.8 y PointerPlanet en zip 150
+Bien: Se cargó aspsCircles.load() y .add() en zip 252
