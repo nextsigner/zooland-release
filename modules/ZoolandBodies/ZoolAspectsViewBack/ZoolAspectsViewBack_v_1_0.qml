@@ -8,7 +8,7 @@ Rectangle {
     color: 'transparent'
     antialiasing: true
     property url uItemGrabber
-    property int cellWidth: app.fs*0.45
+    property int cellWidth: vars.fs*0.45
     Row{
         id: row
         visible: apps.showAspPanelBack
@@ -19,7 +19,7 @@ Rectangle {
     }
     MouseArea{
         anchors.fill: r
-        enabled: sweg.state!==sweg.aStates[2]
+        //enabled: sweg.state!==sweg.aStates[2]
         onClicked: {
             sweg.state=sweg.aStates[2]
             //swegz.sweg.state=sweg.aStates[2]
@@ -39,7 +39,7 @@ Rectangle {
             onClicked: {
                 if (mouse.modifiers & Qt.ControlModifier) {
                     apps.showAspCircleBack=!apps.showAspCircleBack
-                    //if(app.dev)log.ls('apps.showAspCircleBack:'+apps.showAspCircleBack, 0, log.width)
+                    //if(vars.dev)log.ls('apps.showAspCircleBack:'+apps.showAspCircleBack, 0, log.width)
                     return
                 }
                 apps.showAspPanelBack=!apps.showAspPanelBack
@@ -56,14 +56,14 @@ Rectangle {
         }
         Text{
             text:  'Aspextos'
-            font.pixelSize: app.fs*0.25
+            font.pixelSize: vars.fs*0.25
             color: apps.fontColor
             opacity: apps.showAspPanelBack?0.0:1.0
             anchors.verticalCenter: parent.verticalCenter
             anchors.verticalCenterOffset: contentHeight
             anchors.left: parent.right
             transform: Scale{ yScale: -1 }
-            anchors.leftMargin: app.fs*0.1
+            anchors.leftMargin: vars.fs*0.1
         }
     }
     function clear(){

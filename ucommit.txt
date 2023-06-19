@@ -1,1 +1,1 @@
-Bien: Se cargó aspsCircles.load() y .add() en zip 252
+Bien: Se cargó agregando panelsAspects y panelAspenctsBack en zip 254

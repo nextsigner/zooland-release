@@ -85,7 +85,7 @@ Rectangle{
             Component.onCompleted: {
                 let s=''
                 s+=params.params.n
-                if(index>0){
+                if(index>1){
                     s+='\nFecha: '+params.params.d+'/'+params.params.m+'/'+params.params.a+''
                 }
                 txt1.text=s
@@ -94,7 +94,9 @@ Rectangle{
     }
     function load(j){
         lm.clear()
-        let p=JSON.parse('{"params":{"n":"Ahora"}}')
+        let p=JSON.parse('{"params":{"n":"Atras"}}')
+        lm.append(lm.addItem(p))
+        p=JSON.parse('{"params":{"n":"Ahora"}}')
         lm.append(lm.addItem(p))
         let sp=JSON.stringify(j, null, 2)
         //log.lv('sp: '+sp)
@@ -118,6 +120,11 @@ Rectangle{
 
     function toEnter(){
         //log.lv('Datos Externos: '+JSON.stringify(lm.get(lv.currentIndex).params, null, 2))
+        if(lv.currentIndex===0){
+            r.visible=false
+            vars.ci=zsm.getPanel('ZoolRemoteParamsList')
+            return
+        }
         zsfdm.getZoolandDataBack(lm.get(lv.currentIndex).params)
     }
     function toLeft(){

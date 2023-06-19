@@ -18,6 +18,7 @@ QtObject{
     property var planetasRes: ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto', 'n', 's', 'hiron', 'selena', 'lilith', 'pholus', 'ceres', 'pallas', 'juno', 'vesta']
     property var objSignsNames: ['ari', 'tau', 'gem', 'cnc', 'leo', 'vir', 'lib', 'sco', 'sgr', 'cap', 'aqr', 'psc']
     property var signos: ['Aries', 'Tauro', 'Géminis', 'Cáncer', 'Leo', 'Virgo', 'Libra', 'Escorpio', 'Sagitario', 'Capricornio', 'Acuario', 'Piscis']
+    property var planetas: ['Sol', 'Luna', 'Mercurio', 'Venus', 'Marte', 'Júpiter', 'Saturno', 'Urano', 'Neptuno', 'Plutón', 'N.Norte', 'N.Sur', 'Quirón', 'Selena', 'Lilith']
     property var signColors: ['red', '#FBE103', '#09F4E2', '#0D9FD6','red', '#FBE103', '#09F4E2', '#0D9FD6','red', '#FBE103', '#09F4E2', '#0D9FD6']
     property var meses: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
     //<--  Variables Astrológicas
@@ -93,6 +94,34 @@ QtObject{
         if(tipo==='trans')strSep='Tránsitos'
         if(tipo==='dirprim')strSep='Dir. Primarias'
         zoolDataView.setDataView(strSep, aL, [])
+        //zpn.addNot(cParams, true, 5000)
+    }
+    onCParamsBackChanged:{
+        let j=JSON.parse(cParamsBack)
+        //ñalskdfjñla
+        //log.lv('getZoolandData(j)...')
+        let aL=zoolDataView.atLeft
+        let aR=[]
+        aR.push(''+j.params.n)
+        aR.push(''+j.params.d+'/'+j.params.m+'/'+j.params.a)
+        aR.push(''+j.params.h+':'+j.params.min+'hs')
+        aR.push('<b>GMT:</b> '+j.params.gmt)
+        aR.push('<b>Ubicación:</b> '+j.params.ciudad)
+        aR.push('<b>Lat:</b> '+parseFloat(j.params.lat).toFixed(2))
+        aR.push('<b>Lon:</b> '+parseFloat(j.params.lon).toFixed(2))
+        aR.push('<b>Alt:</b> '+j.params.alt)
+        let tipo=j.tipo
+        let strSep=''
+        if(tipo==='vn'){
+            strSep='Carta Natal'
+        }
+        if(tipo==='sin'){
+            strSep='Sinastría'
+        }
+        if(tipo==='rs')strSep='Rev. Solar '+va
+        if(tipo==='trans')strSep='Tránsitos'
+        if(tipo==='dirprim')strSep='Dir. Primarias'
+        zoolDataView.setDataView(strSep, aL, aR)
         //zpn.addNot(cParams, true, 5000)
     }
 

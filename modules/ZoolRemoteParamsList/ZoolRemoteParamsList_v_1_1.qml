@@ -9,6 +9,7 @@ Rectangle {
     width: parent.width
     height: parent.height
     clip: true
+    property alias ol: zrol
     property alias itemIndex: lv.currentIndex
 
     property string prevZFocus: ''
@@ -65,6 +66,10 @@ Rectangle {
             }
         }
     }
+    ZoolRemoteOptionList{
+        id: zrol
+        visible: false
+    }
     Rectangle{
         anchors.fill: parent
         color: 'transparent'
@@ -82,10 +87,7 @@ Rectangle {
         }
     }
 
-    ZoolRemoteOptionList{
-        id: zrol
-        visible: false
-    }
+
     Timer{
         id: tShow
         running: true

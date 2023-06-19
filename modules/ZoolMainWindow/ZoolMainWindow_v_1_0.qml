@@ -90,12 +90,21 @@ ApplicationWindow {
                 vars.ci=zdb
                 return
             }else if(vars.ci && vars.ci.objectName==='zdb'){
-                zbtb.currentIndex=zbtb.maximunIndex
-                vars.ci=zbtb
+                if(zdb.latFocus===1  && vars.ev){
+                    zdb.latFocus=0
+                }else{
+                    zbtb.currentIndex=zbtb.maximunIndex
+                    vars.ci=zbtb
+                }
+
                 return
             }else if(vars.ci && vars.ci.objectName==='bottomBar'){
                 if(zbtb.currentIndex === 0){
-                    vars.ci=zsm.getPanel('ZoolRemoteParamsList')
+                    if(zsm.getPanel('ZoolRemoteParamsList').ol.visible){
+                        vars.ci=zsm.getPanel('ZoolRemoteParamsList').ol
+                    }else{
+                        vars.ci=zsm.getPanel('ZoolRemoteParamsList')
+                    }
                     return
                 }
                 //vars.ci=zdb
@@ -116,6 +125,17 @@ ApplicationWindow {
             if(vars.ci && vars.ci.objectName==='list'){
                 zbtb.currentIndex=0
                 vars.ci=zbtb
+                return
+            }else if(vars.ci && vars.ci.objectName==='zdb'){
+                if(zdb.latFocus===0 && vars.ev){
+                    zdb.latFocus=1
+                }else{
+                    if(zsm.getPanel('ZoolRemoteParamsList').ol.visible){
+                        vars.ci=zsm.getPanel('ZoolRemoteParamsList').ol
+                    }else{
+                        vars.ci=zsm.getPanel('ZoolRemoteParamsList')
+                    }
+                }
                 return
             }else if(vars.ci && vars.ci.objectName==='bottomBar'){
                 if(zbtb.maximunIndex === zbtb.currentIndex){

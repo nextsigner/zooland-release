@@ -8,8 +8,8 @@ import ZoolandBodies.ZoolHousesCircleBack 1.2
 
 import ZoolElementsView 1.0
 
-//import ZoolandBodies.ZoolAspectsView 1.0
-//import ZoolandBodies.ZoolAspectsViewBack 1.0
+import ZoolandBodies.ZoolAspectsView 1.0
+import ZoolandBodies.ZoolAspectsViewBack 1.0
 
 import ZoolandBodies.ZoolandSignCircle 1.1
 
@@ -30,6 +30,8 @@ Rectangle {
     property alias objHousesCircleBack: housesCircleBack
     property alias objPlanetsCircle: planetsCircle
     property alias objPlanetsCircleBack: planetsCircleBack
+    property alias objAspsCircle: aspsCircle
+
 
     //Variables de Houses y Planets
     property int pz: 60
@@ -256,8 +258,31 @@ Rectangle {
             //ZoolAutoPanZoom{id:zoolAutoPanZoom}
         }
     }
-    ZoolElementsView{id: zoolElementsView;parent: r.parent}
+    ZoolElementsView{
+        id: zoolElementsView
+        parent: r.parent
+        //anchors.bottom: parent.bottom
 
+    }
+
+    ZoolAspectsView{
+        id: panelAspects
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.leftMargin: xLatIzq.visible?0:0-xLatIzq.width
+        parent: r.parent
+    }
+    ZoolAspectsViewBack{
+        id: panelAspectsBack
+        anchors.top: parent.top
+        anchors.topMargin: xApp.height-r.height//(r.parent.height-r.height)/2
+        parent: r.parent
+        anchors.left: parent.left
+        anchors.leftMargin: xLatIzq.visible?width:width-xLatIzq.width
+        transform: Scale{ xScale: -1 }
+        rotation: 180
+        visible: planetsCircleBack.visible
+    }
 
 
     //Rect Borde SignCircle Ext
@@ -424,6 +449,7 @@ Rectangle {
         planetsCircle.loadJson(j)
         zdb.loadJson(j)
         aspsCircle.load(j)
+        panelAspects.load(j)
 
         if(vars.dev){
             //housesCircle.opacity=0.75
@@ -435,7 +461,7 @@ Rectangle {
 
         //ascMcCircle.loadJson(j)
 
-        //panelAspects.load(j)
+
 
 
         zoolElementsView.load(j, false)
@@ -466,6 +492,8 @@ Rectangle {
         planetsCircleBack.loadJson(j)
         zdb.loadJsonBack(j)
         aspsCircle.add(j)// loadBack(j)
+        panelAspectsBack.load(j)
+        //panelAspectsBack.visible=true
         //planetsCircle
         //housesCircleBack.extraWidth=300
         tSetWps.restart()
