@@ -3,7 +3,7 @@ import ZoolandBodies.ZoolHousesCircleBack.ZoolHouseArc 1.3
 
 Item {
     id: r
-    //width: signCircle.width
+    visible: vars.ev
     property int currentHouse: -1//app.currentHouseIndex
     property int houseShowSelectadIndex: -1
     property int w: sweg.fs*3

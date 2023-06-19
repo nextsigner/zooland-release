@@ -67,7 +67,7 @@ Item{
             }
             Audio{
                 source: 'beep.wav'
-                autoPlay: true
+                //autoPlay: true
             }
             ZoolText {
                 id: txt

@@ -77,7 +77,6 @@ Item {
         wg: r.wg
         //rotation: index*(360/3)-30
         anchors.centerIn: parent
-
     }
     Rectangle{
         id: ejeV

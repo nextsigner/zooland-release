@@ -47,12 +47,16 @@ QtObject{
     property string currentFecha: ''
     property string currentFechaBack: ''
     property string currentLugar: ''
-    //property int currentAbsolutoGradoSolar: -1
-    //property int currentGradoSolar: -1
-    //property int currentRotationxAsSol: -1
-    //property int currentMinutoSolar: -1
-    //property int currentSegundoSolar: -1
-    //property real currentGmt: 0
+
+    //XAs
+    property string uSon: ''
+    property string uSonBack: ''
+    property var currentXAs
+    property var currentXAsBack
+    property bool showPointerXAs: true
+    property bool showPointerXAsBack: true
+
+
     //<-- Variables SWEG
 
     //--> Variables de Estado
@@ -89,7 +93,7 @@ QtObject{
         if(tipo==='trans')strSep='Tránsitos'
         if(tipo==='dirprim')strSep='Dir. Primarias'
         zoolDataView.setDataView(strSep, aL, [])
-        zpn.addNot(cParams, true, 5000)
+        //zpn.addNot(cParams, true, 5000)
     }
 
 

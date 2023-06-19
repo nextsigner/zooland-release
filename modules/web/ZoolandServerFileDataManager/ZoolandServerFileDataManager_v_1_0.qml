@@ -70,7 +70,7 @@ Item{
         property var promesaParams
         function setData(data, isData){
             if(vars.dev){
-                zpn.addNot('objGetZoolandData.setData.data: '+data, true, 1000)
+                //zpn.addNot('objGetZoolandData.setData.data: '+data, true, 1000)
             }
             if(isData){
                 let j=JSON.parse(data)

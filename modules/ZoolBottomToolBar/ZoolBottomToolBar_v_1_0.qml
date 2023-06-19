@@ -6,13 +6,13 @@ Item{
     width: parent.width
     height: w
     anchors.bottom: parent.bottom
-    visible: app.ci===r
+    visible: vars.ci===r
     property int currentIndex: 0
     property int maximunIndex: rep.model.length-1
-    property int w: app.fs*2
+    property int w: vars.fs*2
 
     Row{
-        spacing: app.fs*0.25
+        spacing: vars.fs*0.25
         height: parent.height
         anchors.centerIn: parent
         Repeater{
@@ -36,7 +36,7 @@ Item{
                     radius: parent.radius
                     visible: false
                     Timer{
-                        running: app.ci===r && r.currentIndex===index
+                        running: vars.ci===r && r.currentIndex===index
                         repeat: true
                         interval: 500
                         onTriggered: parent.visible=!parent.visible
@@ -56,19 +56,19 @@ Item{
     }
     Rectangle{
         id: xInfo
-        width: txtInfo.contentWidth+app.fs
-        height: txtInfo.contentHeight+app.fs
-        radius: app.fs*0.1
+        width: txtInfo.contentWidth+vars.fs
+        height: txtInfo.contentHeight+vars.fs
+        radius: vars.fs*0.1
         color: apps.backgroundColor
         border.width: 1
         border.color: apps.fontColor
         anchors.bottom: parent.top
-        anchors.bottomMargin: r.w+app.fs*0.25
+        anchors.bottomMargin: r.w+vars.fs*0.25
         anchors.horizontalCenter: parent.horizontalCenter
         Text{
             id: txtInfo
             text: rep.model[r.currentIndex][1]//'???????????sdasfa'
-            font.pixelSize: app.fs*0.5
+            font.pixelSize: vars.fs*0.5
             color: apps.fontColor
             anchors.centerIn: parent
         }
@@ -116,10 +116,10 @@ Item{
             }
         }
         if(str==='PS'){
-            if(apps.planetsSize>app.fs*3){
-                apps.planetsSize=app.fs*3
+            if(apps.planetsSize>vars.fs*3){
+                apps.planetsSize=vars.fs*3
             }
-            apps.planetsSize=apps.planetsSize+app.fs*0.1
+            apps.planetsSize=apps.planetsSize+vars.fs*0.1
             sweg.objPlanetsCircle.calcAspDiam()
         }
         if(str==='IC'){
@@ -136,10 +136,10 @@ Item{
             }
         }
         if(str==='PS'){
-            if(apps.planetsSize<app.fs*0.5){
-                apps.planetsSize=app.fs*0.5
+            if(apps.planetsSize<vars.fs*0.5){
+                apps.planetsSize=vars.fs*0.5
             }
-            apps.planetsSize=apps.planetsSize-app.fs*0.1
+            apps.planetsSize=apps.planetsSize-vars.fs*0.1
             sweg.objPlanetsCircle.calcAspDiam()
         }
         if(str==='IC'){

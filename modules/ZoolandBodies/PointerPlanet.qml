@@ -3,12 +3,12 @@ import QtGraphicalEffects 1.0
 
 Item {
     id: r
-    width: parent.width//sweg.fs*4
+    width: parent.width//vars.fs*4
     height: width
     anchors.centerIn: parent
     z:r.parent.z-1
     rotation: 0-signCircle.rotation
-    property string folderImg: '../../modules/ZoolBodies/ZoolAs/imgs_v1'
+    property string folderImg: '../../modules/ZoolandBodies/ZoolAs/imgs_v1'
     property int iconoSignRot: 0
     property int is: -1
     property int gdeg: -1
@@ -17,10 +17,10 @@ Item {
     property int rsgdeg: -1
     property int ih: -1
     property bool expand: false
-    property int wtc: (sweg.fs*0.5)/(sweg.xs*0.5) //width of each circle de triple circle
+    property int wtc: (vars.fs*0.5)/(sweg.xs*0.5) //width of each circle de triple circle
     property int p: -1
     property alias pointerRot: eje.rotation
-    property int pointerFs: app.fs*5.5
+    property int pointerFs: vars.fs*5.5
     property real xs: 1.0//sweg.xs
     property var aMargins: [0.5, 0.3, 0.4, 0.4, 0.4, 0.5, 0.5, 0.5, 0.4, 0.3, 0.5, 0.5, 0.3, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
 
@@ -41,7 +41,7 @@ Item {
             f2+=0.1
             f3+=0.25
             if(r.xs>=f1&&r.xs<f2){
-                pointerFs=app.fs*5.5/f3
+                pointerFs=vars.fs*5.5/f3
                 break
             }
         }
@@ -61,7 +61,7 @@ Item {
             color: rectData.border.color
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.horizontalCenter
-            anchors.rightMargin: apps.xAsShowIcon?r.width*(r.aMargins[r.p]):r.width*0.5+sweg.fs*0.25
+            anchors.rightMargin: apps.xAsShowIcon?r.width*(r.aMargins[r.p]):r.width*0.5+vars.fs*0.25
             Rectangle{
                 id: rectData
                 width: col.width+r.pointerFs*0.5
@@ -78,7 +78,7 @@ Item {
                 anchors.horizontalCenter: parent.left
                 anchors.verticalCenter: parent.top
                 SequentialAnimation on border.color {
-                    running: !app.capturing
+                    running: !vars.capturing
                     loops: Animation.Infinite
                     onRunningChanged: {
                         if(!running)rectData.border.color=apps.pointerLineColor
@@ -105,7 +105,7 @@ Item {
                             anchors.verticalCenter: parent.verticalCenter
                             Image {
                                 id: img0
-                                //source: "../../resources/imgs/planetas/"+app.planetasRes[r.p]+".svg"
+                                //source: "../../resources/imgs/planetas/"+vars.planetasRes[r.p]+".svg"
                                 source: r.folderImg+"/"+vars.planetasRes[r.p]+".svg"
                                 width: parent.width*0.8
                                 height: width

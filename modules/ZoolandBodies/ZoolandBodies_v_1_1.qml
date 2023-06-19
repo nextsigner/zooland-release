@@ -389,7 +389,7 @@ Rectangle {
         }
         let w=(sweg.width*2-mpw)
         sweg.wapsBack=w*0.25+(sweg.pz+vars.fs)
-        zpn.addNot('setWapsBack()', true, 10000)
+        //zpn.addNot('setWapsBack()', true, 10000)
     }
     function loadSweJson(json, jsonPromesaParams){
         tapa.opacity=1.0
@@ -422,7 +422,7 @@ Rectangle {
         signCircle.rot=parseFloat(j.ph.h1.gdec).toFixed(2)
         housesCircle.loadHouses(j)
         planetsCircle.loadJson(j)
-
+        zdb.loadJson(j)
 
 
         if(vars.dev){
@@ -436,7 +436,7 @@ Rectangle {
         //ascMcCircle.loadJson(j)
 
         //panelAspects.load(j)
-        //zoolDataBodies.loadJson(j)
+
         //aspsCircle.load(j)
         zoolElementsView.load(j, false)
         //eclipseCircle.arrayWg=housesCircle.arrayWg

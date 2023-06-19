@@ -7,7 +7,7 @@ Rectangle {
     color:'transparent'
     clip: true
     property bool isBack: false
-    property bool selected: !isBack?(housesCircle.currentHouse===n):(housesCircleBack.currentHouse===n)
+    property bool selected: sweg.currentHouseIndex===n//!isBack?(sweg.currentHousesIndex===n):(sweg.currentHousesIndexBack===n)
     property real wg: 0.0
     property int wb: apps.widthHousesAxis
     property int gr: 0

@@ -87,9 +87,9 @@ ApplicationWindow {
                 return
             }
             if(vars.ci && vars.ci.objectName==='list'){
-                vars.ci=zoolDataBodies
+                vars.ci=zdb
                 return
-            }else if(vars.ci && vars.ci.objectName==='zoolDataBodies'){
+            }else if(vars.ci && vars.ci.objectName==='zdb'){
                 zbtb.currentIndex=zbtb.maximunIndex
                 vars.ci=zbtb
                 return
@@ -98,7 +98,7 @@ ApplicationWindow {
                     vars.ci=zsm.getPanel('ZoolRemoteParamsList')
                     return
                 }
-                //vars.ci=zoolDataBodies
+                //vars.ci=zdb
                 //return
             }else{
                 zbtb.currentIndex=zbtb.maximunIndex
@@ -119,10 +119,10 @@ ApplicationWindow {
                 return
             }else if(vars.ci && vars.ci.objectName==='bottomBar'){
                 if(zbtb.maximunIndex === zbtb.currentIndex){
-                    vars.ci=zoolDataBodies
+                    vars.ci=zdb
                     return
                 }
-                //vars.ci=zoolDataBodies
+                //vars.ci=zdb
                 //return
             }else{
                 vars.ci=zsm.getPanel('ZoolRemoteParamsList')

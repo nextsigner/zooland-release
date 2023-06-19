@@ -16,7 +16,9 @@ import ZoolandVars 1.0
 //Objetos GUI
 import ZoolDataView 1.1
 import ZoolandBodies 1.1
+import ZoolandDataBodies 1.0
 import ZoolSectionsManager 1.1
+import ZoolBottomToolBar 1.0
 
 //Comps GUI
 import comps.ZRect 1.0
@@ -77,10 +79,12 @@ ZoolMainWindow{
                     width: xApp.width*0.2
                     height: parent.height
                     clip:true
+                    ZoolandDataBodies{id: zdb}
                     ZoolPanelNotifications{id: zpn}
                 }
             }
         }
+        ZoolBottomToolBar{id: zbtb}
         ZoolLogView{id: log}
     }
     ZoolandServerFileDataManager{id: zsfdm}

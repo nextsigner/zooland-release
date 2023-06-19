@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import ZoolandBodies.ZoolAs 3.7
+import ZoolandBodies.ZoolAs 3.8
 
 Item{
     id: r
