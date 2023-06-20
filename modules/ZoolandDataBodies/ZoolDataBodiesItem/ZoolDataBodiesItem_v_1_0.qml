@@ -236,10 +236,10 @@ Column{
                             }else{
                                 zdb.latFocus=1
                                 if(vars.currentPlanetIndexBack!==index){
-                                    vars.currentPlanetIndexBack=index
+                                    sweg.currentPlanetIndexBack=index
                                     zdb.currentIndexBack=index
                                 }else{
-                                    vars.currentPlanetIndexBack=-1
+                                    sweg.currentPlanetIndexBack=-1
                                     zdb.currentIndexBack=-1
                                     sweg.objHousesCircleBack.currentHouseIndex=-1
                                 }

@@ -1,6 +1,6 @@
 import QtQuick 2.0
 
-import ZoolandBodies.ZoolAsBack 3.5
+import ZoolandBodies.ZoolAsBack 3.6
 
 Item{
     id: r

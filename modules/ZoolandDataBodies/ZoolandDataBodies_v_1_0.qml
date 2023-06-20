@@ -140,7 +140,7 @@ Rectangle {
                 }
             }
         }
-        zpn.addNot('NHI: '+sweg.currentHouseIndex, false, 0)
-        zpn.addNot('NHIB: '+sweg.currentHouseIndexBack, false, 0)
+        //zpn.addNot('NHI: '+sweg.currentHouseIndex, false, 0)
+        //zpn.addNot('NHIB: '+sweg.currentHouseIndexBack, false, 0)
     }
 }
