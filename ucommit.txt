@@ -1,1 +1,1 @@
-Bien: Se cargó agregando panelsAspects y panelAspenctsBack en zip 255
+Se eliminan los archivos HouseArc.qml

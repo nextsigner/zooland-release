@@ -208,7 +208,7 @@ Item{
         url+='/zool/getZoolandParamsList'
         url+='?adminId='+apps.zoolUser+'&r='+msReq
         const encoded = encodeURI(url);
-        console.log('Url getZoolandParamsList: '+encoded)
+        console.log('Url getZoolandParamsList: '+url)
         //zpn.addNot('Url: '+url, false, 0)
         vars.j.getRD(""+url+"", setZoolandParamsList)
     }
