@@ -14,7 +14,7 @@ Item {
     property alias contentWidth: txt.contentWidth
     property alias contentHeight: txt.contentHeight
     property alias wrapMode: txt.wrapMode
-    property int fs: app.fs
+    property int fs: vars.fs
     property color textBackgroundColor: 'transparent'
     property int padding:  8
     property int borderWidth: 1
@@ -58,7 +58,7 @@ Item {
         text: r.labelText
         width: xText.width
         w: xText.width
-        font.pixelSize: app.fs*0.5
+        font.pixelSize: vars.fs*0.5
         color: 'white'
         anchors.bottom: xText.top
         visible: labelInTop

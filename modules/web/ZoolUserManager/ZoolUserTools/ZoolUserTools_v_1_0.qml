@@ -20,25 +20,25 @@ Rectangle {
     Column{
         id: col
         anchors.centerIn: parent
-        spacing: app.fs
+        spacing: vars.fs
         Text{
             text: '<b>Usuario</b>'
-            font.pixelSize: app.fs*0.65
+            font.pixelSize: vars.fs*0.65
             color: 'white'
         }
         Text{
             text: '<b>Nombre: </b>'+apps.zoolUser
-            font.pixelSize: app.fs*0.5
+            font.pixelSize: vars.fs*0.5
             color: 'white'
         }
         Row{
-            spacing: app.fs*0.25
+            spacing: vars.fs*0.25
             anchors.horizontalCenter: parent.horizontalCenter
             //visible: apps.enableShareInServer
             ZoolText{
                 text: 'Habilitar las funciones\npara compartir archivos en el servidor de Zool: '
-                w: r.width-cbShareInServer.width-parent.spacing-app.fs
-                font.pixelSize: app.fs*0.5
+                w: r.width-cbShareInServer.width-parent.spacing-vars.fs
+                font.pixelSize: vars.fs*0.5
                 color: apps.fontColor
                 anchors.verticalCenter: parent.verticalCenter
             }
@@ -58,11 +58,11 @@ Rectangle {
         }
         Row{
             anchors.horizontalCenter: parent.horizontalCenter
-            spacing: app.fs*0.25
+            spacing: vars.fs*0.25
             Button{
                 id: botEliminar
                 text: 'Eliminar Usuario'
-                font.pixelSize: app.fs*0.5
+                font.pixelSize: vars.fs*0.5
                 //KeyNavigation.tab: tiNombre.t
                 onClicked: {
                     apps.zoolUser=''
@@ -79,7 +79,7 @@ Rectangle {
         function setData(data, isData){
             if(isData){
                 let j=JSON.parse(data)
-                if(app.dev){
+                if(vars.dev){
                     log.lv('New user, id: '+j.user._id)
                     log.lv('New user, n: '+j.user.n)
                     log.lv('New user, c: '+unik.decData(j.user.c, tiNombre.text, tiClave.text))

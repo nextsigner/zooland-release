@@ -10,14 +10,14 @@ import web.ZoolUserManager.ZoolUserTools 1.0
 
 Item{
     id: r
-    width: xLatIzq.width
-    height: xLatIzq.height//-indicatorSV.height-xPanelesTits.height
+    width: xMed.width
+    height: xMed                                  .height//-indicatorSV.height-xPanelesTits.height
     clip: true
-    property int currentIndex: count-1//apps.currentSwipeViewIndex
-    property int count: indicatorSV.count
-    property var aPanelsIds: []
-    property var currentSectionFocused
-    property var aPanelesTits: []
+    //property int currentIndex: count-1//apps.currentSwipeViewIndex
+    //property int count: indicatorSV.count
+//    property var aPanelsIds: []
+//    property var currentSectionFocused
+//    property var aPanelesTits: []
 
     property bool logued: false
     property bool userSeted: apps.zoolUser!=='' && apps.zoolKey!=='' && apps.zoolUserId!==''
@@ -38,8 +38,8 @@ Item{
         }
     }
     Component.onCompleted: {
-        zsm.aPanelsIds.push(app.j.qmltypeof(r))
-        zsm.aPanelesTits.push('Usuario Zool')
+        //zsm.aPanelsIds.push(app.j.qmltypeof(r))
+        //zsm.aPanelesTits.push('Usuario Zool')
         //r.showSection(s.currentQmlTypeShowed)
     }
     function getPanel(typeOfSection){

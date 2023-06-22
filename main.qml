@@ -19,6 +19,7 @@ import ZoolandBodies 1.1
 import ZoolandDataBodies 1.0
 import ZoolSectionsManager 1.1
 import ZoolBottomToolBar 1.0
+import comps.ZoolUserCoordsEditor 1.0
 
 //Comps GUI
 import comps.ZRect 1.0
@@ -84,6 +85,8 @@ ZoolMainWindow{
                 }
             }
         }
+        //ZoolUserManager{id: zoolUserManager}
+        ZoolUserCoordsEditor{id: zuce}
         ZoolBottomToolBar{id: zbtb}
         ZoolLogView{id: log}
     }

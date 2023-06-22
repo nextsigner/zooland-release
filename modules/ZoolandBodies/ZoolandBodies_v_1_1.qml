@@ -411,6 +411,7 @@ Rectangle {
         tapa.opacity=1.0
         vars.tipo=jsonPromesaParams.params.tipo
         vars.cParams=JSON.stringify(jsonPromesaParams)
+        //zpn.addNot('vars.cParams: '+vars.cParams, true, 50000)
         vars.currentFecha=jsonPromesaParams.params.d+'/'+jsonPromesaParams.params.m+'/'+jsonPromesaParams.params.a
         var scorrJson=json.replace(/\n/g, '')
 

@@ -96,7 +96,7 @@ Rectangle{
         lm.clear()
         let p=JSON.parse('{"params":{"n":"Atras"}}')
         lm.append(lm.addItem(p))
-        p=JSON.parse('{"params":{"n":"Ahora"}}')
+        p=JSON.parse('{"params":{"n":"Tránsitos de Ahora"}}')
         lm.append(lm.addItem(p))
         let sp=JSON.stringify(j, null, 2)
         //log.lv('sp: '+sp)
@@ -123,6 +123,16 @@ Rectangle{
         if(lv.currentIndex===0){
             r.visible=false
             vars.ci=zsm.getPanel('ZoolRemoteParamsList')
+            return
+        }
+        if(lv.currentIndex===1){
+            let j=JSON.parse(vars.cParams)
+            zpn.addNot('3 params: '+JSON.stringify(j, null, 2), false, 20000)
+            zpn.addNot('params.ciudad: '+j.params.ciudad, false, 20000)
+            //zsfdm.getZoolandDataBack(sParams)
+            //zpn.addNot('2 apps.userCity: '+apps.userCity, false, 20000)
+            //zpn.addNot('3 params: '+lm.get(), false, 20000)
+            zsfdm.loadParamsFromStringBack(JSON.stringify(vars.j.getParamsNow(j.params.lat, j.params.lon, j.params.alt, j.params.gmt, j.params.ciudad)))
             return
         }
         zsfdm.getZoolandDataBack(lm.get(lv.currentIndex).params)

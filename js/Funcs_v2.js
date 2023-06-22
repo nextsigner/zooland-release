@@ -57,6 +57,8 @@ function loadNow(){
 }
 function getParamsNow(lat, lon, alt, gmt, city){
 
+    //zpn.addNot('apps.userCity: '+apps.userCity, false, 20000)
+    zpn.addNot('city: '+city, false, 20000)
 
     //log.ls('currentGmtUser: '+currentGmtUser, 0, xLatIzq.width)
     let date = new Date(Date.now())

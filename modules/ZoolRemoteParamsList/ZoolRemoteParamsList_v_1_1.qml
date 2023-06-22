@@ -148,6 +148,9 @@ Rectangle {
         }
         if(lv.currentIndex===1){
             //console.log(vars.j.getParamsNow(0))
+//            let sParams=vars.j.getParamsNow(apps.userLat, apps.userLon, apps.userAlt, apps.userGmt, apps.userCity)
+//            zpn.addNot('sParams: '+JSON.stringify(sParams, null, 2), false, 20000)
+            //zpn.addNot('1 apps.userCity: '+apps.userCity, false, 20000)
             zsfdm.loadParamsFromString(JSON.stringify(vars.j.getParamsNow(apps.userLat, apps.userLon, apps.userAlt, apps.userGmt, apps.userCity)))
             return
         }

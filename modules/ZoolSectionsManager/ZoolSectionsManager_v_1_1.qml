@@ -5,7 +5,7 @@ import '../../comps' as Comps
 import ZoolRemoteParamsList 1.1
 import ZoolButton 1.2
 
-import web.ZoolUserManager 1.0
+//import web.ZoolUserManager 1.0
 
 Item{
     id: r
@@ -47,6 +47,8 @@ Item{
             id: xPanels
             width: r.width
             height: r.height-xPanelesTits.height-xIndicadorSV.height
+            //2
+            //Comps.XPaneles{ZoolUserManager{id: zoolUserManager}}
             //1
             Comps.XPaneles{ZoolRemoteParamsList{id: zoolRemoteParamsList}}
         }

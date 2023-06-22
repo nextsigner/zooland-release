@@ -1,1 +1,1 @@
-Se eliminan los archivos HouseArc.qml
+Se crea la funcion loadFromStringBack en ZoolServerFileDataManager

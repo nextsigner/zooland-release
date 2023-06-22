@@ -3,8 +3,8 @@ import QtQuick.Controls 2.0
 import comps.ZoolMando 1.0
 Rectangle{
     id: r
-    width: app.width
-    height: col0.height+app.fs
+    width: parent.width
+    height: col0.height+vars.fs
     color: 'black'
     border.width: 2
     border.color: 'white'
@@ -28,7 +28,7 @@ Rectangle{
             tiGmt.text = parseInt(apps.userGmt)
             tiCity.text = apps.userCity
             tiLat.focus = true
-            app.ci=r
+            vars.ci=r
         }else{
             tiLat.focus=false
             tiLon.focus=false
@@ -47,45 +47,45 @@ Rectangle{
     }
     Column{
         id: col0
-        spacing: app.fs*2
+        spacing: vars.fs*2
         anchors.centerIn: parent
         Row{
-            spacing: app.fs*2
+            spacing: vars.fs*2
             //anchors.centerIn: parent
             Column{
                 id: col1
-                spacing: app.fs*0.1
+                spacing: vars.fs*0.1
                 anchors.verticalCenter: parent.verticalCenter
                 Text{
                     id: txt1
                     text: 'Coordenadas Geográficas de Usuario'
                     color: 'white'
-                    font.pixelSize: app.fs*1.5
+                    font.pixelSize: vars.fs*1.5
                     anchors.left: parent.left
-                    anchors.leftMargin: app.fs*0.5
+                    anchors.leftMargin: vars.fs*0.5
                     //anchors.top: parent.top
-                    //anchors.topMargin: app.fs*0.5
+                    //anchors.topMargin: vars.fs*0.5
                 }
                 Text{
                     text: 'Coords. Actuales: Latitud= '+apps.userLat+'    Longitud= '+apps.userLon+'    Altitud= '+apps.userAlt
                     color: 'white'
-                    font.pixelSize: app.fs
+                    font.pixelSize: vars.fs
                     anchors.left: parent.left
-                    anchors.leftMargin: app.fs*0.5
+                    anchors.leftMargin: vars.fs*0.5
                     //anchors.top: txt1.bottom
-                    //anchors.topMargin: app.fs*0.5
+                    //anchors.topMargin: vars.fs*0.5
                 }
             }
             Text{
                 id: txt2
                 text: 'Paso: '+parseFloat(r.stepSize).toFixed(2)+'\n(Enter para cambiar)'
                 color: 'white'
-                font.pixelSize: app.fs*1.5
+                font.pixelSize: vars.fs*1.5
                 anchors.verticalCenter: parent.verticalCenter
             }
             Rectangle{
-                width: app.fs*8
-                height: app.fs*2
+                width: vars.fs*8
+                height: vars.fs*2
                 color: 'transparent'
                 border.width: 2
                 border.color: 'white'
@@ -94,7 +94,7 @@ Rectangle{
                 Text{
                     text: 'Latitud:'
                     color: 'white'
-                    font.pixelSize: app.fs*0.75
+                    font.pixelSize: vars.fs*0.75
                     anchors.bottom: parent.top
                 }
                 TextInput{
@@ -102,14 +102,14 @@ Rectangle{
                     width: parent.width-4
                     height: parent.height-4
                     color: 'white'
-                    font.pixelSize: parent.height-app.fs*0.2
+                    font.pixelSize: parent.height-vars.fs*0.2
                     anchors.centerIn: parent
                     Keys.onReturnPressed: r.toEnter()
                 }
             }
             Rectangle{
-                width: app.fs*8
-                height: app.fs*2
+                width: vars.fs*8
+                height: vars.fs*2
                 color: 'transparent'
                 border.width: 2
                 border.color: 'white'
@@ -118,7 +118,7 @@ Rectangle{
                 Text{
                     text: 'Longitud:'
                     color: 'white'
-                    font.pixelSize: app.fs*0.75
+                    font.pixelSize: vars.fs*0.75
                     anchors.bottom: parent.top
                 }
                 TextInput{
@@ -126,14 +126,14 @@ Rectangle{
                     width: parent.width-4
                     height: parent.height-4
                     color: 'white'
-                    font.pixelSize: parent.height-app.fs*0.2
+                    font.pixelSize: parent.height-vars.fs*0.2
                     anchors.centerIn: parent
                     Keys.onReturnPressed: r.toEnter()
                 }
             }
             Rectangle{
-                width: app.fs*8
-                height: app.fs*2
+                width: vars.fs*8
+                height: vars.fs*2
                 color: 'transparent'
                 border.width: 2
                 border.color: 'white'
@@ -142,7 +142,7 @@ Rectangle{
                 Text{
                     text: 'Altitud:'
                     color: 'white'
-                    font.pixelSize: app.fs*0.75
+                    font.pixelSize: vars.fs*0.75
                     anchors.bottom: parent.top
                 }
                 TextInput{
@@ -150,14 +150,14 @@ Rectangle{
                     width: parent.width-4
                     height: parent.height-4
                     color: 'white'
-                    font.pixelSize: parent.height-app.fs*0.2
+                    font.pixelSize: parent.height-vars.fs*0.2
                     anchors.centerIn: parent
                     Keys.onReturnPressed: r.toEnter()
                 }
             }
             Rectangle{
-                width: app.fs*3
-                height: app.fs*2
+                width: vars.fs*3
+                height: vars.fs*2
                 color: 'transparent'
                 border.width: 2
                 border.color: 'white'
@@ -166,7 +166,7 @@ Rectangle{
                 Text{
                     text: 'GMT:'
                     color: 'white'
-                    font.pixelSize: app.fs*0.75
+                    font.pixelSize: vars.fs*0.75
                     anchors.bottom: parent.top
                 }
                 TextInput{
@@ -174,7 +174,7 @@ Rectangle{
                     width: parent.width-4
                     height: parent.height-4
                     color: 'white'
-                    font.pixelSize: parent.height-app.fs*0.2
+                    font.pixelSize: parent.height-vars.fs*0.2
                     anchors.centerIn: parent
                     Keys.onReturnPressed: r.toEnter()
                 }
@@ -187,11 +187,11 @@ Rectangle{
             }
         }
         Row{
-            spacing: app.fs*2
+            spacing: vars.fs*2
             anchors.horizontalCenter: parent.horizontalCenter
             Rectangle{
-                width: r.width-app.fs*3
-                height: app.fs*2
+                width: r.width-vars.fs*3
+                height: vars.fs*2
                 color: 'transparent'
                 border.width: 2
                 border.color: 'white'
@@ -200,7 +200,7 @@ Rectangle{
                 Text{
                     text: 'Nombre del lugar:'
                     color: 'white'
-                    font.pixelSize: app.fs*0.75
+                    font.pixelSize: vars.fs*0.75
                     anchors.bottom: parent.top
                 }
                 TextInput{
@@ -208,7 +208,7 @@ Rectangle{
                     width: parent.width-4
                     height: parent.height-4
                     color: 'white'
-                    font.pixelSize: parent.height-app.fs*0.2
+                    font.pixelSize: parent.height-vars.fs*0.2
                     anchors.centerIn: parent
                     Keys.onReturnPressed: r.toEnter()
                 }
@@ -217,12 +217,12 @@ Rectangle{
     }
     ZoolMando{
         id: zoolMando1
-        width: app.fs*16
+        width: vars.fs*16
         height: width
         num:1
         //parent: bgBackOpacity
         anchors.centerIn: bgBackOpacity
-        //anchors.verticalCenterOffset: 0-app.fs*16
+        //anchors.verticalCenterOffset: 0-vars.fs*16
         onLeft:{
             toLeft()
         }
@@ -268,7 +268,7 @@ Rectangle{
                 apps.userGmt=parseInt(tiGmt.text)
                 apps.userCity=tiCity.text
                 r.visible=false
-                app.ci=zbtb
+                vars.ci=zbtb
             }
             return
         }
