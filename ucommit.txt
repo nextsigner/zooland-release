@@ -1,1 +1,1 @@
-Se crea la funcion loadFromStringBack en ZoolServerFileDataManager
+Bien: Se agregó boton Tránsitos de Ahora en RemoteOptionList en zip 258

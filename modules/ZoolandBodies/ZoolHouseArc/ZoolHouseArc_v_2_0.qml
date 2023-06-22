@@ -15,7 +15,7 @@ Rectangle {
     property bool showBorder: false
     property  real op: 100.0
     //property int wzha: (bordeSwegExt.width-bordeHousesCircleBackInt.width)*0.25//-sweg.w*2-20//((sweg.width-signCircle.width)*2)-10//10//sweg.width-sweg.pz+vars.fs //Width House Arc
-    property int wzha: isBack?r.width-(signCircle.width+sweg.w*2+sweg.pz*2+vars.fs*2):r.width*0.5-aspsCircle.width*0.5-sweg.w*2
+    property int wzha: isBack?r.width-(signCircle.width):r.width*0.5-aspsCircle.width*0.5-sweg.w*2
     //opacity: r.selected?1.0:0.5
     Repeater{
         model: wg-3

@@ -127,11 +127,6 @@ Rectangle{
         }
         if(lv.currentIndex===1){
             let j=JSON.parse(vars.cParams)
-            zpn.addNot('3 params: '+JSON.stringify(j, null, 2), false, 20000)
-            zpn.addNot('params.ciudad: '+j.params.ciudad, false, 20000)
-            //zsfdm.getZoolandDataBack(sParams)
-            //zpn.addNot('2 apps.userCity: '+apps.userCity, false, 20000)
-            //zpn.addNot('3 params: '+lm.get(), false, 20000)
             zsfdm.loadParamsFromStringBack(JSON.stringify(vars.j.getParamsNow(j.params.lat, j.params.lon, j.params.alt, j.params.gmt, j.params.ciudad)))
             return
         }
