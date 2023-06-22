@@ -2,7 +2,7 @@ import QtQuick 2.0
 import ZoolText 1.0
 import "../"
 
-import ZoolandBodies.ZoolArcBack 1.2
+import ZoolandBodies.ZoolHouseArc 2.0
 
 Item {
     id: r
@@ -65,15 +65,16 @@ Item {
         }
     }
 
-    ZoolArcBack{
+    ZoolHouseArc{
         id: zsa
-        width: 1000
-        height: 1000
+        width: housesCircleBack.width-sweg.pz*2-vars.fs*2
+        height: width
         w: 300//width*0.5//-aspsCircle.width
         n: r.n//index===0?1:(index===1?9:5)
         c:r.n
         gr: r.gr//xSignArcs.rotation
         wg: r.wg
+        isBack: true
         anchors.centerIn: parent
     }
     Rectangle{

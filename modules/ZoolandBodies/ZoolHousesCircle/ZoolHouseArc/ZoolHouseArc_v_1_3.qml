@@ -2,7 +2,7 @@ import QtQuick 2.0
 import ZoolText 1.0
 import "../"
 
-import ZoolandBodies.ZoolArc 1.0
+import ZoolandBodies.ZoolHouseArc 2.0
 
 Item {
     id: r
@@ -66,9 +66,9 @@ Item {
     }
 
 
-    ZoolArc{
+    ZoolHouseArc{
         id: zsa
-        width: signCircle.width-(sweg.w*4)
+        width: signCircle.width//-(sweg.w*8)
         height: width
         w: sweg.waps//width*0.5//-aspsCircle.width
         n: r.n//index===0?1:(index===1?9:5)

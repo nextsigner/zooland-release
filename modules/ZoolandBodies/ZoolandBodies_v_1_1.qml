@@ -13,7 +13,6 @@ import ZoolandBodies.ZoolAspectsViewBack 1.0
 
 import ZoolandBodies.ZoolandSignCircle 1.1
 
-
 Rectangle {
     id: r
     width: vars.fs*24
@@ -176,16 +175,12 @@ Rectangle {
             width: r.width//*0.25
             height: width
             anchors.centerIn: parent
-            ZoolHousesCircleBack{//rotation: parseInt(signCircle.rot);//z:signCircle.z+1;
+            ZoolHousesCircleBack{
                 id: housesCircleBack
                 width: r.width*2
-                //width: 800
                 height: width
                 anchors.centerIn: signCircle
-                //w: r.fs
-                //widthAspCircle: aspsCircle.width*2
-                //visible: vars.ev
-                //z: 9999
+                //z: 9999+2
             }
             ZoolHousesCircle{
                 id: housesCircle
@@ -199,15 +194,11 @@ Rectangle {
             ZoolandSignCircle{
                 id: signCircle
                 width: !vars.ev?r.width*2-(vars.fs*8):r.width*2-(r.wapsBack*2)//-apps.fs*4//-
-                //width: r.width*2-(vars.fs*8)
-                //width: !vars.ev?r.width*2-(vars.fs*8):r.width*2-housesCircleBack.extraWidth//-apps.fs*4//-r.w
-                //width: planetsCircle.expand?r.width-r.fs*6+r.fs*2:r.width-r.fs*6
                 anchors.centerIn: parent
                 showBorder: true
                 v:r.v
                 w: r.w
-                onRotChanged: housesCircle.rotation=rot
-                //onShowDecChanged: Qt.quit()
+                onRotChanged: housesCircle.rotation=rot                
             }
             AspCircleV2{
                 id: aspsCircle
