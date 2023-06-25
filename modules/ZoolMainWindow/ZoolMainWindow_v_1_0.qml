@@ -69,6 +69,7 @@ ApplicationWindow {
             }else{
                 tIsDoubleEnter.restart()
             }
+            return
         }
         if(vars.ci){
             vars.ci.toEnter()
