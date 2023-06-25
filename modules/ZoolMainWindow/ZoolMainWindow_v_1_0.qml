@@ -66,10 +66,10 @@ ApplicationWindow {
         }else{
             if(zm.visible){
                 zm.toEnter()
+                return
             }else{
                 tIsDoubleEnter.restart()
             }
-            return
         }
         if(vars.ci){
             vars.ci.toEnter()
