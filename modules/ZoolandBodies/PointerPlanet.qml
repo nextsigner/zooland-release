@@ -20,7 +20,7 @@ Item {
     property int wtc: (vars.fs*0.5)/(sweg.xs*0.5) //width of each circle de triple circle
     property int p: -1
     property alias pointerRot: eje.rotation
-    property int pointerFs: vars.fs*5.5
+    property int pointerFs: vars.fs*5.5*4
     property real xs: 1.0//sweg.xs
     property var aMargins: [0.5, 0.3, 0.4, 0.4, 0.4, 0.5, 0.5, 0.5, 0.4, 0.3, 0.5, 0.5, 0.3, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
 
@@ -41,7 +41,7 @@ Item {
             f2+=0.1
             f3+=0.25
             if(r.xs>=f1&&r.xs<f2){
-                pointerFs=vars.fs*5.5/f3
+                pointerFs=vars.fs*8.5/f3
                 break
             }
         }
@@ -54,7 +54,7 @@ Item {
         //color: 'red'
         anchors.centerIn: parent
         Rectangle{
-            width: r.pointerFs*5
+            width: r.pointerFs*3
             height: apps.pointerLineWidth
             //color: apps.pointerLineColor
             //color: borde.border.color

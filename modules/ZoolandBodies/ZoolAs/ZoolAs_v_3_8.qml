@@ -8,7 +8,10 @@ import ZoolandBodies.ZoolAsCotaText 1.0
 
 Item{
     id: r
-    width: parent.width-(xIcon.width*objData.p)
+    width: !vars.ev?
+               parent.width-(xIcon.width*objData.p)
+             :
+               parent.width-((xIcon.width*objData.p)*0.75)
     height: 1
     anchors.centerIn: parent
     z: !selected?numAstro:15
@@ -40,7 +43,9 @@ Item{
     property int uRot: 0
 
     property bool isZoomAndPosSeted: false
+    property var uPos: [0,0]
     //property alias objOointerPlanet: pointerPlanet
+    onRotationChanged: tSetPos.restart()
     onWidthChanged: tSetWaps.restart()
     onSelectedChanged: {
         if(selected)vars.uSon=''+vars.planetasRes[r.numAstro]+'_'+vars.objSignsNames[r.is]+'_'+objData.ih
@@ -52,6 +57,38 @@ Item{
             setRot()
             setZoomAndPos()
             vars.showPointerXAs=true
+//            var point = r.mapToItem(sweg, 0, 0, 0, 0)
+//            let py=point.y-sweg.pz*0.5//-xIcon.width*2-sweg.y//-((xApp.height-sweg.height))-sweg.y-(sweg.pz*0.5)
+//            let px=point.x-sweg.pz*0.5//-xLatIzq.width-sweg.x-sweg.pz*0.75
+            let px=r.uPos[0]
+            let py=r.uPos[1]
+            let c='import QtQuick 2.0\n'
+            c+='Rectangle{y: '+py+'; x: '+px+';width:'+sweg.pz+';height: width; color: "red"; radius: width*0.5\n'
+            c+='    opacity: 0.5\n'
+            //c+='Rectangle{y: '+py+'; width:'+sweg.pz+';height: width; color: "red"'
+            c+='Rectangle{width:5000; height:20; color: "yellow"; anchors.centerIn: parent;}\n'
+            c+='Rectangle{width:20; height:5000; color: "yellow"; anchors.centerIn: parent;}\n'
+            c+='    Component.onCompleted:{\n'
+            c+='        destroy(10000)\n'
+            c+='    }\n'
+            c+='}\n'
+            //let comp=Qt.createQmlObject(c, sweg, 'qmlcode')
+            //let comp=Qt.createQmlObject(c, r, 'qmlcode')
+            //zpn.addNot('NumAstro '+r.numAstro+': x:'+px+' y:'+py, false, 1)
+            sweg.setZoomAndPosFromCoords(px, py)
+        }
+    }
+    Timer{
+        id: tSetPos
+        running: false
+        repeat: false
+        interval: 500
+        onTriggered: {
+            var point = xIcon.mapToItem(sweg, 0, 0, xIcon.width, xIcon.height)
+
+            let px=point.x-sweg.pz*0.25//+sweg.pz*0.25//*1.25//-xLatIzq.width-sweg.x-sweg.pz*0.75
+            let py=point.y-sweg.pz*0.25//+sweg.pz*0.25//*1.25//-sweg.y//-((xApp.height-sweg.height))-sweg.y-(sweg.pz*0.5)
+            r.uPos=[px, py]
         }
     }
     Rectangle{
@@ -80,7 +117,7 @@ Item{
     }
     Rectangle{
         id: xIcon
-        width: sweg.pz
+        width: !vars.ev?sweg.pz:sweg.pz*0.75
         height: width
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
@@ -95,6 +132,7 @@ Item{
             ih:objData.ih
             expand: r.selected
             iconoSignRot: img.rotation
+
             p: r.numAstro
             opacity: r.selected&&vars.showPointerXAs?1.0:0.0// && JSON.parse(vars.currentData).params.tipo!=='pron'
             pointerRot:180

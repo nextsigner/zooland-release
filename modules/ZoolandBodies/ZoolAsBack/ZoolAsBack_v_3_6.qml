@@ -38,6 +38,7 @@ Item{
     property var aIcons: [0,1,2,3,4,5,6,7,8,9,12]
 
     property int uRot: 0
+    property var uPos: [0,0]
 
     onWidthChanged: tSetWaps.restart()
     onSelectedChanged: {
@@ -51,6 +52,9 @@ Item{
             setRot()
             setZoomAndPos()
             vars.showPointerXAsBack=true
+            let px=r.uPos[0]
+            let py=r.uPos[1]
+            sweg.setZoomAndPosFromCoords(px, py)
         }
     }
 
@@ -66,6 +70,20 @@ Item{
 //        color: 'yellow'
 //        antialiasing: true
 //    }
+    Timer{
+        id: tSetPos
+        running: false
+        repeat: false
+        interval: 500
+        onTriggered: {
+            var point = xIcon.mapToItem(sweg, 0, 0, xIcon.width, xIcon.height)
+
+            let px=point.x-sweg.pz*0.25//+sweg.pz*0.25//*1.25//-xLatIzq.width-sweg.x-sweg.pz*0.75
+            let py=point.y-sweg.pz*0.25//+sweg.pz*0.25//*1.25//-sweg.y//-((xApp.height-sweg.height))-sweg.y-(sweg.pz*0.5)
+            r.uPos=[px, py]
+        }
+    }
+
     Rectangle{
         width: (r.width-signCircle.width)*0.5+signCircle.w*0.5//+r.fs*0.25//r.fs+r.fs*objData.p-1
         height: 1//apps.widthHousesAxis
@@ -103,7 +121,7 @@ Item{
     }
     Item{
         id: xIcon
-        width: sweg.pz//r.fs*0.85
+        width: !vars.ev?sweg.pz:sweg.pz*0.75//r.fs*0.85
         height: width
         anchors.left: parent.left
         //anchors.leftMargin: 0-sweg.pz//xIconPlanetSmall.width

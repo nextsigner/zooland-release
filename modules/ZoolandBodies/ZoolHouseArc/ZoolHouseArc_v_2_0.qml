@@ -5,8 +5,10 @@ Rectangle {
     radius: width*0.5
     color: 'transparent'
     property bool isBack: false
-    property color hc: !isBack?apps.houseColor:apps.houseColorBack
-    property bool selected: !isBack?(housesCircle.currentHouse===n):(housesCircleBack.currentHouse===n)
+    property color hc: selected?
+                           ( !isBack?sweg.aThemes[sweg.s.currentThemeIndex][0]:sweg.aThemes[sweg.s.currentThemeIndex][2] )
+                         :( !isBack?sweg.aThemes[sweg.s.currentThemeIndex][1]:sweg.aThemes[sweg.s.currentThemeIndex][3] )
+    property bool selected: !isBack?(sweg.currentHouseIndex===n):(sweg.currentHouseIndexBack===n)
     property real wg: 0.0
     property int gr: 0
     property int n: -1

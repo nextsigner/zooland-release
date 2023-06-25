@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
+import Qt.labs.settings 1.1
 
 import ZoolandBodies.ZoolPlanetsCircle 1.1
 import ZoolandBodies.ZoolPlanetsCircleBack 1.4
@@ -24,6 +25,7 @@ Rectangle {
     anchors.centerIn: parent
 
     //Alias
+    property alias s: swegs
     property alias tsw: tSetWps
     property alias objHousesCircle: housesCircle
     property alias objHousesCircleBack: housesCircleBack
@@ -42,6 +44,7 @@ Rectangle {
     property var currentJsonBack: ''
     property int waps: ((signCircle.width-pz*2)*0.5)
     property int wapsBack: 100
+    property var aThemes: [['#625EF3', '#3e2615', '#ff8833', '#8E2564']]
 
 
     //Variables
@@ -53,7 +56,12 @@ Rectangle {
     property bool showBorders: false
     property bool enableAnZoomAndPos: false
     property real dirPrimRot: 0.0
+    property var uZp: []
 
+    Settings{
+        id: swegs
+        property int currentThemeIndex: 0
+    }
     Rectangle {
         id: rect
         border.width: 0
@@ -184,7 +192,7 @@ Rectangle {
             }
             ZoolHousesCircle{
                 id: housesCircle
-                width: !vars.ev?r.width*2:r.width*2-(r.wapsBack*2)+r.pz*2+vars.fs*2
+                width: !vars.ev?r.width*2:r.width*2-(r.wapsBack*2*0.75)+r.pz*2+vars.fs*2
                 height: width
                 anchors.centerIn: signCircle
                 //z: 9999+1
@@ -193,7 +201,7 @@ Rectangle {
             //                NumberLines{}
             ZoolandSignCircle{
                 id: signCircle
-                width: !vars.ev?r.width*2-(vars.fs*8):r.width*2-(r.wapsBack*2)//-apps.fs*4//-
+                width: !vars.ev?r.width*2-(vars.fs*8):r.width*2-(r.wapsBack*2*0.75)//-apps.fs*4//-
                 anchors.centerIn: parent
                 showBorder: true
                 v:r.v
@@ -303,7 +311,7 @@ Rectangle {
     //Rect Borde HousesCircle Int
     Rectangle{
         id: bordeHousesCircleInt
-        width: bordeSignCircleInt.width-r.waps
+        width: !vars.ev?bordeSignCircleInt.width-r.waps:bordeSignCircleInt.width-(r.waps*0.75)
         height: width
         radius: width*0.5
         color: 'transparent'
@@ -355,6 +363,26 @@ Rectangle {
         color: 'yellow'
         anchors.centerIn: parent
         visible: r.showBorders
+    }
+    //Cruz Central
+    property color cc: 'red'
+    Rectangle{
+        width: vars.fs
+        height: 10000
+        color: 'transparent'
+        border.color: r.cc
+        border.width: 4
+        anchors.centerIn: parent
+        visible: false
+        Rectangle{
+            width: 10000
+            height: vars.fs
+            color: 'transparent'
+            border.color: r.cc
+            border.width: 4
+            anchors.centerIn: parent
+
+        }
     }
     Rectangle{
         id: tapa
@@ -502,7 +530,7 @@ Rectangle {
         //swegz.sweg.state=r.state
     }
     function centerZoomAndPos(){
-        pinchArea.m_x1 = 0
+        pinchArea.m_x1 = x
         pinchArea.m_y1 = 0
         pinchArea.m_x2 = 0
         pinchArea.m_y2 = 0
@@ -515,6 +543,16 @@ Rectangle {
         centerZoomAndPos()
         pinchArea.m_zoom1 = z
         pinchArea.m_zoom2 = z
+    }
+    function setZoomAndPosFromCoords(x, y){
+        //centerZoomAndPos()
+        let nx=x//-sweg.width*1.25//*2
+        let ny=y//-sweg.width-100//*2.25//*2
+        pinchArea.m_zoom1 = 1.15
+        pinchArea.m_zoom2 = 1.15
+        r.cc='green'
+        rect.x = 0-nx-nx
+        rect.y = 0-ny-ny
     }
     function setZoomAndPos(zp){
         r.uZp=zp
@@ -572,5 +610,51 @@ Rectangle {
     }
     function clearAspsCircles(){
         aspsCircle.clear()
+    }
+
+    //Funciones de Mando
+    property int mm: 0
+    function toEnter(){
+        if(r.mm<2){
+            r.mm++
+        }else{
+            r.mm=0
+        }
+    }
+    function toLeft(){
+        rect.x-=vars.fs
+    }
+    function toRight(){
+        rect.x+=vars.fs
+    }
+    function toDown(){
+        if(r.mm===0){
+            rect.y+=vars.fs
+        }else if(r.mm===1){
+            if(pinchArea.m_zoom2 > 0.5){
+                pinchArea.m_zoom2 -= 0.1
+            }
+            if(pinchArea.m_zoom2 === 0.5){
+                rect.x=0
+                rect.y=0
+            }
+        }else{
+           zm.visible=false
+        }
+    }
+    function toUp(){
+        if(r.mm===0){
+            rect.y-=vars.fs
+        }else if(r.mm===1){
+            if(pinchArea.m_zoom2 < 1.5){
+                pinchArea.m_zoom2 += 0.1
+            }
+            if(pinchArea.m_zoom2 === 0.5){
+                rect.x=0
+                rect.y=0
+            }
+        }else{
+           zm.visible=false
+        }
     }
 }

@@ -1,1 +1,1 @@
-Bien: Se agregó boton Tránsitos de Ahora en RemoteOptionList en zip 258
+Bien: Se agregó Mando para Zoom y Pan en zip 263

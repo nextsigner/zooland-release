@@ -115,7 +115,7 @@ Item {
             }
             Rectangle{
                 id: lineaEje2
-                width: r.w
+                width: r.w*2
 //                width: sweg.objHousesCircle.houseShowSelectadIndex===-1?
 //                           r.w
 //                         :
@@ -139,7 +139,7 @@ Item {
         }
         Rectangle{
             id: circleBot
-            width: sweg.pz
+            width: !vars.ev?sweg.pz:sweg.pz*0.75
             height: width
             radius: width*0.5
             //color: apps.enableBackgroundColor?apps.fontColor:'white'
@@ -148,7 +148,7 @@ Item {
             border.color: apps.houseLineColor//apps.enableBackgroundColor?apps.fontColor:'white'//lineaEje.color
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.left
-            anchors.rightMargin: 0-width
+            anchors.rightMargin: !vars.ev?0-width:0-width*1.25
             antialiasing: true
 
             MouseArea{

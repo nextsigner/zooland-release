@@ -43,6 +43,7 @@ Settings{
     property bool showLupa: false
     property bool showSWEZ: true
 
+
     //Paneles
     property string panelRemotoState: 'show'
     property int currentSwipeViewIndex: 0

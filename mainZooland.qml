@@ -20,6 +20,7 @@ import ZoolandDataBodies 1.0
 import ZoolSectionsManager 1.1
 import ZoolBottomToolBar 1.0
 import comps.ZoolUserCoordsEditor 1.0
+import comps.ZoolMando 1.0
 
 //Comps GUI
 import comps.ZRect 1.0
@@ -73,7 +74,32 @@ ZoolMainWindow{
                     id: xMed
                     width: xApp.width*0.6
                     height: parent.height
+                    clip: true
                     ZoolandBodies{id: sweg}
+                    ZoolMando{
+                        id: zm
+                        width: vars.fs*3
+                        height: width
+                        num:0
+                        c: 'red'
+                        anchors.bottom: parent.bottom
+                        anchors.right: parent.right
+                        visible: false
+                        op: 0.75
+                        onEnter:sweg.toEnter()
+                        onUp:sweg.toUp()
+                        onDown:sweg.toDown()
+                        onLeft:sweg.toLeft()
+                        onRight:sweg.toRight()
+                        onVisibleChanged: {
+                            if(visible)r.mm=0
+                        }
+                        Text{
+                            text: '<b>'+sweg.mm+'</b>'
+                            font.pixelSize:vars.fs
+                            color: apps.fontColor
+                        }
+                    }
                 }
                 ZRect{
                     id: xLatDer
@@ -82,6 +108,7 @@ ZoolMainWindow{
                     clip:true
                     ZoolandDataBodies{id: zdb}
                     ZoolPanelNotifications{id: zpn}
+
                 }
             }
         }
@@ -91,6 +118,15 @@ ZoolMainWindow{
         ZoolLogView{id: log}
     }
     ZoolandServerFileDataManager{id: zsfdm}
+    Timer{
+        id: tIsDoubleEnter
+        running: false
+        repeat: false
+        interval: 1500
+        onTriggered: {
+            //zm.visible=!zm.visible
+        }
+    }
     Component.onCompleted: {
         unik.clearDir(unik.getPath(2))
         if(Qt.application.arguments.indexOf('-dev')>=0)vars.dev=true

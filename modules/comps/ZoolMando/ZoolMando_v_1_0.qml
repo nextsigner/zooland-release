@@ -4,11 +4,14 @@ Item {
     id: r
     //anchors.fill: parent
     property int num: -1
+    property color c: 'gray'
+    property real op: 1.0
     signal enter()
     signal left()
     signal right()
     signal up()
     signal down()
+
     Grid{
         spacing: 0//r.width/40
         columns: 3
@@ -20,7 +23,7 @@ Item {
                height: width
                border.width: 0
                border.color: 'red'
-               opacity: index===1 || index===3 || index===4 || index===5 || index===7?1.0:0.0
+               opacity: index===1 || index===3 || index===4 || index===5 || index===7?r.op:0.0
                color: 'transparent'
                MouseArea{
                 anchors.fill: parent
@@ -56,9 +59,9 @@ Item {
                Rectangle{
                   width: parent.width*0.8
                   height: width
-                  color: 'gray'
+                  color: r.c
                   radius: width*0.5
-                  opacity: 0.5
+                  opacity: r.op
                   anchors.centerIn: parent
                   visible: index===4
                }
@@ -66,7 +69,7 @@ Item {
                    width: parent.width*0.8
                    height: width
                    anchors.centerIn: parent
-                   opacity: 0.5
+                   opacity: r.op
                    visible: index!==4
                    onPaint: {
                        var ctx = getContext("2d")
@@ -77,7 +80,7 @@ Item {
                        ctx.lineTo(0, height);
                        ctx.closePath();
 
-                       context.fillStyle = "gray";
+                       context.fillStyle = r.c;
                        context.fill();
                        //ctx.fillRect(0, 0, width, height)
 
@@ -112,5 +115,20 @@ Item {
         border.width: 3
         border.color: 'red'
         visible: false
+    }
+    function toEnter(){
+        r.enter()
+    }
+    function toLeft(){
+        r.left()
+    }
+    function toRight(){
+        r.right()
+    }
+    function toDown(){
+        r.down()
+    }
+    function toUp(){
+        r.up()
     }
 }

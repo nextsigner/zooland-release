@@ -46,37 +46,68 @@ ApplicationWindow {
         onActivated: app.close()
     }
     Shortcut{
-        sequence: 'Enter'
+        sequence: 'Return'
         onActivated: {
-            if(vars.ci){
-                vars.ci.toEnter()
-            }
+            enterOrReturn()
         }
     }
     Shortcut{
+        sequence: 'Enter'
+        onActivated: {
+            enterOrReturn()
+        }
+    }
+    //Función Enter y Return
+    function enterOrReturn(){
+        if(tIsDoubleEnter.running){
+            tIsDoubleEnter.stop()
+            zm.visible=!zm.visible
+            return
+        }else{
+            if(zm.visible){
+                zm.toEnter()
+            }else{
+                tIsDoubleEnter.restart()
+            }
+        }
+        if(vars.ci){
+            vars.ci.toEnter()
+        }
+    }
+
+
+    Shortcut{
         sequence: 'Up'
         onActivated: {
+            if(zm.visible){
+                zm.toUp()
+                return
+            }
             if(vars.ci){
                 vars.ci.toUp()
             }
-//            if(vars.currentPlanetIndex>0){
-//                vars.currentPlanetIndex--
-//            }else{
-//                vars.currentPlanetIndex=21
-//            }
+            //            if(vars.currentPlanetIndex>0){
+            //                vars.currentPlanetIndex--
+            //            }else{
+            //                vars.currentPlanetIndex=21
+            //            }
         }
     }
     Shortcut{
         sequence: 'Down'
         onActivated: {
+            if(zm.visible){
+                zm.toDown()
+                return
+            }
             if(vars.ci){
                 vars.ci.toDown()
             }
-//            if(vars.currentPlanetIndex<21){
-//                vars.currentPlanetIndex++
-//            }else{
-//                vars.currentPlanetIndex=0
-//            }
+            //            if(vars.currentPlanetIndex<21){
+            //                vars.currentPlanetIndex++
+            //            }else{
+            //                vars.currentPlanetIndex=0
+            //            }
         }
     }
     Shortcut{
@@ -84,6 +115,10 @@ ApplicationWindow {
         onActivated: {
             if(log.visible){
                 log.visible=false
+                return
+            }
+            if(zm.visible){
+                zm.toLeft()
                 return
             }
             if(vars.ci && vars.ci.objectName==='list'){
@@ -122,6 +157,10 @@ ApplicationWindow {
         sequence: 'Right'
         property int v: 0
         onActivated: {
+            if(zm.visible){
+                zm.toRight()
+                return
+            }
             if(vars.ci && vars.ci.objectName==='list'){
                 zbtb.currentIndex=0
                 vars.ci=zbtb

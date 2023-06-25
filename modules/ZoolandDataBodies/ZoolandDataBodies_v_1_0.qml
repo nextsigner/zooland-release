@@ -115,6 +115,12 @@ Rectangle {
     function toEnter(){
         //zpn.addNot('xBodiesInt.currentIndex: '+xBodiesInt.currentIndex, false, 0)
         if(latFocus===0){
+            if(currentIndex===-1){
+                sweg.currentPlanetIndex=-1
+                sweg.currentHouseIndex=-1
+                sweg.centerZoomAndPos()
+                return
+            }
             if(xBodiesInt.currentIndex>21){
                 sweg.currentHouseIndex=xBodiesInt.currentIndex-16
             }else{

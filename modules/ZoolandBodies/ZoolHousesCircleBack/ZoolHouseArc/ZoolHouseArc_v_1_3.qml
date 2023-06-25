@@ -67,7 +67,7 @@ Item {
 
     ZoolHouseArc{
         id: zsa
-        width: housesCircleBack.width-sweg.pz*2-vars.fs*2
+        width: housesCircleBack.width-sweg.pz*2//-vars.fs*2
         height: width
         w: 300//width*0.5//-aspsCircle.width
         n: r.n//index===0?1:(index===1?9:5)
@@ -114,7 +114,7 @@ Item {
             }
             Rectangle{
                 id: lineaEje2
-                width: r.w
+                width: r.w*2
                 //                width: sweg.objHousesCircle.houseShowSelectadIndex===-1?
                 //                           r.w
                 //                         :
@@ -138,7 +138,7 @@ Item {
         }
         Rectangle{
             id: circleBot
-            width: sweg.pz
+            width: !vars.ev?sweg.pz:sweg.pz*0.75
             height: width
             radius: width*0.5
             //color: apps.enableBackgroundColor?apps.fontColor:'white'
@@ -147,7 +147,7 @@ Item {
             border.color: apps.houseLineColor//apps.enableBackgroundColor?apps.fontColor:'white'//lineaEje.color
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.left
-            anchors.rightMargin: 0-width
+            anchors.rightMargin: 0-width//!vars.ev?0-width:0-width*0.75
             antialiasing: true
 
             ZoolText{
