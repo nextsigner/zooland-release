@@ -59,7 +59,7 @@ ApplicationWindow {
     }
     //Función Enter y Return
     function enterOrReturn(){
-        if(tIsDoubleEnter.running){
+        /*if(tIsDoubleEnter.running){
             tIsDoubleEnter.stop()
             zm.visible=!zm.visible
             return
@@ -70,7 +70,7 @@ ApplicationWindow {
             }else{
                 tIsDoubleEnter.restart()
             }
-        }
+        }*/
         if(vars.ci){
             vars.ci.toEnter()
         }
@@ -118,7 +118,7 @@ ApplicationWindow {
                 log.visible=false
                 return
             }
-            if(zm.visible){
+            if(vars.ci && vars.ci.objectName==='zm'){
                 zm.toLeft()
                 return
             }
@@ -129,12 +129,13 @@ ApplicationWindow {
                 if(zdb.latFocus===1  && vars.ev){
                     zdb.latFocus=0
                 }else{
-                    zbtb.currentIndex=zbtb.maximunIndex
-                    vars.ci=zbtb
+                    //zbtb.currentIndex=zbtb.maximunIndex
+                    //vars.ci=zbtb
+                    vars.ci=zm
                 }
 
                 return
-            }else if(vars.ci && vars.ci.objectName==='bottomBar'){
+            }else if(vars.ci && vars.ci.objectName==='zm'){
                 if(zbtb.currentIndex === 0){
                     if(zsm.getPanel('ZoolRemoteParamsList').ol.visible){
                         vars.ci=zsm.getPanel('ZoolRemoteParamsList').ol
@@ -158,13 +159,14 @@ ApplicationWindow {
         sequence: 'Right'
         property int v: 0
         onActivated: {
-            if(zm.visible){
+            if(vars.ci && vars.ci.objectName==='zm'){
                 zm.toRight()
                 return
             }
             if(vars.ci && vars.ci.objectName==='list'){
-                zbtb.currentIndex=0
-                vars.ci=zbtb
+                //zbtb.currentIndex=0
+                //vars.ci=zbtb
+                vars.ci=zm
                 return
             }else if(vars.ci && vars.ci.objectName==='zdb'){
                 if(zdb.latFocus===0 && vars.ev){
@@ -177,7 +179,7 @@ ApplicationWindow {
                     }
                 }
                 return
-            }else if(vars.ci && vars.ci.objectName==='bottomBar'){
+            }else if(vars.ci && vars.ci.objectName==='zm'){
                 if(zbtb.maximunIndex === zbtb.currentIndex){
                     vars.ci=zdb
                     return

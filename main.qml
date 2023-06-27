@@ -78,26 +78,35 @@ ZoolMainWindow{
                     ZoolandBodies{id: sweg}
                     ZoolMando{
                         id: zm
+                        objectName: 'zm'
                         width: vars.fs*3
                         height: width
                         num:0
                         c: 'red'
                         anchors.bottom: parent.bottom
                         anchors.right: parent.right
-                        visible: false
+                        visible: vars.ci===zm
                         op: 0.75
                         onEnter:sweg.toEnter()
                         onUp:sweg.toUp()
                         onDown:sweg.toDown()
                         onLeft:sweg.toLeft()
                         onRight:sweg.toRight()
+                        property var uCi
                         onVisibleChanged: {
-                            if(visible)r.mm=0
+                            if(visible){
+                                uCi=app.ci
+                                //vars.ci=xApp
+                                //sweg.mm=0
+                            }else{
+                               //vars.ci=uCi
+                            }
                         }
                         Text{
-                            text: '<b>'+sweg.mm+'</b>'
-                            font.pixelSize:vars.fs
+                            text: '<b>'+parseInt(sweg.mm + 1)+'</b>'
+                            font.pixelSize:vars.fs*0.7
                             color: apps.fontColor
+                            anchors.centerIn: parent
                         }
                     }
                 }
@@ -111,6 +120,34 @@ ZoolMainWindow{
 
                 }
             }
+        }
+        Item{
+            id: senMano
+            width: 10
+            height: 10
+            visible: sweg.mm===0
+            rotation: x<parent.width*0.5?0:180
+            Behavior on rotation{NumberAnimation{duration: 500; easing.type: Easing.InOutQuad}}
+            onVisibleChanged: {
+                x=parent.width*0.5
+                y=parent.height*0.5
+            }
+            //anchors.centerIn: parent
+            Image {
+                id: imgMano
+                source: "./resources/imgs/mano_1.png"
+                width: vars.fs*30
+                fillMode: Image.PreserveAspectFit
+                x: 0-width+(width*0.12)
+                y: 0-(height*0.28)
+                //rotation: parent.x<parent.parent.width*0.5+width*0.1?0:180
+            }
+//                        Rectangle{
+//                            width: 10
+//                            height: 10
+//                            anchors.centerIn: parent
+//                            color: 'red'
+//                        }
         }
         //ZoolUserManager{id: zoolUserManager}
         ZoolUserCoordsEditor{id: zuce}

@@ -192,7 +192,7 @@ Rectangle {
             }
             ZoolHousesCircle{
                 id: housesCircle
-                width: !vars.ev?r.width*2:r.width*2-(r.wapsBack*2*0.75)+r.pz*2+vars.fs*2
+                width: !vars.ev?r.width*2:r.width*2-(r.wapsBack*2*0.75)+r.pz*2//+vars.fs*2
                 height: width
                 anchors.centerIn: signCircle
                 //z: 9999+1
@@ -201,7 +201,7 @@ Rectangle {
             //                NumberLines{}
             ZoolandSignCircle{
                 id: signCircle
-                width: !vars.ev?r.width*2-(vars.fs*8):r.width*2-(r.wapsBack*2*0.75)//-apps.fs*4//-
+                width: !vars.ev?r.width*2-(vars.fs*8):r.width*2-(r.wapsBack*2*0.75)-vars.fs*2//-apps.fs*4//-
                 anchors.centerIn: parent
                 showBorder: true
                 v:r.v
@@ -615,20 +615,60 @@ Rectangle {
     //Funciones de Mando
     property int mm: 0
     function toEnter(){
-        if(r.mm<2){
+        if(r.mm<3){
             r.mm++
         }else{
             r.mm=0
         }
     }
     function toLeft(){
+        if(mm===3){
+            //zm.visible=false
+            if(zsm.getPanel('ZoolRemoteParamsList').ol.visible){
+                vars.ci=zsm.getPanel('ZoolRemoteParamsList').ol
+            }else{
+                vars.ci=zsm.getPanel('ZoolRemoteParamsList')
+            }
+            return
+        }
+
+        if(mm===0){
+            if(senMano.x>xLatIzq.width && senMano.x<xLatDer.x){
+                senMano.x-=vars.fs*0.25
+            }else{
+                senMano.x-=vars.fs
+            }
+            if(senMano.x<0+vars.fs*0.5)senMano.x=xApp.width-vars.fs*0.5//+vars.fs*14
+            return
+        }
         rect.x-=vars.fs
     }
     function toRight(){
+        if(mm===3){
+            vars.ci=zdb
+        }
+        if(mm===0){
+            if(senMano.x>xLatIzq.width && senMano.x<xLatDer.x){
+                senMano.x+=vars.fs*0.25
+            }else{
+                senMano.x+=vars.fs
+            }
+            if(senMano.x>xApp.width-vars.fs*0.5)senMano.x=0+vars.fs*0.5//+vars.fs*14
+            return
+        }
         rect.x+=vars.fs
     }
     function toDown(){
-        if(r.mm===0){
+        if(mm===0){
+            if(senMano.x>xLatIzq.width && senMano.x<xLatDer.x){
+                senMano.y+=vars.fs*0.25
+            }else{
+                senMano.y+=vars.fs
+            }
+            if(senMano.y>xApp.height)senMano.y=0//+vars.fs*14
+            return
+        }
+        if(r.mm===2){
             rect.y+=vars.fs
         }else if(r.mm===1){
             if(pinchArea.m_zoom2 > 0.5){
@@ -639,11 +679,20 @@ Rectangle {
                 rect.y=0
             }
         }else{
-           zm.visible=false
+           //zm.visible=false
         }
     }
     function toUp(){
-        if(r.mm===0){
+        if(mm===0){
+            if(senMano.x>xLatIzq.width && senMano.x<xLatDer.x){
+                senMano.y-=vars.fs*0.25
+            }else{
+                senMano.y-=vars.fs
+            }
+            if(senMano.y+imgMano.height-vars.fs*14<0)senMano.y=xApp.height
+            return
+        }
+        if(r.mm===2){
             rect.y-=vars.fs
         }else if(r.mm===1){
             if(pinchArea.m_zoom2 < 1.5){
@@ -654,7 +703,7 @@ Rectangle {
                 rect.y=0
             }
         }else{
-           zm.visible=false
+           //zm.visible=false
         }
     }
 }
