@@ -1,1 +1,1 @@
-Bien: Se cambia ZoolMando a ser controlado por vars.ci en zip 268
+Se agrega getZoolandDataRevSol a zsfdm

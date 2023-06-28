@@ -214,6 +214,78 @@ Item{
     }
     //<-- Get Data Params List
 
+    //--> Get Zooland Data  Rev Sol
+    QtObject{
+        id: objGetZoolandDataRevSol
+        property var promesaParams
+        function setData(data, isData){
+            if(vars.dev){
+                //zpn.addNot('objGetZoolandData.setData.data: '+data, true, 1000)
+            }
+            if(isData){
+                let j=JSON.parse(data)
+                if(j.isData){
+                    zpn.addNot('Rs Data: '+JSON.stringify(j.data))
+                    //sweg.loadSweJson(JSON.stringify(j.data, null, 2), objGetZoolandData.promesaParams)
+                }else{
+                    vars.j.showMsgDialog('Zool Informa Error!', 'Los datos de Revolución Solar no han sido cargados correctamente.', j.error)
+                }
+
+            }else{
+                vars.j.showMsgDialog('Zool Informa', 'Los datos no se han cargado los datos del servidor Zool-Server.\nHost: '+r.host, 'El servidor no está encendido o está fallando la conexión a internet.')
+            }
+        }
+    }
+    function getZoolandDataRevSol(edad){
+        //objGetZoolandData.promesaParams=j
+        let j=JSON.parse(vars.cParams)
+        let t=j.params.tipo
+        let hsys=j.params.hsys
+        let n=j.params.n.replace(/ /g, '%20')
+        let d=j.params.d
+        let m=j.params.m
+        let a=j.params.a
+        let h=j.params.h
+        let min=j.params.min
+        let gmt=j.params.gmt
+        let lat=j.params.lat
+        let lon=j.params.lon
+        let alt=j.params.alt
+        let ciudad=j.params.ciudad.replace(/ /g, '%20')
+        let ms=j.params.ms
+        let msReq=new Date(Date.now()).getTime()
+        let url=r.host+':8100'
+        url+='/zool/getZoolDataRevSol'
+        url+='?n='+n
+        url+='&d='+d
+        url+='&m='+m
+        url+='&a='+a
+        url+='&h='+h
+        url+='&min='+min
+        url+='&gmt='+gmt
+        url+='&lat='+lat
+        url+='&lon='+lon
+        url+='&alt='+alt
+        url+='&ciudad='+ciudad
+
+        url+='&absGradosSol='+vars.currentAbsolutoGradoSolar
+        url+='&relMinutosSol='+vars.currentMinutoSolar
+        url+='&relSegundosSol='+vars.currentSegundoSolar
+        url+='&edad='+edad
+
+        url+='&ms='+ms
+        url+='&adminId='+apps.zoolUserId
+        url+='&msReq='+msReq
+        url=url.replace(/\n/g, '')
+        //curl "http://192.168.1.52:8100/zool/getZoolDataRevSol?d=20&m=6&a=1975&h=23&min=4&gmt=-3&lat=-35.4752134&lon=-69.585934&absGradosSol=89&relMinutosSol=6&relSegundosSol=22&edad=48"
+        const encoded = encodeURI(url);
+        vars.j.getRD(""+url+"", objGetZoolandDataRevSol)
+        if(vars.dev){
+            zpn.addNot('Url objGetZoolandDataRevSol: '+url, true, 5000)
+        }
+        console.log('Url: '+url)
+    }
+    //<-- Get Zooland Data Rev Sol
 
 
     Component.onCompleted: {

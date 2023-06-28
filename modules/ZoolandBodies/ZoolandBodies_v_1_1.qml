@@ -615,13 +615,16 @@ Rectangle {
     //Funciones de Mando
     property int mm: 0
     function toEnter(){
-        if(r.mm<3){
+        if(r.mm<4){
             r.mm++
         }else{
             r.mm=0
         }
     }
     function toLeft(){
+        if(mm===4){
+            zsfdm.getZoolandDataRevSol(48)
+        }
         if(mm===3){
             //zm.visible=false
             if(zsm.getPanel('ZoolRemoteParamsList').ol.visible){
