@@ -108,6 +108,13 @@ ZoolMainWindow{
                             color: apps.fontColor
                             anchors.centerIn: parent
                         }
+                        Text{
+                            text: '<b>'+sweg.mmEdadRs+'</b>'
+                            font.pixelSize:vars.fs*0.7
+                            color: apps.fontColor
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            visible: sweg.mm===4
+                        }
                     }
                 }
                 ZRect{
@@ -177,7 +184,7 @@ ZoolMainWindow{
             zpn.addNot('Ejecutando en ChromeCast', true, 10000)
             sweg.width=vars.fs*24
             sweg.w=vars.fs
-            sweg.pz=48
+            sweg.pz=38
 
         }else{
             //Esta configuracion va bien 1920x1080

@@ -217,7 +217,7 @@ Item{
     //--> Get Zooland Data  Rev Sol
     QtObject{
         id: objGetZoolandDataRevSol
-        property var promesaParams
+        property bool load
         function setData(data, isData){
             if(vars.dev){
                 //zpn.addNot('objGetZoolandData.setData.data: '+data, true, 1000)
@@ -225,7 +225,31 @@ Item{
             if(isData){
                 let j=JSON.parse(data)
                 if(j.isData){
-                    zpn.addNot('Rs Data: '+JSON.stringify(j.data))
+                    //zpn.addNot('Rs Data: '+JSON.stringify(j.data))
+                    if(!objGetZoolandDataRevSol.load){
+                        zpn.addNot('<b>Ascendente de la Revolución Solar</b><br>de '+sweg.mmEdadRs+' años: '+vars.signos[j.data.rsone.ph.h1.is]+'<br><b>Fecha y Hora:</b> '+j.data.rsone.ph.params.sdgmt, true, 15000)
+                    }else{
+                        let j=JSON.parse(data)
+                        let m0=j.data.rsone.ph.params.sdgmt.split(' ')
+                        let mf=m0[0].split('/')
+                        let vd=mf[0]
+                        let vm=mf[1]
+                        let va=mf[2]
+                        let mh=m0[1].split(':')
+                        let vh=mh[0]
+                        let vmin=mh[1]
+                        zpn.addNot('vd: '+vd+' vm: '+vm+' va: '+va+' vh: '+vh+' vmin: '+vmin, true, 15000)
+                        let nj=JSON.parse(vars.cParams)
+                        nj.params.d=vd
+                        nj.params.m=vm
+                        nj.params.a=va
+                        nj.params.h=vh
+                        nj.params.min=vmin
+                        zpn.addNot('nvd: '+nj.params.d, true, 15000)
+                        //return
+                        getZoolandDataBack(nj)
+                    }
+                    //console.log(JSON.stringify(j.data, null, 2))
                     //sweg.loadSweJson(JSON.stringify(j.data, null, 2), objGetZoolandData.promesaParams)
                 }else{
                     vars.j.showMsgDialog('Zool Informa Error!', 'Los datos de Revolución Solar no han sido cargados correctamente.', j.error)
@@ -236,7 +260,7 @@ Item{
             }
         }
     }
-    function getZoolandDataRevSol(edad){
+    function getZoolandDataRevSol(edad, load){
         //objGetZoolandData.promesaParams=j
         let j=JSON.parse(vars.cParams)
         let t=j.params.tipo
@@ -279,9 +303,10 @@ Item{
         url=url.replace(/\n/g, '')
         //curl "http://192.168.1.52:8100/zool/getZoolDataRevSol?d=20&m=6&a=1975&h=23&min=4&gmt=-3&lat=-35.4752134&lon=-69.585934&absGradosSol=89&relMinutosSol=6&relSegundosSol=22&edad=48"
         const encoded = encodeURI(url);
+        objGetZoolandDataRevSol.load=load
         vars.j.getRD(""+url+"", objGetZoolandDataRevSol)
         if(vars.dev){
-            zpn.addNot('Url objGetZoolandDataRevSol: '+url, true, 5000)
+            zpn.addNot('Url objGetZoolandDataRevSol: '+url.split('&').join(' &'), true, 15000)
         }
         console.log('Url: '+url)
     }

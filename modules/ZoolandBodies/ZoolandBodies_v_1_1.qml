@@ -418,6 +418,15 @@ Rectangle {
 
         }
     }
+    Timer{
+        id: tLoadRsH1
+        running: false
+        repeat: false
+        interval: 1500
+        onTriggered: {
+            zsfdm.getZoolandDataRevSol(r.mmEdadRs, false)
+        }
+    }
     function setWaps(){
         let mpw=signCircle.width
         for(var i=0;i<vars.planetasRes.length;i++){
@@ -614,6 +623,7 @@ Rectangle {
 
     //Funciones de Mando
     property int mm: 0
+    property int mmEdadRs: 1
     function toEnter(){
         if(r.mm<4){
             r.mm++
@@ -622,8 +632,14 @@ Rectangle {
         }
     }
     function toLeft(){
+
+        //Rs Edad --
         if(mm===4){
-            zsfdm.getZoolandDataRevSol(48)
+            if(r.mmEdadRs>1){
+                r.mmEdadRs--
+                tLoadRsH1.restart()
+            }
+            return
         }
         if(mm===3){
             //zm.visible=false
@@ -647,6 +663,16 @@ Rectangle {
         rect.x-=vars.fs
     }
     function toRight(){
+
+        //Rs Edad ++
+        if(mm===4){
+            if(r.mmEdadRs<150){
+                r.mmEdadRs++
+                tLoadRsH1.restart()
+            }
+            return
+        }
+
         if(mm===3){
             vars.ci=zdb
         }
@@ -686,6 +712,12 @@ Rectangle {
         }
     }
     function toUp(){
+
+        //Load Rs
+        if(mm===4){
+            zsfdm.getZoolandDataRevSol(r.mmEdadRs, true)
+        }
+
         if(mm===0){
             if(senMano.x>xLatIzq.width && senMano.x<xLatDer.x){
                 senMano.y-=vars.fs*0.25

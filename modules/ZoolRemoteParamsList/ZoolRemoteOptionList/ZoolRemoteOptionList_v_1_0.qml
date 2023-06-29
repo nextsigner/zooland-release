@@ -7,6 +7,7 @@ Rectangle{
     border.width: 1
     border.color: apps.fontColor
     property alias n: txtNom.text
+    property var cParams
     onVisibleChanged: {
         if(visible){
             vars.ci=r
@@ -85,7 +86,7 @@ Rectangle{
             Component.onCompleted: {
                 let s=''
                 s+=params.params.n
-                if(index>1){
+                if(index>2){
                     s+='\nFecha: '+params.params.d+'/'+params.params.m+'/'+params.params.a+''
                 }
                 txt1.text=s
@@ -93,8 +94,11 @@ Rectangle{
         }
     }
     function load(j){
+        r.cParams=j
         lm.clear()
         let p=JSON.parse('{"params":{"n":"Atras"}}')
+        lm.append(lm.addItem(p))
+        p=JSON.parse('{"params":{"n":"Cargar"}}')
         lm.append(lm.addItem(p))
         p=JSON.parse('{"params":{"n":"Tránsitos de Ahora"}}')
         lm.append(lm.addItem(p))
@@ -126,6 +130,11 @@ Rectangle{
             return
         }
         if(lv.currentIndex===1){
+            //zpn.addNot('cParams: '+JSON.stringify(r.cParams.params))
+            zsfdm.loadParamsFromString(JSON.stringify(r.cParams))
+            return
+        }
+        if(lv.currentIndex===2){
             let j=JSON.parse(vars.cParams)
             zsfdm.loadParamsFromStringBack(JSON.stringify(vars.j.getParamsNow(j.params.lat, j.params.lon, j.params.alt, j.params.gmt, j.params.ciudad)))
             return
