@@ -67,6 +67,17 @@ function getParamsNow(lat, lon, alt, gmt, city){
     let a=date.getFullYear()
     let h=date.getHours()
     let min=date.getMinutes()
+
+
+    /*
+    d=8
+    m=9
+    a=1980
+    h=22
+    min=42
+    gmt=-3
+    */
+
     let p={}
     p.params={}
     p.params.n='Tránsitos de ahora'

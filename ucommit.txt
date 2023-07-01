@@ -1,1 +1,1 @@
-Se agregar item cargar a zrol
+Se corrige rotación de casas en carga de RS
