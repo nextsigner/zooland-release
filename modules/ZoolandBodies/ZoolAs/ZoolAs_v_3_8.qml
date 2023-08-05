@@ -36,7 +36,7 @@ Item{
 
     property string text: sweg.aTexts[numAstro]
 
-    property var aIcons: [0,1,2,3,4,5,6,7,8,9,12,13,14,15,16,17]
+    property var aIcons: [0,1,2,3,4,5,6,7,8,9,12,13,14,15,16]
 
     property color colorCuerpo: '#ff3300'
 

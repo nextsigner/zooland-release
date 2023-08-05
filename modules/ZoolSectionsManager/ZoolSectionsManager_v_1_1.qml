@@ -3,7 +3,6 @@ import QtQuick.Controls 2.12
 import '../../comps' as Comps
 
 import ZoolRemoteParamsList 1.1
-import ZoolFileMaker 1.4
 import ZoolButton 1.2
 
 //import web.ZoolUserManager 1.0
@@ -49,7 +48,7 @@ Item{
             width: r.width
             height: r.height-xPanelesTits.height-xIndicadorSV.height
             //2
-            Comps.XPaneles{ZoolFileMaker{id: zoolFileMaker}}
+            //Comps.XPaneles{ZoolFileMaker{id: zoolFileMaker}}
             //1
             Comps.XPaneles{ZoolRemoteParamsList{id: zoolRemoteParamsList}}
         }

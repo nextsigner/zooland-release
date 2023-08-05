@@ -66,7 +66,7 @@ ZoolMainWindow{
                 height: xApp.height-zoolDataView.height
                 ZRect{
                     id: xLatIzq
-                    width: xApp.width*0.2
+                    width: vars.ci.objectName==='fileMaker'?xApp.width+vars.xAppMargin*2:xApp.width*0.2
                     height: parent.height
                     ZoolSectionsManager{id: zsm}
                 }

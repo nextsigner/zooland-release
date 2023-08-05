@@ -9,6 +9,7 @@ QtObject{
     property var j: JS
     property var ci: xApp
     property var aCi: []
+    property var aCiCtrl: []
     property string res: ''
     property int fs: 20
     property int xAppMargin: 10

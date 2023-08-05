@@ -220,6 +220,22 @@ ApplicationWindow {
         }
     }
     Shortcut{
+        sequence: 'Ctrl+Tab'
+        property int currentIndex: 0
+        onActivated: {
+            if(currentIndex<vars.aCiCtrl.length-1){
+                currentIndex++
+            }else{
+                currentIndex=0
+            }
+            vars.ci=vars.aCiCtrl[currentIndex]
+            if(zsm.aPanelsIds.indexOf(vars.j.qmltypeof(vars.ci))>=0){
+                zsm.showPanel(vars.j.qmltypeof(vars.ci))
+            }
+            //zsm.aPanelsIds.push(vars.j.qmltypeof(r))
+        }
+    }
+    Shortcut{
         sequence: 'Ctrl++'
         onActivated: {
             sweg.zoomUp()
@@ -253,6 +269,12 @@ ApplicationWindow {
         sequence: 'Ctrl+Down'
         onActivated: {
             sweg.rectSweg.y+=vars.fs*0.5
+        }
+    }
+    Shortcut{
+        sequence: 'Ctrl+i'
+        onActivated: {
+            apps.xAsShowIcon=!apps.xAsShowIcon
         }
     }
 }
