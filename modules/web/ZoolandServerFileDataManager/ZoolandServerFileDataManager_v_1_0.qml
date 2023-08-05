@@ -315,8 +315,14 @@ Item{
 
     Component.onCompleted: {
         let fp=unik.getPath(4)+'/host'
+
         let h=unik.getFile(fp)//.replace(/ /g, '').replace(/\n/g, '')
-        if(h==='' || h.lenght < 3){
+        if(h==='error'){
+            zpn.addNot('Host Error.', true, 5000)
+            h='http://vps-3339713-x.dattaweb.com'
+        }
+        zpn.addNot('Host 1: '+h, true, 5000)
+        if(h==='' || h.lenght < 5){
             h='http://zool.loca.lt'
         }
         if(!vars.dev){

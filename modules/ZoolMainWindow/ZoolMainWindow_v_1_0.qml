@@ -118,8 +118,9 @@ ApplicationWindow {
                 log.visible=false
                 return
             }
-            if(vars.ci && vars.ci.objectName==='zm'){
-                zm.toLeft()
+            if(vars.ci && (vars.ci.objectName==='zm' || vars.ci.objectName==='fileMaker')){
+                //Qt.quit()
+                vars.ci.toLeft()
                 return
             }
             if(vars.ci && vars.ci.objectName==='list'){
@@ -159,8 +160,8 @@ ApplicationWindow {
         sequence: 'Right'
         property int v: 0
         onActivated: {
-            if(vars.ci && vars.ci.objectName==='zm'){
-                zm.toRight()
+            if(vars.ci && (vars.ci.objectName==='zm' || vars.ci && vars.ci.objectName==='fileMaker')){
+                vars.ci.toRight()
                 return
             }
             if(vars.ci && vars.ci.objectName==='list'){
@@ -199,4 +200,59 @@ ApplicationWindow {
         }
     }
 
+
+
+    //Teclado
+    Shortcut{
+        sequence: 'Tab'
+        property int currentIndex: 0
+        onActivated: {
+            if(currentIndex<vars.aCi.length-1){
+                currentIndex++
+            }else{
+                currentIndex=0
+            }
+            vars.ci=vars.aCi[currentIndex]
+            if(zsm.aPanelsIds.indexOf(vars.j.qmltypeof(vars.ci))>=0){
+                zsm.showPanel(vars.j.qmltypeof(vars.ci))
+            }
+            //zsm.aPanelsIds.push(vars.j.qmltypeof(r))
+        }
+    }
+    Shortcut{
+        sequence: 'Ctrl++'
+        onActivated: {
+            sweg.zoomUp()
+        }
+    }
+    Shortcut{
+        sequence: 'Ctrl+-'
+        onActivated: {
+            sweg.zoomDown()
+        }
+    }
+    Shortcut{
+        sequence: 'Ctrl+Right'
+        onActivated: {
+            sweg.rectSweg.x+=vars.fs*0.5
+        }
+    }
+    Shortcut{
+        sequence: 'Ctrl+Left'
+        onActivated: {
+            sweg.rectSweg.x-=vars.fs*0.5
+        }
+    }
+    Shortcut{
+        sequence: 'Ctrl+Up'
+        onActivated: {
+            sweg.rectSweg.y-=vars.fs*0.5
+        }
+    }
+    Shortcut{
+        sequence: 'Ctrl+Down'
+        onActivated: {
+            sweg.rectSweg.y+=vars.fs*0.5
+        }
+    }
 }

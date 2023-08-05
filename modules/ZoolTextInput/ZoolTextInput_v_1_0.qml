@@ -53,6 +53,23 @@ Item {
             Keys.onEnterPressed:  r.returnPressed
         }
     }
+    Rectangle{
+        anchors.fill: xText
+        color: 'transparent'
+        border.width: xText.border.width
+        border.color: 'red'
+        radius: xText.radius
+        visible: false
+        Timer{
+            running: t.focus
+            repeat: true
+            interval: 500
+            onRunningChanged: {
+                if(!running)parent.visible=false
+            }
+            onTriggered: parent.visible=!parent.visible
+        }
+    }
     ZoolText {
         id: labelTopTextInput
         text: r.labelText

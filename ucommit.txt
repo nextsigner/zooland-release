@@ -1,1 +1,1 @@
-Bien: Se corrigió rotacion de casas en carga de RS en zip 272
+Se agrega filemaker

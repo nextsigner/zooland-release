@@ -172,6 +172,9 @@ ZoolMainWindow{
         }
     }
     Component.onCompleted: {
+        vars.aCi.push(zsm.getPanel('ZoolRemoteParamsList'))
+        vars.aCi.push(zsm.getPanel('ZoolFileMaker'))
+        vars.aCi.push(zdb)
         unik.clearDir(unik.getPath(2))
         if(Qt.application.arguments.indexOf('-dev')>=0)vars.dev=true
         zpn.addNot(unik.getFile('ucommit.txt'), true, 15000)
@@ -179,6 +182,8 @@ ZoolMainWindow{
         let sh=Screen.height
         vars.res=''+sw+'x'+sh+''
         zpn.addNot('Resolución de pantalla: '+sw+'x'+sh, true, 10000)
+        zpn.addNot('Usuario: '+apps.zoolUser, true, 10000)
+
         if(sw===960 && sh===540){
             //Resolución 960x540 de ChromeCast HD
             zpn.addNot('Ejecutando en ChromeCast', true, 10000)
@@ -193,5 +198,6 @@ ZoolMainWindow{
             sweg.w=vars.fs*1.5
             sweg.pz=60
         }
+        //log.lv('Iniciado')
     }
 }

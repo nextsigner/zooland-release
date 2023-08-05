@@ -25,31 +25,31 @@ Rectangle{
         clip: true
         Item{
             id: xTaLog
-            width: r.width-app.fs
+            width: r.width-vars.fs
             height: taLog.contentHeight
             anchors.horizontalCenter: parent.horizontalCenter
             Text{
                 id: taLog
-                width: parent.width//-app.fs*2//*0.5
+                width: parent.width//-vars.fs*2//*0.5
                 //height: contentHeight
                 wrapMode: r.ww?Text.WordWrap:Text.WrapAnywhere
                 anchors.horizontalCenter: parent.horizontalCenter
                 //anchors.top: parent.top
-                //anchors.topMargin: app.fs*0.5
-                font.pixelSize: vars.fs*0.5
-                color: 'white'
+                //anchors.topMargin: vars.fs*0.5
+                font.pixelSize: vars.fs//*0.5
+                color: apps.fontColor
                 //background: Rectangle{color: 'black'}
                 clip: true
             }
         }
     }
     Rectangle{
-        width: app.fs*0.5
+        width: vars.fs
         height: width
         anchors.right: parent.right
-        anchors.rightMargin: app.fs*0.1
+        anchors.rightMargin: vars.fs*0.1
         anchors.top: parent.top
-        anchors.topMargin: app.fs*0.1
+        anchors.topMargin: vars.fs*0.1
         Text{text: 'X';anchors.centerIn: parent}
         MouseArea{
             anchors.fill: parent

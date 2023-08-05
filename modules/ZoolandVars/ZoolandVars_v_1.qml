@@ -4,13 +4,15 @@ import "../../js/Funcs_v2.js" as JS
 QtObject{
     id: r
 
-    //App
+    //-->App
     property bool dev: false
     property var j: JS
     property var ci: xApp
+    property var aCi: []
     property string res: ''
     property int fs: 20
     property int xAppMargin: 10
+    //<--App
 
     //--> Variables Astrológicas
     property var planetasArchivos: ['sol', 'luna', 'mercurio', 'venus', 'marte', 'jupiter', 'saturno', 'urano', 'neptuno', 'pluton', 'nodo_norte', 'nodo_sur', 'quiron', 'selena', 'lilith', 'pholus', 'ceres', 'pallas', 'juno', 'vesta', 'asc', 'mc']

@@ -26,6 +26,7 @@ Rectangle {
 
     //Alias
     property alias s: swegs
+    property alias rectSweg: rect
     property alias tsw: tSetWps
     property alias objHousesCircle: housesCircle
     property alias objHousesCircleBack: housesCircleBack
@@ -700,13 +701,7 @@ Rectangle {
         if(r.mm===2){
             rect.y+=vars.fs
         }else if(r.mm===1){
-            if(pinchArea.m_zoom2 > 0.5){
-                pinchArea.m_zoom2 -= 0.1
-            }
-            if(pinchArea.m_zoom2 === 0.5){
-                rect.x=0
-                rect.y=0
-            }
+            zoomUp()
         }else{
            //zm.visible=false
         }
@@ -730,15 +725,23 @@ Rectangle {
         if(r.mm===2){
             rect.y-=vars.fs
         }else if(r.mm===1){
-            if(pinchArea.m_zoom2 < 1.5){
-                pinchArea.m_zoom2 += 0.1
-            }
-            if(pinchArea.m_zoom2 === 0.5){
-                rect.x=0
-                rect.y=0
-            }
+            zoomDown()
         }else{
            //zm.visible=false
+        }
+    }
+    function zoomUp(){
+        if(pinchArea.m_zoom2 < 2.5){
+            pinchArea.m_zoom2 += 0.1
+        }
+    }
+    function zoomDown(){
+        if(pinchArea.m_zoom2 > 0.5){
+            pinchArea.m_zoom2 -= 0.1
+        }
+        if(pinchArea.m_zoom2 === 0.5){
+            rect.x=0
+            rect.y=0
         }
     }
 }
