@@ -1,4 +1,13 @@
-﻿import QtQuick 2.12
+﻿/*
+Los únicos unik.getPath(x) que funcionaron para leer los archivos de raiz de todo el código son los siguientes:
+unik.getPath(1)
+unik.getPath(4)
+unik.getPath(5)
+Atención: Para leer por ejemplo uVersionZooland.txt que está en la raiz solo hizo falta
+unik.getPath('./uVersionZooland.txt')
+*/
+
+import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Window 2.0
 import QtMultimedia 5.12
@@ -179,14 +188,15 @@ ZoolMainWindow{
         Text{
             id: zvtxt
             text: 'Zooland Versión ?'
-            font.pixelSize: 20
+            font.pixelSize: 50
             color: 'white'
+            horizontalAlignment: Text.AlignHCenter
             anchors.centerIn: parent
         }
         Timer{
             running: true
             repeat: false
-            interval: Qt.platform.os==='linux'?5000:6000*5
+            interval: Qt.platform.os==='linux'?5000:5000
             onTriggered: parent.visible=false
         }
     }
@@ -199,42 +209,16 @@ ZoolMainWindow{
             let unv=fd!=='error'?parseInt(fd):'1000'
             let nnv=unv + 1
             unik.setFile(uVersionFilePath, nnv)
-            zvtxt.text='Zooland Versión '+nnv
+            zvtxt.text='Zooland Versión 1.'+nnv+'\n'
+            zvtxt.text+='Creado por Ricardo Martín Pizarro\n'
         }else{
             let str=''
-            let p=unik.getPath(0)
-            let e=unik.fileExist(p+'/uVersionZooland')
-            str+='P0:'+p+' e:'+e+'\n'
-
-            p=unik.getPath(1)
-            e=unik.fileExist(p+'/uVersionZooland')
-            str+='P1:'+p+' e:'+e+'\n'
-
-            p=unik.getPath(2)
-            e=unik.fileExist(p+'/uVersionZooland')
-            str+='P2:'+p+' e:'+e+'\n'
-
-            p=unik.getPath(3)
-            e=unik.fileExist(p+'/uVersionZooland')
-            str+='P3:'+p+' e:'+e+'\n'
-
-            p=unik.getPath(4)
-            e=unik.fileExist(p+'/uVersionZooland')
-            str+='P4:'+p+' e:'+e+'\n'
-
-            p=unik.getPath(5)
-            e=unik.fileExist(p+'/uVersionZooland')
-            str+='P5:'+p+' e:'+e+'\n'
-
             let uVersionFilePath='./uVersionZooland.txt'
             let fd=unik.getFile(uVersionFilePath)
-            let unv=fd!=='error'?parseInt(fd):'1000'
-            let nnv=unv + 1
-            str+='Zooland Versión '+nnv
-
-
+            let unv=fd!=='error'?parseInt(fd):'????'
+            str+='Zooland Versión 1.'+unv+'\n'
+            str+='Creado por Ricardo Martín Pizarro\n'
             zvtxt.text=str
-
         }
 
         //Add to aCi Tab Keyboard

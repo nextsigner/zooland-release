@@ -75,7 +75,9 @@ Item{
             //let comp=Qt.createQmlObject(c, sweg, 'qmlcode')
             //let comp=Qt.createQmlObject(c, r, 'qmlcode')
             //zpn.addNot('NumAstro '+r.numAstro+': x:'+px+' y:'+py, false, 1)
-            sweg.setZoomAndPosFromCoords(px, py)
+
+            //Se desactiva porque no lo muestra bien situado.
+            //sweg.setZoomAndPosFromCoords(px, py)
         }
     }
     Timer{
