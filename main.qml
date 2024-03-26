@@ -179,14 +179,14 @@ ZoolMainWindow{
         Text{
             id: zvtxt
             text: 'Zooland Versión ?'
-            font.pixelSize: 30
+            font.pixelSize: 20
             color: 'white'
             anchors.centerIn: parent
         }
         Timer{
             running: true
             repeat: false
-            interval: 5000
+            interval: Qt.platform.os==='linux'?5000:6000*5
             onTriggered: parent.visible=false
         }
     }
