@@ -19,6 +19,7 @@ import ZoolandBodies 1.1
 import ZoolandDataBodies 1.0
 import ZoolSectionsManager 1.1
 import ZoolBottomToolBar 1.0
+import ZoolFileMaker 1.5
 import comps.ZoolUserCoordsEditor 1.0
 import comps.ZoolMando 1.0
 
@@ -159,6 +160,7 @@ ZoolMainWindow{
         //ZoolUserManager{id: zoolUserManager}
         ZoolUserCoordsEditor{id: zuce}
         ZoolBottomToolBar{id: zbtb}
+        ZoolFileMaker{id: zoolFileMaker}
         ZoolLogView{id: log}
     }
     ZoolandServerFileDataManager{id: zsfdm}
@@ -171,10 +173,17 @@ ZoolMainWindow{
             //zm.visible=!zm.visible
         }
     }
+    Rectangle{
+        anchors.fill: parent
+        color: 'red'
+    }
     Component.onCompleted: {
+        //Add to aCi Tab Keyboard
         vars.aCi.push(zsm.getPanel('ZoolRemoteParamsList'))
-        vars.aCi.push(zsm.getPanel('ZoolFileMaker'))
         vars.aCi.push(zdb)
+        //Add to aCiCtrl  Ctrl+Tab Keyboard
+        vars.aCiCtrl.push(zoolFileMaker)
+
         unik.clearDir(unik.getPath(2))
         if(Qt.application.arguments.indexOf('-dev')>=0)vars.dev=true
         zpn.addNot(unik.getFile('ucommit.txt'), true, 15000)

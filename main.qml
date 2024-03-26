@@ -173,6 +173,10 @@ ZoolMainWindow{
             //zm.visible=!zm.visible
         }
     }
+    Rectangle{
+        anchors.fill: parent
+        color: 'red'
+    }
     Component.onCompleted: {
         //Add to aCi Tab Keyboard
         vars.aCi.push(zsm.getPanel('ZoolRemoteParamsList'))

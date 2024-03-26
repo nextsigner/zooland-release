@@ -319,7 +319,7 @@ Item{
         let h=unik.getFile(fp)//.replace(/ /g, '').replace(/\n/g, '')
         if(h==='error'){
             zpn.addNot('Host Error.', true, 5000)
-            h='http://vps-3339713-x.dattaweb.com'
+            h='http://vps-3598202-x.dattaweb.com'
         }
         zpn.addNot('Host 1: '+h, true, 5000)
         if(h==='' || h.lenght < 5){

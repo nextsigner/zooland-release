@@ -32,7 +32,8 @@ Settings{
     property bool showLog: false
     property int fs: 20
     property int fsSbValue: 50
-    property string host: 'http://zool.loca.lt'
+    //property string host: 'http://zool.loca.lt'
+    property string host: 'http://vps-3598202-x.dattaweb.com'
     property string hostQuiron: 'https://github.com/nextsigner/quiron/raw/master/data'
     property bool newClosed: false
 
