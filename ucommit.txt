@@ -1,1 +1,1 @@
-Se edita host
+Se informa versión al inicio.

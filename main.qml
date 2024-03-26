@@ -175,7 +175,19 @@ ZoolMainWindow{
     }
     Rectangle{
         anchors.fill: parent
-        color: 'red'
+        color: 'black'
+        Text{
+            text: 'Zooland Versión 1.285'
+            font.pixelSize: 40
+            color: 'white'
+            anchors.centerIn: parent
+        }
+        Timer{
+            running: true
+            repeat: false
+            interval: 5000
+            onTriggered: parent.visible=false
+        }
     }
     Component.onCompleted: {
         //Add to aCi Tab Keyboard
