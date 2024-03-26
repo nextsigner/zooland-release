@@ -177,7 +177,8 @@ ZoolMainWindow{
         anchors.fill: parent
         color: 'black'
         Text{
-            text: 'Zooland Versión 1.285'
+            id: zvtxt
+            text: 'Zooland Versión ?'
             font.pixelSize: 40
             color: 'white'
             anchors.centerIn: parent
@@ -190,6 +191,17 @@ ZoolMainWindow{
         }
     }
     Component.onCompleted: {
+        //Set version number.
+        let uVersionFolderPath='/home/ns/nsp/zooland'
+        let uVersionFilePath='/home/ns/nsp/zooland-release/uVersionZooland'
+        if(unik.folderExist(uVersionFolderPath)){
+            let fd=unik.getFile(uVersionFilePath)
+            let unv=fd!=='error'?parseInt(fd):'1000'
+            let nnv=unv + 1
+            unik.setFile(uVersionFilePath, nnv)
+            zvtxt.text='Zooland Versión '+nnv
+        }
+
         //Add to aCi Tab Keyboard
         vars.aCi.push(zsm.getPanel('ZoolRemoteParamsList'))
         vars.aCi.push(zdb)
