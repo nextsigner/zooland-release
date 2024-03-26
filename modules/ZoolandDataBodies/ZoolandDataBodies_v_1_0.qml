@@ -35,7 +35,7 @@ Rectangle {
             }
         }
     ]
-    Behavior on x{NumberAnimation{duration: vars.msDesDuration}}
+    //Behavior on x{NumberAnimation{duration: vars.msDesDuration}}
     Row{
         width: parent.width-r.border.width*2
         anchors.horizontalCenter: parent.horizontalCenter

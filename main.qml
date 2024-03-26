@@ -89,7 +89,7 @@ ZoolMainWindow{
                     ZoolMando{
                         id: zm
                         objectName: 'zm'
-                        width: vars.fs*3
+                        width: vars.fs*4
                         height: width
                         num:0
                         c: 'red'
@@ -103,19 +103,20 @@ ZoolMainWindow{
                         onLeft:sweg.toLeft()
                         onRight:sweg.toRight()
                         property var uCi
+                        property color txtColor: 'red'
                         onVisibleChanged: {
                             if(visible){
                                 uCi=app.ci
                                 //vars.ci=xApp
                                 //sweg.mm=0
                             }else{
-                               //vars.ci=uCi
+                                //vars.ci=uCi
                             }
                         }
                         Text{
                             text: '<b>'+parseInt(sweg.mm + 1)+'</b>'
                             font.pixelSize:vars.fs*0.7
-                            color: apps.fontColor
+                            color: zm.txtColor//apps.fontColor
                             anchors.centerIn: parent
                         }
                         Text{
@@ -159,12 +160,12 @@ ZoolMainWindow{
                 y: 0-(height*0.28)
                 //rotation: parent.x<parent.parent.width*0.5+width*0.1?0:180
             }
-//                        Rectangle{
-//                            width: 10
-//                            height: 10
-//                            anchors.centerIn: parent
-//                            color: 'red'
-//                        }
+            //                        Rectangle{
+            //                            width: 10
+            //                            height: 10
+            //                            anchors.centerIn: parent
+            //                            color: 'red'
+            //                        }
         }
         //ZoolUserManager{id: zoolUserManager}
         ZoolUserCoordsEditor{id: zuce}
@@ -183,15 +184,28 @@ ZoolMainWindow{
         }
     }
     Rectangle{
+        id: xCartelInicio
         anchors.fill: parent
         color: 'black'
-        Text{
-            id: zvtxt
-            text: 'Zooland Versión ?'
-            font.pixelSize: 50
-            color: 'white'
-            horizontalAlignment: Text.AlignHCenter
+        Column{
+            spacing: 4
             anchors.centerIn: parent
+            Text{
+                id: zvtxt
+                text: 'Iniciando...'
+                font.pixelSize: 50
+                color: 'white'
+                horizontalAlignment: Text.AlignHCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            Text{
+                id: zvtxt2
+                text: 'Creado por Ricardo Martín Pizarro'
+                font.pixelSize: 25
+                color: 'white'
+                horizontalAlignment: Text.AlignHCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
         }
         Timer{
             running: true
@@ -209,17 +223,17 @@ ZoolMainWindow{
             let unv=fd!=='error'?parseInt(fd):'1000'
             let nnv=unv + 1
             unik.setFile(uVersionFilePath, nnv)
-            zvtxt.text='Zooland Versión 1.'+nnv+'\n'
-            zvtxt.text+='Creado por Ricardo Martín Pizarro\n'
+            zvtxt.text='Zooland Versión 1.'+nnv+''
         }else{
             let str=''
             let uVersionFilePath='./uVersionZooland.txt'
             let fd=unik.getFile(uVersionFilePath)
             let unv=fd!=='error'?parseInt(fd):'????'
-            str+='Zooland Versión 1.'+unv+'\n'
-            str+='Creado por Ricardo Martín Pizarro\n'
+            str+='Zooland Versión 1.'+unv+''
+            //str+='Creado por Ricardo Martín Pizarro\n'
             zvtxt.text=str
         }
+
 
         //Add to aCi Tab Keyboard
         vars.aCi.push(zsm.getPanel('ZoolRemoteParamsList'))

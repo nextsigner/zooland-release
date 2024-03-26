@@ -446,6 +446,8 @@ Rectangle {
         //zpn.addNot('setWapsBack()', true, 10000)
     }
     function loadSweJson(json, jsonPromesaParams){
+        aspsCircle.clear()
+        apps.showAspCircleBack=false
         tapa.opacity=1.0
         vars.tipo=jsonPromesaParams.params.tipo
         vars.cParams=JSON.stringify(jsonPromesaParams)
@@ -478,6 +480,7 @@ Rectangle {
         housesCircle.loadHouses(j)
         planetsCircle.loadJson(j)
         zdb.loadJson(j)
+        //aspsCircle.clear()
         aspsCircle.load(j)
         panelAspects.load(j)
 
@@ -623,8 +626,14 @@ Rectangle {
     }
 
     //Funciones de Mando
-    property int mm: 0
+    property int mm: -1
     property int mmEdadRs: 1
+    property var aMmZmBgColors: ['red', 'black', 'blue', '#ff8833', 'pink']
+    property var aMmZmTxtColors: ['white', 'white', 'white', 'black', 'black']
+    onMmChanged:{
+        zm.bgc=aMmZmBgColors[mm]
+        zm.txtColor=aMmZmTxtColors[mm]
+    }
     function toEnter(){
         if(r.mm<4){
             r.mm++

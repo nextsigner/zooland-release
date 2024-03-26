@@ -5,6 +5,7 @@ Item {
     //anchors.fill: parent
     property int num: -1
     property color c: 'gray'
+    property color bgc: 'transparent'
     property real op: 1.0
     signal enter()
     signal left()
@@ -12,6 +13,13 @@ Item {
     signal up()
     signal down()
 
+    Rectangle{
+       width: r.width/3
+       height: width
+       color: r.bgc
+       radius: width*0.5
+       anchors.centerIn: parent
+    }
     Grid{
         spacing: 0//r.width/40
         columns: 3

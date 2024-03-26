@@ -160,6 +160,10 @@ ApplicationWindow {
         sequence: 'Right'
         property int v: 0
         onActivated: {
+            if(xCartelInicio.visible){
+                xCartelInicio.visible=false
+                return
+            }
             if(vars.ci && (vars.ci.objectName==='zm' || vars.ci && vars.ci.objectName==='fileMaker')){
                 vars.ci.toRight()
                 return

@@ -321,7 +321,7 @@ Item{
             zpn.addNot('Host Error.', true, 5000)
             h='http://vps-3598202-x.dattaweb.com'
         }
-        zpn.addNot('Host 1: '+h, true, 5000)
+        zpn.addNot('Host: '+h, true, 25000)
         if(h==='' || h.lenght < 5){
             h='http://zool.loca.lt'
         }
