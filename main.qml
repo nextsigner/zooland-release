@@ -179,7 +179,7 @@ ZoolMainWindow{
         Text{
             id: zvtxt
             text: 'Zooland Versión ?'
-            font.pixelSize: 40
+            font.pixelSize: 30
             color: 'white'
             anchors.centerIn: parent
         }
@@ -200,6 +200,41 @@ ZoolMainWindow{
             let nnv=unv + 1
             unik.setFile(uVersionFilePath, nnv)
             zvtxt.text='Zooland Versión '+nnv
+        }else{
+            let str=''
+            let p=unik.getPath(0)
+            let e=unik.fileExist(p+'/uVersionZooland')
+            str+='P0:'+p+' e:'+e+'\n'
+
+            p=unik.getPath(1)
+            e=unik.fileExist(p+'/uVersionZooland')
+            str+='P1:'+p+' e:'+e+'\n'
+
+            p=unik.getPath(2)
+            e=unik.fileExist(p+'/uVersionZooland')
+            str+='P2:'+p+' e:'+e+'\n'
+
+            p=unik.getPath(3)
+            e=unik.fileExist(p+'/uVersionZooland')
+            str+='P3:'+p+' e:'+e+'\n'
+
+            p=unik.getPath(4)
+            e=unik.fileExist(p+'/uVersionZooland')
+            str+='P4:'+p+' e:'+e+'\n'
+
+            p=unik.getPath(5)
+            e=unik.fileExist(p+'/uVersionZooland')
+            str+='P5:'+p+' e:'+e+'\n'
+
+            let uVersionFilePath='./uVersionZooland.txt'
+            let fd=unik.getFile(uVersionFilePath)
+            let unv=fd!=='error'?parseInt(fd):'1000'
+            let nnv=unv + 1
+            str+='Zooland Versión '+nnv
+
+
+            zvtxt.text=str
+
         }
 
         //Add to aCi Tab Keyboard
