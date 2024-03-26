@@ -193,7 +193,7 @@ ZoolMainWindow{
     Component.onCompleted: {
         //Set version number.
         let uVersionFolderPath='/home/ns/nsp/zooland'
-        let uVersionFilePath='/home/ns/nsp/zooland-release/uVersionZooland'
+        let uVersionFilePath='/home/ns/nsp/zooland-release/uVersionZooland.txt'
         if(unik.folderExist(uVersionFolderPath)){
             let fd=unik.getFile(uVersionFilePath)
             let unv=fd!=='error'?parseInt(fd):'1000'
