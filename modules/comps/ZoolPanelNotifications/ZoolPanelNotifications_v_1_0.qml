@@ -5,9 +5,10 @@ import ZoolButton 1.2
 
 Item{
     id: r
-    width: parent.width
+    width: parent===xMed?xApp.width*0.2:parent.width
     height: parent.height
-    anchors.right: parent.right
+    //anchors.right: parent.right
+    anchors.left: parent.left
     anchors.bottom: parent.bottom
     property int count: col.children.length
     onCountChanged: updateHeight()

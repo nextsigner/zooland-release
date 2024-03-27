@@ -446,6 +446,7 @@ Rectangle {
         //zpn.addNot('setWapsBack()', true, 10000)
     }
     function loadSweJson(json, jsonPromesaParams){
+        zoolDataView.clear()
         aspsCircle.clear()
         apps.showAspCircleBack=false
         tapa.opacity=1.0
@@ -628,14 +629,14 @@ Rectangle {
     //Funciones de Mando
     property int mm: -1
     property int mmEdadRs: 1
-    property var aMmZmBgColors: ['red', 'black', 'blue', '#ff8833', 'pink']
-    property var aMmZmTxtColors: ['white', 'white', 'white', 'black', 'black']
+    property var aMmZmBgColors: ['red', 'black', 'blue', '#ff8833', 'pink', 'white']
+    property var aMmZmTxtColors: ['white', 'white', 'white', 'black', 'black', 'black']
     onMmChanged:{
         zm.bgc=aMmZmBgColors[mm]
         zm.txtColor=aMmZmTxtColors[mm]
     }
     function toEnter(){
-        if(r.mm<4){
+        if(r.mm<5){
             r.mm++
         }else{
             r.mm=0
@@ -644,14 +645,14 @@ Rectangle {
     function toLeft(){
 
         //Rs Edad --
-        if(mm===4){
+        if(mm===5){
             if(r.mmEdadRs>1){
                 r.mmEdadRs--
                 tLoadRsH1.restart()
             }
             return
         }
-        if(mm===3){
+        if(mm===4){
             //zm.visible=false
             if(zsm.getPanel('ZoolRemoteParamsList').ol.visible){
                 vars.ci=zsm.getPanel('ZoolRemoteParamsList').ol
@@ -661,7 +662,7 @@ Rectangle {
             return
         }
 
-        if(mm===0){
+        if(mm===1){
             if(senMano.x>xLatIzq.width && senMano.x<xLatDer.x){
                 senMano.x-=vars.fs*0.25
             }else{
@@ -675,7 +676,7 @@ Rectangle {
     function toRight(){
 
         //Rs Edad ++
-        if(mm===4){
+        if(mm===5){
             if(r.mmEdadRs<150){
                 r.mmEdadRs++
                 tLoadRsH1.restart()
@@ -683,10 +684,10 @@ Rectangle {
             return
         }
 
-        if(mm===3){
+        if(mm===4){
             vars.ci=zdb
         }
-        if(mm===0){
+        if(mm===1){
             if(senMano.x>xLatIzq.width && senMano.x<xLatDer.x){
                 senMano.x+=vars.fs*0.25
             }else{
@@ -698,7 +699,7 @@ Rectangle {
         rect.x+=vars.fs
     }
     function toDown(){
-        if(mm===0){
+        if(mm===1){
             if(senMano.x>xLatIzq.width && senMano.x<xLatDer.x){
                 senMano.y+=vars.fs*0.25
             }else{
@@ -707,9 +708,15 @@ Rectangle {
             if(senMano.y>xApp.height)senMano.y=0//+vars.fs*14
             return
         }
-        if(r.mm===2){
+        if(r.mm===0){
+            if(sweg.currentPlanetIndex>-1){
+                sweg.currentPlanetIndex--
+            }else{
+                sweg.currentPlanetIndex=19
+            }
+        }else if(r.mm===2){
             rect.y+=vars.fs
-        }else if(r.mm===1){
+        }else if(r.mm===3){
             zoomUp()
         }else{
            //zm.visible=false
@@ -718,11 +725,10 @@ Rectangle {
     function toUp(){
 
         //Load Rs
-        if(mm===4){
+        if(mm===5){
             zsfdm.getZoolandDataRevSol(r.mmEdadRs, true)
         }
-
-        if(mm===0){
+        if(mm===1){
             if(senMano.x>xLatIzq.width && senMano.x<xLatDer.x){
                 senMano.y-=vars.fs*0.25
             }else{
@@ -731,9 +737,15 @@ Rectangle {
             if(senMano.y+imgMano.height-vars.fs*14<0)senMano.y=xApp.height
             return
         }
-        if(r.mm===2){
+        if(r.mm===0){
+            if(sweg.currentPlanetIndex<19){
+                sweg.currentPlanetIndex++
+            }else{
+                sweg.currentPlanetIndex=-1
+            }
+        }else if(r.mm===2){
             rect.y-=vars.fs
-        }else if(r.mm===1){
+        }else if(r.mm===3){
             zoomDown()
         }else{
            //zm.visible=false

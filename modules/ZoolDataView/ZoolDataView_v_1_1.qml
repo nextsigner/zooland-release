@@ -234,5 +234,9 @@ Rectangle {
         }
         //tWaitUpdateData.start()
     }
-
+    function clear(){
+        r.atLeft=[]
+        r.atRight=[]
+        r.stringMiddleSeparator='VN'
+    }
 }

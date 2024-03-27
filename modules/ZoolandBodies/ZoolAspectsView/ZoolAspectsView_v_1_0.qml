@@ -130,9 +130,9 @@ Rectangle {
                         }
 
                         if(sweg.aTexts[a.ic1]===''){
-                            sweg.aTexts[a.ic1]+='<b>'+vars.planetas[a.ic1]+'</b><br />'+strAsp+' a '+vars.planetas[a.ic2]
+                            sweg.aTexts[a.ic1]+='<b>'+vars.aBodies[a.ic1]+'</b><br />'+strAsp+' a '+vars.aBodies[a.ic2]
                         }else{
-                            sweg.aTexts[a.ic1]+='<br />'+strAsp+' a '+vars.planetas[a.ic2]
+                            sweg.aTexts[a.ic1]+='<br />'+strAsp+' a '+vars.aBodies[a.ic2]
                         }
                         let nTexts=sweg.aTexts[a.ic1].split('<br />').sort().join('<br />')
                         sweg.aTexts[a.ic1]=nTexts

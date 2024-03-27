@@ -5,6 +5,7 @@ import ZoolButton 1.2
 
 Rectangle{
     id: r
+    objectName: 'messageDialog'
     width: Screen.width*0.35
     height: col.height+app.fs*2
     color: apps.backgroundColor

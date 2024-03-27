@@ -76,13 +76,14 @@ ZoolMainWindow{
                 height: xApp.height-zoolDataView.height
                 ZRect{
                     id: xLatIzq
-                    width: vars.ci.objectName==='fileMaker'?xApp.width+vars.xAppMargin*2:xApp.width*0.2
+                    //width: vars.ci.objectName==='fileMaker'?xApp.width+vars.xAppMargin*2:xApp.width*0.2
+                    width:vars.ci.objectName==='zm'?0:xApp.width*0.2
                     height: parent.height
                     ZoolSectionsManager{id: zsm}
                 }
                 ZRect{
                     id: xMed
-                    width: xApp.width*0.6
+                    width: vars.ci.objectName==='zm'?xApp.width:xApp.width*0.6
                     height: parent.height
                     clip: true
                     ZoolandBodies{id: sweg}
@@ -124,7 +125,26 @@ ZoolMainWindow{
                             font.pixelSize:vars.fs*0.7
                             color: apps.fontColor
                             anchors.horizontalCenter: parent.horizontalCenter
-                            visible: sweg.mm===4
+                            visible: sweg.mm===5
+                        }
+                        Text{
+                            text: sweg.currentPlanetIndex>=0?'<b>'+vars.aBodies[sweg.currentPlanetIndex]+'</b>':''
+                            font.pixelSize:vars.fs*0.7
+                            color: apps.backgroundColor
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.bottom: parent.top
+                            visible: sweg.mm===0
+                            Rectangle{
+                                width: parent.width+10
+                                height: parent.height+10
+                                color: apps.fontColor
+                                border.color: apps.backgroundColor
+                                border.width: 1
+                                radius: 8
+                                z: parent.z-1
+                                anchors.centerIn: parent
+                                visible: parent.text!==''
+                            }
                         }
                     }
                 }
@@ -133,8 +153,12 @@ ZoolMainWindow{
                     width: xApp.width*0.2
                     height: parent.height
                     clip:true
+                    visible: vars.ci.objectName!=='zm'
                     ZoolandDataBodies{id: zdb}
-                    ZoolPanelNotifications{id: zpn}
+                    ZoolPanelNotifications{
+                        id: zpn
+                        parent:vars.ci.objectName==='zm'?xMed:xLatDer
+                    }
 
                 }
             }
@@ -143,7 +167,7 @@ ZoolMainWindow{
             id: senMano
             width: 10
             height: 10
-            visible: sweg.mm===0
+            visible: sweg.mm===1
             rotation: x<parent.width*0.5?0:180
             Behavior on rotation{NumberAnimation{duration: 500; easing.type: Easing.InOutQuad}}
             onVisibleChanged: {
